@@ -4,7 +4,7 @@
       "beta": false,
       "bundleIdentifier": "com.atebits.Tweetie2",
       "developerName": "actuallyaridan, nyaathea, timi2506",
-      "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/2.0/NeoFreeBird-2.0r2-Twitter-11.5.5.ipa",
+      "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/2.1/NeoFreeBird-2.1-Twitter-11.33-rev2.ipa",
       "iconURL": "https://raw.githubusercontent.com/actuallyaridan/NeoFreeBird/refs/heads/main/Branding/Icon.png",
       "localizedDescription": "A modified Twitter app, with branding reverts, BHTwitter and other QoL modifications.",
       "name": "NeoFreeBird",
@@ -15,9 +15,9 @@
       "size": 143835002,
       "subtitle": "A modified Twitter app, with branding reverts, BHTwitter and other QoL modifications.",
       "tintColor": "1DA1F2",
-      "version": "11.5.5",
-      "versionDate": "2025-05-08T14:00:00-07:00",
-      "versionDescription": "Twitter, version 11.5.5:\n\nNeoFreeBird, version 2.0"
+      "version": "11.33",
+      "versionDate": "2025-10-29T14:00:00-07:00",
+      "versionDescription": "Twitter, version 11.33:\n\nNeoFreeBird, version 2.1”
     }
   ],
   "identifier": "com.atebits.Tweetie2",
