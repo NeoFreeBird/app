@@ -90,6 +90,12 @@
 "ALWAYS_OPEN_SAFARI_TITLE" = "Use external browser";
 "ALWAYS_OPEN_SAFARI_DETAIL" = "Open links in Safari or your default browser.";
 
+"BLOCK_LINK_TRACKING_TITLE" = "Block link tracking";
+"BLOCK_LINK_TRACKING_DETAIL" = "Open links directly instead of through t.co, without the background t.co requests or ad click IDs. Twitter's unsafe link warnings won't appear.";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "Remove tracking parameters";
+"STRIP_TRACKING_PARAMS_DETAIL" = "Strip utm_ and other tracking tags from links you open.";
+
 "SHARING_DOMAIN_TITLE" = "Sharing domain";
 
 /*Tweets*/

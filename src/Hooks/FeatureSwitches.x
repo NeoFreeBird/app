@@ -177,6 +177,15 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @NO;
     }
 
+    // Click IDs on promoted links, and loading card links in the background
+    // before they're tapped (LinkTracking.x).
+    if ([key isEqualToString:@"ad_formats_click_id_enabled"] ||
+        [key isEqualToString:@"wcl_unified_cards_likely_open_link_prefetch_enabled"]) {
+        if ([BHTSettings boolForKey:@"block_link_tracking"]) {
+            return @NO;
+        }
+    }
+
     // The profile hooks build on the classic header; the header rework
     // replaces the action-buttons row with a separate catalog system.
     if ([key isEqualToString:@"ios_profile_redesign_header_rework_enabled"]) {

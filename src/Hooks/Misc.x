@@ -63,19 +63,6 @@ static BOOL ShouldKeepBrowserURLInApp(NSURL* url) {
 
 %end
 
-// MARK: - Expand t.co links
-
-%hook TFSTwitterEntityURL
-
-- (NSString*)url {
-    // The entity is also used for URLs that never had a t.co wrapper (e.g.
-    // share links), where expandedURL is nil.
-    NSString* expandedURL = self.expandedURL;
-    return expandedURL ?: %orig;
-}
-
-%end
-
 // MARK: - Disable RTL
 
 // CoreText picks direction from the first strong directional character; forcing

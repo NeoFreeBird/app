@@ -445,7 +445,11 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                     // LiveContainer, so default it off there rather than
                     // forcing the switch on for every guest install.
                     @{@"key": @"new_inapp_webview",
-                      @"default": @(![BHTManager isLiveContainer])}
+                      @"default": @(![BHTManager isLiveContainer])},
+                    @{@"key": @"block_link_tracking",
+                      @"default": @YES},
+                    @{@"key": @"strip_tracking_params",
+                      @"default": @YES}
                 ]
             },
             @"debug": @{
