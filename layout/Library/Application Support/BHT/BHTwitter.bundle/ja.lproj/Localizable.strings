@@ -149,8 +149,11 @@
 "SQUARE_AVATARS_TITLE" = "正方形のプロフィール画像";
 "SQUARE_AVATARS_DETAIL" = "旧Twitterのように、ブランドアカウントのような正方形のプロフィール画像を全員に適用します。";
 
-"REPLY_SORTING_TITLE" = "リプライの並べ替えを無効にする";
-"REPLY_SORTING_DETAIL" = "ポストのリプライにある並べ替え機能を無効にします。";
+"DEFAULT_REPLY_SORTING_TITLE" = "デフォルトの返信の並び替え";
+"DEFAULT_REPLY_SORTING_DETAIL" = "すべてのポストにおける返信のデフォルトの並び替え順を選択します。";
+
+"REPLY_SORTING_TITLE" = "返信の並べ替えを無効にする";
+"REPLY_SORTING_DETAIL" = "ポストの会話で返信の並び替えボタンを非表示にします。";
 
 "RESTORE_REPLY_CONTEXT_TITLE" = "返信コンテキストを復元";
 "RESTORE_REPLY_CONTEXT_DETAIL" = "ポストの下に、そのポストへの返信先を表示します。";
