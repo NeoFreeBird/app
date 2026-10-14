@@ -289,7 +289,7 @@
 
 /*Labs*/
 "REPLY_IN_WEBVIEW_TITLE" = "Reply in web view";
-"REPLY_IN_WEBVIEW_DETAIL" = "Open the reply box in a web view to avoid attestation.";
+"REPLY_IN_WEBVIEW_DETAIL" = "Fallback if replies fail to send. Replies on x.com instead of in the app.";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Debug mode";
