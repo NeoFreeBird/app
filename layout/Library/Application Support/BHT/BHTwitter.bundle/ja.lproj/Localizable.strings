@@ -349,6 +349,12 @@
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "ダークブルーテーマを適用するには、アプリを再起動する必要があります。";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "再起動";
 
+"HIDE_QUOTE_TWEETS_TITLE" = "引用ポストを非表示";
+"HIDE_QUOTE_TWEETS_DETAIL" = "タイムライン上の引用ポストを非表示にします。";
+
+"HIDE_RETWEETS_TITLE" = "リポストを非表示";
+"HIDE_RETWEETS_DETAIL" = "タイムライン上のリポストを非表示にします。";
+
 "HIDE_VERIFIED_TWEETS_TITLE" = "認証アカウントのポスト非表示";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "タイムラインとリプライから認証済みアカウントのポストを非表示にします。ただし、そのアカウントをフォローしている場合や、投稿者が同じスレッド内で返信している場合は除きます。";
 
