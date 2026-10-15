@@ -90,6 +90,12 @@
 "ALWAYS_OPEN_SAFARI_TITLE" = "استخدام متصفح خارجي";
 "ALWAYS_OPEN_SAFARI_DETAIL" = "فتح الروابط في Safari أو المتصفح الافتراضي.";
 
+"BLOCK_LINK_TRACKING_TITLE" = "منع تتبع الروابط";
+"BLOCK_LINK_TRACKING_DETAIL" = "فتح الروابط مباشرة دون المرور عبر t.co، أو إرسال طلبات إلى t.co في الخلفية، أو إضافة معرّفات النقرات الإعلانية. لن تظهر تحذيرات تويتر من الروابط غير الآمنة.";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "إزالة معلمات التتبع";
+"STRIP_TRACKING_PARAMS_DETAIL" = "إزالة معلمات التتبع مثل utm_ من الروابط عند فتحها.";
+
 "SHARING_DOMAIN_TITLE" = "نطاق المشاركة";
 
 /*Tweets*/
@@ -149,14 +155,14 @@
 "SQUARE_AVATARS_TITLE" = "صور ملف شخصي مربعة";
 "SQUARE_AVATARS_DETAIL" = "عرض صور ملف شخصي مربعة للجميع مثل حسابات العلامات التجارية، كما في تويتر القديم.";
 
-"REPLY_SORTING_TITLE" = "تعطيل فرز الردود";
-"REPLY_SORTING_DETAIL" = "تعطيل ميزة فرز الردود في محادثات التغريدات.";
+"DEFAULT_REPLY_SORTING_TITLE" = "فرز الردود الافتراضي";
+"DEFAULT_REPLY_SORTING_DETAIL" = "اختر طريقة فرز الردود الافتراضية لجميع التغريدات.";
+
+"REPLY_SORTING_TITLE" = "إخفاء زر فرز الردود";
+"REPLY_SORTING_DETAIL" = "إخفاء زر فرز الردود في محادثات التغريدات.";
 
 "RESTORE_REPLY_CONTEXT_TITLE" = "استعادة سياق الرد";
 "RESTORE_REPLY_CONTEXT_DETAIL" = "عرض أسماء من يتلقون الرد أسفل التغريدات.";
-
-"RESTORE_TWEET_LABELS_TITLE" = "عرض مصدر التغريدة";
-"RESTORE_TWEET_LABELS_DETAIL" = "عرض التطبيق الذي نُشرت منه التغريدة.";
 
 /*Chat*/
 "HIDE_TYPING_INDICATOR_TITLE" = "إخفاء مؤشر الكتابة";
@@ -283,7 +289,7 @@
 
 /*Labs*/
 "REPLY_IN_WEBVIEW_TITLE" = "الرد في عرض ويب";
-"REPLY_IN_WEBVIEW_DETAIL" = "فتح مربع الرد في عرض ويب لتجنب التحقق من سلامة التطبيق.";
+"REPLY_IN_WEBVIEW_DETAIL" = "خيار بديل عند تعذّر إرسال الردود. أرسل الردود عبر x.com بدلًا من واجهة الرد في التطبيق.";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "وضع تصحيح الأخطاء";
@@ -305,6 +311,8 @@
 "DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "تنزيل جميع الفيديوهات";
 
 /*App icon*/
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "تعذّر تغيير الأيقونة";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "لا يمكن تغيير أيقونة التطبيق على macOS بسبب قيود تفرضها Apple.";
 
 /*Copy profile info*/
 "COPY_PROFILE_INFO_MENU_OPTION_1" = "نسخ النبذة";
@@ -348,6 +356,12 @@
 "DIM_THEME_RESTART_ALERT_TITLE" = "تلزم إعادة التشغيل";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "أعد تشغيل التطبيق لتطبيق السمة الخافتة.";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "إعادة التشغيل";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "إخفاء التغريدات المقتبِسة";
+"HIDE_QUOTE_TWEETS_DETAIL" = "إخفاء التغريدات التي تقتبس تغريدات أخرى من الخط الزمني.";
+
+"HIDE_RETWEETS_TITLE" = "إخفاء إعادات التغريد";
+"HIDE_RETWEETS_DETAIL" = "إخفاء التغريدات المعاد تغريدها من الخط الزمني.";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "إخفاء تغريدات الحسابات الموثقة";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "إخفاء تغريدات الحسابات الموثقة من الخط الزمني والردود، إلا إذا ردّ عليها صاحب سلسلة التغريدات ضمن السلسلة نفسها أو كنت تتابع الحساب.";
