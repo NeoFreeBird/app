@@ -92,6 +92,12 @@
 "ALWAYS_OPEN_SAFARI_TITLE" = "Harici tarayıcı kullan";
 "ALWAYS_OPEN_SAFARI_DETAIL" = "Bağlantıları Safari’de veya varsayılan tarayıcınızda açar.";
 
+"BLOCK_LINK_TRACKING_TITLE" = "Bağlantı takibini engelle";
+"BLOCK_LINK_TRACKING_DETAIL" = "Bağlantıları arka planda t.co istekleri veya reklam tık kimlikleri olmadan, doğrudan t.co üzerinden değil doğrudan açar. Twitter'ın güvensiz bağlantı uyarıları görünmez.";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "Takip parametrelerini kaldır";
+"STRIP_TRACKING_PARAMS_DETAIL" = "Açtığınız bağlantılardan utm_ ve diğer takip etiketlerini ayıklar.";
+
 "SHARING_DOMAIN_TITLE" = "Paylaşım alan adı";
 "SHARING_DOMAIN_DETAIL" = "Paylaşılan bağlantılarda kullanılacak alan adını ayarlamanızı sağlar.";
 
@@ -103,6 +109,15 @@
 
 "LIKE_CONFIRM_TITLE" = "Beğenileri onayla";
 "LIKE_CONFIRM_DETAIL" = "Bir Tweet’i beğenmeden önce onay ister.";
+
+"SHOW_QUOTE_NUMBERS_TITLE" = "Alıntı sayılarını göster";
+"SHOW_QUOTE_NUMBERS_DETAIL" = "Bir Tweet'in aldığı alıntı ve retweet sayısını gösterir.";
+
+"SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "Yuvarlanmamış alıntı sayılarını göster";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "Bir Tweet'in aldığı alıntı ve retweetlerin tam sayısını gösterir. Taşma sorunlarına neden olabilir.";
+
+"POST_INTERACTIONS_COUNTS_TITLE" = "Alıntılar: %@  Retweet: %@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Alıntılar: %lld  Retweet: %lld";
 
 "USE_TENOR_GIFS_TITLE" = "Tenor GIF’lerini kullan";
 "USE_TENOR_GIFS_DETAIL" = "Twitter’ın GIF’leri (GIPHY) yerine Tenor GIF’lerini kullanır. Tenor daha fazla seçenek sunar.";
@@ -132,7 +147,6 @@
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Tweetlerden olumsuz oy düğmesini kaldırır.";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "Hassas içerik uyarılarını devre dışı bırak";
-"DISABLE_SENSITIVE_TWEET_WARNINGS_DETAIL" = "Hassas içerik için gösterilen uyarıları devre dışı bırakır.";
 
 "BYPASS_AGE_VERIFICATION_TITLE" = "Yaş doğrulamasını atla";
 "BYPASS_AGE_VERIFICATION_DETAIL" = "Hassas içerik için yaş doğrulama akışını atlar.";
@@ -151,6 +165,9 @@
 
 "SQUARE_AVATARS_TITLE" = "Kare profil resimleri";
 "SQUARE_AVATARS_DETAIL" = "Herkese, marka hesaplarında olduğu gibi kare profil resimleri verir.";
+
+"DEFAULT_REPLY_SORTING_TITLE" = "Varsayılan yanıt sıralaması";
+"DEFAULT_REPLY_SORTING_DETAIL" = "Tüm Tweetler için varsayılan yanıt sıralamasını seçin.";
 
 "REPLY_SORTING_TITLE" = "Yanıt sıralamasını devre dışı bırak";
 "REPLY_SORTING_DETAIL" = "Tweet sohbetlerindeki yanıt sıralama özelliğini devre dışı bırakır.";
@@ -250,6 +267,9 @@
 "DOWNLOAD_HIGHEST_QUALITY_TITLE" = "Her zaman en yüksek kaliteyi indir";
 "DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "Kalite seçiciyi atlar ve doğrudan en iyi MP4’ü kaydeder.";
 
+"DOWNLOAD_ALL_VIDEOS_TITLE" = "Tüm videoları indir";
+"DOWNLOAD_ALL_VIDEOS_DETAIL" = "Bir Tweet'teki her videoyu indirmek için bir seçenek ekler.";
+
 "UPLOAD_FULL_HD_VIDEOS_TITLE" = "Full HD video yükle";
 "UPLOAD_FULL_HD_VIDEOS_DETAIL" = "1080p çözünürlükte video yükleme özelliğinin kilidini açar.";
 
@@ -329,9 +349,13 @@
 "FETCHING_PROGRESS_TITLE" = "Sadece bir saniye...";
 "DOWNLOAD_AS_GIF_OPTION_TITLE" = "GIF olarak indir";
 "DOWNLOAD_AS_MP4_OPTION_TITLE" = "MP4 olarak indir";
+"DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "Tüm videoları indir";
 
 
 /* App icon */
+
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "Simge değiştirilemedi";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "macOS üzerinde simgeler değiştirilemez, bu bir Apple kısıtlamasıdır.";
 
 
 /* Copy profile info */
@@ -386,6 +410,12 @@
 "DIM_THEME_RESTART_ALERT_TITLE" = "Yeniden başlatma gerekli";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "Alacakaranlık temasının etkili olması için yeniden başlatma gerekir.";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Yeniden başlat";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "Alıntı Tweetleri gizle";
+"HIDE_QUOTE_TWEETS_DETAIL" = "Zaman akışınızdaki alıntı Tweetleri gizler.";
+
+"HIDE_RETWEETS_TITLE" = "Retweetleri gizle";
+"HIDE_RETWEETS_DETAIL" = "Zaman akışınızdaki retweetleri gizler.";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "Onaylı Tweetleri gizle";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Yazar aynı dizide yanıt vermediği veya hesabı takip etmediğiniz sürece zaman akışınızda ve yanıtlarınızda onaylı hesapların Tweetlerini gizler.";
@@ -484,6 +514,11 @@
 
 "SETTINGS_EXPORT_TITLE" = "Ayarları dışa aktar";
 "SETTINGS_IMPORT_TITLE" = "Ayarları içe aktar";
+
+"CUSTOM_SEND_SOUND_TITLE" = "Gönderme sesi içe aktar";
+"CUSTOM_SEND_SOUND_DEFAULT" = "Özel ses seçilmedi";
+"CUSTOM_SEND_SOUND_FAILED_TITLE" = "Gönderme sesi içe aktarılamadı";
+"CUSTOM_SEND_SOUND_TOO_LONG" = "Seçtiğiniz ses çok uzun. 7 saniye veya daha kısa olmalıdır.";
 
 "SETTINGS_EXPORT_FAILED_TITLE" = "Dışa aktarma başarısız";
 "SETTINGS_EXPORT_WRITE_FAILED" = "Ayar dosyası oluşturulamadı.";
