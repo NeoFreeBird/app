@@ -171,23 +171,27 @@
 
 %end
 
-// MARK: - Hide Follow button on Tweets
+// MARK: - Hide Follow and Message buttons on Tweets
 
 // The conversation focal tweet and the immersive player both render their
-// author row through TTAStatusAuthorView, so forcing the flag here covers every
-// surface.
+// author row through TTAStatusAuthorView, so applying the settings here covers
+// both surfaces.
 
 %hook TTAStatusAuthorView
 
 - (void)setFollowControlHidden:(BOOL)hidden {
     %orig([BHTSettings boolForKey:@"hide_follow_button"] ? YES : hidden);
 }
-- (void)didMoveToWindow {
-    if ([BHTSettings boolForKey:@"hide_follow_button"]) {
-        self.messageButton.hidden = YES;
-        self.messageButton.userInteractionEnabled = NO;
-        self.messageButton.alpha = 0.0;
+
+// Both content updates and layout use this setter, so later frame-based
+// visibility updates cannot undo the preference. Native visibility is retained
+// when the preference is off, including for cached and reused author rows.
+- (void)_t1_screenshots_modified_setHidden:(BOOL)hidden view:(UIView*)view {
+    if (view && view == self.messageButton &&
+        [BHTSettings boolForKey:@"hide_message_button"]) {
+        hidden = YES;
     }
+    %orig(hidden, view);
 }
 
 %end

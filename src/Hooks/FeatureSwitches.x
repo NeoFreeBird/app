@@ -192,8 +192,10 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @NO;
     }
 
+    // The NeoFreeBird entry is inserted into the classic settings list. The
+    // XSettings redesign bypasses those controllers entirely.
     if ([key isEqualToString:@"ios_settings_redesign_enabled"]) {
-        return @YES;
+        return @NO;
     }
 
     // Profile tabs
