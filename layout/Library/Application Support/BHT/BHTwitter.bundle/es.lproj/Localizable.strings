@@ -98,6 +98,12 @@
 "ALWAYS_OPEN_SAFARI_TITLE" = "Usar navegador externo";
 "ALWAYS_OPEN_SAFARI_DETAIL" = "Abre los enlaces en Safari o en tu navegador predeterminado.";
 
+"BLOCK_LINK_TRACKING_TITLE" = "Bloquear rastreo de enlaces";
+"BLOCK_LINK_TRACKING_DETAIL" = "Abre los enlaces directamente sin pasar por t.co, sin las solicitudes a t.co en segundo plano ni los identificadores de clic publicitarios. No se mostrarán las advertencias de Twitter sobre enlaces no seguros.";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "Eliminar parámetros de rastreo";
+"STRIP_TRACKING_PARAMS_DETAIL" = "Remueve parámetros como utm_ y otras cadenas de rastreo de los enlaces que abras.";
+
 "SHARING_DOMAIN_TITLE" = "Dominio para compartir";
 
 /*Tweets*/
@@ -113,6 +119,9 @@
 "SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "Mostrar cifra exacta de citas sin redondear";
 "SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "Muestra el número exacto de citas y Retweets que ha recibido un Tweet. La cifra podría salirse de la pantalla.";
 
+"POST_INTERACTIONS_COUNTS_TITLE" = "Citas: %@  Retweets: %@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Citas: %lld  Retweets: %lld";
+
 "TWEET_CONFIRM_TITLE" = "Confirmar Tweets";
 "TWEET_CONFIRM_DETAIL" = "Pregunta antes de publicar un Tweet.";
 
@@ -120,7 +129,7 @@
 "SHOW_POLL_RESULTS_DETAIL" = "Añade los resultados de la encuesta a los nombres de las opciones antes de votar, para que puedas ver cómo han votado los demás.";
 
 "SHOW_ACCOUNT_LOCATION_TITLE" = "Mostrar ubicación de la cuenta";
-"SHOW_ACCOUNT_LOCATION_DETAIL" = "Muestra la ubicación de la cuenta que publicó un Tweet en el pie del tweet.";
+"SHOW_ACCOUNT_LOCATION_DETAIL" = "Muestra la ubicación de la cuenta que publicó un Tweet en el pie de éste.";
 
 "HIDE_BLUE_VERIFIED_TITLE" = "Ocultar marcas de verificación de Blue";
 "HIDE_BLUE_VERIFIED_DETAIL" = "Oculta la marca de verificación de pago en los Tweets. Esto no incluye las cuentas de marcas o gobiernos.";
@@ -153,6 +162,9 @@
 
 "SQUARE_AVATARS_TITLE" = "Fotos de perfil cuadradas";
 "SQUARE_AVATARS_DETAIL" = "Da a todos fotos de perfil cuadradas como las cuentas de marca, igual que en el antiguo Twitter.";
+
+"DEFAULT_REPLY_SORTING_TITLE" = "Orden predeterminado de respuestas";
+"DEFAULT_REPLY_SORTING_DETAIL" = "Elige el orden por defecto de respuestas para todos los Tweets.";
 
 "REPLY_SORTING_TITLE" = "Sin orden de respuestas";
 "REPLY_SORTING_DETAIL" = "Desactiva la función de ordenación de respuestas en las conversaciones de los Tweets.";
@@ -251,7 +263,7 @@
 
 "THEME_OPTION_TITLE" = "Cambiar tema";
 
-"APP_ICON_TITLE" = "Cambiar icono de la app";
+"APP_ICON_TITLE" = "Cambiar icono de la aplicación";
 
 "CUSTOM_TAB_BAR_OPTION_TITLE" = "Editar barra de navegación";
 
@@ -308,6 +320,8 @@
 "DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "Descargar todos los vídeos";
 
 /*App icon*/
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "Error al cambiar el icono";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "Los iconos no se pueden cambiar en macOS. Esto es una limitación de Apple.";
 
 /*Copy profile info*/
 "COPY_PROFILE_INFO_MENU_OPTION_1" = "Copiar biografía";
@@ -348,9 +362,16 @@
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "Activar tema tenue";
 "ENABLE_DIM_THEME_DETAIL" = "Restaura el tema tenue eliminado de Twitter. Requiere tener activado el modo oscuro y reiniciar.";
+
 "DIM_THEME_RESTART_ALERT_TITLE" = "Se requiere reiniciar";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "El tema tenue requiere un reinicio para aplicarse.";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Reiniciar";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "Ocultar Tweets citados";
+"HIDE_QUOTE_TWEETS_DETAIL" = "Oculta los Tweets citados en tu cronología.";
+
+"HIDE_RETWEETS_TITLE" = "Ocultar Retweets";
+"HIDE_RETWEETS_DETAIL" = "Oculta los Retweets en tu cronología.";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "Ocultar Tweets verificados";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Oculta los Tweets de cuentas verificadas en tu cronología y respuestas, a menos que el autor haya respondido en el mismo hilo o sigas la cuenta.";
