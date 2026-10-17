@@ -90,6 +90,11 @@
 "ALWAYS_OPEN_SAFARI_TITLE" = "外部ブラウザで開く";
 "ALWAYS_OPEN_SAFARI_DETAIL" = "リンクをSafari、またはデフォルトのブラウザで開きます。";
 
+"BLOCK_LINK_TRACKING_TITLE" = "リンク追跡のブロック";	
+"BLOCK_LINK_TRACKING_DETAIL" = "t.coを経由せず、バックグラウンドでのt.coのリクエストや広告クリックIDなしで、リンクを直接開きます。Twitterの危険なリンクの警告は表示されなくなります。";	
+"STRIP_TRACKING_PARAMS_TITLE" = "追跡パラメータの削除";	
+"STRIP_TRACKING_PARAMS_DETAIL" = "開いたリンクからutm_などの追跡タグを取り除きます。";
+
 "SHARING_DOMAIN_TITLE" = "共有ドメイン";
 
 /*Tweets*/
@@ -105,6 +110,9 @@
 "SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "正確な引用数を表示";
 "SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "ポストが受けた引用とリポストの正確な数を表示します。表示が崩れる場合があります。";
 
+"POST_INTERACTIONS_COUNTS_TITLE" = "引用: %@ リポスト: %@";	
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "引用: %lld リポスト: %lld";
+
 "USE_TENOR_GIFS_TITLE" = "TenorのGIFを使用する";
 "USE_TENOR_GIFS_DETAIL" = "TwitterのGIF（GIPHY）の代わりにTenorを使用します。Tenorのほうが選択肢が豊富です。";
 
@@ -113,6 +121,9 @@
 
 "SHOW_POLL_RESULTS_TITLE" = "投票前に結果を表示";
 "SHOW_POLL_RESULTS_DETAIL" = "投票する前に各選択肢の投票結果を表示し、他のユーザーの投票状況を確認できるようにします。";
+
+"RESTORE_TWEET_LABELS_TITLE" = "ツイートのソースラベルを表示";	
+"RESTORE_TWEET_LABELS_DETAIL" = "ツイートがどのクライアントから送信されたかを表示します。";
 
 "SHOW_ACCOUNT_LOCATION_TITLE" = "アカウントの登録地域を表示";
 "SHOW_ACCOUNT_LOCATION_DETAIL" = "ポストの下部に、投稿したアカウントの登録地域を表示します。";
@@ -305,6 +316,8 @@
 "DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "すべての動画をダウンロード";
 
 /*App icon*/
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "アイコンの変更に失敗しました";	
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "macOSではアイコンを変更できません。これはApple社の制限によるものです。";
 
 /*Copy profile info*/
 "COPY_PROFILE_INFO_MENU_OPTION_1" = "プロフィールをコピー";
