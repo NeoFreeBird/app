@@ -693,6 +693,68 @@ static NSArray* FilteredTimelineSections(TFNItemsDataViewController* dataViewCon
     return modified ? [filteredSections copy] : sections;
 }
 
+// MARK: - Videos for you module
+
+// The server sends the carousel as one timeline entry, but the app expands it
+// into separate header/content/footer view models. Drop the entry from the
+// GraphQL response so the whole module never reaches that expansion.
+static BOOL IsGraphQLResponse(NSURL* url) {
+    return [url.path.pathComponents containsObject:@"graphql"];
+}
+
+static id RemoveVideoCarouselEntries(id node, BOOL* removed) {
+    if ([node isKindOfClass:[NSArray class]]) {
+        NSMutableArray* kept = [NSMutableArray array];
+        for (id value in (NSArray*)node) {
+            id entryID = [value isKindOfClass:[NSDictionary class]] ? value[@"entry_id"] : nil;
+            if ([entryID isKindOfClass:[NSString class]] &&
+                [entryID hasPrefix:@"video-carousel-"]) {
+                *removed = YES;
+                continue;
+            }
+
+            [kept addObject:RemoveVideoCarouselEntries(value, removed)];
+        }
+        return kept;
+    }
+
+    if ([node isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary* copy = [node mutableCopy];
+        for (NSString* key in node) {
+            copy[key] = RemoveVideoCarouselEntries(node[key], removed);
+        }
+        return copy;
+    }
+
+    return node;
+}
+
+%hook TNLResponseInfo
+
+- (instancetype)initWithFinalURLRequest:(NSURLRequest*)request
+                            URLResponse:(NSURLResponse*)response
+                                 source:(NSInteger)source
+                                   data:(NSData*)data
+                     temporarySavedFile:(id)temporarySavedFile {
+    if ([BHTSettings boolForKey:@"hide_videos_for_you"] && data &&
+        IsGraphQLResponse(request.URL)) {
+        NSData* marker = [@"video-carousel-" dataUsingEncoding:NSUTF8StringEncoding];
+        if ([data rangeOfData:marker options:0 range:NSMakeRange(0, data.length)].location !=
+            NSNotFound) {
+            id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            BOOL removed = NO;
+            id filtered = json ? RemoveVideoCarouselEntries(json, &removed) : nil;
+            if (removed) {
+                data = [NSJSONSerialization dataWithJSONObject:filtered options:0 error:nil] ?: data;
+            }
+        }
+    }
+
+    return %orig(request, response, source, data, temporarySavedFile);
+}
+
+%end
+
 %hook TFNItemsDataViewController
 
 - (void)setSections:(NSArray*)sections restoreScrollPosition:(BOOL)restoreScrollPosition {
