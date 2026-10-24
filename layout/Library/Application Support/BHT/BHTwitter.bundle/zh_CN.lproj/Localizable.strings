@@ -73,6 +73,12 @@
 
 "SHARING_DOMAIN_TITLE" = "分享域名";
 
+"BLOCK_LINK_TRACKING_TITLE" = "阻止链接跟踪";
+"BLOCK_LINK_TRACKING_DETAIL" = "直接打开链接而不是通过 t.co，不再有后台 t.co 请求或广告点击 ID。Twitter 的不安全链接警告也不会出现。";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "移除跟踪参数";
+"STRIP_TRACKING_PARAMS_DETAIL" = "从你打开的链接中移除 utm_ 及其他跟踪标签。";
+
 /*Tweets*/
 "TWEET_TO_IMAGE_TITLE" = "将推文保存为图片";
 "TWEET_TO_IMAGE_DETAIL" = "长按“分享”按钮可导出为图片。";
@@ -111,6 +117,9 @@
 
 "SQUARE_AVATARS_TITLE" = "方形头像";
 "SQUARE_AVATARS_DETAIL" = "为所有人显示方形头像，就像以前的品牌账号一样。";
+
+"DEFAULT_REPLY_SORTING_TITLE" = "默认回复排序";
+"DEFAULT_REPLY_SORTING_DETAIL" = "为所有推文选择默认的回复排序方式。";
 
 "REPLY_SORTING_TITLE" = "不排序回复";
 "REPLY_SORTING_DETAIL" = "禁用推文对话中的回复排序功能。";
@@ -181,6 +190,9 @@
 "THEME_OPTION_TITLE" = "更换主题";
 
 "APP_ICON_TITLE" = "更换 App 图标";
+
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "更换图标失败";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "macOS 上无法更改图标，这是 Apple 的限制。";
 
 "CUSTOM_TAB_BAR_OPTION_TITLE" = "自定义标签栏";
 
@@ -266,7 +278,7 @@
 "REFRESH_PILL_LABEL_DETAIL" = "当有人发推时，将标签重新添加到刷新提示条。";
 
 "RESTORE_TWITTER_NAMES_TITLE" = "还原 Twitter 术语";
-"RESTORE_TWITTER_NAMES_DETAIL" = "在应用界面中将“X”替换为“Twitter”，“Post”替换为“Tweet”，“Repost”替换为“Retweet”等等。";
+"RESTORE_TWITTER_NAMES_DETAIL" = "在应用界面中将“X”替换为“Twitter”，“帖子”替换为“推文”，“转发”替换为“转推”等等。";
 
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "这里暂时还没有内容。";
@@ -326,6 +338,11 @@
 
 "SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "撤销时长";
 "SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "选择发送推文后撤销按钮保留的时间。";
+
+"CUSTOM_SEND_SOUND_TITLE" = "导入发送声音";
+"CUSTOM_SEND_SOUND_DEFAULT" = "未选择自定义声音";
+"CUSTOM_SEND_SOUND_FAILED_TITLE" = "发送声音导入失败";
+"CUSTOM_SEND_SOUND_TOO_LONG" = "你选择的声音太长了。它必须不超过 7 秒。";
 
 /*Presets — settings import and export*/
 "SETTINGS_EXPORT_TITLE" = "导出设置";
@@ -392,6 +409,15 @@
 "USE_TENOR_GIFS_TITLE" = "使用 Tenor GIF";
 "USE_TENOR_GIFS_DETAIL" = "使用 Tenor GIF 替代 Twitter 的 GIF（GIPHY）。Tenor 有更多选择。";
 
+"SHOW_QUOTE_NUMBERS_TITLE" = "显示引用数";
+"SHOW_QUOTE_NUMBERS_DETAIL" = "显示推文收到的引用和转推数量。";
+
+"SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "显示精确引用数";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "显示推文收到的精确引用和转推数量。可能导致溢出问题。";
+
+"POST_INTERACTIONS_COUNTS_TITLE" = "引用：%@  转推：%@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "引用：%lld  转推：%lld";
+
 "SHOW_POLL_RESULTS_TITLE" = "投票前显示投票结果";
 "SHOW_POLL_RESULTS_DETAIL" = "在投票前将投票结果附加到选项名称中，让你了解其他人的投票情况。";
 
@@ -439,6 +465,12 @@
 "DIM_THEME_RESTART_ALERT_TITLE" = "需要重启";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "暗色主题需要重启才能生效。";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "重启";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "隐藏引用推文";
+"HIDE_QUOTE_TWEETS_DETAIL" = "隐藏时间线中的引用推文。";
+
+"HIDE_RETWEETS_TITLE" = "隐藏转推";
+"HIDE_RETWEETS_DETAIL" = "隐藏时间线中的转推。";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "隐藏已认证账号的推文";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "在时间线和回复中隐藏已认证账号的推文，除非作者在同一帖子中回复了他们或你关注了该账号。";

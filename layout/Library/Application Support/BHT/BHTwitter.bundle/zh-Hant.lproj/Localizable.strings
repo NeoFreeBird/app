@@ -73,6 +73,12 @@
 
 "SHARING_DOMAIN_TITLE" = "分享網域";
 
+"BLOCK_LINK_TRACKING_TITLE" = "封鎖連結追蹤";
+"BLOCK_LINK_TRACKING_DETAIL" = "直接開啟連結而非透過 t.co，不再有背景 t.co 請求或廣告點擊 ID。Twitter 的不安全連結警告也不會出現。";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "移除追蹤參數";
+"STRIP_TRACKING_PARAMS_DETAIL" = "從你開啟的連結中移除 utm_ 及其他追蹤標籤。";
+
 /*Tweets*/
 "TWEET_TO_IMAGE_TITLE" = "將推文存為圖片";
 "TWEET_TO_IMAGE_DETAIL" = "長按分享按鈕以圖片格式儲存推文。";
@@ -111,6 +117,9 @@
 
 "SQUARE_AVATARS_TITLE" = "方形頭像";
 "SQUARE_AVATARS_DETAIL" = "將所有人的頭像都變成像品牌帳號一樣的方形，就像舊版 Twitter 那樣。";
+
+"DEFAULT_REPLY_SORTING_TITLE" = "預設回覆排序";
+"DEFAULT_REPLY_SORTING_DETAIL" = "為所有推文選擇預設的回覆排序方式。";
 
 "REPLY_SORTING_TITLE" = "不排序回覆";
 "REPLY_SORTING_DETAIL" = "停用推文對話中的回覆排序功能。";
@@ -181,6 +190,9 @@
 "THEME_OPTION_TITLE" = "更換主題";
 
 "APP_ICON_TITLE" = "更換 App 圖示";
+
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "更換圖示失敗";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "macOS 上無法變更圖示，這是 Apple 的限制。";
 
 "CUSTOM_TAB_BAR_OPTION_TITLE" = "自訂底部標籤欄位";
 
@@ -266,7 +278,7 @@
 "REFRESH_PILL_LABEL_DETAIL" = "當有人發佈推文時，將標籤加回重新整理提示中。";
 
 "RESTORE_TWITTER_NAMES_TITLE" = "還原 Twitter 用語";
-"RESTORE_TWITTER_NAMES_DETAIL" = "在整個應用程式介面中，將「X」替換為「Twitter」、「Post」替換為「Tweet」、「Repost」替換為「Retweet」等等。";
+"RESTORE_TWITTER_NAMES_DETAIL" = "在整個應用程式介面中，將「X」替換為「Twitter」、「貼文」替換為「推文」、「轉發」替換為「轉推」等等。";
 
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "這裡暫時沒有內容";
@@ -326,6 +338,11 @@
 
 "SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "撤銷時長";
 "SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "選擇發送推文後撤銷按鈕保留的時間。";
+
+"CUSTOM_SEND_SOUND_TITLE" = "匯入傳送音效";
+"CUSTOM_SEND_SOUND_DEFAULT" = "未選擇自訂音效";
+"CUSTOM_SEND_SOUND_FAILED_TITLE" = "傳送音效匯入失敗";
+"CUSTOM_SEND_SOUND_TOO_LONG" = "你選擇的音效太長。必須為 7 秒或更短。";
 
 /*Presets — settings import and export*/
 "SETTINGS_EXPORT_TITLE" = "匯出設定";
@@ -392,6 +409,15 @@
 "USE_TENOR_GIFS_TITLE" = "使用 Tenor GIF";
 "USE_TENOR_GIFS_DETAIL" = "使用 Tenor GIF 取代 Twitter 的 GIF（GIPHY）。Tenor 有更多選擇。";
 
+"SHOW_QUOTE_NUMBERS_TITLE" = "顯示引用數";
+"SHOW_QUOTE_NUMBERS_DETAIL" = "顯示推文收到的引用和轉推數量。";
+
+"SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "顯示精確引用數";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "顯示推文收到的精確引用和轉推數量。可能導致溢位問題。";
+
+"POST_INTERACTIONS_COUNTS_TITLE" = "引用：%@  轉推：%@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "引用：%lld  轉推：%lld";
+
 "SHOW_POLL_RESULTS_TITLE" = "投票前顯示投票結果";
 "SHOW_POLL_RESULTS_DETAIL" = "在投票前將投票結果附加到選項名稱中，讓你知道其他人的投票情況。";
 
@@ -439,6 +465,12 @@
 "DIM_THEME_RESTART_ALERT_TITLE" = "需要重新啟動";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "暗色主題需要重新啟動才能生效。";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "重新啟動";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "隱藏引用推文";
+"HIDE_QUOTE_TWEETS_DETAIL" = "隱藏時間軸中的引用推文。";
+
+"HIDE_RETWEETS_TITLE" = "隱藏轉推";
+"HIDE_RETWEETS_DETAIL" = "隱藏時間軸中的轉推。";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "隱藏已驗證帳號的推文";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "在時間軸和回覆中隱藏已驗證帳號的推文，除非作者在同一討論串中回覆了他們或你追蹤了該帳號。";
