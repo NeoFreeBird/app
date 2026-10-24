@@ -89,6 +89,8 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                       @"default": @YES},
                     @{@"key": @"hide_timeline_prompts",
                       @"default": @YES},
+                    @{@"key": @"hide_videos_for_you",
+                      @"default": @NO},
                     @{@"key": @"hide_spaces",
                       @"default": @NO},
                     @{@"key": @"hide_custom_timelines",
