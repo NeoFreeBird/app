@@ -161,7 +161,7 @@
 
 /*Photos and Videos*/
 "AUTO_HIGHEST_LOAD_TITLE" = "高质量媒体";
-"AUTO_HIGHEST_LOAD_DETAIL" = "以最佳质量上传和浏览媒体内容。";
+"AUTO_HIGHEST_LOAD_DETAIL" = "始终以最佳质量加载图片与视频。";
 
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "关闭视频字幕";
 
