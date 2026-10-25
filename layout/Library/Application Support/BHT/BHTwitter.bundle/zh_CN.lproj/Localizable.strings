@@ -200,7 +200,7 @@
 "HIDE_SPACES_TITLE" = "隐藏 Spaces 栏";
 
 "NO_TAB_BAR_HIDING_TITLE" = "始终显示标签栏";
-"NO_TAB_BAR_HIDING_DETAIL" = "滚动时不要隐藏标签栏（可能导致问题）。";
+"NO_TAB_BAR_HIDING_DETAIL" = "滚动时不要隐藏标签栏。";
 
 "HIDE_CUSTOM_TIMELINES_TITLE" = "隐藏自定义时间线";
 "HIDE_CUSTOM_TIMELINES_DETAIL" = "移除首页时间线标签中的添加按钮。";
