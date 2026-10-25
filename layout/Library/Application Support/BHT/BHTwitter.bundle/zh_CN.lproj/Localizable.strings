@@ -229,6 +229,10 @@
 "REPLY_IN_WEBVIEW_TITLE" = "在网页视图中回复";
 "REPLY_IN_WEBVIEW_DETAIL" = "在网页视图中打开回复框以避开 attestation。";
 
+"LIQUID_GLASS_TITLE" = "启用 Liquid Glass";
+"LIQUID_GLASS_DETAIL" = "启用 X 的新 Liquid Glass 界面。这是实验性设计，可能会导致问题。";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass 设计需要重新启动才能生效。";
+
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "FLEX 调试模式";
 "FLEX_TWITTER_DETAIL" = "使用 FLEX 工具调试 Twitter。";
