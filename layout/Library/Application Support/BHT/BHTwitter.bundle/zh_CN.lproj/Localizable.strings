@@ -257,9 +257,12 @@
 /*Copy profile info*/
 "COPY_PROFILE_INFO_MENU_OPTION_1" = "复制简介";
 "COPY_PROFILE_INFO_MENU_OPTION_2" = "复制用户名";
-"COPY_PROFILE_INFO_MENU_OPTION_3" = "复制完整用户名";
+"COPY_PROFILE_INFO_MENU_OPTION_3" = "复制昵称";
 "COPY_PROFILE_INFO_MENU_OPTION_4" = "复制简介链接";
 "COPY_PROFILE_INFO_MENU_OPTION_5" = "复制位置";
+"COPY_PROFILE_INFO_MENU_OPTION_6" = "复制个人资料链接";
+"COPY_PROFILE_INFO_MENU_OPTION_7" = "复制用户 ID";
+"COPY_PROFILE_INFO_MENU_OPTION_8" = "复制加入日期";
 
 /*Theme*/
 "THEME_SETTINGS_NAVIGATION_TITLE" = "更换主题";
@@ -454,11 +457,6 @@
 
 "UPLOAD_FULL_HD_VIDEOS_TITLE" = "上传全高清视频";
 "UPLOAD_FULL_HD_VIDEOS_DETAIL" = "解锁以 1080p 上传视频的能力。";
-
-/*Copy profile info*/
-"COPY_PROFILE_INFO_MENU_OPTION_6" = "复制个人资料链接";
-"COPY_PROFILE_INFO_MENU_OPTION_7" = "复制用户 ID";
-"COPY_PROFILE_INFO_MENU_OPTION_8" = "复制注册日期";
 
 /*Launch & Dim theme*/
 "BLUE_LAUNCH_SCREEN_TITLE" = "恢复蓝色启动画面";
