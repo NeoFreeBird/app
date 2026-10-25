@@ -179,7 +179,7 @@
 "UNDO_TWEET_TITLE" = "撤销推文";
 
 "DOWNLOAD_VIDEOS_TITLE" = "下载媒体";
-"DOWNLOAD_VIDEOS_DETAIL" = "直接从推文中保存视频或 GIF。";
+"DOWNLOAD_VIDEOS_DETAIL" = "直接从推文的更多选项保存视频或 GIF。";
 
 "DIRECT_SAVE_TITLE" = "保存至“照片”";
 "DIRECT_SAVE_DETAIL" = "视频会直接保存到你的“照片”应用中。";
