@@ -297,6 +297,10 @@
 "REPLY_IN_WEBVIEW_TITLE" = "ウェブビューで返信";
 "REPLY_IN_WEBVIEW_DETAIL" = "アテステーションを回避するため、返信ボックスをウェブビューで開きます。";
 
+"LIQUID_GLASS_TITLE" = "リキッドグラスを有効にする";
+"LIQUID_GLASS_DETAIL" = "Xの新しいリキッドグラスインターフェイスを有効にします。これは実験的な再デザインであり、問題を引き起こす可能性があります。";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "リキッドグラスのデザイン変更を適用するには、再起動が必要です。";
+
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "デバッグモード";
 "FLEX_TWITTER_DETAIL" = "Xの画面やデータをデバッグ・検査するためのFLEXを有効にします。";
@@ -441,6 +445,13 @@
 /* Presets — settings import and export */
 "SETTINGS_EXPORT_TITLE" = "設定のエクスポート";
 "SETTINGS_IMPORT_TITLE" = "設定のインポート";
+"SETTINGS_RESET_TITLE" = "設定のリセット";	
+
+"SETTINGS_RESET_CONFIRM_TITLE" = "すべての設定をリセットしますか？";	
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "これにより、すべての NeoFreeBird の設定がデフォルトに戻ります。";	
+"SETTINGS_RESET_CONFIRM_BUTTON" = "リセット";	
+"SETTINGS_RESET_SUCCESS_TITLE" = "設定がリセットされました";	
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "すべての設定が復元されました。すべての変更を適用するには、アプリを再起動してください。";
 
 "CUSTOM_SEND_SOUND_TITLE" = "送信音をインポート";
 "CUSTOM_SEND_SOUND_DEFAULT" = "カスタムサウンドが選択されていません";
