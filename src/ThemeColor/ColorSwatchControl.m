@@ -18,6 +18,7 @@ static const CGFloat kSelectionRingWidth = 2.0;
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.accessibilityTraits = UIAccessibilityTraitButton;
         self.circleView = [[UIView alloc] init];
         self.circleView.translatesAutoresizingMaskIntoConstraints = NO;
         self.circleView.userInteractionEnabled = NO;

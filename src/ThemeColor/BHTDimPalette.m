@@ -44,6 +44,13 @@ UIColor* BHTDimSearchPillColor(void) {
 
 static UIColor* BHTCurrentAccentColor(id<TAEColorPalette> palette) {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSArray<NSNumber*>* custom = [defaults arrayForKey:@"bh_color_theme_customColor"];
+    if ([defaults integerForKey:@"bh_color_theme_selectedColor"] == -1 && custom.count == 4) {
+        return [UIColor colorWithRed:custom[0].doubleValue
+                               green:custom[1].doubleValue
+                                blue:custom[2].doubleValue
+                               alpha:custom[3].doubleValue];
+    }
     NSInteger option = 0; // Twitter's default blue option.
 
     if ([defaults objectForKey:@"bh_color_theme_selectedColor"]) {

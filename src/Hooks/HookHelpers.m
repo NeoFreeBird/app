@@ -122,6 +122,14 @@ UIColor* CurrentAccentColor(void) {
     id palette = [current colorPalette];
     NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
 
+    NSArray<NSNumber*>* custom = [defs arrayForKey:@"bh_color_theme_customColor"];
+    if ([defs integerForKey:@"bh_color_theme_selectedColor"] == -1 && custom.count == 4) {
+        return [UIColor colorWithRed:custom[0].doubleValue
+                               green:custom[1].doubleValue
+                                blue:custom[2].doubleValue
+                               alpha:custom[3].doubleValue];
+    }
+
     // The tweak's stored pick wins over Twitter's own colour option.
     if ([defs objectForKey:@"bh_color_theme_selectedColor"]) {
         NSInteger opt = [defs integerForKey:@"bh_color_theme_selectedColor"];
