@@ -9,40 +9,6 @@
 #import "HookHelpers.h"
 #import <objc/runtime.h>
 
-static bool NFBLiquidGlassEnabled(void) {
-    return [BHTSettings boolForKey:@"liquid_glass"];
-}
-
-%hook T1LiquidGlassGateInstaller
-
-+ (void)installGateForAccount:(id)account {
-    %orig(account);
-    ((void (*)(id, SEL, BOOL))objc_msgSend)(
-        self, @selector(installGateWithRedesignEnabled:), NFBLiquidGlassEnabled());
-}
-
-+ (void)installGateWithRedesignEnabled:(BOOL)enabled {
-    %orig(NFBLiquidGlassEnabled());
-}
-
-%end
-
-%hook _TtC14T1TwitterSwift27LiquidGlassRedesignFeatures
-
-- (instancetype)initWithFeatureSwitches:(id)switches
-                isSecondFactorSatisfied:(BOOL)satisfied {
-    return %orig(switches, YES);
-}
-
-- (BOOL)isRedesignEnabled {
-    return NFBLiquidGlassEnabled();
-}
-
-+ (BOOL)isQuickComposerEnabledWithFeatureSwitches:(id)switches {
-    return NFBLiquidGlassEnabled();
-}
-
-%end
 
 // MARK: - Custom accent color
 
@@ -512,6 +478,128 @@ static NSArray* orderedTabEntries(NSArray* entries) {
 // MARK: - Tab bar icon and label theming
 
 static char BHTGlassTabOriginalTintKey;
+static char BHTGlassTabLabelKey;
+static char BHTGlassTabOverlayKey;
+
+static void BHTCollectGlassTabItems(UIView* view, Class itemClass,
+                                    NSMutableArray<UIView*>* items) {
+    for (UIView* subview in view.subviews) {
+        if ([subview isKindOfClass:itemClass]) {
+            [items addObject:subview];
+        } else {
+            BHTCollectGlassTabItems(subview, itemClass, items);
+        }
+    }
+}
+
+static NSString* BHTGlassTabItemTitle(UIView* item, UIView* bar) {
+    // Reuse the accessibility label
+    for (UIView* view = item; view && view != bar; view = view.superview) {
+        NSString* title = view.accessibilityLabel;
+        if (title.length) return title;
+    }
+    return nil;
+}
+
+static void BHTLayoutGlassTabItem(UIView* item) {
+    UILabel* label = objc_getAssociatedObject(item, &BHTGlassTabLabelKey);
+    if (!label) return;
+
+    BOOL showLabel = [BHTSettings boolForKey:@"restore_tab_labels"] && label.text.length;
+    CGFloat height = CGRectGetHeight(item.bounds);
+    CGFloat width = CGRectGetWidth(item.bounds);
+    UIView* overlay = label.superview;
+    if (overlay.superview && [item isDescendantOfView:overlay.superview]) {
+        CGRect frame = CGRectMake(-6.0, height - 13.0, width + 12.0, 11.0);
+        label.frame = [item convertRect:frame toView:overlay];
+    } else {
+        showLabel = NO;
+    }
+    label.hidden = !showLabel;
+
+    Ivar imageField = class_getInstanceVariable(object_getClass(item), "imageView");
+    UIImageView* imageView = imageField ? object_getIvar(item, imageField) : nil;
+    if (![imageView isKindOfClass:UIImageView.class]) return;
+
+    UIView* glyph = imageView.superview == item ? imageView : imageView.superview;
+    if (glyph.superview != item) return;
+    glyph.center = CGPointMake(width / 2.0,
+                               height / 2.0 - (showLabel && height >= 34.0 ? 5.0 : 0.0));
+}
+
+static void BHTApplyGlassTabLabels(UIView* bar) {
+    Class itemClass = NSClassFromString(@"_TtC11XNavigation14TabBarItemView");
+    if (!itemClass) return;
+
+    Ivar rowField = class_getInstanceVariable(object_getClass(bar), "itemRow");
+    UIView* row = rowField ? object_getIvar(bar, rowField) : nil;
+    UIView* container = [row isKindOfClass:UIView.class] ? row : bar;
+    NSMutableArray<UIView*>* items = [NSMutableArray new];
+    BHTCollectGlassTabItems(container, itemClass, items);
+    [items sortUsingComparator:^NSComparisonResult(UIView* first, UIView* second) {
+        CGFloat firstX = CGRectGetMidX([first convertRect:first.bounds toView:bar]);
+        CGFloat secondX = CGRectGetMidX([second convertRect:second.bounds toView:bar]);
+        return firstX < secondX ? NSOrderedAscending
+                                : (firstX > secondX ? NSOrderedDescending : NSOrderedSame);
+    }];
+
+    NSInteger selectedIndex = NSNotFound;
+    Ivar selectedField = class_getInstanceVariable(object_getClass(bar), "selectedIndex");
+    if (selectedField) {
+        // Swift.Int is pointer-sized on this arm64-only target.
+        selectedIndex = *(NSInteger*)((uint8_t*)(__bridge void*)bar +
+                                     ivar_getOffset(selectedField));
+    }
+
+    BOOL enabled = [BHTSettings boolForKey:@"restore_tab_labels"];
+    UIView* overlay = objc_getAssociatedObject(bar, &BHTGlassTabOverlayKey);
+    if (!overlay && enabled) {
+        overlay = [[UIView alloc] initWithFrame:bar.bounds];
+        overlay.userInteractionEnabled = NO;
+        overlay.clipsToBounds = NO;
+        objc_setAssociatedObject(bar, &BHTGlassTabOverlayKey, overlay,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    if (overlay && enabled) {
+        // The selection pill can cover itemRow; render text above that sibling.
+        if (overlay.superview != bar) [bar addSubview:overlay];
+        overlay.frame = bar.bounds;
+        if (bar.subviews.lastObject != overlay) [bar bringSubviewToFront:overlay];
+    }
+
+    NSMutableSet<UILabel*>* activeLabels = [NSMutableSet new];
+    for (NSUInteger index = 0; index < items.count; index++) {
+        UIView* item = items[index];
+        UILabel* label = objc_getAssociatedObject(item, &BHTGlassTabLabelKey);
+        NSString* title = enabled ? BHTGlassTabItemTitle(item, bar) : nil;
+        if (!label && title.length) {
+            label = [[UILabel alloc] initWithFrame:CGRectZero];
+            label.font = [UIFont systemFontOfSize:9.0 weight:UIFontWeightMedium];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.adjustsFontSizeToFitWidth = YES;
+            label.minimumScaleFactor = 0.7;
+            label.lineBreakMode = NSLineBreakByTruncatingTail;
+            label.isAccessibilityElement = NO;
+            label.userInteractionEnabled = NO;
+            objc_setAssociatedObject(item, &BHTGlassTabLabelKey, label,
+                                     OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+        if (!label) continue;
+        label.text = title;
+        label.textColor = (NSInteger)index == selectedIndex
+                              ? (CurrentAccentColor() ?: [UIColor labelColor])
+                              : [UIColor secondaryLabelColor];
+        if (enabled && title.length) {
+            if (label.superview != overlay) [overlay addSubview:label];
+            [activeLabels addObject:label];
+        }
+        BHTLayoutGlassTabItem(item);
+    }
+    for (UIView* subview in [overlay.subviews copy]) {
+        if (![activeLabels containsObject:subview]) [subview removeFromSuperview];
+    }
+    if (!enabled) [overlay removeFromSuperview];
+}
 
 static void BHTApplyGlassTabAccent(UIView* item) {
     if (item.isAccessibilityElement) return;
@@ -538,11 +626,26 @@ static void BHTApplyGlassTabAccent(UIView* item) {
     if (![imageView.tintColor isEqual:tint]) imageView.tintColor = tint;
 }
 
+%hook _TtC11XNavigation10TabBarView
+
+- (void)layoutSubviews {
+    %orig;
+    BHTApplyGlassTabLabels((UIView*)self);
+}
+
+%new
+- (void)nfb_refreshGlassTabLabels {
+    BHTApplyGlassTabLabels((UIView*)self);
+}
+
+%end
+
 %hook _TtC11XNavigation14TabBarItemView
 
 - (void)layoutSubviews {
     %orig;
     BHTApplyGlassTabAccent((UIView*)self);
+    BHTLayoutGlassTabItem((UIView*)self);
 }
 
 %new

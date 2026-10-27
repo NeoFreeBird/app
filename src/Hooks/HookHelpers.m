@@ -156,3 +156,7 @@ NSString* formatNumberWithSuffix(long long number) {
         return [NSString stringWithFormat:@"%.1fB", number / 1000000000.0];
     }
 }
+
+bool NFBLiquidGlassEnabled(void) {
+    return [BHTSettings boolForKey:@"liquid_glass"];
+}

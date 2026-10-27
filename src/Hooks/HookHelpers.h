@@ -43,6 +43,8 @@ void applySquareAvatarsSetting(void);
 
 NSString* formatNumberWithSuffix(long long number);
 
+bool NFBLiquidGlassEnabled(void);
+
 // Custom theme color re-apply (Theme.x)
 void applySelectedThemeColor(void);
 
