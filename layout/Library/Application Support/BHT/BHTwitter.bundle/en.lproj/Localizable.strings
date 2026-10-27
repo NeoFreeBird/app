@@ -77,6 +77,8 @@
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "No timeline prompts";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Remove banners like 'Add contacts'.";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "Hide 'Videos for you'";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Hides the 'Videos for you' module in your timeline.";
 
 "HIDE_BLOCKED_RETWEETS_TITLE" = "Hide blocked retweets";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "Hide retweets of accounts who've blocked you.";
