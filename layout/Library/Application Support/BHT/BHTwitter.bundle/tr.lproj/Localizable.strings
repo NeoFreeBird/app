@@ -80,6 +80,9 @@
 "HIDE_TIMELINE_PROMPTS_TITLE" = "Zaman akışı istemlerini gizle";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "‘Kişileri ekle’ gibi afişleri kaldırır.";
 
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "‘Sizin için videolar’ modülünü gizle";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Zaman akışınızdaki ‘Sizin için videolar’ modülünü gizler.";
+
 "HIDE_BLOCKED_RETWEETS_TITLE" = "Engellenen Retweetleri gizle";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "Engellediğiniz hesapların Retweetlerini gizler.";
 
@@ -426,6 +429,9 @@
 
 "HIDE_TWEET_BUTTON_TITLE" = "Tweet düğmesini gizle";
 "HIDE_TWEET_BUTTON_DETAIL" = "Gezinme çubuğundan Tweet düğmesini kaldırır.";
+
+"HIDE_QUICK_COMPOSE_TITLE" = "Hızlı Oluştur'u gizle";
+"HIDE_QUICK_COMPOSE_DETAIL" = "Gezinme çubuğundan Hızlı Oluştur düğmesini kaldırır (yalnızca Liquid Glass üzerinde).";
 
 
 /* Deprecated */
