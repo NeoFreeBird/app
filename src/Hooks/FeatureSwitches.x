@@ -191,10 +191,7 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @NO;
     }
 
-    if ([key isEqualToString:@"grok_ask_grok_button_under_post_focal_enabled"]
-    || [key isEqualToString:@"grok_ask_grok_button_under_post_preview_enabled"]
-    || [key isEqualToString:@"xchat_ask_grok_enabled"]
-    || [key isEqualToString:@"grok_explain_text_selection_ask_grok_enabled"]) {
+    if ([key isEqualToString:@"grok_ask_grok_button_under_post_focal_enabled"] || [key isEqualToString:@"grok_ask_grok_button_under_post_preview_enabled"] || [key isEqualToString:@"xchat_ask_grok_enabled"] || [key isEqualToString:@"grok_explain_text_selection_ask_grok_enabled"]) {
         return @NO;
     }
 
@@ -265,8 +262,7 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @YES;
     }
 
-    if ([key isEqualToString:@"ios_alert_block_user_enabled"]
-    || [key isEqualToString:@"ios_alert_mute_user_enabled"]) {
+    if ([key isEqualToString:@"ios_alert_block_user_enabled"] || [key isEqualToString:@"ios_alert_mute_user_enabled"]) {
         return [BHTSettings boolForKey:@"fast_block"] ? @NO : nil;
     }
 

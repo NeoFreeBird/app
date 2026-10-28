@@ -465,7 +465,7 @@
 }
 - (void)footerLabelLongPressed:(UILongPressGestureRecognizer*)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
-        NSURL* url = [NSURL URLWithString:@"https://www.youtube.com/watch?v=OxLH0nnUnCY"];
+        NSURL* url = [NSURL URLWithString:@"https://youtube.com/watch?v=3CR6kKsy_LA"];
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         }

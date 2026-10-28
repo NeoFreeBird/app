@@ -13,7 +13,6 @@
 // footer item's time string. Original idea by @nyaathea; the account-location half
 // mirrors what Control Panel for Twitter does on the web.
 
-
 // Account locations keyed by screen name.
 static NSMutableDictionary* accountLocations = nil;
 static NSMutableDictionary* locationPending = nil;
@@ -336,7 +335,6 @@ static NSString* screenNameFromStatus(id status) {
         if (tweetID.length > 0 || screenName.length > 0) {
             [self BHT_startObservingFooterUpdates];
         }
-
 
         NSString* location = nil;
         if (wantsLocation && screenName.length > 0) {

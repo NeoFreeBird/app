@@ -170,7 +170,7 @@ static UIFont* BHTReplaceFont(UIFont* originalFont, BOOL isBold) {
 }
 
 + (UIFont*)customFontOfSize:(CGFloat)size weight:(NSInteger)weight
-    scalesWithDynamicType:(BOOL)scales {
+      scalesWithDynamicType:(BOOL)scales {
     UIFont* originalFont = %orig;
     return BHTReplaceFont(originalFont, weight >= 2);
 }
@@ -184,7 +184,7 @@ static UIFont* BHTReplaceFont(UIFont* originalFont, BOOL isBold) {
     UIFont* originalFont = %orig;
     UIFont* customFont = BHTReplaceFont(originalFont, weight >= UIFontWeightSemibold);
     return customFont == originalFont ? originalFont
-                                     : ([customFont tfn_withMonospacedDigits] ?: customFont);
+                                      : ([customFont tfn_withMonospacedDigits] ?: customFont);
 }
 
 %end

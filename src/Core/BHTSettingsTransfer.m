@@ -60,8 +60,8 @@ static NSDictionary<NSString*, Class>* BHTTransferableKeyClasses(void) {
         for (NSString* key in [BHTSettings allPreferenceKeys]) {
             if (![skippedKeys containsObject:key]) {
                 id defaultValue = [BHTSettings settingForKey:key][@"default"];
-            map[key] = [defaultValue isKindOfClass:[NSNumber class]] ? [NSNumber class]
-                                                                     : [NSString class];
+                map[key] = [defaultValue isKindOfClass:[NSNumber class]] ? [NSNumber class]
+                                                                         : [NSString class];
             }
         }
         [map addEntriesFromDictionary:BHTExtraTransferableKeys()];

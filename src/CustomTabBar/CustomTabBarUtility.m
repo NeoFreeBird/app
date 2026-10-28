@@ -77,7 +77,8 @@ static NSString* const kLegacyHiddenKey = @"bh_tabs_hidden";
     }
 
     return (UIViewController*)[(id<BHTNativeTabCustomizationInitializing>)[editorClass alloc]
-        initWithAccount:account scribeContext:context];
+        initWithAccount:account
+          scribeContext:context];
 }
 
 #pragma mark - Live capture

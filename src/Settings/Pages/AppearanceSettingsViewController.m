@@ -107,8 +107,8 @@
                              message:[bundle localizedStringForKey:@"UNKNOWN_ERROR"]
                       preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:[bundle localizedStringForKey:@"OK_ACTION_LABEL"]
-                                                 style:UIAlertActionStyleCancel
-                                               handler:nil]];
+                                                  style:UIAlertActionStyleCancel
+                                                handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
     }
 }

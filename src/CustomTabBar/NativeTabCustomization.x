@@ -25,7 +25,6 @@ static NSString* BHTTabAccountID(id object) {
     return [accountID isKindOfClass:NSString.class] ? accountID : nil;
 }
 
-
 static id BHTTabObjectField(id object, const char* name) {
     if (!object) {
         return nil;
@@ -156,7 +155,9 @@ static void BHTRestoreNativeTabSelection(id controller) {
     if (BHTSavingNativeTabs &&
         [BHTNativeTabSelectionStore isNativeTabSettingsKey:key]) {
         [[BHTNativeTabSelectionStore sharedStore]
-            saveData:value forAccountID:BHTTabAccountID(self) settingsKey:key];
+                saveData:value
+            forAccountID:BHTTabAccountID(self)
+             settingsKey:key];
     }
 }
 
@@ -164,7 +165,8 @@ static void BHTRestoreNativeTabSelection(id controller) {
     if ([BHTNativeTabSelectionStore isNativeTabSettingsKey:key] &&
         (BHTRestoringNativeTabs || [CustomTabBarUtility usesNativeEditor])) {
         NSData* saved = [[BHTNativeTabSelectionStore sharedStore]
-            dataForAccountID:BHTTabAccountID(self) settingsKey:key];
+            dataForAccountID:BHTTabAccountID(self)
+                 settingsKey:key];
         if (saved) {
             return saved;
         }
@@ -229,4 +231,3 @@ static void BHTRestoreNativeTabSelection(id controller) {
 }
 
 %end
-

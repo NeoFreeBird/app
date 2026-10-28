@@ -116,7 +116,7 @@ static NSString* AppIconDetailText(void) {
 
     self.loadingIndicator =
         [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
-                                                    UIActivityIndicatorViewStyleMedium];
+                                             UIActivityIndicatorViewStyleMedium];
     self.loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
     self.loadingIndicator.accessibilityLabel = @"Loading app icons";
     [self.loadingView addSubview:self.loadingIndicator];
@@ -203,13 +203,12 @@ static NSString* AppIconDetailText(void) {
     });
 }
 
-
 - (UIImage*)thumbnailForItem:(AppIconItem*)item {
     return [self thumbnailForItem:item traitCollection:self.traitCollection];
 }
 
 - (UIImage*)thumbnailForItem:(AppIconItem*)item
-            traitCollection:(UITraitCollection*)traitCollection {
+             traitCollection:(UITraitCollection*)traitCollection {
     UIImage* cachedImage = [self.thumbnailCache objectForKey:item];
     if (cachedImage)
         return cachedImage;

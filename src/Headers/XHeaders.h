@@ -15,7 +15,7 @@
 + (void)resetCachedFonts;
 @end
 
-@interface XNAVNavigationController: UINavigationController
+@interface XNAVNavigationController : UINavigationController
 @end
 
 @interface XTabbedAppNavigationSplitViewControllerFactory : NSObject
@@ -24,5 +24,5 @@
 @interface XDSButton : UIControl
 @end
 
-@interface  _TtC13QuickComposer21QuickComposerSlotView : UIView
+@interface _TtC13QuickComposer21QuickComposerSlotView : UIView
 @end

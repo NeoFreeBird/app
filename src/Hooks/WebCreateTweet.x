@@ -274,9 +274,13 @@ static void harvestSharedCookies(void) {
         harvestLock = [NSObject new];
         [[NSNotificationCenter defaultCenter]
             addObserverForName:NSHTTPCookieManagerCookiesChangedNotification
-                        object:nil queue:nil usingBlock:^(__unused NSNotification* note) {
-                @synchronized(harvestLock) { dirty = YES; }
-            }];
+                        object:nil
+                         queue:nil
+                    usingBlock:^(__unused NSNotification* note) {
+                        @synchronized(harvestLock) {
+                            dirty = YES;
+                        }
+                    }];
     });
     @synchronized(harvestLock) {
         if (!dirty) return;
@@ -914,7 +918,8 @@ static BOOL resolveWebCreds(NSString* userID, NSString** outAuthToken, NSString*
             // A login may have replaced this session while the fetch was running.
             if (ct0.length && [latestAuth isEqualToString:authToken] && ![latest[@"ct0"] length]) {
                 cacheAccountPair(userID, @{
-                    @"auth_token": authToken, @"ct0": ct0,
+                    @"auth_token": authToken,
+                    @"ct0": ct0,
                     @"twid": latest[@"twid"] ?: [NSString stringWithFormat:@"u=%@", userID],
                 });
             }

@@ -4,11 +4,10 @@
 //
 
 #import <math.h>
+#import <objc/runtime.h>
 #import "Headers/TFNHeaders.h"
 #import "Headers/UIHeaders.h"
 #import "HookHelpers.h"
-#import <objc/runtime.h>
-
 
 // MARK: - Custom accent color
 
@@ -548,7 +547,7 @@ static void BHTApplyGlassTabLabels(UIView* bar) {
     if (selectedField) {
         // Swift.Int is pointer-sized on this arm64-only target.
         selectedIndex = *(NSInteger*)((uint8_t*)(__bridge void*)bar +
-                                     ivar_getOffset(selectedField));
+                                      ivar_getOffset(selectedField));
     }
 
     BOOL enabled = [BHTSettings boolForKey:@"restore_tab_labels"];

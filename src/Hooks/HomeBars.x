@@ -142,7 +142,7 @@ static void SyncHomeAddTabButton(id container, BOOL hidden) {
     return [BHTSettings boolForKey:@"hide_spaces"] ? YES : %orig;
 }
 
-- (UIView *)accessoryView {
+- (UIView*)accessoryView {
     return [BHTSettings boolForKey:@"hide_spaces"] ? nil : %orig;
 }
 

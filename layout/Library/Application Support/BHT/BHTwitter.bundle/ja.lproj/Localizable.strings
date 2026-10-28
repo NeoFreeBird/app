@@ -77,6 +77,8 @@
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "タイムラインの案内を非表示";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "「連絡先を追加」などの案内バナーを非表示にします。";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "「おすすめ動画」を非表示";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "タイムライン上の「おすすめ動画」セクションを非表示にします。";
 
 "HIDE_BLOCKED_RETWEETS_TITLE" = "私をブロック中ユーザーのRP非表示";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "あなたをブロックしているアカウントのリポストを非表示にします。";
@@ -92,6 +94,7 @@
 
 "BLOCK_LINK_TRACKING_TITLE" = "リンク追跡のブロック";	
 "BLOCK_LINK_TRACKING_DETAIL" = "t.coを経由せず、バックグラウンドでのt.coのリクエストや広告クリックIDなしで、リンクを直接開きます。Xの危険なリンクの警告は表示されなくなります。";
+
 "STRIP_TRACKING_PARAMS_TITLE" = "追跡パラメータの削除";	
 "STRIP_TRACKING_PARAMS_DETAIL" = "開いたリンクからutm_などの追跡タグを取り除きます。";
 
@@ -377,6 +380,9 @@
 
 "HIDE_TWEET_BUTTON_TITLE" = "ポストボタンを非表示";
 "HIDE_TWEET_BUTTON_DETAIL" = "ナビゲーションバーからポストボタンを削除します。";
+
+"HIDE_QUICK_COMPOSE_TITLE" = "「クイック作成」を非表示";
+"HIDE_QUICK_COMPOSE_DETAIL" = "ナビゲーションバーから「クイック作成」ボタンを削除します（Liquid Glassでのみ有効）。";
 
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "ここには何もありません — 今はまだ。";

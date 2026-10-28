@@ -13,12 +13,8 @@
 //  that shape was identified.
 //
 
-#import "HookHelpers.h"
 #import <string.h>
-
-// Forward declaration for the Swift controller causing the compiler error
-@interface _TtC14DMConversation29SecureContainerViewController : UIViewController
-@end
+#import "HookHelpers.h"
 
 // MARK: - Matching
 
@@ -64,7 +60,7 @@ typedef void (*SendMessageIMP)(id, SEL, NSURLSessionWebSocketMessage*, void (^)(
 static SendMessageIMP OriginalSendMessageIMP;
 
 static void nfb_sendMessageReplacement(id self, SEL _cmd, NSURLSessionWebSocketMessage* message,
-                                        void (^completionHandler)(NSError* _Nullable)) {
+                                       void (^completionHandler)(NSError* _Nullable)) {
     BOOL tagged = objc_getAssociatedObject(self, ChatSocketTagKey) != nil;
     if (tagged && message.data && isTypingIndicatorFrame(message.data) &&
         [BHTSettings boolForKey:@"hide_typing_indicator"]) {
@@ -124,20 +120,117 @@ static void nfb_applyChatScreenTint(UIView* view) {
 }
 
 %hook TFNBarButtonItemButton
--(void)didMoveToWindow {
+- (void)didMoveToWindow {
     %orig;
     nfb_applyChatScreenTint(self);
 }
 %end
 
-%hook _TtC14DMConversation29SecureContainerViewController
-- (void)loadView {
-    if (![BHTSettings boolForKey:@"block_screenshot_detection"]) {
-        %orig;
+// MARK: - Chat screenshot protection
+
+static NSInteger nfb_secureEntrySuppression = 0;
+
+static void* NFBNeutralizedCanvasKey = &NFBNeutralizedCanvasKey;
+
+static void nfb_disableSecureCanvas(UIView* protectionView) {
+    UIView* canvas = nfb_objectIvar(protectionView, "secureCanvasView");
+    if (!canvas ||
+        objc_getAssociatedObject(protectionView, NFBNeutralizedCanvasKey) == canvas) {
         return;
     }
-    
+
+    // The field is kept in a separate ivar (it has to be retained somewhere for
+    // the canvas to keep working)
+    UITextField* owner = nil;
+    unsigned int count = 0;
+    Ivar* ivars = class_copyIvarList(object_getClass(protectionView), &count);
+    for (unsigned int i = 0; i < count && !owner; i++) {
+        const char* type = ivar_getTypeEncoding(ivars[i]);
+        if (!type || type[0] != '@') {
+            continue;
+        }
+        id value = object_getIvar(protectionView, ivars[i]);
+        if ([value isKindOfClass:[UITextField class]]) {
+            owner = value;
+        }
+    }
+    free(ivars);
+
+    if (!owner && [canvas.superview isKindOfClass:[UITextField class]]) {
+        owner = (UITextField*)canvas.superview;
+    }
+
+    if (owner) {
+        owner.secureTextEntry = NO;
+    } else {
+        for (UIView* content in [canvas.subviews copy]) {
+            BOOL usesAutoLayout = !content.translatesAutoresizingMaskIntoConstraints;
+            CGRect frame = [canvas convertRect:content.frame toView:protectionView];
+            [protectionView addSubview:content];
+            if (usesAutoLayout) {
+                [NSLayoutConstraint activateConstraints:@[
+                    [content.leadingAnchor constraintEqualToAnchor:protectionView.leadingAnchor],
+                    [content.trailingAnchor constraintEqualToAnchor:protectionView.trailingAnchor],
+                    [content.topAnchor constraintEqualToAnchor:protectionView.topAnchor],
+                    [content.bottomAnchor constraintEqualToAnchor:protectionView.bottomAnchor],
+                ]];
+            } else {
+                content.frame = frame;
+                content.autoresizingMask =
+                    UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            }
+        }
+        [canvas removeFromSuperview];
+    }
+
+    objc_setAssociatedObject(protectionView, NFBNeutralizedCanvasKey, canvas,
+                             OBJC_ASSOCIATION_ASSIGN);
+}
+
+static BOOL nfb_shouldDropScreenshotProtection(UIView* protectionView) {
+    if ([BHTSettings boolForKey:@"block_screenshot_detection"]) {
+        return YES;
+    }
+    return !nfb_boolIvar(protectionView, "isProtectionEnabled", YES);
+}
+
+%hook UITextField
+- (void)setSecureTextEntry:(BOOL)secure {
+    if (secure && nfb_secureEntrySuppression > 0) {
+        %orig(NO);
+        return;
+    }
     %orig;
+}
+%end
+
+%hook _TtC16ChatConversation24ScreenshotProtectionView
+
+- (void)didMoveToWindow {
+    BOOL drop = nfb_shouldDropScreenshotProtection(self);
+    if (drop) {
+        if ([BHTSettings boolForKey:@"block_screenshot_detection"]) {
+            nfb_setBoolIvar(self, "isProtectionEnabled", NO);
+        }
+        nfb_secureEntrySuppression++;
+    }
+    %orig;
+    if (drop) {
+        nfb_secureEntrySuppression--;
+        nfb_disableSecureCanvas(self);
+    }
+}
+
+- (void)layoutSubviews {
+    BOOL drop = nfb_shouldDropScreenshotProtection(self);
+    if (drop) {
+        nfb_secureEntrySuppression++;
+    }
+    %orig;
+    if (drop) {
+        nfb_secureEntrySuppression--;
+        nfb_disableSecureCanvas(self);
+    }
 }
 
 %end

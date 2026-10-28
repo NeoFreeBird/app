@@ -312,7 +312,7 @@
 %end
 
 %hook _TtC13QuickComposer21QuickComposerSlotView
--(void)didMoveToWindow {
+- (void)didMoveToWindow {
     %orig;
     if ([BHTSettings boolForKey:@"hide_quick_compose"]) {
         self.hidden = YES;
