@@ -354,6 +354,13 @@
 /*Presets — settings import and export*/
 "SETTINGS_EXPORT_TITLE" = "导出设置";
 "SETTINGS_IMPORT_TITLE" = "导入设置";
+"SETTINGS_RESET_TITLE" = "重置设置";
+
+"SETTINGS_RESET_CONFIRM_TITLE" = "重置所有设置？";
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "这会将所有 NeoFreeBird 设置恢复为默认值。";
+"SETTINGS_RESET_CONFIRM_BUTTON" = "重置";
+"SETTINGS_RESET_SUCCESS_TITLE" = "设置已重置";
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "所有设置已恢复。重启应用使所有更改生效。";
 
 "SETTINGS_EXPORT_FAILED_TITLE" = "导出失败";
 "SETTINGS_EXPORT_WRITE_FAILED" = "无法创建设置文件。";

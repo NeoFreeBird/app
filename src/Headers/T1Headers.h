@@ -394,3 +394,22 @@
 
 @interface _TtC14T1TwitterSwift28FleetLineAccessoryController: NSObject
 @end
+
+@interface T1AppSplitViewController : UIViewController
+@property (nonatomic, readonly) UIViewController* extendedContentViewController;
+@property (nonatomic, weak) id delegate;
+@property (nonatomic) BOOL displaySideBar;
+- (void)setDisplayExtendedContent:(BOOL)display animated:(BOOL)animated;
+- (NSInteger)private_splitModeForSize:(CGSize)size
+             displayExtendedContent:(BOOL)display
+                     displaySideBar:(BOOL)sideBar;
+@end
+
+@interface T1ExtendedContentNavigationController : TFNNavigationController
+@end
+
+@interface T1TabNavigationController : TFNNavigationController
+@end
+
+@interface PaymentsButtonViewModel : NSObject 
+@end

@@ -89,6 +89,8 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                       @"default": @YES},
                     @{@"key": @"hide_timeline_prompts",
                       @"default": @YES},
+                    @{@"key": @"hide_videos_for_you",
+                      @"default": @NO},
                     @{@"key": @"hide_spaces",
                       @"default": @NO},
                     @{@"key": @"hide_custom_timelines",
@@ -101,6 +103,8 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                     @{@"key": @"hide_blocked_retweets",
                       @"default": @NO},
                     @{@"key": @"hide_tweet_button",
+                      @"default": @NO},
+                    @{@"key": @"hide_quick_compose",
                       @"default": @NO},
                     @{@"key": @"hide_retweets",
                       @"default": @NO},
@@ -335,11 +339,6 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                     @{
                         @"key": @"show_account_location",
                         @"default": @YES,
-                        @"type": @"toggle"
-                    },
-                    @{
-                        @"key": @"restore_tweet_labels",
-                        @"default": @NO,
                         @"type": @"toggle"
                     },
                     @{

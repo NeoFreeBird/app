@@ -742,7 +742,6 @@ void prewarmWebCookiesIfNeeded(void) {
     }
 
     if (!haveCookieLogin && !nativeCreateTweetInterceptEnabled() &&
-        ![BHTSettings boolForKey:@"restore_tweet_labels"] &&
         ![BHTSettings boolForKey:@"show_account_location"]) {
         return;
     }

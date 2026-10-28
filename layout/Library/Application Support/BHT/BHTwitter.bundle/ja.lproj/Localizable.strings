@@ -63,7 +63,7 @@
 "MODERN_SETTINGS_DEBUG_TITLE" = "デバッグ";
 "MODERN_SETTINGS_DEBUG_SUBTITLE" = "機能が正常に動作しない原因を調査できます。";
 
-"COOL_KIDS_SECTION_HEADER_TITLE" = "Cool kids";
+"COOL_KIDS_SECTION_HEADER_TITLE" = "イケてる仲間たち";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "特別な感謝";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "NeoFreeBirdをフォロー";
 
@@ -73,7 +73,7 @@
 "HIDE_WHO_TO_FOLLOW_DETAIL" = "フォロー候補として表示されるアカウントを非表示にします。";
 
 "NO_FOCUS_LOST_TITLE" = "フォーカスを維持";
-"NO_FOCUS_LOST_DETAIL" = "別のアプリに切り替えたことをTwitterが検知するのをブロックするため、スレッド内で読んでいた位置を見失うことがなくなります。";
+"NO_FOCUS_LOST_DETAIL" = "別のアプリに切り替えたことをXが検知するのをブロックするため、スレッド内で読んでいた位置を見失うことがなくなります。";
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "タイムラインの案内を非表示";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "「連絡先を追加」などの案内バナーを非表示にします。";
@@ -91,8 +91,7 @@
 "ALWAYS_OPEN_SAFARI_DETAIL" = "リンクをSafari、またはデフォルトのブラウザで開きます。";
 
 "BLOCK_LINK_TRACKING_TITLE" = "リンク追跡のブロック";	
-"BLOCK_LINK_TRACKING_DETAIL" = "t.coを経由せず、バックグラウンドでのt.coのリクエストや広告クリックIDなしで、リンクを直接開きます。Twitterの危険なリンクの警告は表示されなくなります。";	
-
+"BLOCK_LINK_TRACKING_DETAIL" = "t.coを経由せず、バックグラウンドでのt.coのリクエストや広告クリックIDなしで、リンクを直接開きます。Xの危険なリンクの警告は表示されなくなります。";
 "STRIP_TRACKING_PARAMS_TITLE" = "追跡パラメータの削除";	
 "STRIP_TRACKING_PARAMS_DETAIL" = "開いたリンクからutm_などの追跡タグを取り除きます。";
 
@@ -115,7 +114,7 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "引用: %lld リポスト: %lld";
 
 "USE_TENOR_GIFS_TITLE" = "TenorのGIFを使用する";
-"USE_TENOR_GIFS_DETAIL" = "TwitterのGIF（GIPHY）の代わりにTenorを使用します。Tenorのほうが選択肢が豊富です。";
+"USE_TENOR_GIFS_DETAIL" = "XのGIF（GIPHY）の代わりにTenorを使用します。Tenorのほうが選択肢が豊富です。";
 
 "TWEET_CONFIRM_TITLE" = "ポストを確認";
 "TWEET_CONFIRM_DETAIL" = "ポストする前に確認ダイアログを表示します。";
@@ -295,7 +294,7 @@
 
 /*Labs*/
 "REPLY_IN_WEBVIEW_TITLE" = "ウェブビューで返信";
-"REPLY_IN_WEBVIEW_DETAIL" = "アテステーションを回避するため、返信ボックスをウェブビューで開きます。";
+"REPLY_IN_WEBVIEW_DETAIL" = "返信が送信できない場合の代替手段。アプリ内ではなくx.comで返信します。";
 
 "LIQUID_GLASS_TITLE" = "リキッドグラスを有効にする";
 "LIQUID_GLASS_DETAIL" = "Xの新しいリキッドグラスインターフェイスを有効にします。これは実験的な再デザインであり、問題を引き起こす可能性があります。";
@@ -350,9 +349,9 @@
 "COLOR_TWITTER_ICON_IN_TOP_BAR_TITLE" = "Xアイコンの色";
 "COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "上部バーのXアイコンにアクセントカラーを適用します。";
 
-"REFRESH_PILL_TEXT" = "新しいポスト";
+"REFRESH_PILL_TEXT" = "ポストしました";
 "REFRESH_PILL_LABEL_TITLE" = "更新ピルにラベルを追加";
-"REFRESH_PILL_LABEL_DETAIL" = "新しいポストがあるとき、更新ピルに「新しいポスト」というラベルを表示します。";
+"REFRESH_PILL_LABEL_DETAIL" = "誰かがポストしたとき、更新ピルに「ポストしました」というラベルを再表示します。";
 
 "RESTORE_TWITTER_NAMES_TITLE" = "Twitter用語を復元";
 "RESTORE_TWITTER_NAMES_DETAIL" = "アプリのインターフェースで「X」を「Twitter」に、「ポスト」を「ツイート」に、「リポスト」を「リツイート」など、旧Twitterの用語に戻します。";
@@ -374,7 +373,7 @@
 "HIDE_RETWEETS_DETAIL" = "タイムライン上のリポストを非表示にします。";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "認証アカウントのポスト非表示";
-"HIDE_VERIFIED_TWEETS_DETAIL" = "タイムラインとリプライから認証済みアカウントのポストを非表示にします。ただし、そのアカウントをフォローしている場合や、投稿者が同じスレッド内で返信している場合は除きます。";
+"HIDE_VERIFIED_TWEETS_DETAIL" = "タイムラインと返信から認証済みアカウントのポストを非表示にします。ただし、そのアカウントをフォローしている場合や、投稿者が同じスレッド内で返信している場合は除きます。";
 
 "HIDE_TWEET_BUTTON_TITLE" = "ポストボタンを非表示";
 "HIDE_TWEET_BUTTON_DETAIL" = "ナビゲーションバーからポストボタンを削除します。";
@@ -462,7 +461,7 @@
 "SETTINGS_EXPORT_WRITE_FAILED" = "設定ファイルを作成できませんでした。";
 
 "SETTINGS_IMPORT_CONFIRM_TITLE" = "設定をインポートしますか？";
-"SETTINGS_IMPORT_CONFIRM_MESSAGE" = "現在の NeoFreeBird の設定が置き換えられます。";
+"SETTINGS_IMPORT_CONFIRM_MESSAGE" = "現在の NeoFreeBird の設定は、選択したファイルの内容で置き換えられます。";
 "SETTINGS_IMPORT_CONFIRM_BUTTON" = "ファイルを選択";
 "SETTINGS_IMPORT_FAILED_TITLE" = "インポートに失敗しました";
 "SETTINGS_IMPORT_SUCCESS_TITLE" = "設定をインポートしました";

@@ -14,7 +14,6 @@
 typedef void (*BHTRestoreTabIdentifiersFunction)(
     void* settings __attribute__((swift_context))) __attribute__((swiftcall));
 
-static char BHTRestoredNativeTabsKey;
 static __thread BOOL BHTSavingNativeTabs = NO;
 static __thread BOOL BHTRestoringNativeTabs = NO;
 
@@ -105,8 +104,7 @@ static void BHTRestoreNativeTabSelection(id controller) {
     }
     id account = ((id (*)(id, SEL))objc_msgSend)(navigation, @selector(account));
     NSString* accountID = BHTTabAccountID(account);
-    if (accountID.length == 0 ||
-        [objc_getAssociatedObject(controller, &BHTRestoredNativeTabsKey) isEqual:accountID]) {
+    if (accountID.length == 0) {
         return;
     }
     BHTRestoreTabIdentifiersFunction restore = (BHTRestoreTabIdentifiersFunction)dlsym(
@@ -133,8 +131,6 @@ static void BHTRestoreNativeTabSelection(id controller) {
         } @finally {
             BHTRestoringNativeTabs = saved;
         }
-        objc_setAssociatedObject(controller, &BHTRestoredNativeTabsKey, accountID,
-                                 OBJC_ASSOCIATION_COPY_NONATOMIC);
     }
 }
 
@@ -165,8 +161,8 @@ static void BHTRestoreNativeTabSelection(id controller) {
 }
 
 - (id)objectForKey:(id)key {
-    if (BHTRestoringNativeTabs &&
-        [BHTNativeTabSelectionStore isNativeTabSettingsKey:key]) {
+    if ([BHTNativeTabSelectionStore isNativeTabSettingsKey:key] &&
+        (BHTRestoringNativeTabs || [CustomTabBarUtility usesNativeEditor])) {
         NSData* saved = [[BHTNativeTabSelectionStore sharedStore]
             dataForAccountID:BHTTabAccountID(self) settingsKey:key];
         if (saved) {
@@ -179,6 +175,30 @@ static void BHTRestoreNativeTabSelection(id controller) {
 %end
 
 %hook _TtC14T1TwitterSwift34XTabbedAppNavigationViewController
+
+- (void)viewDidLoad {
+    %orig;
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(nfb_restoreNativeTabsAfterActivation:)
+               name:UIApplicationDidBecomeActiveNotification
+             object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
+    %orig;
+}
+
+%new
+- (void)nfb_restoreNativeTabsAfterActivation:(NSNotification*)notification {
+    id controller = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BHTRestoreNativeTabSelection(controller);
+    });
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     %orig;
