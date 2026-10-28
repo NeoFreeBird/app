@@ -77,6 +77,8 @@
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "不顯示時間軸提示";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "移除「新增聯絡人」等橫幅。";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "隱藏「為你推薦的影片」";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "隱藏時間軸中的「為你推薦的影片」區塊。";
 
 "HIDE_BLOCKED_RETWEETS_TITLE" = "隱藏被封鎖帳號的轉推";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "隱藏封鎖你的帳號所發出的轉推。";
@@ -378,6 +380,9 @@
 
 "HIDE_TWEET_BUTTON_TITLE" = "隱藏發文按鈕";
 "HIDE_TWEET_BUTTON_DETAIL" = "從導覽列中移除發文按鈕。";
+
+"HIDE_QUICK_COMPOSE_TITLE" = "隱藏快速發文按鈕";
+"HIDE_QUICK_COMPOSE_DETAIL" = "從導覽列中移除快速發文按鈕（僅限 Liquid Glass 介面）。";
 
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "這裡暫時沒有內容";
