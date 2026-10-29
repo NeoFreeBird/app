@@ -144,6 +144,8 @@
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "移除推文上的書籤功能。";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "隱藏倒讚按鈕";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "移除推文上的倒讚按鈕。";
+"HIDE_MADE_ON_X_TITLE" = "隱藏「在 X 製作」";
+"HIDE_MADE_ON_X_DETAIL" = "移除推文上「在 X 製作」的標籤。";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "不顯示敏感內容警告";
 
