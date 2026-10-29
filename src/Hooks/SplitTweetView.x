@@ -24,6 +24,10 @@
 static char BHTSplitTweetStateKey;
 static const CGFloat BHTSplitTweetPrimaryWidthFraction = 0.55;
 
+static BOOL BHTSplitTweetViewEnabled(void) {
+    return [BHTSettings boolForKey:@"ipad_split_view"];
+}
+
 @interface BHTSplitTweetHostController : UIViewController
 @property (nonatomic, strong) UIViewController* content;
 @property (nonatomic, strong) UINavigationController* detail;
@@ -392,6 +396,12 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
 }
 
 - (void)updateLayout {
+    if (!BHTSplitTweetViewEnabled()) {
+        if (self.active) {
+            [self clearDetail];
+        }
+        return;
+    }
     if (self.updating || !self.active || !self.split.viewIfLoaded.window ||
         self.glassHost.columnAnimator || self.nativeColumnTransitioning) {
         return;
@@ -537,7 +547,7 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
 @end
 
 static BOOL BHTRouteTweetToDetail(UINavigationController* primary, UIViewController* controller) {
-    if (!BHTIsConversationController(controller)) {
+    if (!BHTSplitTweetViewEnabled() || !BHTIsConversationController(controller)) {
         return NO;
     }
     BHTSplitTweetState* state = BHTTweetStateForController(primary);
@@ -562,7 +572,7 @@ static BOOL BHTRouteAppendedTweet(UINavigationController* primary, NSArray<UIVie
 
 static BHTSplitTweetHostController* BHTMakeTweetColumnHost(UIViewController* content) {
     Class factory = NSClassFromString(@"NavigationControllerFactoryTFNFallback");
-    if (!content || content.parentViewController ||
+    if (!BHTSplitTweetViewEnabled() || !content || content.parentViewController ||
         [content isKindOfClass:BHTSplitTweetHostController.class] ||
         ![factory respondsToSelector:@selector(makeWithRootViewController:)]) {
         return nil;
@@ -618,9 +628,9 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
 
 %end
 
-    %group BHTIPadLegacyTweetColumn
+%group BHTIPadLegacyTweetColumn
 
-    %hook XTabbedAppNavigationSplitViewControllerFactory
+%hook XTabbedAppNavigationSplitViewControllerFactory
 
 + (id)splitViewControllerWithDashContentController:(id)dash
                              contentViewController:(UIViewController*)content
@@ -647,7 +657,7 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
     Class extendedClass = %c(T1ExtendedContentNavigationController);
     // The legacy tab bar identifies the native-column path. The redesign's
     // factory passes nil and already wraps its content in our host.
-    if (!tabBar || !extendedClass ||
+    if (!BHTSplitTweetViewEnabled() || !tabBar || !extendedClass ||
         ![self respondsToSelector:@selector(private_splitModeForSize:displayExtendedContent:displaySideBar:)] ||
         (extended && ![extended isKindOfClass:extendedClass])) {
         return %orig;
@@ -706,9 +716,9 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
 
 %end
 
-    %group BHTIPadTweetColumn
+%group BHTIPadTweetColumn
 
-    %hook T1AppSplitViewController
+%hook T1AppSplitViewController
 
 - (void)viewDidLayoutSubviews {
     %orig;
@@ -761,9 +771,9 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
 
 %end
 
-    %group BHTIPadLegacyDetailNavigation
+%group BHTIPadLegacyDetailNavigation
 
-    %hook T1ExtendedContentNavigationController
+%hook T1ExtendedContentNavigationController
 
 - (void)_t1_updateContentViewControllerAnimated:(BOOL)animated {
     BHTSplitTweetState* state = BHTTweetState(self);
