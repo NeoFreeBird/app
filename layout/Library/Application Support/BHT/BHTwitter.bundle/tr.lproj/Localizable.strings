@@ -152,6 +152,9 @@
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Olumsuz oyları gizle";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Tweetlerden olumsuz oy düğmesini kaldırır.";
 
+"HIDE_MADE_ON_X_TITLE" = "'X’te Yapıldı' etiketini gizle";
+"HIDE_MADE_ON_X_DETAIL" = "Tweetlerden 'X’te Yapıldı' etiketini kaldırır.";
+
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "Hassas içerik uyarılarını devre dışı bırak";
 
 "BYPASS_AGE_VERIFICATION_TITLE" = "Yaş doğrulamasını atla";
