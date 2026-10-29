@@ -144,6 +144,8 @@
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Remove the bookmark button from Tweets.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Hide downvotes";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Remove the downvote button from Tweets.";
+"HIDE_MADE_ON_X_TITLE" = "Hide 'Made on X'";
+"HIDE_MADE_ON_X_DETAIL" = "Removes the 'Made on X' label from Tweets.";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "No sensitive content warnings";
 

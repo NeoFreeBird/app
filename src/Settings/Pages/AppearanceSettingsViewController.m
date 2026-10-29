@@ -131,12 +131,8 @@
         [view performSelector:@selector(nfb_applyGlassTabAccent)];
     }
     if ([view isKindOfClass:NSClassFromString(@"T1TabView")]) {
-        if ([view respondsToSelector:@selector(_t1_updateImageViewAnimated:)]) {
-            [view performSelector:@selector(_t1_updateImageViewAnimated:) withObject:@(NO)];
-        }
-        if ([view respondsToSelector:@selector(_t1_updateTitleLabel)]) {
-            [view performSelector:@selector(_t1_updateTitleLabel)];
-        }
+        T1TabView* tabView = (T1TabView*)view;
+        [tabView _t1_updateImageViewAnimated:NO];
         if ([view respondsToSelector:@selector(_t1_layoutForTabBar)]) {
             [view performSelector:@selector(_t1_layoutForTabBar)];
         }
@@ -145,14 +141,6 @@
         }
         if ([view respondsToSelector:@selector(_t1_layoutBadgeViewMinimized)]) {
             [view performSelector:@selector(_t1_layoutBadgeViewMinimized)];
-        }
-
-        // Clearing the override lets the label fall back to its default color.
-        if (![BHTSettings boolForKey:@"tab_bar_theming"]) {
-            UILabel* titleLabel = [view valueForKey:@"titleLabel"];
-            if (titleLabel) {
-                titleLabel.textColor = nil;
-            }
         }
     }
 
@@ -174,21 +162,10 @@
         [view performSelector:@selector(nfb_refreshGlassTabLabels)];
     }
     if ([view isKindOfClass:NSClassFromString(@"T1TabView")]) {
-        if ([view respondsToSelector:@selector(_t1_updateTitleLabel)]) {
-            [view performSelector:@selector(_t1_updateTitleLabel)];
-        }
-        if ([view respondsToSelector:@selector(_t1_layoutForTabBar)]) {
-            [view performSelector:@selector(_t1_layoutForTabBar)];
-        }
+        [view setNeedsLayout];
+        [view layoutIfNeeded];
         if ([view respondsToSelector:@selector(_t1_layoutBadgeViewMaximized)]) {
             [view performSelector:@selector(_t1_layoutBadgeViewMaximized)];
-        }
-
-        if (![BHTSettings boolForKey:@"tab_bar_theming"]) {
-            UILabel* titleLabel = [view valueForKey:@"titleLabel"];
-            if (titleLabel) {
-                titleLabel.textColor = nil;
-            }
         }
     }
 

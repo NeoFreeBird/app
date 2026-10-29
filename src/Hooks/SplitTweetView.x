@@ -6,7 +6,6 @@
 // Liquid Glass, and both styles on 12.38+, use our two-pane content container instead.
 // Both styles reuse the conversation controllers and navigation styles made by X, so this file just
 // stitches the two-pane layout into the app's split view and tab navigation.
-// This only works on iPads, but I think this can work on the iPhone Duo when unfolded.
 
 #import "Headers/T1Headers.h"
 #import "Headers/TFNHeaders.h"
@@ -96,8 +95,8 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
 }
 
 - (BOOL)hasRoomForDetail {
-    // Measure the actual window content, including Stage Manager/Split View.
-    // Should only be true on a landscape iPad (and technically an unfolded Duo)
+    // Measure live content width, including folding and Mac/Stage Manager window resizing.
+    // Reserve roughly 440 points for the timeline and 360 for tweet details.
     return self.isViewLoaded && self.view.window && CGRectGetWidth(self.view.bounds) >= 800.0;
 }
 
@@ -794,15 +793,13 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
 
 %end
 
-    %ctor {
-    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        %init(BHTIPadTweetColumn);
-        Class splitClass = NSClassFromString(@"T1AppSplitViewController");
-        if (class_getInstanceMethod(splitClass, @selector(initWithDashContentController:tabBarViewController:tabBottomSegmentViewController:contentViewController:account:))) {
-            %init(BHTIPadModernTweetColumn);
-        } else if (class_getInstanceMethod(splitClass, @selector(initWithDashContentController:tabBarViewController:tabBottomSegmentViewController:contentViewController:extendedContentViewController:account:))) {
-            %init(BHTIPadLegacyTweetColumn);
-            %init(BHTIPadLegacyDetailNavigation);
-        }
+%ctor {
+    %init(BHTIPadTweetColumn);
+    Class splitClass = NSClassFromString(@"T1AppSplitViewController");
+    if (class_getInstanceMethod(splitClass, @selector(initWithDashContentController:tabBarViewController:tabBottomSegmentViewController:contentViewController:account:))) {
+        %init(BHTIPadModernTweetColumn);
+    } else if (class_getInstanceMethod(splitClass, @selector(initWithDashContentController:tabBarViewController:tabBottomSegmentViewController:contentViewController:extendedContentViewController:account:))) {
+        %init(BHTIPadLegacyTweetColumn);
+        %init(BHTIPadLegacyDetailNavigation);
     }
 }
