@@ -619,7 +619,7 @@ static NSArray* orderedTabEntries(NSArray* entries) {
 %hook T1TabbedAppNavigationViewController
 
 - (void)setVisibleTabEntries:(NSArray*)entries {
-    %orig(orderedTabEntries(entries));
+    %orig([CustomTabBarUtility usesNativeEditor] ? entries : orderedTabEntries(entries));
 }
 
 %end
