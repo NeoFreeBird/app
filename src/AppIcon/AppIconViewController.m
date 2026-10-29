@@ -60,6 +60,9 @@ static NSString* AppIconDetailText(void) {
                                      UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView* appIconCollectionView;
 @property (nonatomic, copy) NSArray<AppIconItem*>* icons;
+@property (nonatomic, strong) NSCache<AppIconItem*, UIImage*>* thumbnailCache;
+@property (nonatomic, strong) UIView* loadingView;
+@property (nonatomic, strong) UIActivityIndicatorView* loadingIndicator;
 @end
 
 @implementation AppIconViewController
@@ -89,6 +92,7 @@ static NSString* AppIconDetailText(void) {
     self.appIconCollectionView.dataSource = self;
     self.appIconCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
     self.appIconCollectionView.backgroundColor = [Palette currentBackgroundColor];
+    self.thumbnailCache = [NSCache new];
 
     self.view.backgroundColor = [Palette currentBackgroundColor];
 
@@ -105,6 +109,33 @@ static NSString* AppIconDetailText(void) {
             constraintEqualToAnchor:self.view.bottomAnchor],
     ]];
 
+    self.loadingView = [UIView new];
+    self.loadingView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadingView.backgroundColor = self.view.backgroundColor;
+    [self.view addSubview:self.loadingView];
+
+    self.loadingIndicator =
+        [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:
+                                             UIActivityIndicatorViewStyleMedium];
+    self.loadingIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadingIndicator.accessibilityLabel = @"Loading app icons";
+    [self.loadingView addSubview:self.loadingIndicator];
+
+    [NSLayoutConstraint activateConstraints:@[
+        [self.loadingView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [self.loadingView.leadingAnchor
+            constraintEqualToAnchor:self.view.leadingAnchor],
+        [self.loadingView.trailingAnchor
+            constraintEqualToAnchor:self.view.trailingAnchor],
+        [self.loadingView.bottomAnchor
+            constraintEqualToAnchor:self.view.bottomAnchor],
+        [self.loadingIndicator.centerXAnchor
+            constraintEqualToAnchor:self.loadingView.centerXAnchor],
+        [self.loadingIndicator.centerYAnchor
+            constraintEqualToAnchor:self.loadingView.centerYAnchor],
+    ]];
+    [self.loadingIndicator startAnimating];
+
     [self loadAppIcons];
 }
 
@@ -118,51 +149,70 @@ static NSString* AppIconDetailText(void) {
 
 #pragma mark - Icon data
 
-// Icons come from Info.plist so the picker matches whatever the build ships;
-// the primary icon is listed first so it can be restored. Like the native
-// picker, icons whose preview art is missing are dropped.
 - (void)loadAppIcons {
-    NSDictionary* iconsDict =
-        [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIcons"];
+    UITraitCollection* traitCollection = self.traitCollection;
+    __weak AppIconViewController* weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        AppIconViewController* strongSelf = weakSelf;
+        if (!strongSelf)
+            return;
 
-    NSMutableArray<AppIconItem*>* items = [NSMutableArray new];
+        NSDictionary* iconsDict =
+            [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIcons"];
+        NSMutableArray<AppIconItem*>* items = [NSMutableArray new];
 
-    NSDictionary* primary = iconsDict[@"CFBundlePrimaryIcon"];
-    if ([primary isKindOfClass:[NSDictionary class]]) {
-        AppIconItem* item = [[AppIconItem alloc]
-            initWithBundleIconName:primary[@"CFBundleIconName"]
-                     iconFileNames:primary[@"CFBundleIconFiles"]
-                     isPrimaryIcon:YES];
-        if ([self thumbnailForItem:item]) {
-            [items addObject:item];
-        }
-    }
-
-    NSDictionary* alternates = iconsDict[@"CFBundleAlternateIcons"];
-    if ([alternates isKindOfClass:[NSDictionary class]]) {
-        NSArray<NSString*>* sortedKeys = [alternates.allKeys
-            sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-        for (NSString* key in sortedKeys) {
-            NSDictionary* alt = alternates[key];
-            NSString* name = alt[@"CFBundleIconName"] ?: key;
+        NSDictionary* primary = iconsDict[@"CFBundlePrimaryIcon"];
+        if ([primary isKindOfClass:[NSDictionary class]]) {
             AppIconItem* item = [[AppIconItem alloc]
-                initWithBundleIconName:name
-                         iconFileNames:alt[@"CFBundleIconFiles"]
-                         isPrimaryIcon:NO];
-            if ([self thumbnailForItem:item]) {
+                initWithBundleIconName:primary[@"CFBundleIconName"]
+                         iconFileNames:primary[@"CFBundleIconFiles"]
+                         isPrimaryIcon:YES];
+            if ([strongSelf thumbnailForItem:item
+                             traitCollection:traitCollection]) {
                 [items addObject:item];
             }
         }
-    }
 
-    self.icons = items;
-    [self.appIconCollectionView reloadData];
+        NSDictionary* alternates = iconsDict[@"CFBundleAlternateIcons"];
+        if ([alternates isKindOfClass:[NSDictionary class]]) {
+            NSArray<NSString*>* sortedKeys = [alternates.allKeys
+                sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+            for (NSString* key in sortedKeys) {
+                NSDictionary* alt = alternates[key];
+                NSString* name = alt[@"CFBundleIconName"] ?: key;
+                AppIconItem* item = [[AppIconItem alloc]
+                    initWithBundleIconName:name
+                             iconFileNames:alt[@"CFBundleIconFiles"]
+                             isPrimaryIcon:NO];
+                if ([strongSelf thumbnailForItem:item
+                                 traitCollection:traitCollection]) {
+                    [items addObject:item];
+                }
+            }
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            AppIconViewController* currentSelf = weakSelf;
+            if (!currentSelf)
+                return;
+            currentSelf.icons = items;
+            [currentSelf.loadingIndicator stopAnimating];
+            currentSelf.loadingView.hidden = YES;
+            [currentSelf.appIconCollectionView reloadData];
+        });
+    });
 }
 
-// Thumbnails are "<name>-settings" in the asset catalog ("Icon-<Name>-settings"
-// for the primary icon), falling back to the icon art itself.
 - (UIImage*)thumbnailForItem:(AppIconItem*)item {
-    UITraitCollection* tc = self.traitCollection;
+    return [self thumbnailForItem:item traitCollection:self.traitCollection];
+}
+
+- (UIImage*)thumbnailForItem:(AppIconItem*)item
+             traitCollection:(UITraitCollection*)traitCollection {
+    UIImage* cachedImage = [self.thumbnailCache objectForKey:item];
+    if (cachedImage)
+        return cachedImage;
+
     NSBundle* bundle = [NSBundle mainBundle];
 
     NSString* settingsName;
@@ -178,21 +228,23 @@ static NSString* AppIconDetailText(void) {
 
     UIImage* img = [UIImage imageNamed:settingsName
                               inBundle:bundle
-         compatibleWithTraitCollection:tc];
+         compatibleWithTraitCollection:traitCollection];
     if (!img && item.bundleIconName) {
         img = [UIImage imageNamed:item.bundleIconName
                                  inBundle:bundle
-            compatibleWithTraitCollection:tc];
+            compatibleWithTraitCollection:traitCollection];
     }
     if (!img) {
         for (NSString* file in [item.bundleIconFiles reverseObjectEnumerator]) {
             img = [UIImage imageNamed:file
                                      inBundle:bundle
-                compatibleWithTraitCollection:tc];
+                compatibleWithTraitCollection:traitCollection];
             if (img)
                 break;
         }
     }
+    if (img)
+        [self.thumbnailCache setObject:img forKey:item];
     return img;
 }
 

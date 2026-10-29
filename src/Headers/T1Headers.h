@@ -92,15 +92,16 @@
 @end
 
 @interface T1TabView : UIView
-@property (readonly, nonatomic) UILabel* titleLabel;
 @property (readonly, nonatomic) long long panelID;
 @property (copy, nonatomic) NSString* scribePage;
 @property (readonly, nonatomic) NSString* title;
 @property (readonly, nonatomic) NSString* imageName;
+@property (readonly, nonatomic) UIImageView* imageView;
+@property (readonly, nonatomic) UIView* transformContainer;
 @property (retain, nonatomic) UIColor* iconColor;
 @property (readonly, nonatomic, getter=isSelected) BOOL selected;
-- (void)_t1_updateTitleLabel;
 - (void)_t1_updateImageViewAnimated:(BOOL)animated;
+- (void)applyTintColor:(UIColor*)color;
 @end
 
 @interface T1TabBarViewController : UIViewController
@@ -252,7 +253,7 @@
 @property (nonatomic, readonly) NSArray* inlineMediaInfos;
 @end
 
-@interface _TtC16ChatConversation26MessageAttachmentAudioView : UIView
+@interface _TtC6ChatUI26MessageAttachmentAudioView : UIView
 @end
 
 #pragma mark - Host & web views
@@ -269,7 +270,6 @@
 - (void)setCurrentURL:(NSURL*)url;
 @property (nonatomic, readonly) NSURL* currentURL;
 - (WKWebView*)webView;
-- (id)updateConfiguration:(id)configuration;
 @end
 
 @interface T1WebViewController : T1BaseWebViewController
@@ -383,4 +383,38 @@
 
 @interface T1ViewControllerScribeEventObserver : NSObject
 - (void)viewControllerApplicationDidBecomeActive:(id)active;
+@end
+
+@interface T1TabCustomizationConfig : NSObject
+@property (nonatomic, readonly) _Bool isTabCustomizationEnabled;
+@end
+
+@interface T1BlockMuteActionPerformer : NSObject
+- (void)showBlockAlertForContext:(id)context;
+@end
+
+@interface _TtC14T1TwitterSwift28FleetLineAccessoryController : NSObject
+@end
+
+@interface T1AppSplitViewController : UIViewController
+@property (nonatomic, readonly) UIViewController* extendedContentViewController;
+@property (nonatomic, weak) id delegate;
+@property (nonatomic) BOOL displaySideBar;
+- (void)setDisplayExtendedContent:(BOOL)display animated:(BOOL)animated;
+- (NSInteger)private_splitModeForSize:(CGSize)size
+               displayExtendedContent:(BOOL)display
+                       displaySideBar:(BOOL)sideBar;
+@end
+
+@interface T1ExtendedContentNavigationController : TFNNavigationController
+@end
+
+@interface T1TabNavigationController : TFNNavigationController
+@end
+
+@interface PaymentsButtonViewModel : NSObject
+@end
+
+@interface T1StatusEditedOnXLabelAdapter: NSObject
+- (_Bool)shouldBeVisibleForViewModel:(id)model;
 @end

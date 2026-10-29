@@ -4,6 +4,7 @@
 
   # NeoFreeBird
   <i>The ultimate way to tweak your Twitter/X experience.</i>
+  Open the NeoFreeBird settings by holding the Twitter/X icon at the top of the main feed. See [Opening the settings](#opening-the-settings).
 
   ## Twitter Branding
 
@@ -32,6 +33,39 @@
   </div>
 </div>
 <br>
+
+# Opening the settings
+
+Hold down the Twitter/X icon at the top of the main feed (the home timeline). The NeoFreeBird settings page opens.
+
+There is no NeoFreeBird entry in Twitter's own Settings and privacy menu, in Privacy and safety, or in the iOS Settings app. If you cannot find the settings, you are most likely looking in the wrong place.
+
+# Which build do I need?
+
+| Build | Tweak | Branding and icons | For |
+|---|---|---|---|
+| `.ipa` (sideloaded) | yes | yes | AltStore, SideStore, Feather, Sideloadly |
+| `.tipa` (TrollStore) | yes | yes | TrollStore |
+| `.deb` | yes | no (intended) | Jailbroken devices |
+
+DEB packages contain only the tweak, not the app, so they cannot change the app icon or name. This is intended behaviour for now. Use an IPA or TIPA build if you want the full NeoFreeBird branding.
+
+Which DEB to install:
+- `iphoneos-arm64`: rootless jailbreaks (palera1n default, Dopamine, and similar).
+- `iphoneos-arm`: rootful jailbreaks (for example palera1n started with `-f`).
+
+Installing the wrong one fails with an architecture error in Sileo.
+
+# Troubleshooting
+
+**I cannot find the NeoFreeBird settings.**
+Hold down the Twitter/X icon at the top of the main feed. See [Opening the settings](#opening-the-settings).
+
+**I installed the DEB and the app is unchanged.**
+Check that you installed the package matching your jailbreak type (see above), respring, and fully close and reopen Twitter. Then open the settings by holding the icon in the feed. Note that the DEB does not include branding or icons.
+
+**The tweak is `bhtwitter.dylib` in the package.**
+That is expected. NeoFreeBird is built on BHTwitter and some internal file names keep the old name.
 
 | | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
@@ -138,7 +172,7 @@ Just run:
 ./build.sh --rootless
 ```
 
-Result: `com.bandarhl.bhtwitter_4.2_iphoneos-arm64.deb` inside `packages`.
+Result: a rootless `.deb` (`iphoneos-arm64`) inside `packages`.
 
 ## Build for Rootful Jailbreaks
 
@@ -148,7 +182,7 @@ Just run:
 ./build.sh --rootfull
 ```
 
-Result: `com.bandarhl.bhtwitter_4.2_iphoneos-arm.deb` inside `packages`.
+Result: a rootful `.deb` (`iphoneos-arm`) inside `packages`.
 
 # Rebranding
 

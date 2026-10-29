@@ -1,0 +1,24 @@
+/*
+Generic terminology replacements for the "Restore Twitter names" feature, applied
+to every localized string and to server-composed text (notification rows etc.).
+
+Lowercase keys match whole words case-insensitively and the replacement copies the
+matched word's capitalisation ("Reposts" -> "Retweets", "REPOST" -> "RETWEET").
+A replacement carrying its own capital keeps it even for lowercase matches
+("posted" -> "Tweeted"). Keys that contain an uppercase letter match exactly and
+are replaced verbatim ("X" -> "Twitter").
+List each word in only one of the two forms, and never use a replacement value that
+matches another key — replacements must be stable if the text is processed twice.
+
+Strictly per-language: a language without its own copy of this file gets no generic
+renaming at all.
+*/
+
+"转帖" = "转推";
+"已转帖" = "已转推";
+"正在转帖" = "正在转推";
+"帖子" = "推文";
+"已发帖" = "已发推";
+"正在发送帖子" = "正在发送推文";
+"premium" = "blue";
+"X" = "Twitter";

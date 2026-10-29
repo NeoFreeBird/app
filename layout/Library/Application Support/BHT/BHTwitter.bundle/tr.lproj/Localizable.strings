@@ -80,6 +80,9 @@
 "HIDE_TIMELINE_PROMPTS_TITLE" = "Zaman akışı istemlerini gizle";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "‘Kişileri ekle’ gibi afişleri kaldırır.";
 
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "‘Sizin için videolar’ modülünü gizle";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Zaman akışınızdaki ‘Sizin için videolar’ modülünü gizler.";
+
 "HIDE_BLOCKED_RETWEETS_TITLE" = "Engellenen Retweetleri gizle";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "Engellediğiniz hesapların Retweetlerini gizler.";
 
@@ -116,8 +119,8 @@
 "SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "Yuvarlanmamış alıntı sayılarını göster";
 "SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "Bir Tweet'in aldığı alıntı ve retweetlerin tam sayısını gösterir. Taşma sorunlarına neden olabilir.";
 
-"POST_INTERACTIONS_COUNTS_TITLE" = "Alıntılar: %@  Retweet: %@";
-"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Alıntılar: %lld  Retweet: %lld";
+"POST_INTERACTIONS_COUNTS_TITLE" = "Alıntılar: %@  Retweetler: %@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Alıntılar: %lld  Retweetler: %lld";
 
 "USE_TENOR_GIFS_TITLE" = "Tenor GIF’lerini kullan";
 "USE_TENOR_GIFS_DETAIL" = "Twitter’ın GIF’leri (GIPHY) yerine Tenor GIF’lerini kullanır. Tenor daha fazla seçenek sunar.";
@@ -127,6 +130,9 @@
 
 "SHOW_POLL_RESULTS_TITLE" = "Oy vermeden önce anket sonuçlarını göster";
 "SHOW_POLL_RESULTS_DETAIL" = "Diğer kişilerin nasıl oy kullandığını görebilmeniz için oy vermeden önce anket sonuçlarını seçenek adlarının yanında gösterir.";
+
+"RESTORE_TWEET_LABELS_TITLE" = "Tweet kaynağı etiketlerini göster";
+"RESTORE_TWEET_LABELS_DETAIL" = "Tweetlerin hangi istemciden gönderildiğini göster.";
 
 "SHOW_ACCOUNT_LOCATION_TITLE" = "Hesap konumunu göster";
 "SHOW_ACCOUNT_LOCATION_DETAIL" = "Tweet’i paylaşan hesabın konumunu Tweet alt bilgisinde gösterir.";
@@ -174,9 +180,6 @@
 
 "RESTORE_REPLY_CONTEXT_TITLE" = "Yanıt bağlamını geri yükle";
 "RESTORE_REPLY_CONTEXT_DETAIL" = "Tweetlerin altında yanıt verilen kişileri gösterir.";
-
-"RESTORE_TWEET_LABELS_TITLE" = "Tweet kaynağı etiketlerini göster";
-"RESTORE_TWEET_LABELS_DETAIL" = "Tweetlerin hangi istemciden gönderildiğini göster.";
 
 
 /* Chat */
@@ -324,6 +327,10 @@
 "REPLY_IN_WEBVIEW_TITLE" = "Web görünümünde yanıtla";
 "REPLY_IN_WEBVIEW_DETAIL" = "Doğrulamadan kaçınmak için yanıt kutusunu bir web görünümünde açar.";
 
+"LIQUID_GLASS_TITLE" = "Liquid Glass'ı Etkinleştir";
+"LIQUID_GLASS_DETAIL" = "X'in yeni Liquid Glass arayüzünü etkinleştirir. Bu deneysel bir yeniden tasarımdır ve sorunlara neden olabilir.";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass yeniden tasarımı, değişikliklerin etkili olması için yeniden başlatma gerektirir.";
+
 
 /* Debug */
 
@@ -423,6 +430,9 @@
 "HIDE_TWEET_BUTTON_TITLE" = "Tweet düğmesini gizle";
 "HIDE_TWEET_BUTTON_DETAIL" = "Gezinme çubuğundan Tweet düğmesini kaldırır.";
 
+"HIDE_QUICK_COMPOSE_TITLE" = "Hızlı Oluştur'u gizle";
+"HIDE_QUICK_COMPOSE_DETAIL" = "Gezinme çubuğundan Hızlı Oluştur düğmesini kaldırır (yalnızca Liquid Glass üzerinde).";
+
 
 /* Deprecated */
 
@@ -514,6 +524,13 @@
 
 "SETTINGS_EXPORT_TITLE" = "Ayarları dışa aktar";
 "SETTINGS_IMPORT_TITLE" = "Ayarları içe aktar";
+"SETTINGS_RESET_TITLE" = "Ayarları sıfırla";
+
+"SETTINGS_RESET_CONFIRM_TITLE" = "Tüm ayarlar sıfırlansın mı?";
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "Bu işlem tüm NeoFreeBird ayarlarını varsayılan değerlerine döndürecektir.";
+"SETTINGS_RESET_CONFIRM_BUTTON" = "Sıfırla";
+"SETTINGS_RESET_SUCCESS_TITLE" = "Ayarlar sıfırlandı";
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "Tüm ayarlar geri yüklendi. Değişikliklerin etkili olması için uygulamayı yeniden başlatın.";
 
 "CUSTOM_SEND_SOUND_TITLE" = "Gönderme sesi içe aktar";
 "CUSTOM_SEND_SOUND_DEFAULT" = "Özel ses seçilmedi";

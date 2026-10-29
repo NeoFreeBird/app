@@ -122,6 +122,14 @@ UIColor* CurrentAccentColor(void) {
     id palette = [current colorPalette];
     NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
 
+    NSArray<NSNumber*>* custom = [defs arrayForKey:@"bh_color_theme_customColor"];
+    if ([defs integerForKey:@"bh_color_theme_selectedColor"] == -1 && custom.count == 4) {
+        return [UIColor colorWithRed:custom[0].doubleValue
+                               green:custom[1].doubleValue
+                                blue:custom[2].doubleValue
+                               alpha:custom[3].doubleValue];
+    }
+
     // The tweak's stored pick wins over Twitter's own colour option.
     if ([defs objectForKey:@"bh_color_theme_selectedColor"]) {
         NSInteger opt = [defs integerForKey:@"bh_color_theme_selectedColor"];
@@ -147,4 +155,28 @@ NSString* formatNumberWithSuffix(long long number) {
     } else {
         return [NSString stringWithFormat:@"%.1fB", number / 1000000000.0];
     }
+}
+
+bool NFBLiquidGlassEnabled(void) {
+    return [BHTSettings boolForKey:@"liquid_glass"];
+}
+
+BOOL nfb_boolIvar(id object, const char* name, BOOL fallback) {
+    Ivar ivar = class_getInstanceVariable(object_getClass(object), name);
+    if (!ivar) {
+        return fallback;
+    }
+    return *(BOOL*)((uint8_t*)(__bridge void*)object + ivar_getOffset(ivar));
+}
+
+void nfb_setBoolIvar(id object, const char* name, BOOL value) {
+    Ivar ivar = class_getInstanceVariable(object_getClass(object), name);
+    if (ivar) {
+        *(BOOL*)((uint8_t*)(__bridge void*)object + ivar_getOffset(ivar)) = value;
+    }
+}
+
+id nfb_objectIvar(id object, const char* name) {
+    Ivar ivar = class_getInstanceVariable(object_getClass(object), name);
+    return ivar ? object_getIvar(object, ivar) : nil;
 }

@@ -37,4 +37,8 @@ typedef NS_ENUM(NSInteger, BHTSettingsTransferErrorCode) {
 // set when the file could not be read or was not one of our exports.
 + (NSInteger)importSettingsFromFileAtURL:(NSURL*)url error:(NSError**)error;
 
+// Restores every registered preference to its default and reapplies settings
+// whose values are also cached outside NSUserDefaults.
++ (void)resetAllSettings;
+
 @end

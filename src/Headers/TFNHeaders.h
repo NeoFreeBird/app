@@ -202,3 +202,7 @@
 @property (nonatomic, retain) _TtC10TFNUISwift26LegacySegmentedTabBarStyle* style;
 @property (nonatomic) long long selectedIndex;
 @end
+
+@interface NavigationControllerFactoryTFNFallback : NSObject
++ (UINavigationController*)makeWithRootViewController:(UIViewController*)controller;
+@end

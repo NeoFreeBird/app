@@ -10,6 +10,7 @@
 
 #import "ColorThemeViewController.h"
 #import <UIKit/UIKit.h>
+#import <objc/message.h>
 #import "ColorSwatchControl.h"
 #import "Core/BHTBundle.h"
 #import "Core/BHTSettings.h"
@@ -34,18 +35,39 @@ static NSInteger CurrentSelectedColorOption(void) {
 // The accent picker ships no localized colour names, so the swatches borrow the
 // Fleets accessibility labels for the same six colours.
 static const NSUInteger kAccentOptionCount = 6;
+static NSInteger const kCustomAccentOption = -1;
+static NSString* const kCustomAccentColorKey = @"bh_color_theme_customColor";
+static NSString* const kLastNativeAccentOptionKey = @"bh_color_theme_lastNativeColorOption";
 static NSString* const kAccentColorNames[kAccentOptionCount] = {@"BLUE", @"YELLOW", @"RED",
                                                                 @"PURPLE", @"ORANGE", @"GREEN"};
 
 static UIColor* NativeAccentColor(NSUInteger option) {
+    static NSString* const presetSelectors[] = {
+        @"primaryColorOptionBlueColor",
+        @"primaryColorOptionYellowColor",
+        @"primaryColorOptionRedColor",
+        @"primaryColorOptionPurpleColor",
+        @"primaryColorOptionOrangeColor",
+        @"primaryColorOptionGreenColor"
+    };
+    if (option < 1 || option > kAccentOptionCount) return nil;
     id palette =
         [[[objc_getClass("TAEColorSettings") sharedSettings] currentColorPalette] colorPalette];
-    UIColor* color = [palette primaryColorForOption:option];
+    SEL selector = NSSelectorFromString(presetSelectors[option - 1]);
+    UIColor* color = [palette respondsToSelector:selector]
+        ? ((UIColor* (*)(id, SEL))objc_msgSend)(palette, selector)
+        : [palette primaryColorForOption:option];
     return [color isKindOfClass:[UIColor class]] ? color : nil;
 }
 
-@interface ColorThemeViewController ()
+@interface TFNDynamicColorManager : NSObject
++ (instancetype)sharedColorManager;
+- (void)reloadDynamicColors;
+@end
+
+@interface ColorThemeViewController () <UIColorPickerViewControllerDelegate>
 @property (nonatomic, strong) NSMutableArray<ColorSwatchControl*>* swatches;
+@property (nonatomic, strong) ColorSwatchControl* customSwatch;
 @end
 
 @implementation ColorThemeViewController
@@ -94,6 +116,18 @@ static UIColor* NativeAccentColor(NSUInteger option) {
         [self.swatches addObject:swatch];
     }
 
+    self.customSwatch = [[ColorSwatchControl alloc] init];
+    self.customSwatch.translatesAutoresizingMaskIntoConstraints = NO;
+    self.customSwatch.colorID = kCustomAccentOption;
+    self.customSwatch.isAccessibilityElement = YES;
+    self.customSwatch.accessibilityLabel = @"Custom color";
+    UIColor* customColor = [self storedCustomAccentColor] ?: [UIColor systemBlueColor];
+    [self.customSwatch setSwatchColor:customColor];
+    [self.customSwatch addTarget:self
+                          action:@selector(customSwatchTapped:)
+                forControlEvents:UIControlEventTouchUpInside];
+    [row addArrangedSubview:self.customSwatch];
+
     [NSLayoutConstraint activateConstraints:@[
         [detail.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor
                                          constant:16],
@@ -121,9 +155,55 @@ static UIColor* NativeAccentColor(NSUInteger option) {
     for (ColorSwatchControl* swatch in self.swatches) {
         [swatch setSwatchSelected:(swatch.colorID == selected)];
     }
+    [self.customSwatch setSwatchSelected:(selected == kCustomAccentOption)];
+}
+
+- (UIColor*)storedCustomAccentColor {
+    NSArray<NSNumber*>* components = [[NSUserDefaults standardUserDefaults]
+        arrayForKey:kCustomAccentColorKey];
+    if (components.count != 4) return nil;
+    return [UIColor colorWithRed:components[0].doubleValue
+                           green:components[1].doubleValue
+                            blue:components[2].doubleValue
+                           alpha:components[3].doubleValue];
+}
+
+- (void)customSwatchTapped:(id)sender {
+    if (@available(iOS 14.0, *)) {
+        UIColorPickerViewController* picker = [UIColorPickerViewController new];
+        picker.delegate = self;
+        picker.selectedColor = [self storedCustomAccentColor] ?: [UIColor systemBlueColor];
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+- (void)colorPickerViewControllerDidSelectColor:(UIColorPickerViewController*)viewController API_AVAILABLE(ios(14.0)) {
+    UIColor* color = viewController.selectedColor;
+    CGFloat red = 0, green = 0, blue = 0, alpha = 1;
+    if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) return;
+    NSInteger previousOption = CurrentSelectedColorOption();
+    if (previousOption >= 1 && previousOption <= (NSInteger)kAccentOptionCount) {
+        [NSUserDefaults.standardUserDefaults setInteger:previousOption
+                                                 forKey:kLastNativeAccentOptionKey];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:@[@(red), @(green), @(blue), @(alpha)]
+                                              forKey:kCustomAccentColorKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:kCustomAccentOption
+                                               forKey:@"bh_color_theme_selectedColor"];
+    // Refresh Twitter's palette and observers using a valid native option.
+    changeTwitterColor(0);
+    Class dynamicColorManager = objc_getClass("TFNDynamicColorManager");
+    if ([dynamicColorManager respondsToSelector:@selector(sharedColorManager)]) {
+        [[dynamicColorManager sharedColorManager] reloadDynamicColors];
+    }
+    [self.customSwatch setSwatchColor:color];
+    [self refreshSelection];
+    [self reapplyAccentToLiveViews];
 }
 
 - (void)swatchTapped:(ColorSwatchControl*)swatch {
+    [NSUserDefaults.standardUserDefaults setInteger:swatch.colorID
+                                             forKey:kLastNativeAccentOptionKey];
     [[NSUserDefaults standardUserDefaults] setInteger:swatch.colorID
                                                forKey:@"bh_color_theme_selectedColor"];
     changeTwitterColor(swatch.colorID);
@@ -133,6 +213,9 @@ static UIColor* NativeAccentColor(NSUInteger option) {
 }
 
 static void reapplySegmentedCaretAccent(UIView* view) {
+    if ([view respondsToSelector:@selector(nfb_applyGlassTabAccent)]) {
+        [view performSelector:@selector(nfb_applyGlassTabAccent)];
+    }
     static Class caretClass;
     static Class tabBarClass;
     static dispatch_once_t onceToken;
@@ -190,8 +273,8 @@ static void reapplySegmentedCaretAccent(UIView* view) {
         [stack removeObjectAtIndex:0];
         if ([vc isKindOfClass:t1TabBarVCClass] && [vc respondsToSelector:@selector(tabViews)]) {
             for (id tab in [vc valueForKey:@"tabViews"]) {
-                if ([tab respondsToSelector:@selector(applyCurrentThemeToIcon)]) {
-                    [tab performSelector:@selector(applyCurrentThemeToIcon)];
+                if ([tab isKindOfClass:NSClassFromString(@"T1TabView")]) {
+                    [(T1TabView*)tab _t1_updateImageViewAnimated:NO];
                 }
             }
         }

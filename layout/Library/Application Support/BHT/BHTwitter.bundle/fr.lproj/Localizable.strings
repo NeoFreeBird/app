@@ -90,6 +90,12 @@
 "ALWAYS_OPEN_SAFARI_TITLE" = "Utiliser un navigateur externe";
 "ALWAYS_OPEN_SAFARI_DETAIL" = "Ouvre les liens dans Safari ou votre navigateur par défaut.";
 
+"BLOCK_LINK_TRACKING_TITLE" = "Bloquer le suivi des liens";
+"BLOCK_LINK_TRACKING_DETAIL" = "Ouvre les liens directement sans passer par t.co, sans requêtes t.co en arrière-plan ni identifiants de clics publicitaires. Les avertissements de Twitter concernant les liens dangereux ne s’afficheront pas.";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "Supprimer les paramètres de suivi";
+"STRIP_TRACKING_PARAMS_DETAIL" = "Supprime les paramètres utm_ et les autres marqueurs de suivi des liens que vous ouvrez.";
+
 "SHARING_DOMAIN_TITLE" = "Domaine de partage";
 
 /*Tweets*/
@@ -105,6 +111,9 @@
 "SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "Afficher le nombre exact de citations";
 "SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "Affiche le nombre exact de citations et de retweets reçus par un Tweet. Peut entraîner des débordements d’affichage.";
 
+"POST_INTERACTIONS_COUNTS_TITLE" = "Citations : %@  Retweets : %@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Citations : %lld  Retweets : %lld";
+
 "USE_TENOR_GIFS_TITLE" = "Utiliser les GIFs Tenor";
 "USE_TENOR_GIFS_DETAIL" = "Utilise les GIFs Tenor à la place des GIFs de Twitter (GIPHY). Tenor offre davantage de choix.";
 
@@ -113,6 +122,9 @@
 
 "SHOW_POLL_RESULTS_TITLE" = "Afficher les résultats des sondages avant de voter";
 "SHOW_POLL_RESULTS_DETAIL" = "Ajoute les résultats du sondage aux intitulés des réponses avant votre vote pour voir comment les autres ont voté.";
+
+"RESTORE_TWEET_LABELS_TITLE" = "Afficher la source des Tweets";
+"RESTORE_TWEET_LABELS_DETAIL" = "Affiche l’application utilisée pour publier les Tweets.";
 
 "SHOW_ACCOUNT_LOCATION_TITLE" = "Afficher la localisation du compte";
 "SHOW_ACCOUNT_LOCATION_DETAIL" = "Affiche la localisation du compte ayant publié le Tweet dans le pied de page du Tweet.";
@@ -149,8 +161,11 @@
 "SQUARE_AVATARS_TITLE" = "Photos de profil carrées";
 "SQUARE_AVATARS_DETAIL" = "Affiche des photos de profil carrées pour tout le monde, comme les comptes de marque sur l'ancien Twitter.";
 
+"DEFAULT_REPLY_SORTING_TITLE" = "Tri des réponses par défaut";
+"DEFAULT_REPLY_SORTING_DETAIL" = "Choisissez le tri des réponses par défaut pour tous les Tweets.";
+
 "REPLY_SORTING_TITLE" = "Pas de tri des réponses";
-"REPLY_SORTING_DETAIL" = "Désactive le tri des réponses dans les conversations de Tweets.";
+"REPLY_SORTING_DETAIL" = "Masque le bouton de tri des réponses dans les conversations de Tweets.";
 
 "RESTORE_REPLY_CONTEXT_TITLE" = "Restaurer le contexte de réponse";
 "RESTORE_REPLY_CONTEXT_DETAIL" = "Affiche les personnes auxquelles la réponse est adressée sous les Tweets.";
@@ -347,6 +362,12 @@
 "DIM_THEME_RESTART_ALERT_TITLE" = "Redémarrage nécessaire";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "Le thème bleu nuit nécessite un redémarrage pour prendre effet.";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Redémarrer";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "Masquer les Tweets citant d’autres Tweets";
+"HIDE_QUOTE_TWEETS_DETAIL" = "Masque les Tweets citant d’autres Tweets dans votre fil.";
+
+"HIDE_RETWEETS_TITLE" = "Masquer les retweets";
+"HIDE_RETWEETS_DETAIL" = "Masque les retweets dans votre fil.";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "Masquer les Tweets des comptes vérifiés";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Masque les Tweets des comptes vérifiés dans votre fil et les réponses, sauf si l’auteur du fil y a répondu ou si vous suivez le compte.";

@@ -135,3 +135,15 @@ static void SyncHomeAddTabButton(id container, BOOL hidden) {
 }
 
 %end
+
+%hook _TtC14T1TwitterSwift28FleetLineAccessoryController
+
+- (BOOL)isHidden {
+    return [BHTSettings boolForKey:@"hide_spaces"] ? YES : %orig;
+}
+
+- (UIView*)accessoryView {
+    return [BHTSettings boolForKey:@"hide_spaces"] ? nil : %orig;
+}
+
+%end

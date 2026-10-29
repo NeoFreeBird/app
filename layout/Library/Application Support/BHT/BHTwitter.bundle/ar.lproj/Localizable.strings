@@ -111,6 +111,9 @@
 "SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "عرض عدد الاقتباسات كاملًا";
 "SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "عرض العدد الدقيق للاقتباسات وإعادات التغريد. قد يتجاوز العدد المساحة المتاحة.";
 
+"POST_INTERACTIONS_COUNTS_TITLE" = "الاقتباسات: %@  إعادات التغريد: %@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "الاقتباسات: %lld  إعادات التغريد: %lld";
+
 "USE_TENOR_GIFS_TITLE" = "استخدام صور GIF من Tenor";
 "USE_TENOR_GIFS_DETAIL" = "استخدام صور GIF من Tenor بدلًا من GIPHY في تويتر. يوفر Tenor خيارات أكثر.";
 
@@ -119,6 +122,9 @@
 
 "SHOW_POLL_RESULTS_TITLE" = "عرض نتائج الاستطلاع قبل التصويت";
 "SHOW_POLL_RESULTS_DETAIL" = "إضافة النتائج إلى أسماء الخيارات قبل التصويت، لتعرف كيف صوّت الآخرون.";
+
+"RESTORE_TWEET_LABELS_TITLE" = "إظهار مصدر التغريدة";
+"RESTORE_TWEET_LABELS_DETAIL" = "عرض التطبيق الذي نُشرت منه التغريدة.";
 
 "SHOW_ACCOUNT_LOCATION_TITLE" = "عرض موقع الحساب";
 "SHOW_ACCOUNT_LOCATION_DETAIL" = "عرض موقع الحساب الذي نشر التغريدة أسفلها.";

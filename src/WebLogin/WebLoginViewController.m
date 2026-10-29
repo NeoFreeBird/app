@@ -87,6 +87,15 @@ static BOOL getAccountUserID(id account, long long* userID) {
     return YES;
 }
 
+// Objects are cleaner and don't crash like using raw selectors
+@protocol WebLoginObjectUserIDAccount <NSObject>
+- (instancetype)initWithUsername:(NSString*)username userID:(id)userID;
+@end
+
+@protocol WebLoginIntegerUserIDAccount <NSObject>
+- (instancetype)initWithUsername:(NSString*)username userID:(long long)userID;
+@end
+
 static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
                                        long long userID) {
     SEL selector = @selector(initWithUsername:userID:);
@@ -98,12 +107,14 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
     const char* argumentType = method_copyArgumentType(method, 3);
     id account = nil;
     if (argumentType && argumentType[0] == '@') {
-        account = ((id (*)(id, SEL, id, id))objc_msgSend)(
-            [accountClass alloc], selector, username, @(userID));
+        account = [(id<WebLoginObjectUserIDAccount>)[accountClass alloc]
+            initWithUsername:username
+                      userID:@(userID)];
     } else if (argumentType && (argumentType[0] == 'q' || argumentType[0] == 'Q' ||
                                 argumentType[0] == 'l' || argumentType[0] == 'L')) {
-        account = ((id (*)(id, SEL, id, long long))objc_msgSend)(
-            [accountClass alloc], selector, username, userID);
+        account = [(id<WebLoginIntegerUserIDAccount>)[accountClass alloc]
+            initWithUsername:username
+                      userID:userID];
     }
     if (argumentType) free((void*)argumentType);
     return account;
@@ -114,6 +125,7 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
 @property (nonatomic, strong) NSTimer* pollTimer;
 @property (nonatomic, assign) BOOL asRootScreen;
 @property (nonatomic, assign) BOOL finished;
+@property (nonatomic, assign) BOOL sessionCheckInFlight;
 @end
 
 @implementation WebLoginViewController
@@ -185,12 +197,24 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
 
     NSURL* url = [NSURL URLWithString:@"https://x.com/login"];
     [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+}
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.finished || self.pollTimer) return;
+    __weak typeof(self) weakSelf = self;
     self.pollTimer = [NSTimer scheduledTimerWithTimeInterval:1.5
-                                                      target:self
-                                                    selector:@selector(checkForSession)
-                                                    userInfo:nil
-                                                     repeats:YES];
+                                                     repeats:YES
+                                                       block:^(__unused NSTimer* timer) {
+                                                           [weakSelf checkForSession];
+                                                       }];
+    [self checkForSession];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.pollTimer invalidate];
+    self.pollTimer = nil;
 }
 
 - (void)dealloc {
@@ -198,6 +222,8 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
 }
 
 - (void)cancelTapped {
+    self.finished = YES;
+    [self.webView stopLoading];
     [self.pollTimer invalidate];
     self.pollTimer = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -212,13 +238,18 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
 #pragma mark - Session capture
 
 - (void)checkForSession {
-    if (self.finished) {
+    if (self.finished || self.sessionCheckInFlight || !self.view.window) {
         return;
     }
+    self.sessionCheckInFlight = YES;
 
     WKWebView* webView = self.webView;
     [webView.configuration.websiteDataStore.httpCookieStore
         getAllCookies:^(NSArray<NSHTTPCookie*>* cookies) {
+            if (self.finished || !self.view.window) {
+                self.sessionCheckInFlight = NO;
+                return;
+            }
             NSString *authToken = nil, *ct0 = nil, *twid = nil, *authMulti = nil;
             for (NSHTTPCookie* cookie in cookies) {
                 NSString* domain = cookie.domain ?: @"";
@@ -242,13 +273,14 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
             // A complete session needs all three. ct0 sometimes lands a beat after
             // auth_token; the poll timer retries until it does.
             if (authToken.length == 0 || ct0.length == 0 || twid.length == 0) {
+                self.sessionCheckInFlight = NO;
                 return;
             }
 
-            [self syncCookies:cookies];
-
             [webView evaluateJavaScript:kWebLoginScannerJS
                       completionHandler:^(id result, __unused NSError* error) {
+                          self.sessionCheckInFlight = NO;
+                          if (self.finished || !self.view.window) return;
                           NSString* userID = [self userIDFromTwid:twid];
                           if (userID.length == 0) {
                               return;
@@ -260,6 +292,7 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
                               username = [(NSString*)result substringFromIndex:9];
                           }
 
+                          [self syncCookies:cookies];
                           [self finishWithUserID:userID
                                         username:username
                                        authToken:authToken

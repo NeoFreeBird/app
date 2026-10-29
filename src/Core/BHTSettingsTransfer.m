@@ -33,6 +33,8 @@ static NSString* const kVisibleTabsKey = @"bh_tabs_visible";
 static NSString* const kAppIconKey = @"bh_last_selected_app_icon";
 static NSString* const kPrimaryIconSentinel = @"PrimaryIcon";
 
+static NSArray* skippedKeys = @[@"custom_send_sound_name"];
+
 // The tab registry (every tab seen on this device) is deliberately absent: it
 // is captured metadata, not a choice, and is rebuilt on launch.
 static NSDictionary<NSString*, Class>* BHTExtraTransferableKeys(void) {
@@ -56,9 +58,11 @@ static NSDictionary<NSString*, Class>* BHTTransferableKeyClasses(void) {
     dispatch_once(&onceToken, ^{
         NSMutableDictionary<NSString*, Class>* map = [NSMutableDictionary dictionary];
         for (NSString* key in [BHTSettings allPreferenceKeys]) {
-            id defaultValue = [BHTSettings settingForKey:key][@"default"];
-            map[key] = [defaultValue isKindOfClass:[NSNumber class]] ? [NSNumber class]
-                                                                     : [NSString class];
+            if (![skippedKeys containsObject:key]) {
+                id defaultValue = [BHTSettings settingForKey:key][@"default"];
+                map[key] = [defaultValue isKindOfClass:[NSNumber class]] ? [NSNumber class]
+                                                                         : [NSString class];
+            }
         }
         [map addEntriesFromDictionary:BHTExtraTransferableKeys()];
         classes = [map copy];
@@ -238,7 +242,8 @@ static NSError* BHTTransferError(BHTSettingsTransferErrorCode code, NSString* me
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 
     if ([keys containsObject:kAccentColorKey]) {
-        changeTwitterColor([defaults integerForKey:kAccentColorKey]);
+        NSInteger option = [defaults integerForKey:kAccentColorKey];
+        changeTwitterColor(option == -1 ? 0 : option);
     }
 
     if ([keys containsObject:kAppIconKey] &&
@@ -248,6 +253,20 @@ static NSError* BHTTransferError(BHTSettingsTransferErrorCode code, NSString* me
         [[UIApplication sharedApplication] setAlternateIconName:toSet
                                               completionHandler:^(NSError* error){}];
     }
+}
+
++ (void)resetAllSettings {
+    // Go through BHTSettings to reset all settings to their default values
+    for (NSString* key in [BHTSettings allPreferenceKeys]) {
+        id defaultValue = [BHTSettings settingForKey:key][@"default"];
+        if (defaultValue) {
+            [[NSUserDefaults standardUserDefaults] setObject:defaultValue forKey:key];
+        } else {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self applySideEffectsForImportedKeys:[BHTSettingsTransfer transferableKeys]];
 }
 
 @end

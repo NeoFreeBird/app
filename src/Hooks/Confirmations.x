@@ -165,6 +165,32 @@ static BOOL FastBlockEnabled(void) {
     return [BHTSettings boolForKey:@"fast_block"];
 }
 
+%hook TFNTwitterAccount
+
+- (BOOL)isXDSAlertBlockUserEnabled {
+    return FastBlockEnabled() ? NO : %orig;
+}
+
+- (BOOL)shouldDisplayUserMuteConfirmationAlert {
+    return FastBlockEnabled() ? NO : %orig;
+}
+
+%end
+
+%hook T1BlockMuteActionPerformer
+
+- (void)showBlockAlertForContext:(id)context {
+    BOOL saved = awaitingBlockAlert;
+    awaitingBlockAlert = FastBlockEnabled();
+    @try {
+        %orig;
+    } @finally {
+        awaitingBlockAlert = saved;
+    }
+}
+
+%end
+
 // The mute alert is requested by the caller rather than by the mute itself.
 %hook T1TabbedAppNavigation
 
@@ -184,21 +210,23 @@ static BOOL FastBlockEnabled(void) {
 }
 
 - (void)_showBlockStatusForContext:(id)context source:(long long)source {
+    BOOL saved = awaitingBlockAlert;
     awaitingBlockAlert = FastBlockEnabled();
-    %orig;
+    @try {
+        %orig;
+    } @finally {
+        awaitingBlockAlert = saved;
+    }
 }
 
 - (void)_showBlockMessageForContext:(id)context source:(long long)source {
+    BOOL saved = awaitingBlockAlert;
     awaitingBlockAlert = FastBlockEnabled();
-    %orig;
-}
-
-%end
-
-%hook TFNTwitterAccount
-
-- (BOOL)isXDSAlertBlockUserEnabled {
-    return FastBlockEnabled() ? NO : %orig;
+    @try {
+        %orig;
+    } @finally {
+        awaitingBlockAlert = saved;
+    }
 }
 
 %end
@@ -221,8 +249,6 @@ static BOOL FastBlockEnabled(void) {
     if (!awaitingBlockAlert) {
         return %orig;
     }
-    awaitingBlockAlert = NO;
-
     // Anything else reaching presentation while armed — an error alert raised
     // during the dismissal, say — has no captured handler and is left alone.
     void (^confirm)(void) = objc_getAssociatedObject(self, &kBlockConfirmHandlerKey);
@@ -230,6 +256,7 @@ static BOOL FastBlockEnabled(void) {
         return %orig;
     }
 
+    awaitingBlockAlert = NO;
     objc_setAssociatedObject(self, &kBlockConfirmHandlerKey, nil,
                              OBJC_ASSOCIATION_COPY_NONATOMIC);
     confirm();

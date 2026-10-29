@@ -113,6 +113,11 @@
     %orig;
 
     if ([BHTSettings boolForKey:@"hide_trends"]) {
+        UIView* viewIfLoaded = [(UIViewController*)self viewIfLoaded];
+        if (viewIfLoaded) {
+            viewIfLoaded.hidden = YES;
+            viewIfLoaded.userInteractionEnabled = NO;
+        }
         for (UIViewController* child in
              [(UIViewController*)self childViewControllers]) {
             if ([child isKindOfClass:
@@ -190,6 +195,7 @@
     if (view && view == self.messageButton &&
         [BHTSettings boolForKey:@"hide_message_button"]) {
         hidden = YES;
+        view.userInteractionEnabled = NO;
     }
     %orig(hidden, view);
 }
@@ -286,4 +292,43 @@
         [self.superview layoutSubviews];
     }
 }
+%end
+
+%hook XDSButton
+
+- (void)didMoveToWindow {
+    %orig;
+    if ([self respondsToSelector:@selector(allTargets)]) {
+        NSSet* allTargets = [self performSelector:@selector(allTargets)];
+        for (id target in allTargets) {
+            if ([target isKindOfClass:%c(PaymentsButtonViewModel)]) {
+                self.hidden = YES;
+                self.userInteractionEnabled = NO;
+            }
+        }
+    }
+}
+
+%end
+
+%hook _TtC13QuickComposer21QuickComposerSlotView
+- (void)didMoveToWindow {
+    %orig;
+    if ([BHTSettings boolForKey:@"hide_quick_compose"]) {
+        self.hidden = YES;
+        self.userInteractionEnabled = NO;
+        for (UIView* subview in self.subviews) {
+            subview.hidden = YES;
+        }
+    }
+}
+
+%end
+
+%hook T1StatusEditedOnXLabelAdapter
+
+- (BOOL)shouldBeVisibleForViewModel:(id)viewModel {
+    return [BHTSettings boolForKey:@"hide_made_on_x"] ? NO : %orig;
+}
+
 %end

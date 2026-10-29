@@ -185,7 +185,7 @@ static void SetVoiceDownloadLongPressRecognizer(UIView* view,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-%hook _TtC16ChatConversation26MessageAttachmentAudioView
+%hook _TtC6ChatUI26MessageAttachmentAudioView
 
 - (void)layoutSubviews {
     %orig;

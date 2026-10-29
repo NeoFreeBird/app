@@ -81,6 +81,48 @@ static NSString* const kPickerPurposeImport = @"import";
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)resetSettings:(NSDictionary*)sender {
+    BHTBundle* bundle = [BHTBundle sharedBundle];
+    UIAlertController* alert = [UIAlertController
+        alertControllerWithTitle:[bundle localizedStringForKey:@"SETTINGS_RESET_CONFIRM_TITLE"]
+                         message:[bundle localizedStringForKey:@"SETTINGS_RESET_CONFIRM_MESSAGE"]
+                  preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:[bundle
+                                                        localizedStringForKey:@"CANCEL_ACTION_LABEL"]
+                                              style:UIAlertActionStyleCancel
+                                            handler:nil]];
+    [alert addAction:[UIAlertAction
+                         actionWithTitle:[bundle
+                                             localizedStringForKey:@"SETTINGS_RESET_CONFIRM_BUTTON"]
+                                   style:UIAlertActionStyleDestructive
+                                 handler:^(UIAlertAction* action) {
+                                     [BHTSettingsTransfer resetAllSettings];
+                                     [self updateVisibleToggles];
+                                     [self.tableView reloadData];
+                                     [self presentResetRestartPrompt];
+                                 }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)presentResetRestartPrompt {
+    BHTBundle* bundle = [BHTBundle sharedBundle];
+    UIAlertController* alert = [UIAlertController
+        alertControllerWithTitle:[bundle localizedStringForKey:@"SETTINGS_RESET_SUCCESS_TITLE"]
+                         message:[bundle localizedStringForKey:@"SETTINGS_RESET_SUCCESS_MESSAGE"]
+                  preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:[bundle
+                                                        localizedStringForKey:@"SETTINGS_IMPORT_LATER_BUTTON"]
+                                              style:UIAlertActionStyleCancel
+                                            handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:[bundle
+                                                        localizedStringForKey:@"SETTINGS_IMPORT_RESTART_BUTTON"]
+                                              style:UIAlertActionStyleDestructive
+                                            handler:^(UIAlertAction* action) {
+                                                exit(0);
+                                            }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 - (void)presentImportPicker {
     UIDocumentPickerViewController* picker = [[UIDocumentPickerViewController alloc]
         initForOpeningContentTypes:@[UTTypeJSON]

@@ -21,6 +21,9 @@ extern NSString* const TabPanelIDKey; // T1 panel ID (NSNumber)
 
 @interface CustomTabBarUtility : NSObject
 
++ (BOOL)usesNativeEditor;
++ (nullable UIViewController*)editorForAccount:(nullable id)account;
+
 // Records the tabs the app builds so the editor can display real titles and
 // icons without hardcoding them. Called from the tab bar hook with the live tab
 // views.

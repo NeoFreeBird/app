@@ -45,7 +45,7 @@
 "MODERN_SETTINGS_BRANDING_SUBTITLE" = "调整您看到多少 Twitter 品牌还原效果。";
 
 "MODERN_SETTINGS_EXPERIMENTAL_TITLE" = "实验室";
-"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "试用不稳定的新功能。";
+"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "试用正在测试的新功能。";
 
 "MODERN_SETTINGS_DEBUG_TITLE" = "调试";
 "MODERN_SETTINGS_DEBUG_SUBTITLE" = "找出某项功能无法正常工作的原因。";
@@ -72,6 +72,12 @@
 "ALWAYS_OPEN_SAFARI_DETAIL" = "在 Safari 或默认浏览器中打开链接。";
 
 "SHARING_DOMAIN_TITLE" = "分享域名";
+
+"BLOCK_LINK_TRACKING_TITLE" = "阻止链接跟踪";
+"BLOCK_LINK_TRACKING_DETAIL" = "直接打开链接而不是通过 t.co，这样就不会产生 t.co 的后台请求或广告点击 ID。Twitter 的不安全链接警告也不会出现。";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "移除跟踪参数";
+"STRIP_TRACKING_PARAMS_DETAIL" = "从你打开的链接中移除 utm_ 及其他跟踪标签。";
 
 /*Tweets*/
 "TWEET_TO_IMAGE_TITLE" = "将推文保存为图片";
@@ -111,6 +117,9 @@
 
 "SQUARE_AVATARS_TITLE" = "方形头像";
 "SQUARE_AVATARS_DETAIL" = "为所有人显示方形头像，就像以前的品牌账号一样。";
+
+"DEFAULT_REPLY_SORTING_TITLE" = "默认回复排序";
+"DEFAULT_REPLY_SORTING_DETAIL" = "为所有推文选择默认的回复排序方式。";
 
 "REPLY_SORTING_TITLE" = "不排序回复";
 "REPLY_SORTING_DETAIL" = "禁用推文对话中的回复排序功能。";
@@ -152,7 +161,7 @@
 
 /*Photos and Videos*/
 "AUTO_HIGHEST_LOAD_TITLE" = "高质量媒体";
-"AUTO_HIGHEST_LOAD_DETAIL" = "以最佳质量上传和浏览媒体内容。";
+"AUTO_HIGHEST_LOAD_DETAIL" = "始终以最佳质量加载图片和视频。";
 
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "关闭视频字幕";
 
@@ -170,7 +179,7 @@
 "UNDO_TWEET_TITLE" = "撤销推文";
 
 "DOWNLOAD_VIDEOS_TITLE" = "下载媒体";
-"DOWNLOAD_VIDEOS_DETAIL" = "直接从推文中保存视频或 GIF。";
+"DOWNLOAD_VIDEOS_DETAIL" = "直接从推文的更多选项保存视频或 GIF。";
 
 "DIRECT_SAVE_TITLE" = "保存至“照片”";
 "DIRECT_SAVE_DETAIL" = "视频会直接保存到你的“照片”应用中。";
@@ -182,13 +191,16 @@
 
 "APP_ICON_TITLE" = "更换 App 图标";
 
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "更换图标失败";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "macOS 上无法更改图标，这是 Apple 的限制。";
+
 "CUSTOM_TAB_BAR_OPTION_TITLE" = "自定义标签栏";
 
 /*Layout*/
 "HIDE_SPACES_TITLE" = "隐藏 Spaces 栏";
 
 "NO_TAB_BAR_HIDING_TITLE" = "始终显示标签栏";
-"NO_TAB_BAR_HIDING_DETAIL" = "滚动时不要隐藏标签栏（可能导致问题）。";
+"NO_TAB_BAR_HIDING_DETAIL" = "滚动时不要隐藏标签栏。";
 
 "HIDE_CUSTOM_TIMELINES_TITLE" = "隐藏自定义时间线";
 "HIDE_CUSTOM_TIMELINES_DETAIL" = "移除首页时间线标签中的添加按钮。";
@@ -217,6 +229,10 @@
 "REPLY_IN_WEBVIEW_TITLE" = "在网页视图中回复";
 "REPLY_IN_WEBVIEW_DETAIL" = "在网页视图中打开回复框以避开 attestation。";
 
+"LIQUID_GLASS_TITLE" = "启用 Liquid Glass";
+"LIQUID_GLASS_DETAIL" = "启用 X 的新 Liquid Glass 界面。这是一项实验性设计，可能会导致问题。";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass 设计需要重新启动才能生效。";
+
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "FLEX 调试模式";
 "FLEX_TWITTER_DETAIL" = "使用 FLEX 工具调试 Twitter。";
@@ -241,9 +257,12 @@
 /*Copy profile info*/
 "COPY_PROFILE_INFO_MENU_OPTION_1" = "复制简介";
 "COPY_PROFILE_INFO_MENU_OPTION_2" = "复制用户名";
-"COPY_PROFILE_INFO_MENU_OPTION_3" = "复制完整用户名";
+"COPY_PROFILE_INFO_MENU_OPTION_3" = "复制昵称";
 "COPY_PROFILE_INFO_MENU_OPTION_4" = "复制简介链接";
 "COPY_PROFILE_INFO_MENU_OPTION_5" = "复制位置";
+"COPY_PROFILE_INFO_MENU_OPTION_6" = "复制个人资料链接";
+"COPY_PROFILE_INFO_MENU_OPTION_7" = "复制用户 ID";
+"COPY_PROFILE_INFO_MENU_OPTION_8" = "复制加入日期";
 
 /*Theme*/
 "THEME_SETTINGS_NAVIGATION_TITLE" = "更换主题";
@@ -266,7 +285,7 @@
 "REFRESH_PILL_LABEL_DETAIL" = "当有人发推时，将标签重新添加到刷新提示条。";
 
 "RESTORE_TWITTER_NAMES_TITLE" = "还原 Twitter 术语";
-"RESTORE_TWITTER_NAMES_DETAIL" = "在应用界面中将“X”替换为“Twitter”，“Post”替换为“Tweet”，“Repost”替换为“Retweet”等等。";
+"RESTORE_TWITTER_NAMES_DETAIL" = "在应用界面中将“X”替换为“Twitter”，“帖子”替换为“推文”，“转发”替换为“转推”等等。";
 
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "这里暂时还没有内容。";
@@ -327,9 +346,21 @@
 "SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "撤销时长";
 "SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "选择发送推文后撤销按钮保留的时间。";
 
+"CUSTOM_SEND_SOUND_TITLE" = "导入发送声音";
+"CUSTOM_SEND_SOUND_DEFAULT" = "未选择自定义声音";
+"CUSTOM_SEND_SOUND_FAILED_TITLE" = "发送声音导入失败";
+"CUSTOM_SEND_SOUND_TOO_LONG" = "你选择的声音太长了。它必须不超过 7 秒。";
+
 /*Presets — settings import and export*/
 "SETTINGS_EXPORT_TITLE" = "导出设置";
 "SETTINGS_IMPORT_TITLE" = "导入设置";
+"SETTINGS_RESET_TITLE" = "重置设置";
+
+"SETTINGS_RESET_CONFIRM_TITLE" = "重置所有设置？";
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "这会将所有 NeoFreeBird 设置恢复为默认值。";
+"SETTINGS_RESET_CONFIRM_BUTTON" = "重置";
+"SETTINGS_RESET_SUCCESS_TITLE" = "设置已重置";
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "所有设置已恢复。重启应用使所有更改生效。";
 
 "SETTINGS_EXPORT_FAILED_TITLE" = "导出失败";
 "SETTINGS_EXPORT_WRITE_FAILED" = "无法创建设置文件。";
@@ -392,6 +423,15 @@
 "USE_TENOR_GIFS_TITLE" = "使用 Tenor GIF";
 "USE_TENOR_GIFS_DETAIL" = "使用 Tenor GIF 替代 Twitter 的 GIF（GIPHY）。Tenor 有更多选择。";
 
+"SHOW_QUOTE_NUMBERS_TITLE" = "显示引用数";
+"SHOW_QUOTE_NUMBERS_DETAIL" = "显示推文收到的引用和转推数量。";
+
+"SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "显示精确引用数";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "显示推文收到的精确引用和转推数量。可能导致溢出问题。";
+
+"POST_INTERACTIONS_COUNTS_TITLE" = "引用：%@  转推：%@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "引用：%lld  转推：%lld";
+
 "SHOW_POLL_RESULTS_TITLE" = "投票前显示投票结果";
 "SHOW_POLL_RESULTS_DETAIL" = "在投票前将投票结果附加到选项名称中，让你了解其他人的投票情况。";
 
@@ -425,11 +465,6 @@
 "UPLOAD_FULL_HD_VIDEOS_TITLE" = "上传全高清视频";
 "UPLOAD_FULL_HD_VIDEOS_DETAIL" = "解锁以 1080p 上传视频的能力。";
 
-/*Copy profile info*/
-"COPY_PROFILE_INFO_MENU_OPTION_6" = "复制个人资料链接";
-"COPY_PROFILE_INFO_MENU_OPTION_7" = "复制用户 ID";
-"COPY_PROFILE_INFO_MENU_OPTION_8" = "复制注册日期";
-
 /*Launch & Dim theme*/
 "BLUE_LAUNCH_SCREEN_TITLE" = "恢复蓝色启动画面";
 "BLUE_LAUNCH_SCREEN_DETAIL" = "恢复原来的蓝色启动画面。";
@@ -439,6 +474,12 @@
 "DIM_THEME_RESTART_ALERT_TITLE" = "需要重启";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "暗色主题需要重启才能生效。";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "重启";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "隐藏引用推文";
+"HIDE_QUOTE_TWEETS_DETAIL" = "隐藏时间线中的引用推文。";
+
+"HIDE_RETWEETS_TITLE" = "隐藏转推";
+"HIDE_RETWEETS_DETAIL" = "隐藏时间线中的转推。";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "隐藏已认证账号的推文";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "在时间线和回复中隐藏已认证账号的推文，除非作者在同一帖子中回复了他们或你关注了该账号。";

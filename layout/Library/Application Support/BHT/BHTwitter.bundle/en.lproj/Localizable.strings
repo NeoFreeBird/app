@@ -77,6 +77,8 @@
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "No timeline prompts";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Remove banners like 'Add contacts'.";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "Hide 'Videos for you'";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Hides the 'Videos for you' module in your timeline.";
 
 "HIDE_BLOCKED_RETWEETS_TITLE" = "Hide blocked retweets";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "Hide retweets of accounts who've blocked you.";
@@ -142,6 +144,8 @@
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Remove the bookmark button from Tweets.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Hide downvotes";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Remove the downvote button from Tweets.";
+"HIDE_MADE_ON_X_TITLE" = "Hide 'Made on X'";
+"HIDE_MADE_ON_X_DETAIL" = "Removes the 'Made on X' label from Tweets.";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "No sensitive content warnings";
 
@@ -297,6 +301,10 @@
 "REPLY_IN_WEBVIEW_TITLE" = "Reply in web view";
 "REPLY_IN_WEBVIEW_DETAIL" = "Fallback if replies fail to send. Replies on x.com instead of in the app.";
 
+"LIQUID_GLASS_TITLE" = "Enable Liquid Glass";
+"LIQUID_GLASS_DETAIL" = "Enables X's new Liquid Glass interface. This is an experimental redesign and may cause issues.";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "The Liquid Glass redesign requires a restart to take effect.";
+
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Debug mode";
 "FLEX_TWITTER_DETAIL" = "Enables FLEX for debugging and inspecting Twitter's views and data.";
@@ -375,6 +383,9 @@
 "HIDE_TWEET_BUTTON_TITLE" = "Hide Tweet button";
 "HIDE_TWEET_BUTTON_DETAIL" = "Removes the Tweet button from the navigation bar.";
 
+"HIDE_QUICK_COMPOSE_TITLE" = "Hide Quick Compose";
+"HIDE_QUICK_COMPOSE_DETAIL" = "Removes the Quick Compose button from the navigation bar (only on Liquid Glass).";
+
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Nothing to see here - yet";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "This section is coming soon. Stay tuned for more NeoFreeBird features!";
@@ -441,6 +452,13 @@
 /* Presets — settings import and export */
 "SETTINGS_EXPORT_TITLE" = "Export settings";
 "SETTINGS_IMPORT_TITLE" = "Import settings";
+"SETTINGS_RESET_TITLE" = "Reset settings";
+
+"SETTINGS_RESET_CONFIRM_TITLE" = "Reset all settings?";
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "This will restore all NeoFreeBird settings to their defaults.";
+"SETTINGS_RESET_CONFIRM_BUTTON" = "Reset";
+"SETTINGS_RESET_SUCCESS_TITLE" = "Settings reset";
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "All settings have been restored. Restart the app for all changes to take effect.";
 
 "CUSTOM_SEND_SOUND_TITLE" = "Import send sound";
 "CUSTOM_SEND_SOUND_DEFAULT" = "No custom sound selected";

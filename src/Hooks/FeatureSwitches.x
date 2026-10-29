@@ -191,6 +191,14 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @NO;
     }
 
+    if ([key isEqualToString:@"grok_ask_grok_button_under_post_focal_enabled"] || [key isEqualToString:@"grok_ask_grok_button_under_post_preview_enabled"] || [key isEqualToString:@"xchat_ask_grok_enabled"] || [key isEqualToString:@"grok_explain_text_selection_ask_grok_enabled"]) {
+        return @NO;
+    }
+
+    if ([key isEqualToString:@"post_about_hide_grok_pills_enabled"]) {
+        return @([BHTSettings boolForKey:@"hide_grok_analyze"]);
+    }
+
     if ([key isEqualToString:@"ios_settings_redesign_enabled"]) {
         return @YES;
     }
@@ -217,9 +225,11 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @(![BHTSettings boolForKey:@"reply_sorting"]);
     }
 
-    if ([key
-            isEqualToString:@"ios_tweet_detail_overflow_in_navigation_enabled"]) {
+    if ([key isEqualToString:@"ios_tweet_detail_overflow_in_navigation_enabled"]) {
         return @NO;
+    }
+    if ([key isEqualToString:@"ios_ipad_phone_navigation_enabled"]) {
+        return (is_iPad() && ![BHTSettings boolForKey:@"liquid_glass"]) ? @NO : @YES;
     }
 
     if ([key isEqualToString:
@@ -235,10 +245,25 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         }
     }
 
+    if ([key hasPrefix:@"ios_liquid_glass"] ||
+        [key isEqualToString:@"xchat_liquid_glass_convo_header_enabled"]) {
+        if ([BHTSettings boolForKey:@"liquid_glass"]) {
+            return @YES;
+        }
+    }
+
     // Video captions
     if ([key isEqualToString:@"ios_tav_default_closed_captions_enabled"] ||
         [key isEqualToString:@"ios_audio_transcription_subtitles_vod_enabled"]) {
         return [BHTSettings boolForKey:@"disable_video_captions"] ? @NO : nil;
+    }
+
+    if ([key isEqualToString:@"subscriptions_feature_1008"]) {
+        return @YES;
+    }
+
+    if ([key isEqualToString:@"ios_alert_block_user_enabled"] || [key isEqualToString:@"ios_alert_mute_user_enabled"]) {
+        return [BHTSettings boolForKey:@"fast_block"] ? @NO : nil;
     }
 
     // Custom navigation: per-panel tab gates, forced on so every panel exists for
@@ -802,29 +827,15 @@ BOOL panelIsGenuinelyAvailable(long long panelID) {
 // MARK: - Custom navigation - side drawer rows
 
 // The drawer builds a row for each panel absent from the tab bar, reading a
-// snapshot taken in updateVisiblePanelIDs. Extra panels are injected only
-// there, scoped by a flag — other visiblePanelIDs readers must see the real tab
-// state. Premium is claimed for a non-premium account, for whom it's just an
-// upsell.
+// snapshot taken in updateVisiblePanelIDs. Both the legacy controller delegate
+// and the Liquid Glass router feed that snapshot. Extra panels are injected
+// only there — other readers must see the real tab state. Premium is claimed
+// for a non-premium account, for whom it's just an upsell.
 
 static __thread BOOL DashPanelIDQuery = NO;
 
-%hook T1DashContentController
-
-- (void)updateVisiblePanelIDs {
-    DashPanelIDQuery = YES;
-    %orig;
-    DashPanelIDQuery = NO;
-}
-
-%end
-
-%hook T1TabbedAppNavigationViewController
-
-// +[T1PanelIdentity iconImageNameForPanelID:] has the panel IDs
-- (NSArray*)visiblePanelIDsForAppNavigation:(id)appNavigation {
-    NSArray* panelIDs = %orig;
-    if (!DashPanelIDQuery) {
+static NSArray* panelIDsForDashSnapshot(NSArray* panelIDs) {
+    if (!DashPanelIDQuery || !panelIDs) {
         return panelIDs;
     }
 
@@ -852,6 +863,37 @@ static __thread BOOL DashPanelIDQuery = NO;
     claim(@20); // News
 
     return spoofed;
+}
+
+%hook T1DashContentController
+
+- (void)updateVisiblePanelIDs {
+    BOOL saved = DashPanelIDQuery;
+    DashPanelIDQuery = YES;
+    @try {
+        %orig;
+    } @finally {
+        DashPanelIDQuery = saved;
+    }
+}
+
+%end
+
+%hook T1TabbedAppNavigationViewController
+
+- (NSArray*)visiblePanelIDsForAppNavigation:(id)appNavigation {
+    NSArray* panelIDs = %orig;
+    return panelIDsForDashSnapshot(panelIDs);
+}
+
+%end
+
+// This swift class still has the Objective-C implementation actually handle logic
+%hook _TtC14T1TwitterSwift20XTabbedAppNavigation
+
+- (NSArray*)visiblePanelIDs {
+    NSArray* panelIDs = %orig;
+    return panelIDsForDashSnapshot(panelIDs);
 }
 
 %end
@@ -926,6 +968,53 @@ static __thread BOOL DashPanelIDQuery = NO;
 
 - (BOOL)isUploadFullHDVideoEnabledByDefault {
     return [BHTSettings boolForKey:@"upload_full_hd_videos"] ? YES : %orig;
+}
+
+%end
+
+static __thread NSUInteger NFBLiquidGlassInstallationDepth;
+
+%hook T1LiquidGlassGateInstaller
+
++ (void)installGateForAccount:(id)account {
+    // After 12.38, we need to make sure the app thinks the Liquid Glass experiment is enabled.
+    NFBLiquidGlassInstallationDepth++;
+    @try {
+        %orig(account);
+    } @finally {
+        NFBLiquidGlassInstallationDepth--;
+    }
+
+    // In 12.38 this selector got removed, so this is to prevent a crash
+    SEL install = @selector(installGateWithRedesignEnabled:);
+    if ([self respondsToSelector:install]) {
+        ((void (*)(id, SEL, BOOL))objc_msgSend)(self, install, NFBLiquidGlassEnabled());
+    }
+}
+
+%end
+
+%hook TFNTwitterAccount
+
+- (BOOL)isDummyTest1FeatureEnabled {
+    return NFBLiquidGlassInstallationDepth ? NFBLiquidGlassEnabled() : %orig;
+}
+
+%end
+
+%hook _TtC14T1TwitterSwift27LiquidGlassRedesignFeatures
+
+- (instancetype)initWithFeatureSwitches:(id)switches
+                isSecondFactorSatisfied:(BOOL)satisfied {
+    return %orig(switches, NFBLiquidGlassEnabled());
+}
+
+- (BOOL)isRedesignEnabled {
+    return NFBLiquidGlassEnabled();
+}
+
++ (BOOL)isQuickComposerEnabledWithFeatureSwitches:(id)switches {
+    return NFBLiquidGlassEnabled();
 }
 
 %end

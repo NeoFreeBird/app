@@ -6,7 +6,14 @@
 //
 
 #import "CustomTabBarUtility.h"
+#import <objc/message.h>
+#import "Core/BHTSettings.h"
+#import "CustomTabBarViewController.h"
 #import "Headers/T1Headers.h"
+
+@protocol BHTNativeTabCustomizationInitializing <NSObject>
+- (instancetype)initWithAccount:(id)account scribeContext:(id)context;
+@end
 
 // The Home tab is the app's landing surface, so it is always kept visible,
 // pinned first, and can never end up in the hidden list.
@@ -26,6 +33,53 @@ static NSString* const kRegistryKey = @"bh_tab_registry";
 static NSString* const kLegacyHiddenKey = @"bh_tabs_hidden";
 
 @implementation CustomTabBarUtility
+
+#pragma mark - Editor routing
+
++ (BOOL)usesNativeEditor {
+    id host = [NSClassFromString(@"T1HostViewController") sharedHostViewController];
+    if ([host respondsToSelector:@selector(appNavigation)]) {
+        id navigation = ((id (*)(id, SEL))objc_msgSend)(host, @selector(appNavigation));
+        if (navigation) {
+            Class routerClass = NSClassFromString(@"_TtC14T1TwitterSwift20XTabbedAppNavigation");
+            return routerClass && [navigation isKindOfClass:routerClass];
+        }
+    }
+    return [BHTSettings boolForKey:@"liquid_glass"];
+}
+
++ (UIViewController*)editorForAccount:(id)account {
+    if (![self usesNativeEditor]) {
+        return [[CustomTabBarViewController alloc] init];
+    }
+
+    Class editorClass = NSClassFromString(@"T1TabCustomizationViewController");
+    Class contextClass = NSClassFromString(@"TFSTwitterScribeContext");
+    SEL contextSelector = @selector(scribeContextWithPage:);
+    if (![editorClass isSubclassOfClass:[UIViewController class]] ||
+        ![editorClass instancesRespondToSelector:@selector(initWithAccount:scribeContext:)] ||
+        ![contextClass respondsToSelector:contextSelector]) {
+        return nil;
+    }
+
+    if (!account) {
+        id host = [NSClassFromString(@"T1HostViewController") sharedHostViewController];
+        account = [host currentAccount];
+    }
+    if (!account) {
+        return nil;
+    }
+
+    id context = ((id (*)(id, SEL, id))objc_msgSend)(
+        contextClass, contextSelector, @"settings");
+    if (!context) {
+        return nil;
+    }
+
+    return (UIViewController*)[(id<BHTNativeTabCustomizationInitializing>)[editorClass alloc]
+        initWithAccount:account
+          scribeContext:context];
+}
 
 #pragma mark - Live capture
 

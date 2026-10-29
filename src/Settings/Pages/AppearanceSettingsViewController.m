@@ -88,10 +88,10 @@
 }
 
 - (void)showCustomTabBarVC:(NSDictionary*)sender {
-    Class CustomTabBarViewControllerClass = objc_getClass("CustomTabBarViewController");
-    if (CustomTabBarViewControllerClass) {
-        UIViewController* customTabBarVC = [[CustomTabBarViewControllerClass alloc] init];
-        if (self.account) {
+    UIViewController* customTabBarVC = [CustomTabBarUtility editorForAccount:self.account];
+    if (customTabBarVC) {
+        // X supplies the native editor's own title and account subtitle.
+        if (self.account && ![CustomTabBarUtility usesNativeEditor]) {
             [customTabBarVC.navigationItem
                 setTitleView:[objc_getClass("TFNTitleView")
                                  titleViewWithTitle:[[BHTBundle sharedBundle]
@@ -100,6 +100,16 @@
                                            subtitle:self.account.displayUsername]];
         }
         [self.navigationController pushViewController:customTabBarVC animated:YES];
+    } else {
+        BHTBundle* bundle = [BHTBundle sharedBundle];
+        UIAlertController* alert = [UIAlertController
+            alertControllerWithTitle:[bundle localizedStringForKey:@"CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE"]
+                             message:[bundle localizedStringForKey:@"UNKNOWN_ERROR"]
+                      preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:[bundle localizedStringForKey:@"OK_ACTION_LABEL"]
+                                                  style:UIAlertActionStyleCancel
+                                                handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -114,13 +124,15 @@
 }
 
 - (void)refreshTabViewsWithThemingInView:(UIView*)view {
+    if ([view respondsToSelector:@selector(nfb_refreshGlassTabLabels)]) {
+        [view performSelector:@selector(nfb_refreshGlassTabLabels)];
+    }
+    if ([view respondsToSelector:@selector(nfb_applyGlassTabAccent)]) {
+        [view performSelector:@selector(nfb_applyGlassTabAccent)];
+    }
     if ([view isKindOfClass:NSClassFromString(@"T1TabView")]) {
-        if ([view respondsToSelector:@selector(_t1_updateImageViewAnimated:)]) {
-            [view performSelector:@selector(_t1_updateImageViewAnimated:) withObject:@(NO)];
-        }
-        if ([view respondsToSelector:@selector(_t1_updateTitleLabel)]) {
-            [view performSelector:@selector(_t1_updateTitleLabel)];
-        }
+        T1TabView* tabView = (T1TabView*)view;
+        [tabView _t1_updateImageViewAnimated:NO];
         if ([view respondsToSelector:@selector(_t1_layoutForTabBar)]) {
             [view performSelector:@selector(_t1_layoutForTabBar)];
         }
@@ -129,14 +141,6 @@
         }
         if ([view respondsToSelector:@selector(_t1_layoutBadgeViewMinimized)]) {
             [view performSelector:@selector(_t1_layoutBadgeViewMinimized)];
-        }
-
-        // Clearing the override lets the label fall back to its default color.
-        if (![BHTSettings boolForKey:@"tab_bar_theming"]) {
-            UILabel* titleLabel = [view valueForKey:@"titleLabel"];
-            if (titleLabel) {
-                titleLabel.textColor = nil;
-            }
         }
     }
 
@@ -154,22 +158,14 @@
 }
 
 - (void)refreshTabViewsInView:(UIView*)view {
+    if ([view respondsToSelector:@selector(nfb_refreshGlassTabLabels)]) {
+        [view performSelector:@selector(nfb_refreshGlassTabLabels)];
+    }
     if ([view isKindOfClass:NSClassFromString(@"T1TabView")]) {
-        if ([view respondsToSelector:@selector(_t1_updateTitleLabel)]) {
-            [view performSelector:@selector(_t1_updateTitleLabel)];
-        }
-        if ([view respondsToSelector:@selector(_t1_layoutForTabBar)]) {
-            [view performSelector:@selector(_t1_layoutForTabBar)];
-        }
+        [view setNeedsLayout];
+        [view layoutIfNeeded];
         if ([view respondsToSelector:@selector(_t1_layoutBadgeViewMaximized)]) {
             [view performSelector:@selector(_t1_layoutBadgeViewMaximized)];
-        }
-
-        if (![BHTSettings boolForKey:@"tab_bar_theming"]) {
-            UILabel* titleLabel = [view valueForKey:@"titleLabel"];
-            if (titleLabel) {
-                titleLabel.textColor = nil;
-            }
         }
     }
 
