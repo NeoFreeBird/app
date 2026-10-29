@@ -89,6 +89,9 @@
 "HIDE_TIMELINE_PROMPTS_TITLE" = "Sin avisos en la cronología";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Elimina los banners como \"Añadir contactos\".";
 
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "Esconder \"Vídeos para ti\"";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Esconde el módulo de \"Vídeos para ti\" en la cronología.";
+
 "PADLOCK_TITLE" = "Bloquear Twitter";
 "PADLOCK_DETAIL" = "Requiere Face ID o un código para abrir Twitter.";
 
@@ -163,7 +166,7 @@
 "SQUARE_AVATARS_TITLE" = "Fotos de perfil cuadradas";
 "SQUARE_AVATARS_DETAIL" = "Da a todos fotos de perfil cuadradas como las cuentas de marca, igual que en el antiguo Twitter.";
 
-"DEFAULT_REPLY_SORTING_TITLE" = "Orden predeterminado de respuestas";
+"DEFAULT_REPLY_SORTING_TITLE" = "Orden de respuestas";
 "DEFAULT_REPLY_SORTING_DETAIL" = "Elige el orden por defecto de respuestas para todos los Tweets.";
 
 "REPLY_SORTING_TITLE" = "Sin orden de respuestas";
@@ -300,6 +303,10 @@
 "REPLY_IN_WEBVIEW_TITLE" = "Responder en vista web";
 "REPLY_IN_WEBVIEW_DETAIL" = "Abre el cuadro de respuesta en una vista web para evitar la comprobación de integridad.";
 
+"LIQUID_GLASS_TITLE" = "Habilitar Liquid Glass";
+"LIQUID_GLASS_DETAIL" = "Habilita la nueva interfaz de X con Liquid Glass. Este es un rediseño experimental y podría causar problemas.";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "El rediseño de Liquid Glass requiere reiniciar para surtir efecto.";
+
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Modo de depuración";
 "FLEX_TWITTER_DETAIL" = "Activa FLEX para depurar e inspeccionar las vistas y datos de Twitter.";
@@ -379,6 +386,10 @@
 "HIDE_TWEET_BUTTON_TITLE" = "Ocultar botón de Tweet";
 "HIDE_TWEET_BUTTON_DETAIL" = "Elimina el botón de Tweet de la barra de navegación.";
 
+"HIDE_QUICK_COMPOSE_TITLE" = "Ocultar redacción rápida";
+"HIDE_QUICK_COMPOSE_DETAIL" = "Elimina el botón de redacción rápida de la barra de navegación (solo en Liquid Glass).";
+
+
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Aquí no hay nada que ver... por ahora.";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "Esta sección estará disponible próximamente. ¡Mantente atento a más funciones de NeoFreeBird!";
@@ -445,6 +456,13 @@
 /* Presets — settings import and export */
 "SETTINGS_EXPORT_TITLE" = "Exportar ajustes";
 "SETTINGS_IMPORT_TITLE" = "Importar ajustes";
+"SETTINGS_RESET_TITLE" = "Restablecer ajustes";
+
+"SETTINGS_RESET_CONFIRM_TITLE" = "¿Restablecer todos los ajustes?";
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "Esto restablecerá todos los ajustes de NeoFreeBird a sus valores predeterminados.";
+"SETTINGS_RESET_CONFIRM_BUTTON" = "Restablecer";
+"SETTINGS_RESET_SUCCESS_TITLE" = "Ajustes restablecidos";
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "Todos los ajustes se han restablecido. Reinicia la app para aplicar todos los cambios.";
 
 "CUSTOM_SEND_SOUND_TITLE" = "Importar sonido de envío";
 "CUSTOM_SEND_SOUND_DEFAULT" = "Ningún sonido personalizado seleccionado";
