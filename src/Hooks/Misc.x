@@ -4,6 +4,7 @@
 //
 
 #import <CoreText/CoreText.h>
+#import <CydiaSubstrate.h>
 #import "HookHelpers.h"
 
 // MARK: - Always open in Safari
@@ -198,7 +199,7 @@ static NSString* CleanedShareURLString(NSString* urlString) {
 
     NSMutableArray<NSURLQueryItem*>* safeParams = [NSMutableArray arrayWithCapacity:0];
     for (NSURLQueryItem* item in components.queryItems) {
-        if (![item.name isEqualToString:@"s"] && ![item.name isEqualToString:@"t"]) {
+        if (![item.name isEqualToString:@"s"] && ![item.name isEqualToString:@"t"] && ![item.name isEqualToString:@"a"]) {
             [safeParams addObject:item];
         }
     }
@@ -212,16 +213,14 @@ static NSString* CleanedShareURLString(NSString* urlString) {
     return components.URL.absoluteString ?: urlString;
 }
 
-// Every share surface funnels into these two builders; the legacy twitterURLFor*
-// selectors wrap the instance one and the Swift share kit calls it directly.
 %hook TFNTwitterStatus
 
-- (NSString*)twitterURLForShareWithSParam:(unsigned int)sParam {
+- (NSString*)twitterURLForShareWithSParam:(unsigned long long)sParam {
     NSString* url = %orig;
     return CleanedShareURLString(url);
 }
 
-+ (NSString*)twitterURLForShareWithSParam:(unsigned int)sParam
++ (NSString*)twitterURLForShareWithSParam:(unsigned long long)sParam
                                  username:(NSString*)username
                                  statusID:(long long)statusID {
     NSString* url = %orig;
@@ -229,6 +228,31 @@ static NSString* CleanedShareURLString(NSString* urlString) {
 }
 
 %end
+
+static NSString* CleanedCopiedTweetURL(NSString* urlString) {
+    if (![urlString isKindOfClass:[NSString class]]) {
+        return urlString;
+    }
+    NSURLComponents* components = [NSURLComponents componentsWithString:urlString];
+    NSString* host = components.host.lowercaseString;
+    NSString* selectedHost = [[NSUserDefaults standardUserDefaults] objectForKey:@"sharing_domain"];
+    BOOL isTwitterHost = [host isEqualToString:@"x.com"] || [host hasSuffix:@".x.com"] ||
+                         [host isEqualToString:@"twitter.com"] ||
+                         [host hasSuffix:@".twitter.com"] ||
+                         (selectedHost.length > 0 && [host isEqualToString:selectedHost.lowercaseString]);
+    if (!isTwitterHost || [components.path rangeOfString:@"/status/"].location == NSNotFound) {
+        return urlString;
+    }
+
+    return CleanedShareURLString(urlString);
+}
+
+static void (*OriginalPasteboardSetString)(id, SEL, NSString*);
+
+static void BHTPasteboardSetString(id pasteboard, SEL selector, NSString* string) {
+    NSString* cleaned = CleanedCopiedTweetURL(string);
+    OriginalPasteboardSetString(pasteboard, selector, cleaned);
+}
 
 // Profile links
 %hook TFSTwitterUserReference
@@ -322,3 +346,16 @@ static NSString* CleanedShareURLString(NSString* urlString) {
 }
 
 %end
+
+%ctor {
+    %init;
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        Class pasteboardClass = object_getClass([UIPasteboard generalPasteboard]);
+        if (pasteboardClass && class_getInstanceMethod(pasteboardClass, @selector(setString:))) {
+            MSHookMessageEx(pasteboardClass, @selector(setString:),
+                            (IMP)BHTPasteboardSetString,
+                            (IMP*)&OriginalPasteboardSetString);
+        }
+    });
+}

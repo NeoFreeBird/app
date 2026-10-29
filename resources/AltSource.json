@@ -14,7 +14,7 @@
       "name": "Twitter",
       "bundleIdentifier": "com.atebits.Tweetie2",
       "developerName": "actuallyaridan, orionblur, nyaathea",
-      "subtitle": "NeoFreeBird version 7.2.0",
+      "subtitle": "NeoFreeBird version 7.3.0",
       "localizedDescription": "NeoFreeBird, changed to look like the app before the rebrand.",
       "iconURL": "https://raw.githubusercontent.com/NeoFreeBird/app/v7/resources/icon_rounded.png",
       "tintColor": "#1DA1F2",
@@ -27,6 +27,15 @@
         "https://raw.githubusercontent.com/NeoFreeBird/app/v7/resources/timeline/timeline5.png"
       ],
       "versions": [
+        {
+          "version": "12.38.1",
+          "buildVersion": "2",
+          "date": "2026-10-28T18:17:50Z",
+          "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/v7.3.0/NeoFreeBird-sideloaded-Twitter_7.3.0_12.38.1.ipa",
+          "size": 269779010,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Version 7.3.0\n\nNew Features\n- Updated X to 12.38.1 (this now natively supports the iPhone Duo)\n- Added experimental support for the Liquid Glass redesign. Most features have been adapted for it, but a couple aren’t possible to implement (see “Known Issues”)\n- Hide the “Game” tab at the top of the timeline when a basketball game is ongoing\n- Added an option to hide the “Videos for You” feed\n- Added an option to reset settings\n- Added an option to use a custom color for the tint\n- Added a new split-view design for iPad which uses up the entire screen (instead of a stupid blown-up iPhone layout), allowing you to scroll the timeline in the left half and view an individual tweet or profile on the right half. This will not work on iPhone Duos since I do not have one to test this on, so right now it is hardcoded for iPads only.\n- Now hides the Money tab on profiles\n- Adds an option to hide the Quick Compose button (only on Liquid Glass)\n- Added a new method for blocking screenshot detection\n\nFixes\n- Made the app icon changer load differently to prevent the app hanging\n- Fixed quote tweets not being filtered in the timeline\n- Fixed downloading voice messages\n- Fixed crashes and general slowdowns with web logins\n- Fixed fast block not working\n- Fixed the message button on tweets being clickable when hidden\n- Fixed certain ads appearing on the timeline\n- Fixed the custom font not appearing in a couple places\n\nKnown Issues\n- The tweet source label option has been removed (again). X seems hellbent on burning all traces of Twitter (unlike us), so this feature will stay removed unless there’s another endpoint that can be used. Please ping @orionblur on Twitter if you think you’ve found such an endpoint, and we can take it to DMs.\n- The “Keep the navigation bar visible” toggle doesn’t work on Liquid Glass, as quite a few app components rely on the tab bar being hidden at times, and in my testing trying to change this caused frequent crashes."
+        },
         {
           "version": "12.33",
           "buildVersion": "31",
