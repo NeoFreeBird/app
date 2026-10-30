@@ -26,3 +26,12 @@
 
 @interface _TtC13QuickComposer21QuickComposerSlotView : UIView
 @end
+
+@interface XDSBlur : UIView
+@end
+
+@interface _TtC13XDesignSystem19ScrollEdgeTreatment : UIView
+@end
+
+@interface _TtC13XDesignSystem18ScrollEdgeFadeView : UIView
+@end
