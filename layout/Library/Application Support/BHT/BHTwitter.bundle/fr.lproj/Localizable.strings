@@ -77,6 +77,8 @@
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "Masquer les invites dans le fil";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Supprime les bannières comme « Ajouter des contacts ».";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "Masquer « Vidéos pour vous »";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Masque le module « Vidéos pour vous » dans votre fil.";
 
 "HIDE_BLOCKED_RETWEETS_TITLE" = "Masquer les retweets des comptes qui vous bloquent";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "Masque les retweets des comptes qui vous ont bloqué.";
@@ -295,7 +297,11 @@
 
 /*Labs*/
 "REPLY_IN_WEBVIEW_TITLE" = "Répondre dans une vue web";
-"REPLY_IN_WEBVIEW_DETAIL" = "Ouvre la zone de réponse dans une vue web pour éviter l'attestation.";
+"REPLY_IN_WEBVIEW_DETAIL" = "Solution de secours en cas d’échec de l’envoi des réponses. Publie les réponses sur x.com plutôt que dans l’app.";
+
+"LIQUID_GLASS_TITLE" = "Activer Liquid Glass";
+"LIQUID_GLASS_DETAIL" = "Active la nouvelle interface Liquid Glass de X. Cette refonte est expérimentale et peut entraîner des problèmes.";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "La refonte Liquid Glass nécessite un redémarrage pour prendre effet.";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Mode débogage";
@@ -375,6 +381,9 @@
 "HIDE_TWEET_BUTTON_TITLE" = "Masquer le bouton Tweet";
 "HIDE_TWEET_BUTTON_DETAIL" = "Supprime le bouton Tweet de la barre de navigation.";
 
+"HIDE_QUICK_COMPOSE_TITLE" = "Masquer la composition rapide";
+"HIDE_QUICK_COMPOSE_DETAIL" = "Supprime le bouton de composition rapide de la barre de navigation (uniquement avec Liquid Glass).";
+
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Rien à voir ici pour le moment.";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "Cette section arrive bientôt. Restez à l'affût pour plus de fonctionnalités NeoFreeBird !";
@@ -441,6 +450,13 @@
 /* Presets — settings import and export */
 "SETTINGS_EXPORT_TITLE" = "Exporter les paramètres";
 "SETTINGS_IMPORT_TITLE" = "Importer les paramètres";
+"SETTINGS_RESET_TITLE" = "Réinitialiser les paramètres";
+
+"SETTINGS_RESET_CONFIRM_TITLE" = "Réinitialiser tous les paramètres ?";
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "Tous les paramètres NeoFreeBird seront rétablis à leurs valeurs par défaut.";
+"SETTINGS_RESET_CONFIRM_BUTTON" = "Réinitialiser";
+"SETTINGS_RESET_SUCCESS_TITLE" = "Paramètres réinitialisés";
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "Tous les paramètres ont été rétablis à leurs valeurs par défaut. Redémarrez l’application pour que toutes les modifications prennent effet.";
 
 "CUSTOM_SEND_SOUND_TITLE" = "Importer un son d’envoi";
 "CUSTOM_SEND_SOUND_DEFAULT" = "Aucun son personnalisé sélectionné";
