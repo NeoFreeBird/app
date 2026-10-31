@@ -161,31 +161,19 @@ static NSArray<NSDictionary*>* RenameEdits(NSString* input) {
 }
 
 static NSString* RestoreTwitterTerminology(NSString* input) {
-    // Memoise: labels re-set the same handful of strings over and over.
-    static NSCache<NSString*, NSString*>* cache = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        cache = [NSCache new];
-    });
-
-    NSString* cached = [cache objectForKey:input];
-    if (cached) {
-        return cached;
-    }
-
     NSArray<NSDictionary*>* edits = RenameEdits(input);
-    NSString* output = input;
-    if (edits) {
-        NSMutableString* result = [input mutableCopy];
-        for (NSDictionary* edit in edits.reverseObjectEnumerator) {
-            [result replaceCharactersInRange:[edit[@"range"] rangeValue]
-                                  withString:edit[@"repl"]];
-        }
-        output = [result copy];
+    if (!edits) {
+        // Plural formats from .stringsdict may have identical text but carry
+        // different localization metadata. Preserve the original string object.
+        return input;
     }
 
-    [cache setObject:output forKey:input];
-    return output;
+    NSMutableString* result = [input mutableCopy];
+    for (NSDictionary* edit in edits.reverseObjectEnumerator) {
+        [result replaceCharactersInRange:[edit[@"range"] rangeValue]
+                              withString:edit[@"repl"]];
+    }
+    return [result copy];
 }
 
 static NSAttributedString* RestoreTwitterAttributed(NSAttributedString* input) {
