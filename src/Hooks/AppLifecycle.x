@@ -7,30 +7,9 @@
 
 // MARK: - Padlock helpers
 
-static const NSInteger PadlockOverlayTag = 909;
-
-static NSArray<UIWindow*>* allActiveWindows(void) {
-    NSMutableArray<UIWindow*>* result = [NSMutableArray array];
-    if (@available(iOS 13.0, *)) {
-        for (UIScene* scene in UIApplication.sharedApplication.connectedScenes) {
-            if (scene.activationState == UISceneActivationStateForegroundActive &&
-                [scene isKindOfClass:[UIWindowScene class]]) {
-                UIWindowScene* ws = (UIWindowScene*)scene;
-                for (UIWindow* w in ws.windows) {
-                    if (!w.hidden)
-                        [result addObject:w];
-                }
-            }
-        }
-    }
-    if (result.count == 0) {
-        for (UIWindow* w in UIApplication.sharedApplication.windows) {
-            if (!w.hidden)
-                [result addObject:w];
-        }
-    }
-    return result;
-}
+// Authentication is intentionally in memory so every app launch starts locked.
+static BOOL padlockAuthenticated = NO;
+static AuthViewController* padlockController = nil;
 
 static UIWindow* activeKeyWindow(void) {
     if (@available(iOS 13.0, *)) {
@@ -60,138 +39,36 @@ static UIWindow* activeKeyWindow(void) {
     return nil;
 }
 
-static UIViewController* topViewController(UIViewController* root) {
-    if (!root)
-        return nil;
-    UIViewController* vc = root;
-    while (vc.presentedViewController) {
-        vc = vc.presentedViewController;
-    }
-    if ([vc isKindOfClass:[UINavigationController class]]) {
-        vc = ((UINavigationController*)vc).visibleViewController ?: vc;
-    }
-    if ([vc isKindOfClass:[UITabBarController class]]) {
-        UIViewController* sel = ((UITabBarController*)vc).selectedViewController;
-        if (sel)
-            vc = sel;
-    }
-    return vc;
-}
-
 static void showPadlockOverlay(void) {
+    if (padlockController.view.window)
+        return;
+
     UIWindow* window = activeKeyWindow();
     if (!window)
         return;
 
-    for (UIWindow* w in allActiveWindows()) {
-        for (UIView* v in w.subviews) {
-            if (v.tag == PadlockOverlayTag)
-                [v removeFromSuperview];
-        }
+    if (!padlockController) {
+        padlockController = [[AuthViewController alloc] init];
+        padlockController.completion = ^(BOOL authenticated) {
+            if (authenticated) {
+                padlockAuthenticated = YES;
+                [padlockController.view removeFromSuperview];
+                padlockController = nil;
+            }
+        };
     }
 
-    UIView* overlay = [[UIView alloc] initWithFrame:window.bounds];
+    UIView* overlay = padlockController.view;
+    overlay.frame = window.bounds;
     overlay.autoresizingMask =
         UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    overlay.backgroundColor = UIColor.systemBackgroundColor;
-    overlay.userInteractionEnabled = YES;
-    overlay.tag = PadlockOverlayTag;
-
-    UIImageView* icon = [[UIImageView alloc]
-        initWithImage:[UIImage systemImageNamed:@"lock.fill"]];
-    icon.translatesAutoresizingMaskIntoConstraints = NO;
-    icon.tintColor = UIColor.labelColor;
-
-    UILabel* label = [[UILabel alloc] init];
-    label.translatesAutoresizingMaskIntoConstraints = NO;
-    label.text =
-        [[BHTBundle sharedBundle] localizedStringForKey:@"PADLOCK_LOCKED_LABEL"];
-    label.textColor = UIColor.labelColor;
-    label.font = [UIFont systemFontOfSize:22 weight:UIFontWeightSemibold];
-    label.textAlignment = NSTextAlignmentCenter;
-
-    [overlay addSubview:icon];
-    [overlay addSubview:label];
-
-    [NSLayoutConstraint activateConstraints:@[
-        [icon.centerXAnchor constraintEqualToAnchor:overlay.centerXAnchor],
-        [icon.centerYAnchor constraintEqualToAnchor:overlay.centerYAnchor
-                                           constant:-20],
-        [label.centerXAnchor constraintEqualToAnchor:overlay.centerXAnchor],
-        [label.topAnchor constraintEqualToAnchor:icon.bottomAnchor
-                                        constant:8]
-    ]];
-
     [window addSubview:overlay];
 }
 
 static void removePadlockOverlay(void) {
-    for (UIWindow* w in allActiveWindows()) {
-        NSMutableArray<UIView*>* toRemove = [NSMutableArray array];
-        for (UIView* v in w.subviews) {
-            if (v.tag == PadlockOverlayTag)
-                [toRemove addObject:v];
-        }
-        for (UIView* v in toRemove)
-            [v removeFromSuperview];
-    }
-}
-
-// Deliberately in-memory only: the padlock must always re-prompt after a
-// relaunch, so persisting this would only risk skipping it.
-static BOOL padlockAuthenticated = NO;
-
-static BOOL isAuthenticated(void) {
-    return padlockAuthenticated;
-}
-
-static void setAuthenticated(BOOL yes) {
-    padlockAuthenticated = yes;
-}
-
-static void presentAuthIfNeeded(void) {
-    if (isAuthenticated()) {
-        removePadlockOverlay();
-        return;
-    }
-
-    UIWindow* window = activeKeyWindow();
-    if (!window) {
-        showPadlockOverlay();
-        return;
-    }
-
-    UIViewController* root = window.rootViewController;
-    if (!root) {
-        window.rootViewController = [UIViewController new];
-        root = window.rootViewController;
-    }
-    UIViewController* host = topViewController(root);
-
-    AuthViewController* auth = [[AuthViewController alloc] init];
-    auth.completion = ^(BOOL authenticated) {
-        setAuthenticated(authenticated);
-        if (authenticated) {
-            removePadlockOverlay();
-        }
-    };
-    auth.modalPresentationStyle = UIModalPresentationFullScreen;
-    if ([auth respondsToSelector:@selector(setModalInPresentation:)]) {
-        auth.modalInPresentation = YES;
-    }
-
-    if (host.presentedViewController == nil) {
-        [host presentViewController:auth animated:NO completion:nil];
-    } else {
-        [host dismissViewControllerAnimated:NO
-                                 completion:^{
-                                     UIViewController* newTop =
-                                         topViewController(root);
-                                     [newTop presentViewController:auth
-                                                          animated:NO
-                                                        completion:nil];
-                                 }];
-    }
+    [padlockController pauseAuthentication];
+    [padlockController.view removeFromSuperview];
+    padlockController = nil;
 }
 
 // MARK: - App Delegate hooks
@@ -221,13 +98,20 @@ static void presentAuthIfNeeded(void) {
     prewarmWebCookiesIfNeeded();
 
     if ([BHTSettings boolForKey:@"padlock"]) {
-        if (isAuthenticated()) {
+        if (padlockAuthenticated) {
             removePadlockOverlay();
         } else {
+            BOOL alreadyVisible = padlockController.view.window != nil;
             showPadlockOverlay();
-            dispatch_async(dispatch_get_main_queue(), ^{
-                presentAuthIfNeeded();
-            });
+            if (alreadyVisible)
+                [padlockController resumeAuthenticationIfNeeded];
+            else {
+                AuthViewController* controller = padlockController;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (padlockController == controller)
+                        [controller retryAuthentication];
+                });
+            }
         }
     } else {
         removePadlockOverlay();
@@ -238,15 +122,25 @@ static void presentAuthIfNeeded(void) {
     %orig;
 
     if ([BHTSettings boolForKey:@"padlock"]) {
-        // Cover the UI (and the app-switcher snapshot) and mark unauthenticated so
-        // the next activation prompts again; the overlay persists into background.
-        showPadlockOverlay();
-        setAuthenticated(NO);
+        // A visible lock view already covers the app during Face ID's own
+        // temporary inactive transition. Only add one when leaving unlocked.
+        if (padlockAuthenticated || !padlockController.view.window) {
+            showPadlockOverlay();
+            [padlockController pauseAuthentication];
+        }
+        padlockAuthenticated = NO;
     }
 
     if ([BHTSettings boolForKey:@"flex_twitter"]) {
         [[%c(FLEXManager) sharedManager] showExplorer];
     }
+}
+
+- (void)applicationDidEnterBackground:(__unsafe_unretained id)arg1 {
+    %orig;
+
+    if ([BHTSettings boolForKey:@"padlock"])
+        [padlockController pauseAuthentication];
 }
 
 %end
