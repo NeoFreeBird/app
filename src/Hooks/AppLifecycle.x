@@ -71,6 +71,58 @@ static void removePadlockOverlay(void) {
     padlockController = nil;
 }
 
+static NSString* testAlertVersion(void) {
+    NSDictionary* info = NSBundle.mainBundle.infoDictionary;
+    return [NSString stringWithFormat:@"%@/%@/%@",
+                                      info[@"CFBundleShortVersionString"] ?: @"",
+                                      info[@"CFBundleVersion"] ?: @"",
+                                      @NFB_VERSION_STRING];
+}
+
+static BOOL testAlertScheduled = NO;
+static NSString* const testAlertVersionKey = @"nfb_test_alert_last_seen_version";
+
+static void scheduleTestAlertIfNeeded(void) {
+    if (testAlertScheduled ||
+        [[NSUserDefaults.standardUserDefaults stringForKey:testAlertVersionKey]
+            isEqualToString:testAlertVersion()]) return;
+
+    testAlertScheduled = YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)),
+                   dispatch_get_main_queue(), ^{
+        testAlertScheduled = NO;
+        if (UIApplication.sharedApplication.applicationState != UIApplicationStateActive)
+            return;
+
+        UIWindow* window = activeKeyWindow();
+        UIViewController* root = window.rootViewController;
+        UIViewController* host = topMostController();
+        if (!host || !root.view.window ||
+            ([BHTSettings boolForKey:@"padlock"] && !padlockAuthenticated) ||
+            [host isKindOfClass:UIAlertController.class] ||
+            [host isKindOfClass:AuthViewController.class]) {
+            scheduleTestAlertIfNeeded();
+            return;
+        }
+
+        NSString* version = testAlertVersion();
+        if ([[NSUserDefaults.standardUserDefaults stringForKey:testAlertVersionKey]
+                isEqualToString:version]) return;
+
+        UIAlertController* alert = [UIAlertController
+            alertControllerWithTitle:@"Welcome!"
+                             message:@"Make sure that you installed NeoFreeBird from our official GitHub. We can't help with issues from other iPAs, and you may not know whether your release is free from harmful code. If you have any questions, please make a GitHub issue."
+                      preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                style:UIAlertActionStyleDefault
+                                              handler:nil]];
+        [topMostController() presentViewController:alert animated:YES completion:^{
+            [NSUserDefaults.standardUserDefaults setObject:version
+                                                    forKey:testAlertVersionKey];
+        }];
+    });
+}
+
 // MARK: - App Delegate hooks
 
 %hook T1AppDelegate
@@ -116,6 +168,8 @@ static void removePadlockOverlay(void) {
     } else {
         removePadlockOverlay();
     }
+
+    scheduleTestAlertIfNeeded();
 }
 
 - (void)applicationWillResignActive:(__unsafe_unretained id)arg1 {
