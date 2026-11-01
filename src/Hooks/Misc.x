@@ -320,6 +320,22 @@ static void BHTPasteboardSetString(id pasteboard, SEL selector, NSString* string
 }
 %end
 
+%hook T1AccountAutoplayPolicy
+
+- (id)initWithCurrentSettings:(id)settings
+    currentNetworkReachabilityStatus:(id)status
+    notificationCenter:(id)center
+    ignoreCurrentSettingsWhenAutoplayingGif:(_Bool)ignore {
+    return %orig(settings, status, center, NO);
+}
+
+- (id)initWithIgnoreCurrentSettingsWhenAutoplayingGif:(_Bool)ignore {
+    return %orig(NO);
+}
+
+%end
+
+
 %hook T1ViewControllerScribeEventObserver
 - (void)viewControllerApplicationDidBecomeActive:(id)active {
     if ([BHTSettings boolForKey:@"no_focus_lost"]) {
