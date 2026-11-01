@@ -528,6 +528,10 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
 
 %hook TFSAccountFeatureSwitches
 
+- (BOOL)isAutoplayBackgroundAudioSuppressionEnabled {
+    return NO;
+}
+
 // Sets the scroll indicator in -[TFNDataViewController loadView]; the read
 // bypasses the boolForKey: funnels above via a Swift access-once provider.
 + (BOOL)isShowsVerticalScrollIndicatorEnabled {
