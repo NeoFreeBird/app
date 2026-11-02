@@ -195,4 +195,20 @@ static NSString* const kLegacyHiddenKey = @"bh_tabs_hidden";
     return @[@"home", @"guide", @"ntab", @"messages", @"dash"];
 }
 
+#pragma mark - Capacity
+
++ (NSInteger)tabBarCapacityForTraitCollection:(UITraitCollection*)traits {
+    // The app trims its tab entries to this count before showing them.
+    Class capacityClass = NSClassFromString(@"T1BottomTabBarItemCapacity");
+    SEL selector = @selector(visibleItemCountForHorizontalSizeClass:verticalSizeClass:);
+    if (![capacityClass respondsToSelector:selector]) {
+        return NSIntegerMax;
+    }
+    NSInteger capacity = ((NSInteger (*)(id, SEL, UIUserInterfaceSizeClass,
+                                         UIUserInterfaceSizeClass))objc_msgSend)(
+        capacityClass, selector, traits.horizontalSizeClass,
+        traits.verticalSizeClass);
+    return capacity > 0 ? capacity : NSIntegerMax;
+}
+
 @end

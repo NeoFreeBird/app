@@ -222,6 +222,7 @@ static NSString* const kGridFooterID = @"gridFooter";
         }
     }
     [self pinHomeFirst];
+    [self trimSelectionToCapacity];
 
     self.originalSelection = [self.selectedPages copy];
     self.hasChanges = NO;
@@ -234,6 +235,48 @@ static NSString* const kGridFooterID = @"gridFooter";
     [self.selectedPages removeObject:CustomTabBarHomePageID];
     if ([CustomTabBarUtility metadataForPage:CustomTabBarHomePageID]) {
         [self.selectedPages insertObject:CustomTabBarHomePageID atIndex:0];
+    }
+}
+
+#pragma mark - Capacity
+
+// The app shows at most this many tabs and drops the rest, so the editor
+// doesn't let the selection grow past it.
+- (NSInteger)tabCapacity {
+    UITraitCollection* traits = self.view.window.traitCollection;
+    if (!traits ||
+        traits.horizontalSizeClass == UIUserInterfaceSizeClassUnspecified) {
+        traits = UIScreen.mainScreen.traitCollection;
+    }
+    return [CustomTabBarUtility tabBarCapacityForTraitCollection:traits];
+}
+
+// More is re-appended whenever the selection is loaded, so it always takes a
+// slot when the app has it.
+- (NSInteger)occupiedTabCount {
+    NSInteger count = (NSInteger)self.selectedPages.count;
+    if ([self.allPages containsObject:CustomTabBarMorePageID] &&
+        ![self.selectedPages containsObject:CustomTabBarMorePageID]) {
+        count++;
+    }
+    return count;
+}
+
+// Drops the trailing picks of a selection saved before the cap existed, so the
+// preview matches what the bar can actually show.
+- (void)trimSelectionToCapacity {
+    NSInteger capacity = [self tabCapacity];
+    while ([self occupiedTabCount] > capacity) {
+        NSUInteger index = [self.selectedPages
+            indexOfObjectWithOptions:NSEnumerationReverse
+                         passingTest:^BOOL(NSString* page, NSUInteger idx, BOOL* stop) {
+                             return ![page isEqualToString:CustomTabBarHomePageID] &&
+                                    ![page isEqualToString:CustomTabBarMorePageID];
+                         }];
+        if (index == NSNotFound) {
+            break;
+        }
+        [self.selectedPages removeObjectAtIndex:index];
     }
 }
 
@@ -464,6 +507,12 @@ static UIViewController* findViewControllerOfClass(UIViewController* vc,
     if ([self.selectedPages containsObject:page]) {
         [self.selectedPages removeObject:page];
     } else {
+        BOOL takesNewSlot = ![page isEqualToString:CustomTabBarMorePageID];
+        if (takesNewSlot && [self occupiedTabCount] >= [self tabCapacity]) {
+            [[UINotificationFeedbackGenerator new]
+                notificationOccurred:UINotificationFeedbackTypeWarning];
+            return;
+        }
         [self.selectedPages addObject:page];
     }
 

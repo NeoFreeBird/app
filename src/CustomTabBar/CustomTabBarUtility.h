@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 // pageID of the Home tab, which is always kept visible and pinned first.
 extern NSString* const CustomTabBarHomePageID;
 
+// pageID of the More (dash) tab, which is always appended last when present.
+extern NSString* const CustomTabBarMorePageID;
+
 // Registry keys for a captured tab's metadata.
 extern NSString* const TabPageKey; // scribePage identifier
 extern NSString* const
@@ -46,6 +49,10 @@ extern NSString* const TabPanelIDKey; // T1 panel ID (NSNumber)
 
 // Clears the user's selection, reverting to the default layout.
 + (void)resetSelection;
+
+// How many tabs the app's bottom bar shows for these traits (X 12.38+: 6 on a
+// compact-width phone, 9 otherwise). NSIntegerMax on versions without a cap.
++ (NSInteger)tabBarCapacityForTraitCollection:(nullable UITraitCollection*)traits;
 
 // The tabs shown until the user customises the bar: Home, Search, Notifications
 // and Chats. Everything else the app offers is available in the editor but
