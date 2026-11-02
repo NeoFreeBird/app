@@ -8,7 +8,7 @@
 
 /*Alerts and popups*/
 
-"CONFIRM_ALERT_MESSAGE" = "هل تريد المتابعة؟";
+"CONFIRM_ALERT_MESSAGE" = "هل أنت متأكد من ذلك؟";
 
 "YES_ACTION_LABEL" = "نعم";
 "NO_ACTION_LABEL" = "لا";
@@ -48,8 +48,8 @@
 "MODERN_SETTINGS_SEARCH_TITLE" = "البحث والاستكشاف";
 "MODERN_SETTINGS_SEARCH_SUBTITLE" = "غيّر ما تراه في تبويب البحث.";
 
-"MODERN_SETTINGS_PRESETS_TITLE" = "الإعدادات الجاهزة";
-"MODERN_SETTINGS_PRESETS_SUBTITLE" = "طبّق مجموعة إعدادات جاهزة، أو صدّر إعداداتك واستوردها.";
+"MODERN_SETTINGS_PRESETS_TITLE" = "الإعدادات المسبقة";
+"MODERN_SETTINGS_PRESETS_SUBTITLE" = "طبّق مجموعة إعدادات مسبقة، أو صدّر إعداداتك واستوردها.";
 
 "MODERN_SETTINGS_WEB_TITLE" = "الويب والروابط";
 "MODERN_SETTINGS_WEB_SUBTITLE" = "تحكّم في سلوك الروابط ومتصفح تويتر داخل التطبيق.";
@@ -63,8 +63,9 @@
 "MODERN_SETTINGS_DEBUG_TITLE" = "تصحيح الأخطاء";
 "MODERN_SETTINGS_DEBUG_SUBTITLE" = "اكتشف سبب عدم عمل إحدى الميزات.";
 
-"COOL_KIDS_SECTION_HEADER_TITLE" = "المميزون";
+"COOL_KIDS_SECTION_HEADER_TITLE" = "الرائعون";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "شكر خاص";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "المترجمون";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "تابع NeoFreeBird";
 
 /*General*/
@@ -74,6 +75,9 @@
 
 "NO_FOCUS_LOST_TITLE" = "الحفاظ على موضع القراءة";
 "NO_FOCUS_LOST_DETAIL" = "منع تويتر من رصد انتقالك إلى تطبيق آخر، كي لا تفقد موضعك في سلسلة التغريدات.";
+
+"IPAD_SPLIT_VIEW_TITLE" = "تفعيل العرض المنقسم على iPad";
+"IPAD_SPLIT_VIEW_DETAIL" = "يتيح لك استخدام تويتر في عرض منقسم على iPad (وعلى iPhone Duo)، بحيث تفتح تغريدة في جانب وخطك الزمني في الجانب الآخر.";
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "إخفاء لافتات الخط الزمني";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "إزالة اللافتات مثل «إضافة جهات الاتصال».";
@@ -176,13 +180,13 @@
 
 /*Chat*/
 "HIDE_TYPING_INDICATOR_TITLE" = "إخفاء مؤشر الكتابة";
-"HIDE_TYPING_INDICATOR_DETAIL" = "منع إرسال مؤشر «يكتب…» إلى الآخرين في الدردشة.";
+"HIDE_TYPING_INDICATOR_DETAIL" = "منع إرسال مؤشر \"يكتب…\" إلى الآخرين في الدردشة.";
 
 "DOWNLOAD_VOICE_MESSAGES_TITLE" = "تنزيل الرسائل الصوتية";
 "DOWNLOAD_VOICE_MESSAGES_DETAIL" = "حفظ الرسائل الصوتية على جهازك بعد تشغيلها. لتنزيل رسالة صوتية، اضغط عليها مطولًا بإصبعين.";
 
 "BLOCK_SCREENSHOT_DETECTION_TITLE" = "منع رصد لقطات الشاشة";
-"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "التقاط لقطات شاشة للمحادثات «الآمنة» دون أن يمنعك التطبيق.";
+"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "التقاط لقطات شاشة للمحادثات \"الآمنة\" دون أن يمنعك التطبيق.";
 
 /*Profiles*/
 "FOLLOW_CONFIRM_TITLE" = "تأكيد المتابعة";
@@ -204,7 +208,7 @@
 "HIDE_FOLLOW_BUTTON_DETAIL" = "إخفاء زر المتابعة في التغريدات.";
 
 "HIDE_MESSAGE_BUTTON_TITLE" = "إخفاء زر المراسلة في التغريدات";
-"HIDE_MESSAGE_BUTTON_DETAIL" = "إخفاء زر إرسال رسالة في التغريدات.";
+"HIDE_MESSAGE_BUTTON_DETAIL" = "إخفاء زر المراسلة في التغريدات.";
 
 "RESTORE_FOLLOW_BUTTON_TITLE" = "إخفاء زر الاشتراك";
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "إخفاء زر الاشتراك في التغريدات والملفات الشخصية.";
@@ -409,7 +413,7 @@
 "FONT_SYSTEM_DEFAULT_SUBTITLE" = "خط النظام الافتراضي";
 
 /*Legacy login*/
-"LEGACY_LOGIN_INFO_LABEL" = "سجّل الدخول باسم المستخدم وكلمة المرور.\n\nتسجيل الدخول باستخدام Google أو Apple غير متاح هنا. إذا كان حسابك مرتبطًا بأحدهما، فأضف إليه كلمة مرور أولًا.";
+"LEGACY_LOGIN_INFO_LABEL" = "سجّل الدخول باسم المستخدم وكلمة المرور.\n\nتسجيل الدخول باستخدام Google أو Apple غير مدعوم. إذا كان حسابك يستخدم أحدهما، فأضف إليه كلمة مرور أولًا.";
 "LEGACY_LOGIN_MISSING_INPUT_TITLE" = "بيانات ناقصة";
 "LEGACY_LOGIN_MISSING_INPUT_MESSAGE" = "أدخل اسم المستخدم وكلمة المرور.";
 "LEGACY_LOGIN_VERIFYING_STATUS" = "جارٍ التحقق…";
@@ -491,3 +495,6 @@
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "إيقاف";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld ث";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "مرحبًا!";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "تأكد من تثبيت NeoFreeBird من صفحتنا الرسمية على GitHub. لا يمكننا المساعدة في المشكلات الناتجة عن ملفات IPA أخرى، وقد لا تعرف ما إذا كانت نسختك خالية من الشيفرة الضارة. إذا كانت لديك أي أسئلة، فافتح بلاغًا على GitHub.";
