@@ -89,8 +89,8 @@
 "HIDE_TIMELINE_PROMPTS_TITLE" = "Sin avisos en la cronología";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Elimina los banners como \"Añadir contactos\".";
 
-"HIDE_VIDEOS_FOR_YOU_TITLE" = "Esconder \"Vídeos para ti\"";
-"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Esconde el módulo de \"Vídeos para ti\" en la cronología.";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "Ocultar \"Vídeos para ti\"";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Elimina el módulo de \"Vídeos para ti\" en la cronología.";
 
 "PADLOCK_TITLE" = "Bloquear Twitter";
 "PADLOCK_DETAIL" = "Requiere Face ID o un código para abrir Twitter.";
@@ -147,6 +147,16 @@
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Elimina el botón de guardar de los Tweets.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Ocultar votos negativos";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Elimina el botón de voto negativo de los Tweets.";
+"HIDE_MADE_ON_X_TITLE" = "Ocultar \"Creado en X\"";
+"HIDE_MADE_ON_X_DETAIL" = "Elimina la etiqueta de \"Creado en X\" de los Tweets.";
+
+
+"IPAD_SPLIT_VIEW_TITLE" = "Activar Split View en iPad";
+"IPAD_SPLIT_VIEW_DETAIL" = "Habilita el uso de Twitter en Split View en iPad (y el iPhone Duo). Esto permite tener un Tweet abierto en un lado y tu cronología en el otro.";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "¡Bienvenido!";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "Asegúrate de haber instalado NeoFreeBird desde nuestro GitHub oficial. No podemos ayudar con problemas derivados de otros iPAs, y es posible que no sepas si tu versión está libre de código dañino. Si tienes alguna duda, por favor crea un issue en GitHub.";
+
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "Sin avisos de contenido sensible";
 
@@ -235,7 +245,7 @@
 "TAP_TO_PAUSE_TITLE" = "Tocar para pausar vídeos";
 "TAP_TO_PAUSE_DETAIL" = "Toca con 2 dedos un vídeo para pausarlo, en lugar de tener que usar el botón de pausa.";
 
-"DISABLE_IMMERSIVE_SCROLL_TITLE" = "Sin desplazamiento por el feed de vídeos";
+"DISABLE_IMMERSIVE_SCROLL_TITLE" = "Sin scroll del feed de vídeos";
 
 "DISABLE_VIDEO_DOCKING_TITLE" = "Sin acoplamiento de vídeos";
 "DISABLE_VIDEO_DOCKING_DETAIL" = "Evita que aparezca el botón de PiP al arrastrar vídeos hacia fuera.";
@@ -303,7 +313,7 @@
 "REPLY_IN_WEBVIEW_TITLE" = "Responder en vista web";
 "REPLY_IN_WEBVIEW_DETAIL" = "Abre el cuadro de respuesta en una vista web para evitar la comprobación de integridad.";
 
-"LIQUID_GLASS_TITLE" = "Habilitar Liquid Glass";
+"LIQUID_GLASS_TITLE" = "Activar Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "Habilita la nueva interfaz de X con Liquid Glass. Este es un rediseño experimental y podría causar problemas.";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "El rediseño de Liquid Glass requiere reiniciar para surtir efecto.";
 
