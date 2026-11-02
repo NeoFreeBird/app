@@ -65,6 +65,7 @@
 
 "COOL_KIDS_SECTION_HEADER_TITLE" = "Cool kids";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "Special thanks";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "Translators";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "Follow NeoFreeBird";
 
 /*General*/
@@ -74,6 +75,9 @@
 
 "NO_FOCUS_LOST_TITLE" = "No focus lost";
 "NO_FOCUS_LOST_DETAIL" = "Blocks Twitter from detecting when you've switched to another app, so you won't lose your place in a thread.";
+
+"IPAD_SPLIT_VIEW_TITLE" = "Enable iPad split view";
+"IPAD_SPLIT_VIEW_DETAIL" = "Allows you to use Twitter in split view on iPad (and the iPhone Duo). This allows you to have a tweet open on one side and your timeline on the other.";
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "No timeline prompts";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Remove banners like 'Add contacts'.";
@@ -493,3 +497,6 @@
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "Off";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld seconds";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "Welcome!";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "Make sure that you installed NeoFreeBird from our official GitHub. We can't help with issues from other iPAs, and you may not know whether your version is free from harmful code. If you have any questions, please make a GitHub issue.";

@@ -122,13 +122,17 @@ static void BHTRestoreNativeTabSelection(id controller) {
     id settings = BHTPrepareNativeTabSave(editor);
     if (settings) {
         // Supply the explicitly saved blob even if startup already cleared X's
-        // copy. Native code decodes it and publishes it to the glass controller.
+        // copy. Native code decodes it and publishes the selected identifiers.
         BOOL saved = BHTRestoringNativeTabs;
         BHTRestoringNativeTabs = YES;
         @try {
             restore((__bridge void*)settings);
         } @finally {
             BHTRestoringNativeTabs = saved;
+        }
+        if ([controller isKindOfClass:NSClassFromString(@"T1TabbedAppNavigationViewController")] &&
+            [controller respondsToSelector:@selector(recalculateVisiblePanels)]) {
+            ((void (*)(id, SEL))objc_msgSend)(controller, @selector(recalculateVisiblePanels));
         }
     }
 }
@@ -212,6 +216,42 @@ static void BHTRestoreNativeTabSelection(id controller) {
 
 %end
 
+%hook T1TabbedAppNavigationViewController
+
+- (void)viewDidLoad {
+    %orig;
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(nfb_restoreNativeTabsAfterActivation:)
+               name:UIApplicationDidBecomeActiveNotification
+             object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
+    %orig;
+}
+
+%new
+- (void)nfb_restoreNativeTabsAfterActivation:(NSNotification*)notification {
+    id controller = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BHTRestoreNativeTabSelection(controller);
+    });
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    %orig;
+    id controller = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BHTRestoreNativeTabSelection(controller);
+    });
+}
+
+%end
+
 %hook T1TabCustomizationViewController
 
 - (void)viewDidLoad {
@@ -227,6 +267,17 @@ static void BHTRestoreNativeTabSelection(id controller) {
         %orig;
     } @finally {
         BHTSavingNativeTabs = saved;
+    }
+    id host = ((id (*)(id, SEL))objc_msgSend)(
+        NSClassFromString(@"T1HostViewController"), @selector(sharedHostViewController));
+    id navigation = [host respondsToSelector:@selector(appNavigation)]
+                        ? ((id (*)(id, SEL))objc_msgSend)(host, @selector(appNavigation))
+                        : nil;
+    if ([navigation isKindOfClass:NSClassFromString(@"T1TabbedAppNavigation")] &&
+        [navigation respondsToSelector:@selector(recalculateVisiblePanels)]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ((void (*)(id, SEL))objc_msgSend)(navigation, @selector(recalculateVisiblePanels));
+        });
     }
 }
 

@@ -198,6 +198,137 @@ static UIColor* BHTReplaceKnownAccent(UIColor* color, UIColor* currentNative) {
 
 // MARK: - Dim background recolor
 
+static BOOL BHTIsInsideScrollEdgeTreatment(UIView* view) {
+    Class treatmentClass = NSClassFromString(@"_TtC13XDesignSystem19ScrollEdgeTreatment");
+    for (UIView* parent = view.superview; parent; parent = parent.superview) {
+        if ([parent isKindOfClass:treatmentClass]) return YES;
+    }
+    return NO;
+}
+
+static UIColor* BHTDimScrollEdgeColor(UIColor* color, UITraitCollection* traits) {
+    if (!BHTDimThemeEnabled() ||
+        traits.userInterfaceStyle != UIUserInterfaceStyleDark ||
+        ![color isKindOfClass:UIColor.class]) return nil;
+
+    UIColor* resolved = [color resolvedColorWithTraitCollection:traits];
+    CGFloat red = 0, green = 0, blue = 0, alpha = 0;
+    if (![resolved getRed:&red green:&green blue:&blue alpha:&alpha] ||
+        alpha <= 0.01 ||
+        MAX(red, MAX(green, blue)) > 0.25 ||
+        MAX(red, MAX(green, blue)) - MIN(red, MIN(green, blue)) > 0.04) return nil;
+    return [BHTDimBackgroundColor() colorWithAlphaComponent:alpha];
+}
+
+static BOOL BHTIsScrollEdgeBlurTintView(UIView* view) {
+    Class blurClass = NSClassFromString(@"XDSBlur");
+    for (UIView* parent = view.superview; parent; parent = parent.superview) {
+        if (![parent isKindOfClass:blurClass]) continue;
+        Ivar tintField = class_getInstanceVariable(object_getClass(parent), "tintView");
+        return tintField && object_getIvar(parent, tintField) == view &&
+               BHTIsInsideScrollEdgeTreatment(parent);
+    }
+    return NO;
+}
+
+static void BHTApplyScrollEdgeBlur(XDSBlur* blur) {
+    if (!BHTIsInsideScrollEdgeTreatment(blur)) return;
+    Ivar tintField = class_getInstanceVariable(object_getClass(blur), "tintView");
+    UIView* tintView = tintField ? object_getIvar(blur, tintField) : nil;
+    if (![tintView isKindOfClass:UIView.class]) return;
+    UIColor* dim = BHTDimScrollEdgeColor(tintView.backgroundColor, blur.traitCollection);
+    if (dim) tintView.backgroundColor = dim;
+}
+
+static void BHTApplyScrollEdgeFade(UIView* fade) {
+    if (!BHTIsInsideScrollEdgeTreatment(fade) || !BHTDimThemeEnabled() ||
+        fade.traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark) return;
+
+    Ivar gradientField = class_getInstanceVariable(object_getClass(fade), "gradientLayer");
+    CAGradientLayer* gradient = gradientField ? object_getIvar(fade, gradientField) : nil;
+    if (![gradient isKindOfClass:CAGradientLayer.class]) return;
+
+    NSArray* colors = gradient.colors;
+    if (!colors.count) return;
+    NSMutableArray* mapped = [NSMutableArray arrayWithCapacity:colors.count];
+    BOOL changed = NO;
+    for (id entry in colors) {
+        CGColorRef cgColor = (__bridge CGColorRef)entry;
+        UIColor* dim = BHTDimScrollEdgeColor([UIColor colorWithCGColor:cgColor],
+                                             fade.traitCollection);
+        [mapped addObject:dim ? (__bridge id)dim.CGColor : entry];
+        changed |= dim != nil;
+    }
+    if (changed) gradient.colors = mapped;
+}
+
+%hook CAGradientLayer
+
+- (void)setColors:(NSArray*)colors {
+    UIView* owner = (UIView*)self.superlayer.delegate;
+    Class fadeClass = NSClassFromString(@"_TtC13XDesignSystem18ScrollEdgeFadeView");
+    if (![owner isKindOfClass:fadeClass] || !BHTIsInsideScrollEdgeTreatment(owner) ||
+        !BHTDimThemeEnabled() ||
+        owner.traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark) {
+        %orig;
+        return;
+    }
+
+    NSMutableArray* mapped = [NSMutableArray arrayWithCapacity:colors.count];
+    for (id entry in colors) {
+        UIColor* dim = BHTDimScrollEdgeColor(
+            [UIColor colorWithCGColor:(__bridge CGColorRef)entry], owner.traitCollection);
+        [mapped addObject:dim ? (__bridge id)dim.CGColor : entry];
+    }
+    %orig(mapped);
+}
+
+%end
+
+%hook XDSBlur
+
+- (void)layoutSubviews {
+    %orig;
+    BHTApplyScrollEdgeBlur(self);
+}
+
+%end
+
+%hook _TtC13XDesignSystem18ScrollEdgeFadeView
+
+- (void)layoutSubviews {
+    %orig;
+    BHTApplyScrollEdgeFade(self);
+}
+
+%end
+
+static void BHTApplyDimScrollEdgeChildren(UIView* treatment) {
+    Class blurClass = NSClassFromString(@"XDSBlur");
+    Class fadeClass = NSClassFromString(@"_TtC13XDesignSystem18ScrollEdgeFadeView");
+    NSMutableArray<UIView*>* pending = [treatment.subviews mutableCopy];
+    while (pending.count) {
+        UIView* view = pending.lastObject;
+        [pending removeLastObject];
+        if (blurClass && [view isKindOfClass:blurClass]) {
+            BHTApplyScrollEdgeBlur((XDSBlur*)view);
+        } else if (fadeClass && [view isKindOfClass:fadeClass]) {
+            BHTApplyScrollEdgeFade(view);
+        }
+        [pending addObjectsFromArray:view.subviews];
+    }
+}
+
+%hook _TtC13XDesignSystem19ScrollEdgeTreatment
+
+- (void)layoutSubviews {
+    %orig;
+    if (!BHTDimThemeEnabled()) return;
+    BHTApplyDimScrollEdgeChildren(self);
+}
+
+%end
+
 // The app only ever renders Light or Dark now -- there's no native third
 // option -- so Dim comes back by intercepting Dark's palette at its one
 // choke point and swapping in a proxy that recolors just the background
@@ -360,6 +491,11 @@ static UIColor* BHTDimNormalizedViewBackground(UIView* view, UIColor* color) {
     if (!view || !color || !BHTDimThemeEnabled() ||
         view.traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark) {
         return color;
+    }
+
+    if (BHTIsScrollEdgeBlurTintView(view)) {
+        UIColor* dimTint = BHTDimScrollEdgeColor(color, view.traitCollection);
+        if (dimTint) return dimTint;
     }
 
     UIColor* resolved = [color resolvedColorWithTraitCollection:view.traitCollection];
@@ -619,7 +755,7 @@ static NSArray* orderedTabEntries(NSArray* entries) {
 %hook T1TabbedAppNavigationViewController
 
 - (void)setVisibleTabEntries:(NSArray*)entries {
-    %orig(orderedTabEntries(entries));
+    %orig([CustomTabBarUtility usesNativeEditor] ? entries : orderedTabEntries(entries));
 }
 
 %end

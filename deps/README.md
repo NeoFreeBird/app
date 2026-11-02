@@ -39,3 +39,7 @@ Adds a Safari extension to the app, allowing users to open Twitter links in the 
 - **Theos** at `$THEOS`.
 - **Cephei / CepheiPrefs / CepheiUI** in `$THEOS/lib` (linked via `EXTRA_FRAMEWORKS`).
 - **cyan** (pyzule-rw) for the IPA merge steps in `build.sh`.
+- **macOS only:** the full [Xcode](https://developer.apple.com/xcode/) application,
+  with its developer directory selected (`sudo xcode-select --switch
+  /Applications/Xcode.app/Contents/Developer`). Command Line Tools alone do
+  not provide the iPhoneOS SDK required to rebuild ffmpeg.
