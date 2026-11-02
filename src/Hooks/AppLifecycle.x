@@ -110,8 +110,8 @@ static void scheduleTestAlertIfNeeded(void) {
                 isEqualToString:version]) return;
 
         UIAlertController* alert = [UIAlertController
-            alertControllerWithTitle:@"Welcome!"
-                             message:@"Make sure that you installed NeoFreeBird from our official GitHub. We can't help with issues from other iPAs, and you may not know whether your release is free from harmful code. If you have any questions, please make a GitHub issue."
+            alertControllerWithTitle:[[BHTBundle sharedBundle] localizedStringForKey:@"GITHUB_DOWNLOAD_WARNING_TITLE"]
+                             message:[[BHTBundle sharedBundle] localizedStringForKey:@"GITHUB_DOWNLOAD_WARNING_MESSAGE"]
                       preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"OK"
                                                 style:UIAlertActionStyleDefault
