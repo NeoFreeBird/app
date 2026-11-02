@@ -11,9 +11,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AuthViewController : UIViewController
 
-// Called on the main queue with the authentication result; on success the
-// controller has already dismissed itself when this fires.
+// Called on the main queue after successful authentication.
 @property (nonatomic, copy, nullable) void (^completion)(BOOL authenticated);
+
+// Starts a fresh authentication attempt when the user taps Unlock.
+- (void)retryAuthentication;
+- (void)pauseAuthentication;
+- (void)resumeAuthenticationIfNeeded;
 
 @end
 
