@@ -622,6 +622,14 @@ static NSArray* orderedTabEntries(NSArray* entries) {
     %orig(orderedTabEntries(entries));
 }
 
+// 12.38+ trims the app's full entry list to T1BottomTabBarItemCapacity (6 on a
+// compact-width phone, 9 otherwise) before setVisibleTabEntries:. Trimming the
+// app's own order drops chosen tabs that sit late in it (Profile), so apply the
+// selection first and let the app cap that instead.
+- (NSArray*)_t1_tabEntriesLimitedToBottomCapacity:(NSArray*)entries {
+    return %orig(orderedTabEntries(entries));
+}
+
 %end
 
 // MARK: - Keep tab bar visible
