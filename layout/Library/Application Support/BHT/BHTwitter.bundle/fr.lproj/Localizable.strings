@@ -65,6 +65,7 @@
 
 "COOL_KIDS_SECTION_HEADER_TITLE" = "L'élite";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "Remerciements spéciaux";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "Traducteurs";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "Suivre NeoFreeBird";
 
 /*General*/
@@ -74,6 +75,9 @@
 
 "NO_FOCUS_LOST_TITLE" = "Garder sa place dans les fils";
 "NO_FOCUS_LOST_DETAIL" = "Empêche Twitter de détecter le passage à une autre app pour ne pas perdre votre place dans un fil.";
+
+"IPAD_SPLIT_VIEW_TITLE" = "Activer la vue partagée sur iPad";
+"IPAD_SPLIT_VIEW_DETAIL" = "Permet d’utiliser Twitter en vue partagée sur iPad (et sur l’iPhone Duo), avec un Tweet ouvert d’un côté et votre fil de l’autre.";
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "Masquer les invites dans le fil";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Supprime les bannières comme « Ajouter des contacts ».";
@@ -144,6 +148,8 @@
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Supprime le bouton de signet des Tweets.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Masquer les votes négatifs";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Supprime le bouton de vote négatif des Tweets.";
+"HIDE_MADE_ON_X_TITLE" = "Masquer « Made on X »";
+"HIDE_MADE_ON_X_DETAIL" = "Supprime la mention « Made on X » des Tweets.";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "Pas d'avertissements de contenu sensible";
 
@@ -491,3 +497,6 @@
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "Désactivé";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld secondes";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "Bienvenue !";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "Assurez-vous d’avoir installé NeoFreeBird depuis notre dépôt GitHub officiel. Nous ne pouvons pas vous aider à résoudre les problèmes liés à des fichiers IPA provenant d’autres sources, et vous ne pouvez pas être certain que votre version est exempte de code malveillant. Si vous avez des questions, veuillez ouvrir un ticket sur GitHub.";
