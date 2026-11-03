@@ -53,6 +53,7 @@
 "COOL_KIDS_SECTION_HEADER_TITLE" = "酷小孩";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "特别鸣谢";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "关注 NeoFreeBird";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "翻译者";
 
 /*General*/
 
@@ -111,6 +112,9 @@
 
 "HIDE_GROK_CREATE_TITLE" = "隐藏 Grok 创建按钮";
 "HIDE_GROK_CREATE_DETAIL" = "移除使用 Grok 创建或编辑图片和视频的选项。";
+
+"HIDE_MADE_ON_X_TITLE" = "隐藏“由 X 制作”";
+"HIDE_MADE_ON_X_DETAIL" = "从推文中删除“由 X 制作“标签。 ";
 
 "DISABLE_AUTO_TRANSLATE_TITLE" = "禁用自动翻译";
 "DISABLE_AUTO_TRANSLATE_DETAIL" = "不再自动翻译帖子或简介。";
@@ -224,6 +228,9 @@
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "选择字体";
 
 "BOLD_FONTS_PICKER_OPTION_TITLE" = "选择粗体字体";
+
+"IPAD_SPLIT_VIEW_TITLE" = "启用 iPad 分屏视图";
+"IPAD_SPLIT_VIEW_DETAIL" = "允许你在 iPad（和 iPhone Duo）上以分屏视图使用 Twitter。这允许你在一侧打开推文，在另一侧打开你的时间线。";
 
 /*Labs*/
 "REPLY_IN_WEBVIEW_TITLE" = "在网页视图中回复";
@@ -490,3 +497,6 @@
 /*Misc*/
 "LOCATION_UNAVAILABLE" = "位置不可用";
 "CONTRIBUTOR_PAGE_SECTION_HEADER_TITLE" = "贡献者";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "欢迎！";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "确保你从我们的官方 GitHub 仓库安装 NeoFreeBird。我们无法帮助解决其他 iPA 的问题，而且你可能无法确定使用的版本是否包含有害代码。如有疑问，请在 GitHub 上提交 issue。";

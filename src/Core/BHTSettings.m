@@ -31,7 +31,9 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                     @{@"key": @"no_focus_lost",
                       @"default": @NO},
                     @{@"key": @"show_scroll_indicator",
-                      @"default": @NO}
+                      @"default": @NO},
+                    @{@"key": @"ipad_split_view",
+                      @"default": @YES}
                 ]
             },
             @"appearance": @{

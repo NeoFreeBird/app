@@ -10,7 +10,7 @@ set -Eeuo pipefail
 # FFMPEG_TAG must match what the upstream submodule checkout expects
 # (scripts/source.sh in the submodule).
 
-MIN_IOS=14.0
+MIN_IOS=15.0
 
 FFMPEG_TAG=n8.1.2
 
@@ -37,6 +37,16 @@ else
     AR_BIN="$TOOLCHAIN/ar"
     RANLIB_BIN="$TOOLCHAIN/ranlib"
     NM_BIN="$TOOLCHAIN/nm"
+fi
+
+if [[ "$(uname)" == "Darwin" && "$SDK" != */iPhoneOS*.sdk ]]; then
+    cat >&2 <<EOF
+iPhoneOS SDK not available: xcrun resolved "$SDK".
+Install the full Xcode application and select it with:
+  sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+Command Line Tools do not include an iPhoneOS SDK.
+EOF
+    exit 1
 fi
 
 [[ -d "$SDK" ]] || { echo "iPhoneOS SDK not found" >&2; exit 1; }
@@ -71,13 +81,13 @@ if [[ ! -f "$OPENSSL_PREFIX/lib/libssl.a" ]]; then
 
     pushd "$OPENSSL_SRC"
 
-    export IPHONEOS_DEPLOYMENT_TARGET=14.0
+    export IPHONEOS_DEPLOYMENT_TARGET=15.0
 
     ./Configure ios64-xcrun \
         no-shared \
         no-tests \
         --prefix="$OPENSSL_PREFIX" \
-        -mios-version-min=14.0
+        -mios-version-min=15.0
 
     make -j"$JOBS"
     make install_sw
@@ -88,11 +98,12 @@ fi
 # --- FFmpeg ----------------------------------------------------------------
 
 FFMPEG_SRC="$BUILD/FFmpeg-$FFMPEG_TAG"
-FFMPEG_PREFIX="$BUILD/ffmpeg-install"
+FFMPEG_PREFIX="$BUILD/ffmpeg-$FFMPEG_TAG-install"
 if [[ ! -f "$FFMPEG_PREFIX/lib/libavcodec.a" ]]; then
-    fetch "https://github.com/arthenica/FFmpeg/archive/refs/tags/$FFMPEG_TAG.tar.gz" "$BUILD/ffmpeg.tar.gz"
+    FFMPEG_ARCHIVE="$BUILD/ffmpeg-$FFMPEG_TAG.tar.gz"
+    fetch "https://github.com/arthenica/FFmpeg/archive/refs/tags/$FFMPEG_TAG.tar.gz" "$FFMPEG_ARCHIVE"
     rm -rf "$FFMPEG_SRC"
-    tar -xzf "$BUILD/ffmpeg.tar.gz" -C "$BUILD"
+    tar -xzf "$FFMPEG_ARCHIVE" -C "$BUILD"
 
     pushd "$FFMPEG_SRC" >/dev/null
     # Trimmed to what the media download flows use: probe and demux Twitter
