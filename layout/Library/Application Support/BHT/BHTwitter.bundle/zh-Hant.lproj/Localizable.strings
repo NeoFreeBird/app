@@ -4,7 +4,7 @@
 */
 
 "NFB_SETTINGS_TITLE" = "NeoFreeBird";
-"NFB_SETTINGS_DETAIL" = "自訂您的 Twitter：隱藏廣告、啟用 Blue 功能，還有更多自訂選項。";
+"NFB_SETTINGS_DETAIL" = "自訂你的 Twitter：隱藏廣告、啟用 Blue 功能，還有更多自訂選項。";
 
 /*Alerts and popups*/
 
@@ -24,11 +24,11 @@
 "MODERN_SETTINGS_LAYOUT_TITLE" = "一般";
 "MODERN_SETTINGS_LAYOUT_SUBTITLE" = "鎖定應用程式、保持導覽列顯示等。";
 
-"MODERN_SETTINGS_MEDIA_TITLE" = "媒體";
+"MODERN_SETTINGS_MEDIA_TITLE" = "照片和影片";
 "MODERN_SETTINGS_MEDIA_SUBTITLE" = "下載影片、啟用時間戳記等功能。";
 
 "MODERN_SETTINGS_APPEARANCE_TITLE" = "外觀";
-"MODERN_SETTINGS_APPEARANCE_SUBTITLE" = "透過主題、自訂應用程式圖標、字型和其他選項，讓您的 Twitter 更具個人化。";
+"MODERN_SETTINGS_APPEARANCE_SUBTITLE" = "透過主題、自訂應用程式圖示、字體和其他選項，為 Twitter 打造專屬的個人風格。";
 
 "MODERN_SETTINGS_TIMELINES_TITLE" = "時間軸";
 "MODERN_SETTINGS_TIMELINES_SUBTITLE" = "移除廣告、跟隨建議和時間軸上的其他多餘內容。";
@@ -37,51 +37,55 @@
 "MODERN_SETTINGS_GROK_SUBTITLE" = "隱藏 Grok 按鈕並管理自動翻譯。";
 
 "MODERN_SETTINGS_PROFILES_TITLE" = "個人檔案";
-"MODERN_SETTINGS_PROFILES_SUBTITLE" = "控制您在個人檔案頁面上看到的內容以及互動的方式。";
+"MODERN_SETTINGS_PROFILES_SUBTITLE" = "控制你在個人檔案頁面上看到的內容以及互動方式。";
 
 "MODERN_SETTINGS_TWEETS_TITLE" = "推文與回覆";
-"MODERN_SETTINGS_TWEETS_SUBTITLE" = "調整推文行為，移除您不使用的功能。";
+"MODERN_SETTINGS_TWEETS_SUBTITLE" = "調整推文外觀與行為，並移除你不常使用的功能。";
 
 "MODERN_SETTINGS_CHAT_TITLE" = "聊天";
-"MODERN_SETTINGS_CHAT_SUBTITLE" = "為 XChat 介面添加功能。";
+"MODERN_SETTINGS_CHAT_SUBTITLE" = "為 XChat 介面新增功能。";
 
 "MODERN_SETTINGS_SEARCH_TITLE" = "搜尋與探索";
-"MODERN_SETTINGS_SEARCH_SUBTITLE" = "變更您在「搜尋」標籤頁中看見的內容。";
+"MODERN_SETTINGS_SEARCH_SUBTITLE" = "變更你在「搜尋」標籤頁中看見的內容。";
 
 "MODERN_SETTINGS_PRESETS_TITLE" = "預設集";
-"MODERN_SETTINGS_PRESETS_SUBTITLE" = "套用一組預先配置好的設定，或是匯出與匯入您專屬的設定。";
+"MODERN_SETTINGS_PRESETS_SUBTITLE" = "套用一組預先配置好的設定，或是匯出與匯入你專屬的設定。";
 
 "MODERN_SETTINGS_WEB_TITLE" = "網頁與連結";
-"MODERN_SETTINGS_WEB_SUBTITLE" = "調整連結以及應用程式內建瀏覽器的行為模式。";
+"MODERN_SETTINGS_WEB_SUBTITLE" = "調整連結以及應用程式內建瀏覽器的運作方式。";
 
 "MODERN_SETTINGS_BRANDING_TITLE" = "品牌外觀";
-"MODERN_SETTINGS_BRANDING_SUBTITLE" = "調整你看到的 X 品牌形象顯示程度。";
+"MODERN_SETTINGS_BRANDING_SUBTITLE" = "調整要還原多少經典 Twitter 品牌元素。";
 
 "MODERN_SETTINGS_EXPERIMENTAL_TITLE" = "實驗功能";
-"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "試用不穩定的新功能。";
+"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "搶先試用我們正在測試的新功能。";
 
 "MODERN_SETTINGS_DEBUG_TITLE" = "除錯";
-"MODERN_SETTINGS_DEBUG_SUBTITLE" = "找出某項功能無法運作的原因。";
+"MODERN_SETTINGS_DEBUG_SUBTITLE" = "找出某項功能無法正常運作的原因。";
 
 "COOL_KIDS_SECTION_HEADER_TITLE" = "酷小孩";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "特別感謝";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "譯者";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "跟隨 NeoFreeBird";
 
 /*General*/
 
-"HIDE_WHO_TO_FOLLOW_TITLE" = "不顯示「推薦關注」";
-"HIDE_WHO_TO_FOLLOW_DETAIL" = "在個人頁面中移除推薦帳戶。";
+"HIDE_WHO_TO_FOLLOW_TITLE" = "不顯示「推薦跟隨」";
+"HIDE_WHO_TO_FOLLOW_DETAIL" = "移除推薦跟隨的帳號建議。";
 
 "NO_FOCUS_LOST_TITLE" = "不遺失焦點";
-"NO_FOCUS_LOST_DETAIL" = "阻止 Twitter 偵測到你切換到其他應用程式，這樣你就不會在討論串中遺失位置。";
+"NO_FOCUS_LOST_DETAIL" = "阻止 Twitter 偵測到你切換至其他應用程式，避免在討論串中遺失閱讀位置。";
+
+"IPAD_SPLIT_VIEW_TITLE" = "啟用 iPad 分割顯示";
+"IPAD_SPLIT_VIEW_DETAIL" = "允許你在 iPad（以及 iPhone Duo）上使用 Twitter 的分割顯示功能，讓你可以在畫面一側開啟推文，同時在另一側瀏覽時間軸。";
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "不顯示時間軸提示";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "移除「新增聯絡人」等橫幅。";
 "HIDE_VIDEOS_FOR_YOU_TITLE" = "隱藏「為你推薦的影片」";
 "HIDE_VIDEOS_FOR_YOU_DETAIL" = "隱藏時間軸中的「為你推薦的影片」區塊。";
 
-"HIDE_BLOCKED_RETWEETS_TITLE" = "隱藏被封鎖帳號的轉推";
-"HIDE_BLOCKED_RETWEETS_DETAIL" = "隱藏封鎖你的帳號所發出的轉推。";
+"HIDE_BLOCKED_RETWEETS_TITLE" = "隱藏受封鎖的轉推";
+"HIDE_BLOCKED_RETWEETS_DETAIL" = "若原推文作者已封鎖你，在時間軸中隱藏該則轉推。";
 
 "PADLOCK_TITLE" = "鎖定 Twitter";
 "PADLOCK_DETAIL" = "開啟時需使用 Face ID 或密碼。";
@@ -93,7 +97,7 @@
 "ALWAYS_OPEN_SAFARI_DETAIL" = "在 Safari 或預設瀏覽器中開啟連結。";
 
 "BLOCK_LINK_TRACKING_TITLE" = "封鎖連結追蹤";
-"BLOCK_LINK_TRACKING_DETAIL" = "直接開啟連結而非透過 t.co，不再有背景 t.co 請求或廣告點擊 ID。Twitter 的不安全連結警告也不會出現。";
+"BLOCK_LINK_TRACKING_DETAIL" = "直接開啟連結而不透過 t.co 轉址，避免背景 t.co 請求或廣告點擊 ID。Twitter 的不安全連結警告也不會顯示。";
 
 "STRIP_TRACKING_PARAMS_TITLE" = "移除追蹤參數";
 "STRIP_TRACKING_PARAMS_DETAIL" = "從你開啟的連結中移除 utm_ 及其他追蹤標籤。";
@@ -101,8 +105,8 @@
 "SHARING_DOMAIN_TITLE" = "分享網域";
 
 /*Tweets*/
-"TWEET_TO_IMAGE_TITLE" = "將推文存為圖片";
-"TWEET_TO_IMAGE_DETAIL" = "長按分享按鈕以圖片格式儲存推文。";
+"TWEET_TO_IMAGE_TITLE" = "將推文儲存為圖片";
+"TWEET_TO_IMAGE_DETAIL" = "長按分享按鈕即可將推文匯出為圖片。";
 
 "LIKE_CONFIRM_TITLE" = "確認按讚";
 "LIKE_CONFIRM_DETAIL" = "按讚前顯示確認提示。";
@@ -129,21 +133,21 @@
 "RESTORE_TWEET_LABELS_DETAIL" = "顯示推文是從哪個客戶端發送的（作者：@nyaathea）。";
 
 "SHOW_ACCOUNT_LOCATION_TITLE" = "顯示帳號位置";
-"SHOW_ACCOUNT_LOCATION_DETAIL" = "在推文頁腳顯示發布該推文的帳號位置。";
+"SHOW_ACCOUNT_LOCATION_DETAIL" = "在推文底部顯示發布該推文帳號的所在位置。";
 
-"HIDE_BLUE_VERIFIED_TITLE" = "隱藏 Blue 驗證徽章";
-"HIDE_BLUE_VERIFIED_DETAIL" = "在推文中隱藏付費驗證徽章。這不包含品牌或政府帳號。";
+"HIDE_BLUE_VERIFIED_TITLE" = "隱藏 Blue 認證徽章";
+"HIDE_BLUE_VERIFIED_DETAIL" = "在推文中隱藏付費認證徽章。不包含企業或政府機構帳號。";
 
-"HIDE_VIEW_COUNT_TITLE" = "隱藏觀看次數";
+"HIDE_VIEW_COUNT_TITLE" = "隱藏查看次數";
 "HIDE_VIEW_COUNT_DETAIL" = "不顯示推文下方的查看次數。";
 
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "停用媒體輪播";
-"DISABLE_MEDIA_CAROUSEL_DETAIL" = "回復多個媒體附件原本的顯示方式。";
+"DISABLE_MEDIA_CAROUSEL_DETAIL" = "還原多個媒體附件原本的排列顯示方式。";
 
 "HIDE_BOOKMARK_BUTTON_TITLE" = "隱藏書籤按鈕";
-"HIDE_BOOKMARK_BUTTON_DETAIL" = "移除推文上的書籤功能。";
+"HIDE_BOOKMARK_BUTTON_DETAIL" = "移除推文下方的書籤按鈕。";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "隱藏倒讚按鈕";
-"HIDE_DOWNVOTE_BUTTON_DETAIL" = "移除推文上的倒讚按鈕。";
+"HIDE_DOWNVOTE_BUTTON_DETAIL" = "移除推文下方的倒讚按鈕。";
 "HIDE_MADE_ON_X_TITLE" = "隱藏「在 X 製作」";
 "HIDE_MADE_ON_X_DETAIL" = "移除推文上「在 X 製作」的標籤。";
 
@@ -160,7 +164,7 @@
 "HIDE_GROK_CREATE_DETAIL" = "移除使用 Grok 建立或編輯圖片和影片的選項。";
 
 "DISABLE_AUTO_TRANSLATE_TITLE" = "停用自動翻譯";
-"DISABLE_AUTO_TRANSLATE_DETAIL" = "不再自動翻譯貼文或簡介。";
+"DISABLE_AUTO_TRANSLATE_DETAIL" = "不再自動翻譯貼文或個人簡介。";
 
 "SQUARE_AVATARS_TITLE" = "方形頭像";
 "SQUARE_AVATARS_DETAIL" = "將所有人的頭像都變成像品牌帳號一樣的方形，就像舊版 Twitter 那樣。";
@@ -168,15 +172,15 @@
 "DEFAULT_REPLY_SORTING_TITLE" = "預設回覆排序";
 "DEFAULT_REPLY_SORTING_DETAIL" = "為所有推文選擇預設的回覆排序方式。";
 
-"REPLY_SORTING_TITLE" = "不排序回覆";
-"REPLY_SORTING_DETAIL" = "停用推文對話中的回覆排序功能。";
+"REPLY_SORTING_TITLE" = "隱藏回覆排序";
+"REPLY_SORTING_DETAIL" = "隱藏推文對話串中的回覆排序按鈕。";
 
-"RESTORE_REPLY_CONTEXT_TITLE" = "還原回覆上下文";
+"RESTORE_REPLY_CONTEXT_TITLE" = "顯示回覆對象";
 "RESTORE_REPLY_CONTEXT_DETAIL" = "在推文下方顯示被回覆的使用者。";
 
 /*Chat*/
-"HIDE_TYPING_INDICATOR_TITLE" = "隱藏正在輸入指示器";
-"HIDE_TYPING_INDICATOR_DETAIL" = "停止向聊天中的其他人傳送「正在輸入…」指示器。";
+"HIDE_TYPING_INDICATOR_TITLE" = "隱藏正在輸入提示";
+"HIDE_TYPING_INDICATOR_DETAIL" = "在聊天室中停止向對方傳送「正在輸入…」的狀態提示。";
 
 "DOWNLOAD_VOICE_MESSAGES_TITLE" = "下載語音訊息";
 "DOWNLOAD_VOICE_MESSAGES_DETAIL" = "播放後可將語音訊息儲存到裝置（用兩根手指長按音訊訊息即可下載）。";
@@ -189,28 +193,28 @@
 "FOLLOW_CONFIRM_DETAIL" = "跟隨前顯示確認視窗。";
 
 "COPY_PROFILE_INFO_TITLE" = "複製個人資料資訊";
-"COPY_PROFILE_INFO_DETAIL" = "一鍵複製用戶名稱、簡介等資訊。";
+"COPY_PROFILE_INFO_DETAIL" = "一鍵複製使用者名稱、簡介等資訊。";
 
 "FAST_BLOCK_TITLE" = "快速封鎖/靜音";
 "FAST_BLOCK_DETAIL" = "無需確認對話框即可封鎖或靜音帳號。";
 
 "DISABLE_ARTICLES_TITLE" = "隱藏「文章」分頁";
-"DISABLE_ARTICLES_DETAIL" = "在個人資料頁面隱藏文章分頁。";
+"DISABLE_ARTICLES_DETAIL" = "在個人檔案頁面隱藏「文章」分頁。";
 
 "DISABLE_HIGHLIGHTS_TITLE" = "隱藏「精選」分頁";
-"DISABLE_HIGHLIGHTS_DETAIL" = "在個人頁面隱藏精選內容。";
+"DISABLE_HIGHLIGHTS_DETAIL" = "在個人檔案頁面隱藏「精選」分頁。";
 
-"HIDE_FOLLOW_BUTTON_TITLE" = "不顯示關注按鈕";
-"HIDE_FOLLOW_BUTTON_DETAIL" = "隱藏推文中的關注按鈕。";
+"HIDE_FOLLOW_BUTTON_TITLE" = "不顯示跟隨按鈕";
+"HIDE_FOLLOW_BUTTON_DETAIL" = "隱藏推文中的「跟隨」按鈕。";
 
 "HIDE_MESSAGE_BUTTON_TITLE" = "不顯示私訊按鈕";
-"HIDE_MESSAGE_BUTTON_DETAIL" = "隱藏推文中的私訊按鈕。";
+"HIDE_MESSAGE_BUTTON_DETAIL" = "隱藏推文中的「私訊」按鈕。";
 
 "RESTORE_FOLLOW_BUTTON_TITLE" = "不顯示訂閱按鈕";
-"RESTORE_FOLLOW_BUTTON_DETAIL" = "隱藏推文和個人資料中的訂閱按鈕。";
+"RESTORE_FOLLOW_BUTTON_DETAIL" = "隱藏推文和個人檔案中的「訂閱」按鈕。";
 
 "SHOW_UNROUNDED_COUNTS_TITLE" = "顯示精確計數";
-"SHOW_UNROUNDED_COUNTS_DETAIL" = "顯示粉絲、跟隨和推文的精確數字，而不是四捨五入到最接近的千或百萬。";
+"SHOW_UNROUNDED_COUNTS_DETAIL" = "顯示跟隨者、正在跟隨和推文的精確數字，而不是四捨五入到最接近的千或百萬。";
 
 /*Search*/
 "NO_HISTORY_TITLE" = "關閉搜尋紀錄";
@@ -225,42 +229,42 @@
 
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "不顯示影片字幕";
 
-"FORCE_TWEET_FULL_FRAME_TITLE" = "顯示大圖";
+"FORCE_TWEET_FULL_FRAME_TITLE" = "顯示完整大圖";
 
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "顯示影片時間";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "在沉浸式播放器中顯示時間戳記。";
 
 "TAP_TO_PAUSE_TITLE" = "點按暫停影片";
-"TAP_TO_PAUSE_DETAIL" = "用兩根手指點按影片即可暫停，而無需使用暫停按鈕。";
+"TAP_TO_PAUSE_DETAIL" = "用兩根手指點按影片即可暫停，無需使用暫停按鈕。";
 
 "DISABLE_IMMERSIVE_SCROLL_TITLE" = "停用影片動態捲動";
 
-"DISABLE_VIDEO_DOCKING_TITLE" = "停用影片停靠";
-"DISABLE_VIDEO_DOCKING_DETAIL" = "拖動影片時不再顯示子母畫面按鈕。";
+"DISABLE_VIDEO_DOCKING_TITLE" = "停用影片懸浮按鈕";
+"DISABLE_VIDEO_DOCKING_DETAIL" = "拖曳關閉影片時不再顯示子母畫面 (PiP) 按鈕。";
 
 /*Twitter Blue*/
 "HIDE_PROMOTED_TITLE" = "不顯示廣告";
 "HIDE_PROMOTED_DETAIL" = "移除所有廣告。";
 
-"UNDO_TWEET_TITLE" = "撤銷推文";
+"UNDO_TWEET_TITLE" = "收回推文";
 
 "DOWNLOAD_VIDEOS_TITLE" = "下載媒體";
-"DOWNLOAD_VIDEOS_DETAIL" = "直接從推文中儲存影片或 GIF。";
+"DOWNLOAD_VIDEOS_DETAIL" = "直接從推文選單中儲存影片或 GIF。";
 
 "DOWNLOAD_HIGHEST_QUALITY_TITLE" = "一律下載最高畫質";
-"DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "跳過畫質選擇器，直接儲存最佳的 MP4。";
+"DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "跳過畫質選擇選單，直接儲存最高畫質的 MP4。";
 
 "DOWNLOAD_ALL_VIDEOS_TITLE" = "下載所有影片";
-"DOWNLOAD_ALL_VIDEOS_DETAIL" = "新增一個下載推文中所有影片的選項。";
+"DOWNLOAD_ALL_VIDEOS_DETAIL" = "新增一鍵下載單則推文中所有影片的選項。";
 
 "UPLOAD_FULL_HD_VIDEOS_TITLE" = "上傳全高畫質影片";
-"UPLOAD_FULL_HD_VIDEOS_DETAIL" = "解鎖以 1080p 上傳影片的能力。";
+"UPLOAD_FULL_HD_VIDEOS_DETAIL" = "解鎖上傳 1080p 高畫質影片的功能。";
 
-"DIRECT_SAVE_TITLE" = "儲存至照片";
-"DIRECT_SAVE_DETAIL" = "儲存的影片將直接進入「照片App」。";
+"DIRECT_SAVE_TITLE" = "儲存至「照片」";
+"DIRECT_SAVE_DETAIL" = "儲存的影片將直接進入「照片」App。";
 
 "HIDE_PREMIUM_OFFER_TITLE" = "不顯示 Blue 提示";
-"HIDE_PREMIUM_OFFER_DETAIL" = "隱藏「獲得認證」和「升級」按鈕。";
+"HIDE_PREMIUM_OFFER_DETAIL" = "隱藏「取得認證」和「升級」按鈕。";
 
 "THEME_OPTION_TITLE" = "更換主題";
 
@@ -283,10 +287,10 @@
 "HIDE_TRENDS_DETAIL" = "在「探索」標籤頁中只顯示搜尋列，隱藏所有趨勢、新聞和頁面分頁。";
 
 "TAB_BAR_THEMING_TITLE" = "經典標籤圖示";
-"TAB_BAR_THEMING_DETAIL" = "將您的主題顏色套用於目前選取的標籤項目。";
+"TAB_BAR_THEMING_DETAIL" = "將你的主題顏色套用於目前選取的標籤項目。";
 
-"DISABLE_RTL_TITLE" = "使用左至右排版";
-"DISABLE_RTL_DETAIL" = "即使為 RTL 語言也強制使用 LTR 佈局。";
+"DISABLE_RTL_TITLE" = "使用由左至右排版";
+"DISABLE_RTL_DETAIL" = "即使是由右至左（RTL）的語言，也強制使用由左至右（LTR）的版面配置。";
 
 "SHOW_SCROLL_INDICATOR_TITLE" = "總是顯示捲動條";
 
@@ -299,7 +303,7 @@
 
 /*Labs*/
 "REPLY_IN_WEBVIEW_TITLE" = "在內建瀏覽器中回覆";
-"REPLY_IN_WEBVIEW_DETAIL" = "在內建瀏覽器中開啟回覆框以避開認證。";
+"REPLY_IN_WEBVIEW_DETAIL" = "當回覆無法傳送時的備用方案。改透過 x.com 網頁版而非應用程式內回覆。";
 
 "LIQUID_GLASS_TITLE" = "啟用 Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "啟用 X 全新的 Liquid Glass 介面。此為實驗性改版，可能會導致問題發生。";
@@ -319,50 +323,50 @@
 
 /*Download*/
 "DOWNLOAD_MENU_TITLE" = "\n選擇影片畫質";
-"FETCHING_PROGRESS_TITLE" = "請稍候...";
+"FETCHING_PROGRESS_TITLE" = "請稍候…";
 "DOWNLOAD_AS_GIF_OPTION_TITLE" = "下載為 GIF";
 "DOWNLOAD_AS_MP4_OPTION_TITLE" = "下載為 MP4";
 "DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "下載所有影片";
 
 /*App icon*/
 "APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "更換圖示失敗";
-"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "macOS 上無法變更圖示，這是 Apple 的限制。";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "受限於 Apple 系統限制，無法在 macOS 上變更應用程式圖示。";
 
 /*Copy profile info*/
-"COPY_PROFILE_INFO_MENU_OPTION_1" = "複製簡介";
+"COPY_PROFILE_INFO_MENU_OPTION_1" = "複製個人簡介";
 "COPY_PROFILE_INFO_MENU_OPTION_2" = "複製使用者名稱";
-"COPY_PROFILE_INFO_MENU_OPTION_3" = "複製完整使用者名稱";
-"COPY_PROFILE_INFO_MENU_OPTION_4" = "複製簡介連結";
-"COPY_PROFILE_INFO_MENU_OPTION_5" = "複製地點";
+"COPY_PROFILE_INFO_MENU_OPTION_3" = "複製顯示名稱";
+"COPY_PROFILE_INFO_MENU_OPTION_4" = "複製網站連結";
+"COPY_PROFILE_INFO_MENU_OPTION_5" = "複製位置";
 "COPY_PROFILE_INFO_MENU_OPTION_6" = "複製個人檔案連結";
 "COPY_PROFILE_INFO_MENU_OPTION_7" = "複製使用者 ID";
 "COPY_PROFILE_INFO_MENU_OPTION_8" = "複製加入日期";
 
 /*Theme*/
 "THEME_SETTINGS_NAVIGATION_TITLE" = "更換主題";
-"THEME_SETTINGS_NAVIGATION_DETAIL" = "選擇僅自己可見的主題顏色。";
+"THEME_SETTINGS_NAVIGATION_DETAIL" = "為你的 Twitter 體驗選擇主題顏色（僅自己可見）。";
 
 /*Tab bar*/
-"CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "自訂功能標籤列";
-"CUSTOM_TAB_BAR_GRID_DETAIL" = "點按目的地可新增或移除。拖曳下方列可重新排序。";
-"CUSTOM_TAB_BAR_RESET_MESSAGE" = "您確定要將導覽列恢復為預設狀態嗎？";
+"CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "自訂導覽列";
+"CUSTOM_TAB_BAR_GRID_DETAIL" = "點按項目即可新增或移除，拖曳下方導覽列即可重新排序。";
+"CUSTOM_TAB_BAR_RESET_MESSAGE" = "你確定要將導覽列恢復為預設狀態嗎？";
 
 /* Restore tab labels */
 "RESTORE_TAB_LABELS_TITLE" = "還原分頁標籤";
-"RESTORE_TAB_LABELS_DETAIL" = "像舊版 Twitter 一樣在標籤列圖示下方顯示標籤。";
+"RESTORE_TAB_LABELS_DETAIL" = "像舊版 Twitter 一樣在標籤列圖示下方顯示標籤名稱。";
 
 "COLOR_TWITTER_ICON_IN_TOP_BAR_TITLE" = "將 X 圖示上色";
-"COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "將主題強調色套用至頂部導覽列的 X 圖示。";
+"COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "將主題強調色套用至頂部導覽列的 Twitter/X 圖示。";
 
-"REFRESH_PILL_TEXT" = "已發文";
-"REFRESH_PILL_LABEL_TITLE" = "在重新整理提示中加入標籤";
-"REFRESH_PILL_LABEL_DETAIL" = "當有人發佈推文時，將標籤加回重新整理提示中。";
+"REFRESH_PILL_TEXT" = "已發佈";
+"REFRESH_PILL_LABEL_TITLE" = "在重新整理提示中加入文字";
+"REFRESH_PILL_LABEL_DETAIL" = "當有人發文時，在頂端浮動的重新整理提示中顯示「已發佈」文字。";
 
 "RESTORE_TWITTER_NAMES_TITLE" = "還原 Twitter 用語";
 "RESTORE_TWITTER_NAMES_DETAIL" = "在整個應用程式介面中，將「X」替換為「Twitter」、「貼文」替換為「推文」、「轉發」替換為「轉推」等等。";
 
 "BLUE_LAUNCH_SCREEN_TITLE" = "還原藍色啟動畫面";
-"BLUE_LAUNCH_SCREEN_DETAIL" = "還原原本的藍色啟動畫面。";
+"BLUE_LAUNCH_SCREEN_DETAIL" = "還原原本的經典藍色啟動畫面。";
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "啟用暗色主題";
@@ -377,8 +381,8 @@
 "HIDE_RETWEETS_TITLE" = "隱藏轉推";
 "HIDE_RETWEETS_DETAIL" = "隱藏時間軸中的轉推。";
 
-"HIDE_VERIFIED_TWEETS_TITLE" = "隱藏已驗證帳號的推文";
-"HIDE_VERIFIED_TWEETS_DETAIL" = "在時間軸和回覆中隱藏已驗證帳號的推文，除非作者在同一討論串中回覆了他們或你追蹤了該帳號。";
+"HIDE_VERIFIED_TWEETS_TITLE" = "隱藏認證帳號的推文";
+"HIDE_VERIFIED_TWEETS_DETAIL" = "在時間軸和回覆中隱藏認證帳號的推文，除非作者在同一討論串中回覆了他們，或你已跟隨該帳號。";
 
 "HIDE_TWEET_BUTTON_TITLE" = "隱藏發文按鈕";
 "HIDE_TWEET_BUTTON_DETAIL" = "從導覽列中移除發文按鈕。";
@@ -388,11 +392,11 @@
 
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "這裡暫時沒有內容";
-"MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "此區塊即將推出。敬請期待更多 NeoFreeBird 的新功能！";
+"MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "此區塊即將推出，敬請期待更多 NeoFreeBird 的新功能！";
 
-"SOURCE_UNAVAILABLE" = "來源無法使用";
+"SOURCE_UNAVAILABLE" = "無法取得來源";
 
-"LOCATION_UNAVAILABLE" = "位置無法使用";
+"LOCATION_UNAVAILABLE" = "無法取得位置";
 
 "CONTRIBUTOR_PAGE_SECTION_HEADER_TITLE" = "貢獻者";
 
@@ -411,8 +415,8 @@
 "FONT_SYSTEM_DEFAULT_SUBTITLE" = "系統預設";
 
 /*Legacy login*/
-"LEGACY_LOGIN_INFO_LABEL" = "使用使用者名稱和密碼登入。\n\n不支援 Google 和 Apple 登入。如果你的帳號使用其中之一，請先為其設定密碼。";
-"LEGACY_LOGIN_MISSING_INPUT_TITLE" = "缺少輸入";
+"LEGACY_LOGIN_INFO_LABEL" = "使用你的使用者名稱和密碼登入。\n\n不支援 Google 和 Apple 帳號登入。如果你的帳號使用上述方式登入，請先為帳號設定一組密碼。";
+"LEGACY_LOGIN_MISSING_INPUT_TITLE" = "缺少登入資訊";
 "LEGACY_LOGIN_MISSING_INPUT_MESSAGE" = "請輸入使用者名稱和密碼。";
 "LEGACY_LOGIN_VERIFYING_STATUS" = "驗證中…";
 "LEGACY_LOGIN_SIGNING_IN_STATUS" = "登入中…";
@@ -422,18 +426,18 @@
 "LOG_IN_ACTION_LABEL" = "登入";
 "LOG_IN_TITLE" = "登入";
 "LEGACY_LOGIN_CLASSES_MISSING_MESSAGE" = "缺少登入相關類別。";
-"LEGACY_LOGIN_BUILD_COMMAND_FAILED_MESSAGE" = "無法建立指令。";
-"LEGACY_LOGIN_CRASH_AVOIDED_TITLE" = "已避免當機";
-"LEGACY_LOGIN_UNEXPECTED_RESPONSE_TITLE" = "意外的回應";
-"LEGACY_LOGIN_NO_TOKEN_NO_CHALLENGE_MESSAGE" = "既沒有權杖也沒有驗證挑戰。";
-"LEGACY_LOGIN_CHALLENGE_MISSING_INFO_MESSAGE" = "驗證挑戰缺少請求 ID 或 URL。";
-"LEGACY_LOGIN_CHALLENGE_CLASSES_MISSING_MESSAGE" = "缺少驗證挑戰/主機相關類別。";
-"LEGACY_LOGIN_BUILD_CHALLENGE_FAILED_MESSAGE" = "無法建立驗證挑戰。";
-"LEGACY_LOGIN_NO_TOKEN_MESSAGE" = "回應中沒有權杖。";
+"LEGACY_LOGIN_BUILD_COMMAND_FAILED_MESSAGE" = "無法建立登入指令。";
+"LEGACY_LOGIN_CRASH_AVOIDED_TITLE" = "已防止閃退";
+"LEGACY_LOGIN_UNEXPECTED_RESPONSE_TITLE" = "非預期的回應";
+"LEGACY_LOGIN_NO_TOKEN_NO_CHALLENGE_MESSAGE" = "未收到權杖 (Token) 或驗證要求。";
+"LEGACY_LOGIN_CHALLENGE_MISSING_INFO_MESSAGE" = "驗證要求缺少請求 ID 或網址。";
+"LEGACY_LOGIN_CHALLENGE_CLASSES_MISSING_MESSAGE" = "缺少驗證要求／主機相關類別。";
+"LEGACY_LOGIN_BUILD_CHALLENGE_FAILED_MESSAGE" = "無法建立驗證要求。";
+"LEGACY_LOGIN_NO_TOKEN_MESSAGE" = "回應中沒有權杖 (Token)。";
 "LEGACY_LOGIN_FAILED_TITLE" = "登入失敗";
-"LEGACY_LOGIN_NO_ACCOUNT_MESSAGE" = "未傳回任何帳號。";
-"LEGACY_LOGIN_RATE_LIMITED_TITLE" = "可能觸發了速率限制（243）";
-"LEGACY_LOGIN_RATE_LIMITED_MESSAGE" = "嘗試次數過多。請稍後再試，或更換網路/VPN。\n\n詳情：\n%@";
+"LEGACY_LOGIN_NO_ACCOUNT_MESSAGE" = "未傳回任何帳號資料。";
+"LEGACY_LOGIN_RATE_LIMITED_TITLE" = "可能已達頻率限制 (243)";
+"LEGACY_LOGIN_RATE_LIMITED_MESSAGE" = "嘗試次數過多。請稍後再試，或切換網路／VPN 後重試。\n\n詳細資訊：\n%@";
 "LEGACY_LOGIN_UNKNOWN_ERROR" = "未知錯誤";
 
 "DOWNLOAD_ACTIVITY_VIEW_LABEL" = "下載媒體";
@@ -443,11 +447,11 @@
 "SUBSCRIPTION_APP_ICON_SETTINGS_TITLE" = "更換 App 圖示";
 "SUBSCRIPTION_APP_ICON_SETTINGS_DETAIL" = "為裝置主畫面選擇自訂 App 圖示。隨時可以變更。";
 
-"SUBSCRIPTION_TAB_CUSTOMIZATION_RESTORE_BUTTON_TITLE" = "還原預設";
-"Restore to default" = "還原預設";
+"SUBSCRIPTION_TAB_CUSTOMIZATION_RESTORE_BUTTON_TITLE" = "還原預設值";
+"Restore to default" = "還原預設值";
 
-"SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "撤銷時長";
-"SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "選擇發送推文後撤銷按鈕保留的時間。";
+"SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "收回推文時限";
+"SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "選擇發送推文後，「收回」按鈕保留顯示的秒數。";
 
 /*Presets — settings import and export*/
 "SETTINGS_EXPORT_TITLE" = "匯出設定";
@@ -463,7 +467,7 @@
 "CUSTOM_SEND_SOUND_TITLE" = "匯入傳送音效";
 "CUSTOM_SEND_SOUND_DEFAULT" = "未選擇自訂音效";
 "CUSTOM_SEND_SOUND_FAILED_TITLE" = "傳送音效匯入失敗";
-"CUSTOM_SEND_SOUND_TOO_LONG" = "你選擇的音效太長。必須為 7 秒或更短。";
+"CUSTOM_SEND_SOUND_TOO_LONG" = "你選擇的音效太長，長度必須在 7 秒以內。";
 
 "SETTINGS_EXPORT_FAILED_TITLE" = "匯出失敗";
 "SETTINGS_EXPORT_WRITE_FAILED" = "無法建立設定檔案。";
@@ -472,13 +476,13 @@
 "SETTINGS_IMPORT_CONFIRM_MESSAGE" = "你目前的 NeoFreeBird 設定將被所選檔案中的設定取代。";
 "SETTINGS_IMPORT_CONFIRM_BUTTON" = "選擇檔案";
 "SETTINGS_IMPORT_FAILED_TITLE" = "匯入失敗";
-"SETTINGS_IMPORT_SUCCESS_TITLE" = "設定已匯入";
+"SETTINGS_IMPORT_SUCCESS_TITLE" = "已匯入設定";
 "SETTINGS_IMPORT_SUCCESS_MESSAGE" = "已套用 %ld 項設定。重新啟動應用程式使所有設定生效。";
 "SETTINGS_IMPORT_RESTART_BUTTON" = "重新啟動";
 "SETTINGS_IMPORT_LATER_BUTTON" = "稍後";
 
 "SETTINGS_TRANSFER_UNREADABLE_FILE" = "無法讀取該檔案。";
-"SETTINGS_TRANSFER_MALFORMED_FILE" = "該檔案不是 NeoFreeBird 設定匯出檔案。";
+"SETTINGS_TRANSFER_MALFORMED_FILE" = "該檔案不是有效的 NeoFreeBird 設定匯出檔。";
 "SETTINGS_TRANSFER_NO_SETTINGS" = "該檔案不包含此版本可識別的設定。";
 
 /*Common UI Elements & Time Selectors*/
@@ -493,3 +497,6 @@
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "關閉";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld 秒";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "歡迎使用！";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "請確認你是從官方 GitHub 安裝 NeoFreeBird。若使用其他來源的 IPA，我們不僅無法協助排解問題，這類版本也可能暗藏惡意程式碼。如有任何疑問，請至 GitHub 提交 Issue。";
