@@ -20,6 +20,7 @@
 #import "CustomTabBar/CustomTabBarUtility.h"
 #import "Download/DownloadInlineButton.h"
 #import "Headers/TWHeaders.h"
+#import "Headers/XHeaders.h"
 #import "Padlock/AuthViewController.h"
 #import "Settings/ModernSettingsViewController.h"
 #import "ThemeColor/BHTDimPalette.h"
@@ -75,5 +76,8 @@ BOOL isCookieLoginUserID(NSString* userID);
 // requests such as restoring tweet source labels (WebCreateTweet.x)
 NSDictionary* currentWebCredentials(void);
 
-// Restored tweet source labels, keyed by tweet ID (SourceLabels.x)
-extern NSMutableDictionary* tweetSources;
+BOOL nfb_boolIvar(id object, const char* name, BOOL fallback);
+
+void nfb_setBoolIvar(id object, const char* name, BOOL value);
+
+id nfb_objectIvar(id object, const char* name);

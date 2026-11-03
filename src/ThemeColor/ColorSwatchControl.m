@@ -11,6 +11,7 @@ static const CGFloat kSelectionRingWidth = 2.0;
 
 @interface ColorSwatchControl ()
 @property (nonatomic, strong) UIView* circleView;
+@property (nonatomic, strong) UIColor* storedSwatchColor;
 @end
 
 @implementation ColorSwatchControl
@@ -37,7 +38,13 @@ static const CGFloat kSelectionRingWidth = 2.0;
 }
 
 - (void)setSwatchColor:(UIColor*)color {
-    self.circleView.backgroundColor = color;
+    self.storedSwatchColor = color;
+    [self updateCircleColor];
+}
+
+- (void)updateCircleColor {
+    UIColor* resolved = [self.storedSwatchColor resolvedColorWithTraitCollection:self.traitCollection];
+    self.circleView.layer.backgroundColor = resolved.CGColor;
 }
 
 - (void)setSwatchSelected:(BOOL)selected {
@@ -48,6 +55,7 @@ static const CGFloat kSelectionRingWidth = 2.0;
 
 - (void)traitCollectionDidChange:(UITraitCollection*)previousTraitCollection {
     [super traitCollectionDidChange:previousTraitCollection];
+    [self updateCircleColor];
     // Keep the ring colour resolved for the current light/dark appearance.
     if (self.circleView.layer.borderWidth > 0) {
         self.circleView.layer.borderColor = [UIColor labelColor].CGColor;

@@ -160,3 +160,23 @@ NSString* formatNumberWithSuffix(long long number) {
 bool NFBLiquidGlassEnabled(void) {
     return [BHTSettings boolForKey:@"liquid_glass"];
 }
+
+BOOL nfb_boolIvar(id object, const char* name, BOOL fallback) {
+    Ivar ivar = class_getInstanceVariable(object_getClass(object), name);
+    if (!ivar) {
+        return fallback;
+    }
+    return *(BOOL*)((uint8_t*)(__bridge void*)object + ivar_getOffset(ivar));
+}
+
+void nfb_setBoolIvar(id object, const char* name, BOOL value) {
+    Ivar ivar = class_getInstanceVariable(object_getClass(object), name);
+    if (ivar) {
+        *(BOOL*)((uint8_t*)(__bridge void*)object + ivar_getOffset(ivar)) = value;
+    }
+}
+
+id nfb_objectIvar(id object, const char* name) {
+    Ivar ivar = class_getInstanceVariable(object_getClass(object), name);
+    return ivar ? object_getIvar(object, ivar) : nil;
+}
