@@ -53,10 +53,12 @@ static NSString* const BHTNativeSelectionsKey = @"bh_native_tab_selections";
     @synchronized(self) {
         id saved = [self.defaults objectForKey:BHTNativeSelectionsKey];
         NSMutableDictionary* selections = [saved isKindOfClass:NSDictionary.class]
-                                             ? [saved mutableCopy] : [NSMutableDictionary new];
+                                              ? [saved mutableCopy]
+                                              : [NSMutableDictionary new];
         id savedAccount = selections[accountID];
         NSMutableDictionary* account = [savedAccount isKindOfClass:NSDictionary.class]
-                                          ? [savedAccount mutableCopy] : [NSMutableDictionary new];
+                                           ? [savedAccount mutableCopy]
+                                           : [NSMutableDictionary new];
         if (data) {
             account[key] = [data copy];
         } else {

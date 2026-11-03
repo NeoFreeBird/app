@@ -92,15 +92,16 @@
 @end
 
 @interface T1TabView : UIView
-@property (readonly, nonatomic) UILabel* titleLabel;
 @property (readonly, nonatomic) long long panelID;
 @property (copy, nonatomic) NSString* scribePage;
 @property (readonly, nonatomic) NSString* title;
 @property (readonly, nonatomic) NSString* imageName;
+@property (readonly, nonatomic) UIImageView* imageView;
+@property (readonly, nonatomic) UIView* transformContainer;
 @property (retain, nonatomic) UIColor* iconColor;
 @property (readonly, nonatomic, getter=isSelected) BOOL selected;
-- (void)_t1_updateTitleLabel;
 - (void)_t1_updateImageViewAnimated:(BOOL)animated;
+- (void)applyTintColor:(UIColor*)color;
 @end
 
 @interface T1TabBarViewController : UIViewController
@@ -392,5 +393,28 @@
 - (void)showBlockAlertForContext:(id)context;
 @end
 
-@interface _TtC14T1TwitterSwift28FleetLineAccessoryController: NSObject
+@interface _TtC14T1TwitterSwift28FleetLineAccessoryController : NSObject
+@end
+
+@interface T1AppSplitViewController : UIViewController
+@property (nonatomic, readonly) UIViewController* extendedContentViewController;
+@property (nonatomic, weak) id delegate;
+@property (nonatomic) BOOL displaySideBar;
+- (void)setDisplayExtendedContent:(BOOL)display animated:(BOOL)animated;
+- (NSInteger)private_splitModeForSize:(CGSize)size
+               displayExtendedContent:(BOOL)display
+                       displaySideBar:(BOOL)sideBar;
+@end
+
+@interface T1ExtendedContentNavigationController : TFNNavigationController
+@end
+
+@interface T1TabNavigationController : TFNNavigationController
+@end
+
+@interface PaymentsButtonViewModel : NSObject
+@end
+
+@interface T1StatusEditedOnXLabelAdapter: NSObject
+- (_Bool)shouldBeVisibleForViewModel:(id)model;
 @end

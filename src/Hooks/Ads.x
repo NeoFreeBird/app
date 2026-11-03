@@ -10,9 +10,12 @@
 // timeline surface (home, profile, search, conversations) regardless of whether
 // it renders through a table view or the newer diffable collection view path.
 
-// The promoted state of a status item is only reachable through its Swift-side
-// `status` stored property, which is still registered as an ObjC ivar.
 static BOOL StatusItemIsPromoted(id item) {
+    SEL isPromoted = @selector(isPromoted);
+    if ([item respondsToSelector:isPromoted] && [item isPromoted]) {
+        return YES;
+    }
+
     Ivar statusIvar = class_getInstanceVariable([item class], "status");
     if (!statusIvar) {
         return NO;
@@ -46,21 +49,24 @@ static BOOL ShouldHideItem(id item, NSString* location) {
     NSString* className = NSStringFromClass([item classForCoder]);
 
     if ([BHTSettings boolForKey:@"hide_promoted"]) {
-        if ([item
-                isKindOfClass:objc_getClass("T1URTTimelineStatusItemViewModel")] &&
-            StatusItemIsPromoted(item)) {
+        // Treat the model's promotion flag as authoritative. The concrete
+        // status-item class has changed across app versions, so don't gate
+        // this check on a runtime class name.
+        if (StatusItemIsPromoted(item)) {
+            return YES;
+        }
+
+        BOOL isExplorePromotion =
+            [className isEqualToString:@"TwitterURT.URTTimelineTrendViewModel"] ||
+            [className
+                isEqualToString:@"TwitterURT.URTTimelineEventSummaryViewModel"];
+        if (isExplorePromotion &&
+            (ScribeItemIsPromoted(item) || ItemHasPromotedContent(item))) {
             return YES;
         }
 
         if ([className
                 isEqualToString:@"TwitterURT.URTTimelineGoogleNativeAdViewModel"]) {
-            return YES;
-        }
-
-        if (([className isEqualToString:@"TwitterURT.URTTimelineTrendViewModel"] ||
-             [className
-                 isEqualToString:@"TwitterURT.URTTimelineEventSummaryViewModel"]) &&
-            (ScribeItemIsPromoted(item) || ItemHasPromotedContent(item))) {
             return YES;
         }
     }

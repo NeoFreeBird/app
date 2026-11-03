@@ -14,7 +14,6 @@
 typedef void (*BHTRestoreTabIdentifiersFunction)(
     void* settings __attribute__((swift_context))) __attribute__((swiftcall));
 
-static char BHTRestoredNativeTabsKey;
 static __thread BOOL BHTSavingNativeTabs = NO;
 static __thread BOOL BHTRestoringNativeTabs = NO;
 
@@ -25,7 +24,6 @@ static NSString* BHTTabAccountID(id object) {
     id accountID = ((id (*)(id, SEL))objc_msgSend)(object, @selector(accountID));
     return [accountID isKindOfClass:NSString.class] ? accountID : nil;
 }
-
 
 static id BHTTabObjectField(id object, const char* name) {
     if (!object) {
@@ -105,8 +103,7 @@ static void BHTRestoreNativeTabSelection(id controller) {
     }
     id account = ((id (*)(id, SEL))objc_msgSend)(navigation, @selector(account));
     NSString* accountID = BHTTabAccountID(account);
-    if (accountID.length == 0 ||
-        [objc_getAssociatedObject(controller, &BHTRestoredNativeTabsKey) isEqual:accountID]) {
+    if (accountID.length == 0) {
         return;
     }
     BHTRestoreTabIdentifiersFunction restore = (BHTRestoreTabIdentifiersFunction)dlsym(
@@ -125,7 +122,7 @@ static void BHTRestoreNativeTabSelection(id controller) {
     id settings = BHTPrepareNativeTabSave(editor);
     if (settings) {
         // Supply the explicitly saved blob even if startup already cleared X's
-        // copy. Native code decodes it and publishes it to the glass controller.
+        // copy. Native code decodes it and publishes the selected identifiers.
         BOOL saved = BHTRestoringNativeTabs;
         BHTRestoringNativeTabs = YES;
         @try {
@@ -133,8 +130,10 @@ static void BHTRestoreNativeTabSelection(id controller) {
         } @finally {
             BHTRestoringNativeTabs = saved;
         }
-        objc_setAssociatedObject(controller, &BHTRestoredNativeTabsKey, accountID,
-                                 OBJC_ASSOCIATION_COPY_NONATOMIC);
+        if ([controller isKindOfClass:NSClassFromString(@"T1TabbedAppNavigationViewController")] &&
+            [controller respondsToSelector:@selector(recalculateVisiblePanels)]) {
+            ((void (*)(id, SEL))objc_msgSend)(controller, @selector(recalculateVisiblePanels));
+        }
     }
 }
 
@@ -160,15 +159,18 @@ static void BHTRestoreNativeTabSelection(id controller) {
     if (BHTSavingNativeTabs &&
         [BHTNativeTabSelectionStore isNativeTabSettingsKey:key]) {
         [[BHTNativeTabSelectionStore sharedStore]
-            saveData:value forAccountID:BHTTabAccountID(self) settingsKey:key];
+                saveData:value
+            forAccountID:BHTTabAccountID(self)
+             settingsKey:key];
     }
 }
 
 - (id)objectForKey:(id)key {
-    if (BHTRestoringNativeTabs &&
-        [BHTNativeTabSelectionStore isNativeTabSettingsKey:key]) {
+    if ([BHTNativeTabSelectionStore isNativeTabSettingsKey:key] &&
+        (BHTRestoringNativeTabs || [CustomTabBarUtility usesNativeEditor])) {
         NSData* saved = [[BHTNativeTabSelectionStore sharedStore]
-            dataForAccountID:BHTTabAccountID(self) settingsKey:key];
+            dataForAccountID:BHTTabAccountID(self)
+                 settingsKey:key];
         if (saved) {
             return saved;
         }
@@ -179,6 +181,66 @@ static void BHTRestoreNativeTabSelection(id controller) {
 %end
 
 %hook _TtC14T1TwitterSwift34XTabbedAppNavigationViewController
+
+- (void)viewDidLoad {
+    %orig;
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(nfb_restoreNativeTabsAfterActivation:)
+               name:UIApplicationDidBecomeActiveNotification
+             object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
+    %orig;
+}
+
+%new
+- (void)nfb_restoreNativeTabsAfterActivation:(NSNotification*)notification {
+    id controller = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BHTRestoreNativeTabSelection(controller);
+    });
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    %orig;
+    id controller = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BHTRestoreNativeTabSelection(controller);
+    });
+}
+
+%end
+
+%hook T1TabbedAppNavigationViewController
+
+- (void)viewDidLoad {
+    %orig;
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(nfb_restoreNativeTabsAfterActivation:)
+               name:UIApplicationDidBecomeActiveNotification
+             object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidBecomeActiveNotification
+                                                  object:nil];
+    %orig;
+}
+
+%new
+- (void)nfb_restoreNativeTabsAfterActivation:(NSNotification*)notification {
+    id controller = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        BHTRestoreNativeTabSelection(controller);
+    });
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     %orig;
@@ -206,7 +268,17 @@ static void BHTRestoreNativeTabSelection(id controller) {
     } @finally {
         BHTSavingNativeTabs = saved;
     }
+    id host = ((id (*)(id, SEL))objc_msgSend)(
+        NSClassFromString(@"T1HostViewController"), @selector(sharedHostViewController));
+    id navigation = [host respondsToSelector:@selector(appNavigation)]
+                        ? ((id (*)(id, SEL))objc_msgSend)(host, @selector(appNavigation))
+                        : nil;
+    if ([navigation isKindOfClass:NSClassFromString(@"T1TabbedAppNavigation")] &&
+        [navigation respondsToSelector:@selector(recalculateVisiblePanels)]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            ((void (*)(id, SEL))objc_msgSend)(navigation, @selector(recalculateVisiblePanels));
+        });
+    }
 }
 
 %end
-

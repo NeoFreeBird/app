@@ -191,10 +191,7 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @NO;
     }
 
-    if ([key isEqualToString:@"grok_ask_grok_button_under_post_focal_enabled"]
-    || [key isEqualToString:@"grok_ask_grok_button_under_post_preview_enabled"]
-    || [key isEqualToString:@"xchat_ask_grok_enabled"]
-    || [key isEqualToString:@"grok_explain_text_selection_ask_grok_enabled"]) {
+    if ([key isEqualToString:@"grok_ask_grok_button_under_post_focal_enabled"] || [key isEqualToString:@"grok_ask_grok_button_under_post_preview_enabled"] || [key isEqualToString:@"xchat_ask_grok_enabled"] || [key isEqualToString:@"grok_explain_text_selection_ask_grok_enabled"]) {
         return @NO;
     }
 
@@ -228,9 +225,11 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @(![BHTSettings boolForKey:@"reply_sorting"]);
     }
 
-    if ([key
-            isEqualToString:@"ios_tweet_detail_overflow_in_navigation_enabled"]) {
+    if ([key isEqualToString:@"ios_tweet_detail_overflow_in_navigation_enabled"]) {
         return @NO;
+    }
+    if ([key isEqualToString:@"ios_ipad_phone_navigation_enabled"]) {
+        return (is_iPad() && ![BHTSettings boolForKey:@"liquid_glass"]) ? @NO : @YES;
     }
 
     if ([key isEqualToString:
@@ -246,8 +245,7 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         }
     }
 
-    if ([key isEqualToString:@"ios_liquid_glass_redesign_enabled"] ||
-        [key isEqualToString:@"ios_liquid_glass_redesign_quick_composer_enabled"] ||
+    if ([key hasPrefix:@"ios_liquid_glass"] ||
         [key isEqualToString:@"xchat_liquid_glass_convo_header_enabled"]) {
         if ([BHTSettings boolForKey:@"liquid_glass"]) {
             return @YES;
@@ -264,8 +262,7 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @YES;
     }
 
-    if ([key isEqualToString:@"ios_alert_block_user_enabled"]
-    || [key isEqualToString:@"ios_alert_mute_user_enabled"]) {
+    if ([key isEqualToString:@"ios_alert_block_user_enabled"] || [key isEqualToString:@"ios_alert_mute_user_enabled"]) {
         return [BHTSettings boolForKey:@"fast_block"] ? @NO : nil;
     }
 
@@ -551,6 +548,10 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
 // MARK: - Typed feature switch accessors
 
 %hook TFSAccountFeatureSwitches
+
+- (BOOL)isAutoplayBackgroundAudioSuppressionEnabled {
+    return NO;
+}
 
 // Sets the scroll indicator in -[TFNDataViewController loadView]; the read
 // bypasses the boolForKey: funnels above via a Swift access-once provider.
@@ -971,6 +972,53 @@ static NSArray* panelIDsForDashSnapshot(NSArray* panelIDs) {
 
 - (BOOL)isUploadFullHDVideoEnabledByDefault {
     return [BHTSettings boolForKey:@"upload_full_hd_videos"] ? YES : %orig;
+}
+
+%end
+
+static __thread NSUInteger NFBLiquidGlassInstallationDepth;
+
+%hook T1LiquidGlassGateInstaller
+
++ (void)installGateForAccount:(id)account {
+    // After 12.38, we need to make sure the app thinks the Liquid Glass experiment is enabled.
+    NFBLiquidGlassInstallationDepth++;
+    @try {
+        %orig(account);
+    } @finally {
+        NFBLiquidGlassInstallationDepth--;
+    }
+
+    // In 12.38 this selector got removed, so this is to prevent a crash
+    SEL install = @selector(installGateWithRedesignEnabled:);
+    if ([self respondsToSelector:install]) {
+        ((void (*)(id, SEL, BOOL))objc_msgSend)(self, install, NFBLiquidGlassEnabled());
+    }
+}
+
+%end
+
+%hook TFNTwitterAccount
+
+- (BOOL)isDummyTest1FeatureEnabled {
+    return NFBLiquidGlassInstallationDepth ? NFBLiquidGlassEnabled() : %orig;
+}
+
+%end
+
+%hook _TtC14T1TwitterSwift27LiquidGlassRedesignFeatures
+
+- (instancetype)initWithFeatureSwitches:(id)switches
+                isSecondFactorSatisfied:(BOOL)satisfied {
+    return %orig(switches, NFBLiquidGlassEnabled());
+}
+
+- (BOOL)isRedesignEnabled {
+    return NFBLiquidGlassEnabled();
+}
+
++ (BOOL)isQuickComposerEnabledWithFeatureSwitches:(id)switches {
+    return NFBLiquidGlassEnabled();
 }
 
 %end

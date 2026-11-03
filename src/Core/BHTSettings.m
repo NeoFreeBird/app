@@ -31,7 +31,9 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                     @{@"key": @"no_focus_lost",
                       @"default": @NO},
                     @{@"key": @"show_scroll_indicator",
-                      @"default": @NO}
+                      @"default": @NO},
+                    @{@"key": @"ipad_split_view",
+                      @"default": @YES}
                 ]
             },
             @"appearance": @{
@@ -89,6 +91,8 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                       @"default": @YES},
                     @{@"key": @"hide_timeline_prompts",
                       @"default": @YES},
+                    @{@"key": @"hide_videos_for_you",
+                      @"default": @NO},
                     @{@"key": @"hide_spaces",
                       @"default": @NO},
                     @{@"key": @"hide_custom_timelines",
@@ -101,6 +105,8 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                     @{@"key": @"hide_blocked_retweets",
                       @"default": @NO},
                     @{@"key": @"hide_tweet_button",
+                      @"default": @NO},
+                    @{@"key": @"hide_quick_compose",
                       @"default": @NO},
                     @{@"key": @"hide_retweets",
                       @"default": @NO},
@@ -313,6 +319,11 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                         @"type": @"toggle"
                     },
                     @{
+                        @"key": @"hide_made_on_x",
+                        @"default": @NO,
+                        @"type": @"toggle"
+                    },
+                    @{
                         @"key": @"use_tenor_gifs",
                         @"default": @NO,
                         @"type": @"toggle"
@@ -335,11 +346,6 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                     @{
                         @"key": @"show_account_location",
                         @"default": @YES,
-                        @"type": @"toggle"
-                    },
-                    @{
-                        @"key": @"restore_tweet_labels",
-                        @"default": @NO,
                         @"type": @"toggle"
                     },
                     @{

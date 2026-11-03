@@ -108,11 +108,13 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
     id account = nil;
     if (argumentType && argumentType[0] == '@') {
         account = [(id<WebLoginObjectUserIDAccount>)[accountClass alloc]
-            initWithUsername:username userID:@(userID)];
+            initWithUsername:username
+                      userID:@(userID)];
     } else if (argumentType && (argumentType[0] == 'q' || argumentType[0] == 'Q' ||
                                 argumentType[0] == 'l' || argumentType[0] == 'L')) {
         account = [(id<WebLoginIntegerUserIDAccount>)[accountClass alloc]
-            initWithUsername:username userID:userID];
+            initWithUsername:username
+                      userID:userID];
     }
     if (argumentType) free((void*)argumentType);
     return account;
@@ -201,10 +203,11 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
     [super viewDidAppear:animated];
     if (self.finished || self.pollTimer) return;
     __weak typeof(self) weakSelf = self;
-    self.pollTimer = [NSTimer scheduledTimerWithTimeInterval:1.5 repeats:YES
-                                                     block:^(__unused NSTimer* timer) {
-        [weakSelf checkForSession];
-    }];
+    self.pollTimer = [NSTimer scheduledTimerWithTimeInterval:1.5
+                                                     repeats:YES
+                                                       block:^(__unused NSTimer* timer) {
+                                                           [weakSelf checkForSession];
+                                                       }];
     [self checkForSession];
 }
 
