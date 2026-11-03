@@ -92,15 +92,16 @@
 @end
 
 @interface T1TabView : UIView
-@property (readonly, nonatomic) UILabel* titleLabel;
 @property (readonly, nonatomic) long long panelID;
 @property (copy, nonatomic) NSString* scribePage;
 @property (readonly, nonatomic) NSString* title;
 @property (readonly, nonatomic) NSString* imageName;
+@property (readonly, nonatomic) UIImageView* imageView;
+@property (readonly, nonatomic) UIView* transformContainer;
 @property (retain, nonatomic) UIColor* iconColor;
 @property (readonly, nonatomic, getter=isSelected) BOOL selected;
-- (void)_t1_updateTitleLabel;
 - (void)_t1_updateImageViewAnimated:(BOOL)animated;
+- (void)applyTintColor:(UIColor*)color;
 @end
 
 @interface T1TabBarViewController : UIViewController
@@ -412,4 +413,8 @@
 @end
 
 @interface PaymentsButtonViewModel : NSObject
+@end
+
+@interface T1StatusEditedOnXLabelAdapter: NSObject
+- (_Bool)shouldBeVisibleForViewModel:(id)model;
 @end

@@ -324,3 +324,11 @@
 }
 
 %end
+
+%hook T1StatusEditedOnXLabelAdapter
+
+- (BOOL)shouldBeVisibleForViewModel:(id)viewModel {
+    return [BHTSettings boolForKey:@"hide_made_on_x"] ? NO : %orig;
+}
+
+%end

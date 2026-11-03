@@ -242,7 +242,8 @@ static NSError* BHTTransferError(BHTSettingsTransferErrorCode code, NSString* me
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 
     if ([keys containsObject:kAccentColorKey]) {
-        changeTwitterColor([defaults integerForKey:kAccentColorKey]);
+        NSInteger option = [defaults integerForKey:kAccentColorKey];
+        changeTwitterColor(option == -1 ? 0 : option);
     }
 
     if ([keys containsObject:kAppIconKey] &&
