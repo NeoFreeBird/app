@@ -74,6 +74,9 @@ MODERN_SETTINGS_SEARCH_SUBTITLE" = "「話題を検索」タブに表示され�
 "NO_FOCUS_LOST_TITLE" = "フォーカスを維持";
 "NO_FOCUS_LOST_DETAIL" = "別のアプリに切り替えたことをXが検知するのをブロックするため、スレッド内で読んでいた位置を見失うことがなくなります。";
 
+"IPAD_SPLIT_VIEW_TITLE" = "iPadの分割表示を有効にする";	
+"IPAD_SPLIT_VIEW_DETAIL" = "iPad（およびiPhone Duo）でTwitterを分割表示で使用できるようになります。これにより、画面の片側でツイートを開いたまま、もう片側でタイムラインを表示しておくことができます。";
+
 "HIDE_TIMELINE_PROMPTS_TITLE" = "タイムラインの案内を非表示";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "「連絡先を追加」などの案内バナーを非表示にします。";
 "HIDE_VIDEOS_FOR_YOU_TITLE" = "「おすすめ動画」を非表示";
@@ -143,6 +146,8 @@ MODERN_SETTINGS_SEARCH_SUBTITLE" = "「話題を検索」タブに表示され�
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "ポストに表示されるブックマークボタンを非表示にします。";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "低評価ボタンを非表示";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "ポストに表示される低評価ボタンを非表示にします。";
+"HIDE_MADE_ON_X_TITLE" = "「Made on X」を非表示";	
+"HIDE_MADE_ON_X_DETAIL" = "ツイートから「Made on X」のラベルを削除します。";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "センシティブ警告を非表示";
 
@@ -490,3 +495,6 @@ MODERN_SETTINGS_SEARCH_SUBTITLE" = "「話題を検索」タブに表示され�
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "オフ";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld秒";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "ようこそ！";	
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "NeoFreeBirdが公式のGitHubからインストールされていることをご確認ください。他の配布元（IPA）による問題についてはサポートいたしかねます。また、お使いのバージョンに悪意のあるコードが含まれていないか確認できません。ご不明な点がございましたら、GitHubでIssuesを作成してお問い合わせください。";
