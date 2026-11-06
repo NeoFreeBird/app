@@ -3,51 +3,58 @@
 //  NeoFreeBird
 //
 
+#import "Core/BHTTerminology.h"
 #import "HookHelpers.h"
 
 // MARK: - Restore Twitter terminology
-// Two layers, both driven by locale files in the tweak bundle:
+// Three layers, driven by locale files in the tweak bundle:
 //   1. RenameOverrides.strings — Twitter localization key -> exact replacement,
 //      a missing key falls through to the generic replacement
-//   2. RenameWords.strings — generic word replacements ("X" -> "Twitter",
+//   2. RenamePhrases.strings — exact source text -> complete translated phrase.
+//   3. RenameWords.strings — generic word replacements ("X" -> "Twitter",
 //      "Post" -> "Tweet", etc.) applied to localized and server-side strings
-// Both are strictly per-language: a language without its own copy of a file
-// gets no renaming from that layer, rather than English rules applied to
-// non-English text.
+
+// Foundation may localize an error while loading a table. Do not recursively
+// enter the dispatch_once initializers on the same thread.
+static __thread BOOL handlingTerminologyLocalization = NO;
 
 static NSDictionary<NSString*, NSString*>* RenameTable(NSString* name) {
-    NSBundle* bundle = [BHTBundle sharedBundle].mainBundle;
-    NSString* appLanguage =
-        [[NSBundle mainBundle] preferredLocalizations].firstObject ?: @"en";
-    NSString* localization =
-        [NSBundle preferredLocalizationsFromArray:bundle.localizations
-                                   forPreferences:@[appLanguage]]
-            .firstObject;
+    BOOL wasHandlingLocalization = handlingTerminologyLocalization;
+    handlingTerminologyLocalization = YES;
+    @try {
+        NSBundle* bundle = [BHTBundle sharedBundle].mainBundle;
+        NSString* appLanguage =
+            [[NSBundle mainBundle] preferredLocalizations].firstObject ?: @"en";
+        NSString* localization =
+            [NSBundle preferredLocalizationsFromArray:bundle.localizations
+                                       forPreferences:@[appLanguage]]
+                .firstObject;
 
-    // preferredLocalizationsFromArray: falls back to en when nothing matches, so
-    // reject a mismatch: unsupported languages skip renaming, not get English
-    // rules.
-    NSString* appCode =
-        [appLanguage componentsSeparatedByString:@"-"].firstObject;
-    NSString* lprojCode =
-        [[localization stringByReplacingOccurrencesOfString:@"_" withString:@"-"]
-            componentsSeparatedByString:@"-"]
-            .firstObject;
-    if (![appCode isEqualToString:lprojCode]) {
-        return @{};
+        // preferredLocalizationsFromArray: falls back to en when nothing matches, so
+        // reject a mismatch: unsupported languages skip renaming, not get English
+        // rules.
+        NSString* appCode =
+            [[appLanguage stringByReplacingOccurrencesOfString:@"_" withString:@"-"]
+                componentsSeparatedByString:@"-"]
+                .firstObject;
+        NSString* lprojCode =
+            [[localization stringByReplacingOccurrencesOfString:@"_" withString:@"-"]
+                componentsSeparatedByString:@"-"]
+                .firstObject;
+        if (![appCode isEqualToString:lprojCode]) {
+            return @{};
+        }
+
+        // Read the selected directory directly: NSBundle resource lookup can fall
+        // back to another language when this particular table is missing.
+        NSString* directory = [bundle.bundlePath stringByAppendingPathComponent:
+                                                     [localization stringByAppendingPathExtension:@"lproj"]];
+        NSString* path = [directory stringByAppendingPathComponent:
+                                        [name stringByAppendingPathExtension:@"strings"]];
+        return BHTLoadTerminologyTable(path);
+    } @finally {
+        handlingTerminologyLocalization = wasHandlingLocalization;
     }
-
-    NSString* path = [bundle pathForResource:name
-                                      ofType:@"strings"
-                                 inDirectory:nil
-                             forLocalization:localization];
-    NSString* contents =
-        path ? [NSString stringWithContentsOfFile:path
-                                         encoding:NSUTF8StringEncoding
-                                            error:nil]
-             : nil;
-    NSDictionary* table = [contents propertyListFromStringsFileFormat];
-    return [table isKindOfClass:[NSDictionary class]] ? table : @{};
 }
 
 static NSDictionary<NSString*, NSString*>* RenameKeyOverrides(void) {
@@ -59,105 +66,16 @@ static NSDictionary<NSString*, NSString*>* RenameKeyOverrides(void) {
     return overrides;
 }
 
-static NSDictionary<NSString*, NSString*>* TwitterWordMap(void) {
-    static NSDictionary* map = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        map = RenameTable(@"RenameWords");
-    });
-    return map;
-}
-
-// Builds a case-insensitive \b(word|word…)\b from the map keys, longest first
-// so inflections win over their stems. Exact case for uppercase-bearing keys is
-// enforced per match in RenameEdits, so lowercase "x" never becomes "Twitter".
-static NSRegularExpression* RenameRegex(void) {
-    NSMutableArray<NSString*>* words = [NSMutableArray array];
-    for (NSString* word in TwitterWordMap()) {
-        [words addObject:[NSRegularExpression escapedPatternForString:word]];
-    }
-    if (words.count == 0) {
-        return nil;
-    }
-
-    [words sortUsingComparator:^NSComparisonResult(NSString* a, NSString* b) {
-        if (a.length > b.length)
-            return NSOrderedAscending;
-        if (a.length < b.length)
-            return NSOrderedDescending;
-        return [a compare:b];
-    }];
-    NSString* pattern = [NSString
-        stringWithFormat:@"\\b(%@)\\b", [words componentsJoinedByString:@"|"]];
-    return [NSRegularExpression
-        regularExpressionWithPattern:pattern
-                             options:NSRegularExpressionCaseInsensitive
-                               error:nil];
-}
-
-// Applies the capitalisation style of `token` (all-caps or leading-capital) to
-// `base`.
-static NSString* MatchCapitalisation(NSString* token, NSString* base) {
-    if (token.length == 0 || base.length == 0) {
-        return base;
-    }
-
-    NSString* lower = token.lowercaseString;
-    if (token.length > 1 && [token isEqualToString:token.uppercaseString] &&
-        ![token isEqualToString:lower]) {
-        return base.uppercaseString;
-    }
-
-    unichar first = [token characterAtIndex:0];
-    if ([[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:first]) {
-        return [base stringByReplacingCharactersInRange:NSMakeRange(0, 1)
-                                             withString:[base substringToIndex:1]
-                                                            .uppercaseString];
-    }
-    return base;
-}
-
-// Returns the edits (@"range" -> NSValue, @"repl" -> NSString) in ascending,
-// non-overlapping order — apply them back-to-front. Nil when nothing changes.
 static NSArray<NSDictionary*>* RenameEdits(NSString* input) {
-    if (input.length == 0) {
-        return nil;
-    }
-
-    static NSRegularExpression* regex = nil;
+    static BHTTerminology* terminology = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        regex = RenameRegex();
+        NSString* language = [NSBundle mainBundle].preferredLocalizations.firstObject ?: @"en";
+        terminology = [[BHTTerminology alloc] initWithWords:RenameTable(@"RenameWords")
+                                                    phrases:RenameTable(@"RenamePhrases")
+                                                     locale:[NSLocale localeWithLocaleIdentifier:language]];
     });
-    if (!regex) {
-        return nil;
-    }
-
-    NSDictionary* wordMap = TwitterWordMap();
-    NSRange full = NSMakeRange(0, input.length);
-    NSMutableArray<NSDictionary*>* edits = [NSMutableArray array];
-
-    for (NSTextCheckingResult* match in [regex matchesInString:input
-                                                       options:0
-                                                         range:full]) {
-        NSString* token = [input substringWithRange:match.range];
-        // Exact key wins; otherwise fall back to the lowercase key and copy the
-        // token's capitalisation. A lowercase hit on an uppercase-only key is left
-        // alone.
-        NSString* repl = wordMap[token];
-        if (!repl) {
-            NSString* base = wordMap[token.lowercaseString];
-            repl = base ? MatchCapitalisation(token, base) : nil;
-        }
-        if (repl) {
-            [edits addObject:@{
-                @"range": [NSValue valueWithRange:match.range],
-                @"repl": repl
-            }];
-        }
-    }
-
-    return edits.count > 0 ? edits : nil;
+    return [terminology editsForString:input];
 }
 
 static NSString* RestoreTwitterTerminology(NSString* input) {
@@ -203,17 +121,25 @@ static NSAttributedString* RestoreTwitterAttributed(NSAttributedString* input) {
 - (NSString*)localizedStringForKey:(NSString*)key
                              value:(NSString*)value
                              table:(NSString*)tableName {
-    NSString* result = %orig;
-    if (![BHTSettings boolForKey:@"restore_twitter_names"] ||
-        self == [BHTBundle sharedBundle].mainBundle) {
-        return result;
+    if (handlingTerminologyLocalization) {
+        return %orig;
     }
+    handlingTerminologyLocalization = YES;
+    @try {
+        NSString* result = %orig;
+        if (![BHTSettings boolForKey:@"restore_twitter_names"] ||
+            self == [BHTBundle sharedBundle].mainBundle) {
+            return result;
+        }
 
-    NSString* override = key ? RenameKeyOverrides()[key] : nil;
-    if (override) {
-        return override;
+        NSString* override = key ? RenameKeyOverrides()[key] : nil;
+        if (override) {
+            return override;
+        }
+        return result.length > 0 ? RestoreTwitterTerminology(result) : result;
+    } @finally {
+        handlingTerminologyLocalization = NO;
     }
-    return result.length > 0 ? RestoreTwitterTerminology(result) : result;
 }
 %end
 

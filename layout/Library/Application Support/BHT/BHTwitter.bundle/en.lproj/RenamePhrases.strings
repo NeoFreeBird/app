@@ -1,0 +1,4 @@
+/* Exact, case-sensitive UI phrases. Keep grammatical changes here or in
+RenameOverrides.strings, not in generic word substitutions. */
+
+"Nothing to see here — yet." = "This tweet has been deleted.";

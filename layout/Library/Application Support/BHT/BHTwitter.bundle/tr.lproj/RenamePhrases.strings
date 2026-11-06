@@ -1,0 +1,7 @@
+/* Exact, case-sensitive UI phrases. Keep grammatical changes here or in
+RenameOverrides.strings, not in generic word substitutions. */
+
+"alıntı" = "Tweeti Alıntıla";
+"Alıntı" = "Tweeti Alıntıla";
+"alıntılar" = "Alıntı Tweetler";
+"Alıntılar" = "Alıntı Tweetler";
