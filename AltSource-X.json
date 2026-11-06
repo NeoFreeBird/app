@@ -10,7 +10,7 @@
       "name": "X",
       "bundleIdentifier": "com.atebits.Tweetie2",
       "developerName": "actuallyaridan, orionblur, nyaathea",
-      "subtitle": "NeoFreeBird version 6.10.0",
+      "subtitle": "NeoFreeBird version 6.10.1",
       "localizedDescription": "NeoFreeBird, looking like the modern X app.",
       "iconURL": "https://raw.githubusercontent.com/orionblur/NeoFreeBird/v6/x_icon_rounded.png",
       "tintColor": "#000000",
@@ -23,6 +23,15 @@
         "https://raw.githubusercontent.com/NeoFreeBird/app/v6/images/timeline/timeline5.png"
       ],
       "versions": [
+        {
+          "version": "12.39",
+          "buildVersion": "20",
+          "date": "2026-11-06T22:10:24Z",
+          "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/v6.10.1/NeoFreeBird-sideloaded-X_6.10.1_12.39.ipa",
+          "size": 276955541,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Version 6.10.1\n\nNew Features\n- Add a toggle for the Split View on iPad\n- Add support for the Split View on macOS (tested) and iPhone Duo (untested)\n- Added a toggle to hide the “Made on X” footer\n- Added a section in settings to thank all translators for NeoFreeBird!\n- Updated X to 12.39\n\nFixes\n- Fixed the sharing domain not working\n- Fixed issues with custom tints and the classic tab bar\n- Fixed tab labels not showing on the old design\n- Fixed the legacy tab selector not respecting the profile button\n- Fixed the blur when scrolling from not being dim when dim theme was enabled\n- Fixed stale cached text overwriting others, causing text errors in the app\n- Fixed the padlock screen sometimes showing a black screen until a restart\n- Fixed the autoplay accessibility setting not respecting GIFs\n- Fixed the “No focus lost” option to never go back to the home tab\n- Fixed the app stopping audio when scrolling through muted videos on the timeline\n- Fixed the square avatar icon looking weird on Liquid Glass\n- Fixed verified users’ notifications not showing when the filter option was on\n- Fixed localization logic to be more durable and allow full sentence replacement"
+        },
         {
           "version": "12.38.1",
           "buildVersion": "2",
