@@ -357,3 +357,18 @@ static void BHTPasteboardSetString(id pasteboard, SEL selector, NSString* string
         }
     });
 }
+
+// MARK: - Force tweet images to full frame
+
+%hook T1StandardStatusAttachmentViewAdapter
+
+// attachmentType 2 = photos, displayType 1 = full frame
+- (NSUInteger)displayType {
+    if (self.attachmentType == 2) {
+        return [BHTSettings boolForKey:@"force_tweet_full_frame"] ? 1 : %orig;
+    }
+
+    return %orig;
+}
+
+%end
