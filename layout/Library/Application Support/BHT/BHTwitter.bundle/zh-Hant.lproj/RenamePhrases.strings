@@ -1,0 +1,5 @@
+/* Exact, case-sensitive UI phrases. Keep grammatical changes here or in
+RenameOverrides.strings, not in generic word substitutions. */
+
+"發佈" = "推文";
+"已發佈" = "已推文";
