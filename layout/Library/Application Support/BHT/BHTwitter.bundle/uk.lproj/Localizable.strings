@@ -41,6 +41,9 @@
 "MODERN_SETTINGS_WEB_TITLE" = "Веб і посилання";
 "MODERN_SETTINGS_WEB_SUBTITLE" = "Налаштуйте поведінку посилань і вбудованого браузера Twitter.";
 
+"MODERN_SETTINGS_CHAT_TITLE" = "Чат";
+"MODERN_SETTINGS_CHAT_SUBTITLE" = "Додайте функції до інтерфейсу XChat.";
+
 "MODERN_SETTINGS_BRANDING_TITLE" = "Брендинг";
 "MODERN_SETTINGS_BRANDING_SUBTITLE" = "Налаштуйте, наскільки повертається брендинг Twitter.";
 
@@ -72,6 +75,15 @@
 "ALWAYS_OPEN_SAFARI_DETAIL" = "Відкривати посилання в Safari або браузері за замовчуванням.";
 
 "SHARING_DOMAIN_TITLE" = "Домен для посилань";
+
+"BLOCK_LINK_TRACKING_TITLE" = "Блокувати трекінг посилань";
+"BLOCK_LINK_TRACKING_DETAIL" = "Відкриває посилання напряму, а не через t.co, без фонових запитів t.co або рекламних ID. Твітерське попередження про небезпечні посилання не зʼявиться.";
+
+"STRIP_TRACKING_PARAMS_TITLE" = "Прибрати параметри для трекінгу";
+"STRIP_TRACKING_PARAMS_DETAIL" = "Відрізає utm_ та інші трекінгові теги з посилань, які Ви відкриваєте.";
+
+"NO_FOCUS_LOST_TITLE" = "Не губити фокус додатка";
+"NO_FOCUS_LOST_DETAIL" = "Твітер не помічатиме перемикання між додатками, і Ви не загубите своє місце в стрічці.";
 
 /*Tweets*/
 "TWEET_TO_IMAGE_TITLE" = "Зберегти твіт як зображення";
@@ -121,24 +133,54 @@
 "RESTORE_TWEET_LABELS_TITLE" = "Показувати джерело твіту";
 "RESTORE_TWEET_LABELS_DETAIL" = "Відображає, з якого клієнта був зроблений твіт (від @nyaathea).";
 
+"UPLOAD_FULL_HD_VIDEOS_TITLE" = "Надсилати Full HD відео";
+"UPLOAD_FULL_HD_VIDEOS_DETAIL" = "Розблоковує можливість публікувати відео в якості 1080p.";
+
+"CUSTOM_SEND_SOUND_TITLE" = "Свій звук публікації";
+"CUSTOM_SEND_SOUND_DETAIL" = "Персоналізований звук не обрано.";
+
+"DEFAULT_REPLY_SORTING_TITLE" = "Сортування відповідей за вмовчуванням";
+"DEFAULT_REPLY_SORTING_DETAIL" = "Вимк.";
+
+
 /*Profiles*/
 "FOLLOW_CONFIRM_TITLE" = "Підтвердження читань";
-"FOLLOW_CONFIRM_DETAIL" = "Запитувати перед тим, як почати читати.";
+"FOLLOW_CONFIRM_DETAIL" = "Запитує перед тим, як почати читати.";
+
+"FAST_BLOCK_TITLE" = "Швидке блокування/ігнорування";
+"FAST_BLOCK_DETAIL" = "Блокуйте/ігноруйте користувачів без підтвердження";
 
 "COPY_PROFILE_INFO_TITLE" = "Копіювати інформацію профілю";
 "COPY_PROFILE_INFO_DETAIL" = "Копіюйте біо, ім'я користувача та інше одним натисканням.";
 
 "DISABLE_ARTICLES_TITLE" = "Приховати Статті";
-"DISABLE_ARTICLES_DETAIL" = "Прибрати вкладку «Статті» в профілі.";
+"DISABLE_ARTICLES_DETAIL" = "Прибирає вкладку «Статті» в профілі.";
 
 "DISABLE_HIGHLIGHTS_TITLE" = "Приховати Вибране";
-"DISABLE_HIGHLIGHTS_DETAIL" = "Прибрати вкладку «Вибране».";
+"DISABLE_HIGHLIGHTS_DETAIL" = "Прибирає вкладку «Вибране».";
 
-"HIDE_FOLLOW_BUTTON_TITLE" = "Без кнопки «Стежити» у твітах";
-"HIDE_FOLLOW_BUTTON_DETAIL" = "Приховує кнопку «Стежити» у твітах.";
+"HIDE_FOLLOW_BUTTON_TITLE" = "Без кнопки «Стежити» в твітах";
+"HIDE_FOLLOW_BUTTON_DETAIL" = "Приховує кнопку «Стежити» в твітах.";
+
+"HIDE_MESSAGE_BUTTON_TITLE" = "Без кнопки «Повідомлення» в твітах";
+"HIDE_MESSAGE_BUTTON_DETAIL" = "Приховує кнопку «Повідомлення» в твітах.";
+
+"SHOW_UNROUNDED_COUNTS_TITLE" = "Не округляти числа";
+"SHOW_UNROUNDED_COUNTS_DETAIL" = "Показує точне число читачів та твітів, не округляючи до найближчої тисячі чи мільйона.";
 
 "RESTORE_FOLLOW_BUTTON_TITLE" = "Без кнопки «Підписатися»";
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "Приховує кнопку «Підписатися» у твітах і профілях.";
+
+/*Chat*/
+"HIDE_TYPING_INDICATOR_TITLE" = "Приховати індикатор друкування";
+"HIDE_TYPING_INDICATOR_DETAIL" = "Перестає надсилати індикатор «друкує...» іншим учасникам переписки.";
+
+"DOWNLOAD_VOICE_MESSAGES_TITLE" = "Завантажувати голосові повідомлення";
+"DOWNLOAD_VOICE_MESSAGES_DETAIL" = "Зберігає голосові повідомлення після того, як вони були прослухані (затисніть гол. повідомлення двома пальцями, щоби завантажити)";
+
+"BLOCK_SCREENSHOT_DETECTION_TITLE" = "Не розпізнавати знімки екрана";
+"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "Дозволяє робити знімки екрана в «захищених» переписках.";
+
 
 /*Search*/
 "NO_HISTORY_TITLE" = "Вимкнути історію пошуку";
@@ -150,6 +192,16 @@
 /*Photos and Videos*/
 "AUTO_HIGHEST_LOAD_TITLE" = "Якісні медіа";
 "AUTO_HIGHEST_LOAD_DETAIL" = "Завантажуйте та переглядайте медіа у найкращій якості.";
+
+"DOWNLOAD_HIGHEST_QUALITY_TITLE" = "Завантажувати в повній якості";
+"DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "Пропускає вибір якості та зберігає найкращий MP4.";
+
+"DISABLE_VIDEO_DOCKING_TITLE"" = "Не закріпляти відео";
+"DISABLE_VIDEO_DOCKING_DETAIL" = "Приховує кнопку режиму картинка-в-картинці під час свайпу по відео.";
+
+"TAP_TO_PAUSE_TITLE" = "Тапнути для паузи";
+"TAP_TO_PAUSE_DETAIL" = "Тапніть по відео двома пальцями, щоб поставити на паузу.";
+
 
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "Прибрати субтитри під відео";
 
@@ -188,7 +240,26 @@
 "NO_TAB_BAR_HIDING_DETAIL" = "Не приховувати панель вкладок під час прокрутки. (може спричинити проблеми)";
 
 "HIDE_CUSTOM_TIMELINES_TITLE" = "Приховати власні стрічки";
-"HIDE_CUSTOM_TIMELINES_DETAIL" = "Прибрати кнопку «Додати» з вкладок головної стрічки.";
+"HIDE_CUSTOM_TIMELINES_DETAIL" = "Прибирає кнопку «Додати» з вкладок головної стрічки.";
+
+"SHOW_QUOTE_NUMBERS_TITLE" = "Показувати кількість цитат";
+"SHOW_QUOTE_NUMBERS_DETAIL" = "Показує число цитат і ретвітів, яке має твіт.";
+
+"HIDE_BLOCKED_RETWEETS_TITLE" = "Приховати заблоковані ретвіти";
+"HIDE_BLOCKED_RETWEETS_DETAIL" = "Приховує ретвіти, зроблені користувачами, що заблокували Вас.";
+
+"HIDE_TWEET_BUTTON_TITLE" = "Прибрати кнопку публікації";
+"HIDE_TWEET_BUTTON_DETAIL" = "Прибирає кнопку Твітнути з панелі навігації.";
+
+"HIDE_RETWEETS_TITLE" = "Приховати ретвіти";
+"HIDE_RETWEETS_DETAIL" = "Приховує всі ретвіти з Вашої стрічки.";
+
+"HIDE_QUOTE_TWEETS_TITLE" = "Прибрати цитати";
+"HIDE_QUOTE_TWEETS_DETAIL" = "Приховує всі цитовані твіти з Вашої стрічки.";
+
+"HIDE_VERIFIED_TWEETS_TITLE" = "Приховати верифіковані твіти";
+"HIDE_VERIFIED_TWEETS" = "Приховує твіти від верифікованих користувачів із Вашої стрічки та відповідей, окрім випадків, коли автор відповів їм, або Ви читаєте цього користувача.";
+
 
 "RESTORE_REFRESH_SOUNDS_TITLE" = "Звуки під час оновлення";
 
@@ -196,7 +267,7 @@
 "HIDE_TRENDS_DETAIL" = "Показувати лише рядок пошуку на вкладці «Цікаве», приховуючи всі тренди, новини та вкладки сторінки.";
 
 "TAB_BAR_THEMING_TITLE" = "Класична панель навігації";
-"TAB_BAR_THEMING_DETAIL" = "Застосовує ваш акцентний колір до вибраного елемента навігації.";
+"TAB_BAR_THEMING_DETAIL" = "Застосовує Ваш акцентний колір до вибраного елемента навігації.";
 
 "DISABLE_RTL_TITLE" = "Примусити інтерфейс зліва направо (LTR)";
 "DISABLE_RTL_DETAIL" = "Примусово використовувати LTR навіть для RTL-мов.";
@@ -245,6 +316,9 @@
 "THEME_SETTINGS_NAVIGATION_TITLE" = "Змінити тему";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "Виберіть кольорову тему, яку бачитимете лише ви.";
 
+"ENABLE_DIM_THEME_TITLE" = "Приглушена темна тема";
+"ENABLE_DIM_THEME_DETAIL" = "Відновлює прибрану темно-синю тему. Потребує перезапуск та увімкнення темної теми.";
+
 /*Tab bar*/
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "Редагування вкладок";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Tap a destination to add or remove it. Drag the bar below to reorder.";
@@ -264,6 +338,13 @@
 "RESTORE_TWITTER_NAMES_TITLE" = "Відновити термінологію Twitter";
 "RESTORE_TWITTER_NAMES_DETAIL" = "Замінює «X» на «Twitter», «допис» на «твіт», «репост» на «ретвіт» тощо в усьому інтерфейсі додатка.";
 
+"BLUE_LAUNCH_SCREEN_TITLE" = "Відновити синій сплеш-скрін";
+"BLUE_LAUNCH_SCREEN_DETAIL" = "Повертає оригінальний синій фон на екрані запуску.";
+
+"SETTINGS_EXPORT_TITLE" = "Експорт налаштувань";
+
+"SETTINGS_IMPORT_TITLE" = "Імпорт налаштувань";
+
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Поки що тут нічого немає.";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "Цей розділ незабаром з'явиться. Слідкуйте за новими функціями NeoFreeBird!";
@@ -274,11 +355,11 @@
 "PADLOCK_LOCKED_LABEL" = "Locked";
 
 /*Source labels*/
-"UNKNOWN_SOURCE" = "Unknown Source";
+"UNKNOWN_SOURCE" = "Невідоме джерело";
 
 /*Media downloads*/
 "DOWNLOAD_VIDEO_NUMBER_TITLE" = "Video %lu";
-"UNKNOWN_ERROR" = "An unknown error occurred.";
+"UNKNOWN_ERROR" = "Сталася невідома помилка.";
 
 /*Custom fonts*/
 "INSTALL_IFONT_BUTTON_TITLE" = "iFont application";
