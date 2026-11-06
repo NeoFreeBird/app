@@ -65,6 +65,7 @@
 
 "COOL_KIDS_SECTION_HEADER_TITLE" = "Крутые ребята";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "Особая благодарность";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "Переводчики";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "Подписаться на NeoFreeBird";
 
 /*General*/
@@ -75,10 +76,15 @@
 "NO_FOCUS_LOST_TITLE" = "Без потери места в ленте";
 "NO_FOCUS_LOST_DETAIL" = "Не позволяет Twitter обнаруживать переход в другое приложение, чтобы вы не теряли место в ветке обсуждения.";
 
+"IPAD_SPLIT_VIEW_TITLE" = "Включить режим Split View на iPad";
+"IPAD_SPLIT_VIEW_DETAIL" = "Позволяет использовать Split View на iPad и iPhone Duo: можно открыть твит с одной стороны экрана, а ленту - с другой.";
+
 "HIDE_TIMELINE_PROMPTS_TITLE" = "Без подсказок в ленте";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "Убрать баннеры вроде «Добавить контакты».";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "Скрывать блок «Видео для вас»";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Скрывает блок «Видео для вас» в ленте.";
 
-"HIDE_BLOCKED_RETWEETS_TITLE" = "Скрыть ретвиты заблокировавших вас";
+"HIDE_BLOCKED_RETWEETS_TITLE" = "Ретвиты заблокировавших";
 "HIDE_BLOCKED_RETWEETS_DETAIL" = "Скрывать ретвиты аккаунтов, которые заблокировали вас.";
 
 "PADLOCK_TITLE" = "Заблокировать Twitter";
@@ -142,6 +148,8 @@
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Убрать кнопку закладок из твитов.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Скрыть дизлайки";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Убрать кнопку дизлайка из твитов.";
+"HIDE_MADE_ON_X_TITLE" = "Скрывать метку «Создано на X»";
+"HIDE_MADE_ON_X_DETAIL" = "Убирает метку «Создано на X» из твитов.";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "Без предупреждений о чувствительном контенте";
 
@@ -172,13 +180,13 @@
 
 /*Chat*/
 "HIDE_TYPING_INDICATOR_TITLE" = "Скрыть индикатор набора текста";
-"HIDE_TYPING_INDICATOR_DETAIL" = "Не отправлять другим пользователям индикатор \"печатает...\" в чатах.";
+"HIDE_TYPING_INDICATOR_DETAIL" = "Не отправлять другим пользователям индикатор «печатает…» в чатах.";
 
 "DOWNLOAD_VOICE_MESSAGES_TITLE" = "Скачивать голосовые сообщения";
 "DOWNLOAD_VOICE_MESSAGES_DETAIL" = "Сохранять голосовые сообщения на устройстве после воспроизведения (удерживайте аудиосообщение двумя пальцами, чтобы скачать его).";
 
-"BLOCK_SCREENSHOT_DETECTION_TITLE" = "Блокировать обнаружение скриншотов";
-"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "Позволяет делать скриншоты \"защищенных\" чатов без блокировки.";
+"BLOCK_SCREENSHOT_DETECTION_TITLE" = "Разрешить скриншоты в чатах";
+"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "Позволяет делать скриншоты «защищённых» чатов, в которых скриншоты обычно заблокированы.";
 
 /*Profiles*/
 "FOLLOW_CONFIRM_TITLE" = "Подтверждать подписку";
@@ -379,6 +387,9 @@
 "HIDE_TWEET_BUTTON_TITLE" = "Скрыть кнопку твита";
 "HIDE_TWEET_BUTTON_DETAIL" = "Убирает кнопку твита из панели навигации.";
 
+"HIDE_QUICK_COMPOSE_TITLE" = "Скрыть кнопку публикации";
+"HIDE_QUICK_COMPOSE_DETAIL" = "Убирает кнопку быстрой публикации из панели навигации (только в режиме Liquid Glass).";
+
 /*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Здесь пока ничего нет.";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "Этот раздел скоро появится. Следите за новыми функциями NeoFreeBird!";
@@ -486,3 +497,6 @@
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "Выкл.";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld секунд";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "Добро пожаловать!";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "Убедитесь, что NeoFreeBird установлен из нашего официального репозитория на GitHub. Мы не сможем помочь с проблемами сторонних IPA-файлов, и вы не сможете быть уверены, что ваша версия не содержит вредоносный код. Если у вас возникнут вопросы, создайте issue в репозитории на GitHub.";
