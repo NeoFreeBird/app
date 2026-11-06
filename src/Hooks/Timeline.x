@@ -366,6 +366,7 @@ static BOOL ItemIsRetweet(id viewModel) {
 @property (nonatomic) BOOL openedFromProfile;
 @property (nonatomic) BOOL inSearch;
 @property (nonatomic) BOOL inEditHistory;
+@property (nonatomic) BOOL inNotifications;
 
 // Conversation lookups, filled in by -resolveConversationLookupsInSections:
 // once per section update and only when hiding verified replies needs them.
@@ -440,6 +441,10 @@ static BOOL ShouldHideTimelineItem(id item, BHTimelineFilterContext* context) {
 
     if (context.hideVerified && BHShouldHideVerifiedItem(viewModel, context)) {
         return YES;
+    }
+
+    if (context.inNotifications) {
+        return NO;
     }
 
     if (context.hideBlockedRetweets && ItemIsRetweetOfBlockingUser(viewModel)) {
@@ -589,6 +594,7 @@ static NSSet<NSNumber*>* ConversationAuthorRepliedToUserIDs(NSArray* sections,
     context.openedFromProfile = IsInProfileOriginConversation(dataViewController);
     context.inSearch = IsInHierarchyOfClass(dataViewController, @"TTSSearchContainerViewControllerV2");
     context.inEditHistory = IsInEditHistory(dataViewController);
+    context.inNotifications = IsInHierarchyOfClass(dataViewController, @"T1NotificationsViewController");
 
     context.hideWhoToFollow = [BHTSettings boolForKey:@"hide_who_to_follow"];
     context.hidePrompts = [BHTSettings boolForKey:@"hide_timeline_prompts"];
