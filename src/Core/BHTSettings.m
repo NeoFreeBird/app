@@ -106,8 +106,6 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                       @"default": @NO},
                     @{@"key": @"hide_tweet_button",
                       @"default": @NO},
-                    @{@"key": @"hide_quick_compose",
-                      @"default": @NO},
                     @{@"key": @"hide_retweets",
                       @"default": @NO},
                     @{@"key": @"hide_quote_tweets",
