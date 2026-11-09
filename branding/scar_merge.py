@@ -18,8 +18,8 @@ byte-identical instead of being rebuilt.
   - A file named exactly after a rendition (e.g. Icon-App-60x60@2x.png)
     overrides just that rendition and beats the asset master.
   - A file matching no existing asset becomes a brand-new alternate icon,
-    cloned from a self-contained icon asset via `scar clone-asset` (plus its
-    settings-thumbnail asset so the picker preview isn't blank).
+    cloned via `scar clone-asset` (plus its settings-thumbnail asset). Cloned
+    atlas links become independent bitmaps so each icon keeps its own art.
   - X-branded alternate icons (Custom-Icon-X-*) are dropped, along with their
     "-settings" thumbnails. Other stock alternates, including Twitter icons,
     remain available even when the pack does not replace them.
@@ -108,6 +108,41 @@ def settings_base(name):
     return None
 
 
+def is_x_icon(name):
+    return name.lower().startswith("custom-icon-x-")
+
+
+def install_clone(catalog, rendition, master, index):
+    """Give a cloned rendition independent pixels instead of shared atlas art.
+
+    Keep the template's sizes, scales, idioms and multisize indices intact;
+    only replace its bitmap storage. Editing a cloned link's crop preview
+    would otherwise repaint the source icon's atlas region as well.
+    """
+    content = rendition["content"]
+    if content["type"] == "multisize":
+        return
+    if content["type"] == "link":
+        width, height = content["rect"][2:4]
+        rendition["layout"] = content["content_layout"]
+    elif content["type"] in ("image", "raw-payload"):
+        width, height = rendition["width"], rendition["height"]
+    else:
+        raise ValueError("unsupported cloned icon rendition: %s" % content["type"])
+    if width <= 0 or height <= 0:
+        raise ValueError("cloned icon rendition has no bitmap size")
+
+    target = "renditions/%06d-pack-icon.png" % index
+    pad_resize(master, width, height).save(os.path.join(catalog, target))
+    rendition["width"], rendition["height"] = width, height
+    rendition["pixel_format"] = "ARGB"
+    rendition["color_space_id"] = 1  # Pack PNGs are ordinary sRGB images.
+    rendition["content"] = {"type": "image", "file": target, "compression": "lzfse"}
+    # These describe the old storage, not the new standalone RGBA bitmap.
+    for tag in ("0x3f2", "0x3ef"):  # internal link / bytes per row
+        rendition.get("extra_tlvs", {}).pop(tag, None)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("car")
@@ -128,6 +163,9 @@ def main():
         dirs[:] = [d for d in dirs if d != "__MACOSX"]
         for f in files:
             if f.startswith("._") or not f.lower().endswith((".png", ".jpg", ".jpeg")):
+                continue
+            if is_x_icon(os.path.splitext(f)[0]):
+                print("skip X icon: %s" % f)
                 continue
             overlays.setdefault(f, os.path.join(root, f))
             masters.setdefault(os.path.splitext(f)[0].lower(), os.path.join(root, f))
@@ -156,9 +194,6 @@ def main():
             return masters["appicon"]
         return None
 
-    # 1. Replace pixels of existing assets. Exact rendition-name overlays beat
-    #    the asset master.
-    themed = set()
     for name, ident in facets.items():
         m = master_for(name)
         count = 0
@@ -168,23 +203,15 @@ def main():
                 used.add(src)
                 count += 1
         if count:
-            themed.add(name)
             print("replace: %s (%d renditions)" % (name, count))
 
-    # 2. Brand-new alternate icons: unmatched bare-named masters, cloned from a
-    #    self-contained stock alternate (one built from its own images, not
-    #    from atlas crops shared with other icons). Cloned before step 3 drops
-    #    the template.
-    def self_contained(n):
-        return all(r["content"]["type"] != "link" for r in by_ident.get(facets[n], []))
 
     def settings_asset_for(name):
         return next((n for n in facets if settings_base(n) == name), None)
 
-    # Prefer an alternate as the clone source.
     template = next((n for n in sorted(icon_names)
-                     if n != primary and self_contained(n) and settings_asset_for(n)), None)
-    if template is None and primary and self_contained(primary) and settings_asset_for(primary):
+                     if n != primary and settings_asset_for(n)), None)
+    if template is None and primary and settings_asset_for(primary):
         template = primary
     template_settings = settings_asset_for(template) if template else None
     new_icons = []
@@ -195,8 +222,8 @@ def main():
         if "@" in stem or re.search(r"\d+x\d+", stem):  # a rendition file, not a master
             continue
         if not template or not template_settings:
-            sys.stderr.write("no-template: %s (no self-contained alternate icon to clone)\n" % f)
-            continue
+            sys.stderr.write("cannot add icon %s: no icon/thumbnail template in the catalog\n" % f)
+            return 1
         run_scar(args.scar, "clone-asset", catalog, "--from", template, "--to", stem)
         run_scar(args.scar, "clone-asset", catalog, "--from", template_settings,
                  "--to", "%s-settings" % stem)
@@ -204,33 +231,19 @@ def main():
         used.add(path)
 
     if new_icons:
-        # clone-asset rewrote the manifest; reload, then shrink each clone to
-        # its master's native resolution before installing the art. The
-        # template stores 1024x1024 single-size renditions, but upscaled art
-        # compresses terribly (a ~300px master balloons to ~2 MB per
-        # rendition) and adds nothing: iOS scales icons from whatever sizes
-        # the catalog offers (the primary icon ships nothing above 180px).
         manifest, facets, by_ident = load_catalog(catalog)
         for stem, path in new_icons:
-            native = min(Image.open(path).size)
-            for r in by_ident.get(facets[stem], []):
-                c = r["content"]
-                if c["type"] == "image" and r["width"] > native:
-                    r["width"] = r["height"] = native
-                elif c["type"] == "multisize":
-                    for e in c["sizes"]:
-                        e["width"] = min(e["width"], native)
-                        e["height"] = min(e["height"], native)
-            for name in (stem, "%s-settings" % stem):
-                for r in by_ident.get(facets[name], []):
-                    install(catalog, r, path)
+            identifiers = {facets[stem], facets["%s-settings" % stem]}
+            for index, r in enumerate(manifest["renditions"]):
+                if r["key"].get("identifier") in identifiers:
+                    install_clone(catalog, r, path, index)
             print("new icon: %s" % stem)
         json.dump(manifest, open(os.path.join(catalog, "manifest.json"), "w"), indent=2)
 
-    # 3. Remove X-branded alternates and their settings thumbnails. Keep
+    #    Remove X-branded alternates and their settings thumbnails. Keep
     #    unmatched stock icons (notably Twitter's legacy/seasonal icons) so
     #    they remain available in the app's icon picker.
-    drop = {n for n in icon_names if n.startswith("Custom-Icon-X-")}
+    drop = {n for n in facets if is_x_icon(n)}
     drop |= {n for n in facets if settings_base(n) in drop}
     if drop:
         gone = {facets[n] for n in drop}
