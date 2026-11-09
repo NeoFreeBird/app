@@ -945,6 +945,12 @@ static NSArray* panelIDsForDashSnapshot(NSArray* panelIDs) {
                : %orig;
 }
 
+- (BOOL)isPossiblySensitiveViewModelForAccount:(id)account {
+    return [BHTSettings boolForKey:@"disable_sensitive_tweet_warnings"]
+               ? NO
+               : %orig;
+}
+
 %end
 
 %hook HFHealthSafetyFeature
@@ -953,6 +959,100 @@ static NSArray* panelIDsForDashSnapshot(NSArray* panelIDs) {
     return [BHTSettings boolForKey:@"disable_sensitive_tweet_warnings"]
                ? NO
                : %orig;
+}
+
+%end
+
+@class HFSensitiveTweetBlurredInterstitialView;
+
+@protocol BHTSensitiveMediaOverlayDelegate <NSObject>
+- (BOOL)blurViewRequiresAgeVerificationToRevealWithBlurView:(HFSensitiveTweetBlurredInterstitialView*)view;
+@end
+
+@interface HFSensitiveTweetBlurredInterstitialView : UIView
+@property (nonatomic, readonly) BOOL blurViewIsHidden;
+@property (nonatomic, readonly) id<BHTSensitiveMediaOverlayDelegate> delegate;
+- (void)showOrHideMediaButtonPressed:(id)sender;
+@end
+
+static char SensitiveMediaRevealPendingKey;
+static char SensitiveMediaButtonHiddenKey;
+
+static void BHTUpdateSensitiveMediaRevealButton(HFSensitiveTweetBlurredInterstitialView* overlay) {
+    UIButton* button = nfb_objectIvar(overlay, "$__lazy_storage_$_showOrHideMediaButton");
+    if (![button isKindOfClass:UIButton.class] || ![button isDescendantOfView:overlay]) {
+        return;
+    }
+
+    BOOL shouldHide = [BHTSettings boolForKey:@"disable_sensitive_tweet_warnings"] &&
+                      [overlay respondsToSelector:@selector(blurViewIsHidden)] &&
+                      overlay.blurViewIsHidden;
+    if (shouldHide && !button.hidden) {
+        objc_setAssociatedObject(button, &SensitiveMediaButtonHiddenKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        button.hidden = YES;
+    } else if (!shouldHide && objc_getAssociatedObject(button, &SensitiveMediaButtonHiddenKey)) {
+        objc_setAssociatedObject(button, &SensitiveMediaButtonHiddenKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        button.hidden = NO;
+    }
+}
+
+static void BHTRevealSensitiveMedia(HFSensitiveTweetBlurredInterstitialView* overlay) {
+    if (!overlay.window || overlay.hidden ||
+        ![BHTSettings boolForKey:@"disable_sensitive_tweet_warnings"] ||
+        ![overlay respondsToSelector:@selector(blurViewIsHidden)] || overlay.blurViewIsHidden ||
+        ![overlay respondsToSelector:@selector(delegate)] ||
+        ![overlay respondsToSelector:@selector(showOrHideMediaButtonPressed:)]) {
+        return;
+    }
+
+    id<BHTSensitiveMediaOverlayDelegate> delegate = overlay.delegate;
+    if (![delegate respondsToSelector:@selector(blurViewRequiresAgeVerificationToRevealWithBlurView:)] ||
+        [delegate blurViewRequiresAgeVerificationToRevealWithBlurView:overlay]) {
+        return;
+    }
+
+    // Use the native Show action so the overlay and media reveal state stay in sync.
+    [overlay showOrHideMediaButtonPressed:nil];
+    BHTUpdateSensitiveMediaRevealButton(overlay);
+}
+
+static void BHTScheduleSensitiveMediaReveal(HFSensitiveTweetBlurredInterstitialView* overlay) {
+    if (!overlay.window || ![BHTSettings boolForKey:@"disable_sensitive_tweet_warnings"] ||
+        objc_getAssociatedObject(overlay, &SensitiveMediaRevealPendingKey)) {
+        return;
+    }
+
+    objc_setAssociatedObject(overlay, &SensitiveMediaRevealPendingKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    // Let X finish configuring the view and its delegate before revealing the media.
+    __weak HFSensitiveTweetBlurredInterstitialView* weakOverlay = overlay;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        HFSensitiveTweetBlurredInterstitialView* attachedOverlay = weakOverlay;
+        if (attachedOverlay) {
+            BHTRevealSensitiveMedia(attachedOverlay);
+            objc_setAssociatedObject(attachedOverlay, &SensitiveMediaRevealPendingKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+    });
+}
+
+%hook HFSensitiveTweetBlurredInterstitialView
+
+- (void)didMoveToWindow {
+    %orig;
+    BHTUpdateSensitiveMediaRevealButton(self);
+    BHTScheduleSensitiveMediaReveal(self);
+}
+
+- (void)layoutSubviews {
+    %orig;
+    BHTUpdateSensitiveMediaRevealButton(self);
+}
+
+- (void)setBlurViewIsHidden:(BOOL)hidden {
+    %orig;
+    BHTUpdateSensitiveMediaRevealButton(self);
+    if (!hidden) {
+        BHTScheduleSensitiveMediaReveal(self);
+    }
 }
 
 %end
