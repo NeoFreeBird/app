@@ -189,6 +189,11 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                         @"type": @"toggle"
                     },
                     @{
+                        @"key": @"disable_double_tap_like",
+                        @"default": @NO,
+                        @"type": @"toggle"
+                    },
+                    @{
                         @"key": @"disable_immersive_scroll",
                         @"default": @NO,
                         @"type": @"toggle"

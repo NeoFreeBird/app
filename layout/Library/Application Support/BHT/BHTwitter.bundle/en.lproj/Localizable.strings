@@ -231,6 +231,9 @@
 
 "FORCE_TWEET_FULL_FRAME_TITLE" = "Large images";
 
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "Disable double-tap to like";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "Prevents double-tapping a video to like it.";
+
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "Video timestamp";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "Shows timestamp on immersive player.";
 
