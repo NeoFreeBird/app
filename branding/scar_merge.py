@@ -20,9 +20,9 @@ byte-identical instead of being rebuilt.
   - A file matching no existing asset becomes a brand-new alternate icon,
     cloned from a self-contained stock alternate via `scar clone-asset`
     (plus a "<name>-settings" thumbnail set so the picker preview isn't blank).
-  - Stock alternate icons that received no replacement art are dropped, along
-    with their "-settings" thumbnails, so they don't linger in the picker
-    alongside the pack's icons.
+  - X-branded alternate icons (Custom-Icon-X-*) are dropped, along with their
+    "-settings" thumbnails. Other stock alternates, including Twitter icons,
+    remain available even when the pack does not replace them.
 
 --workdir keeps the decompiled-and-edited catalog directory; after a
 successful compile it holds the final art, which update_bundle_icons.py and
@@ -220,11 +220,11 @@ def main():
             print("new icon: %s" % stem)
         json.dump(manifest, open(os.path.join(catalog, "manifest.json"), "w"), indent=2)
 
-    # 3. Drop stock alternates that got no replacement art, plus their
-    #    -settings thumbnails, so the base app's icons don't linger in the
-    #    picker alongside the pack's.
-    drop = {n for n in icon_names if n != primary and n not in themed}
-    drop |= {n for n in facets if settings_base(n) in drop and n not in themed}
+    # 3. Remove X-branded alternates and their settings thumbnails. Keep
+    #    unmatched stock icons (notably Twitter's legacy/seasonal icons) so
+    #    they remain available in the app's icon picker.
+    drop = {n for n in icon_names if n.startswith("Custom-Icon-X-")}
+    drop |= {n for n in facets if settings_base(n) in drop}
     if drop:
         gone = {facets[n] for n in drop}
         manifest["facets"] = [f for f in manifest["facets"] if f["name"] not in drop]
