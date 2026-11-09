@@ -18,8 +18,8 @@ byte-identical instead of being rebuilt.
   - A file named exactly after a rendition (e.g. Icon-App-60x60@2x.png)
     overrides just that rendition and beats the asset master.
   - A file matching no existing asset becomes a brand-new alternate icon,
-    cloned from a self-contained stock alternate via `scar clone-asset`
-    (plus a "<name>-settings" thumbnail set so the picker preview isn't blank).
+    cloned from a self-contained icon asset via `scar clone-asset` (plus its
+    settings-thumbnail asset so the picker preview isn't blank).
   - X-branded alternate icons (Custom-Icon-X-*) are dropped, along with their
     "-settings" thumbnails. Other stock alternates, including Twitter icons,
     remain available even when the pack does not replace them.
@@ -178,8 +178,15 @@ def main():
     def self_contained(n):
         return all(r["content"]["type"] != "link" for r in by_ident.get(facets[n], []))
 
+    def settings_asset_for(name):
+        return next((n for n in facets if settings_base(n) == name), None)
+
+    # Prefer an alternate as the clone source.
     template = next((n for n in sorted(icon_names)
-                     if n != primary and self_contained(n) and "%s-settings" % n in facets), None)
+                     if n != primary and self_contained(n) and settings_asset_for(n)), None)
+    if template is None and primary and self_contained(primary) and settings_asset_for(primary):
+        template = primary
+    template_settings = settings_asset_for(template) if template else None
     new_icons = []
     for f, path in sorted(overlays.items()):
         stem = os.path.splitext(f)[0]
@@ -187,11 +194,11 @@ def main():
             continue
         if "@" in stem or re.search(r"\d+x\d+", stem):  # a rendition file, not a master
             continue
-        if not template:
+        if not template or not template_settings:
             sys.stderr.write("no-template: %s (no self-contained alternate icon to clone)\n" % f)
             continue
         run_scar(args.scar, "clone-asset", catalog, "--from", template, "--to", stem)
-        run_scar(args.scar, "clone-asset", catalog, "--from", "%s-settings" % template,
+        run_scar(args.scar, "clone-asset", catalog, "--from", template_settings,
                  "--to", "%s-settings" % stem)
         new_icons.append((stem, path))
         used.add(path)
