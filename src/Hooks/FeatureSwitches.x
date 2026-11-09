@@ -224,7 +224,7 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @NO;
     }
     if ([key isEqualToString:@"ios_ipad_phone_navigation_enabled"]) {
-        return (is_iPad() && ![BHTSettings boolForKey:@"liquid_glass"]) ? @NO : @YES;
+        return @YES;
     }
 
     if ([key isEqualToString:
@@ -238,6 +238,10 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         if ([BHTSettings boolForKey:@"disable_media_carousel"]) {
             return @NO;
         }
+    }
+
+    if ([key isEqualToString:@"ios_liquid_glass_redesign_quick_composer_enabled"]) {
+        return @NO;
     }
 
     if ([key hasPrefix:@"ios_liquid_glass"] ||
@@ -996,8 +1000,10 @@ static __thread NSUInteger NFBLiquidGlassInstallationDepth;
     return NFBLiquidGlassEnabled();
 }
 
+/**
 + (BOOL)isQuickComposerEnabledWithFeatureSwitches:(id)switches {
     return NFBLiquidGlassEnabled();
 }
+*/
 
 %end
