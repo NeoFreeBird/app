@@ -124,12 +124,9 @@ def main() -> int:
     present = set(icon_names)
 
     def set_primary(key, primary):
-        # Replace only CFBundlePrimaryIcon; keep other sub-keys. Reconcile
-        # CFBundleAlternateIcons with the catalog: prune sets no longer present
-        # (so dropped stock icons don't dangle in the picker) and add an entry
-        # for every present non-primary icon set (so new pack icons show up).
-        # Catalog-based alternates need only CFBundleIconName, matching how the
-        # app's own stock alternates are declared.
+        # Keep existing alternate declarations and their metadata, removing
+        # only X-branded custom icons. Add every compiled pack icon. An
+        # alternate's plist key can differ from its CFBundleIconName.
         icons = info.get(key)
         if not isinstance(icons, dict):
             icons = {}
@@ -137,10 +134,18 @@ def main() -> int:
         alts = icons.get("CFBundleAlternateIcons")
         if not isinstance(alts, dict):
             alts = {}
-        for k in [k for k in alts if k not in present]:
-            del alts[k]
+        def asset_name(name, entry):
+            return entry.get("CFBundleIconName", name) if isinstance(entry, dict) else name
+
+        def is_x(name):
+            return isinstance(name, str) and name.lower().startswith("custom-icon-x-")
+
+        for name in list(alts):
+            if is_x(name) or is_x(asset_name(name, alts[name])):
+                del alts[name]
+        declared = {asset_name(name, entry) for name, entry in alts.items()}
         for name in sorted(present):
-            if name != primary_name:
+            if name != primary_name and name not in declared and not is_x(name):
                 alts.setdefault(name, {"CFBundleIconName": name})
         if alts:
             icons["CFBundleAlternateIcons"] = alts
