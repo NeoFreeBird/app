@@ -978,9 +978,18 @@ static NSArray* panelIDsForDashSnapshot(NSArray* panelIDs) {
 static char SensitiveMediaRevealPendingKey;
 static char SensitiveMediaButtonHiddenKey;
 
-static void BHTUpdateSensitiveMediaRevealButton(HFSensitiveTweetBlurredInterstitialView* overlay) {
+// X's own Show/Hide button, or nil until the overlay has created and attached it.
+static UIButton* BHTSensitiveMediaRevealButton(HFSensitiveTweetBlurredInterstitialView* overlay) {
     UIButton* button = nfb_objectIvar(overlay, "$__lazy_storage_$_showOrHideMediaButton");
     if (![button isKindOfClass:UIButton.class] || ![button isDescendantOfView:overlay]) {
+        return nil;
+    }
+    return button;
+}
+
+static void BHTUpdateSensitiveMediaRevealButton(HFSensitiveTweetBlurredInterstitialView* overlay) {
+    UIButton* button = BHTSensitiveMediaRevealButton(overlay);
+    if (!button) {
         return;
     }
 
@@ -1011,8 +1020,14 @@ static void BHTRevealSensitiveMedia(HFSensitiveTweetBlurredInterstitialView* ove
         return;
     }
 
-    // Use the native Show action so the overlay and media reveal state stay in sync.
-    [overlay showOrHideMediaButtonPressed:nil];
+    // Use the native Show action so the overlay and media reveal state stay in
+    // sync. X wires this up as the button's target action, so send it the way
+    // a tap would: from the overlay's own button, never nil.
+    UIButton* button = BHTSensitiveMediaRevealButton(overlay);
+    if (!button) {
+        return;
+    }
+    [overlay showOrHideMediaButtonPressed:button];
     BHTUpdateSensitiveMediaRevealButton(overlay);
 }
 
