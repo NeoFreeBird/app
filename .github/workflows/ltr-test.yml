@@ -1,0 +1,69 @@
+name: LTR test libraries
+on:
+  push:
+    branches: [codex/ltr-interface-build]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    env:
+      THEOS: ${{ github.workspace }}/theos
+      BUILD_DIR: ${{ github.workspace }}/ffmpeg-build
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          path: main
+          submodules: recursive
+      - run: brew install make dpkg ldid
+      - run: echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
+      - uses: actions/checkout@v6
+        with:
+          repository: theos/theos
+          path: theos
+          submodules: recursive
+      - uses: actions/cache@v6
+        id: sdk
+        with:
+          path: theos/sdks
+          key: iOS-16.5-SDK
+      - if: steps.sdk.outputs.cache-hit != 'true'
+        run: |
+          git clone -n --depth=1 --filter=tree:0 https://github.com/theos/sdks/
+          cd sdks
+          git sparse-checkout set --no-cone iPhoneOS16.5.sdk
+          git checkout
+          mkdir -p "$THEOS/sdks"
+          cp -R iPhoneOS16.5.sdk "$THEOS/sdks/"
+      - id: ffmpeg-key
+        run: echo "key=ffmpeg-stack-sdk$(xcrun --sdk iphoneos --show-sdk-version)-$(git -C main rev-parse --short HEAD:deps/ffmpeg-kit-next/upstream)-${{ hashFiles('main/deps/ffmpeg-kit-next/build-ffmpeg.sh') }}" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v6
+        with:
+          path: |
+            ffmpeg-build
+            main/deps/ffmpeg-kit-next/build
+          key: ${{ steps.ffmpeg-key.outputs.key }}
+      - name: Build sideload libraries
+        working-directory: main
+        run: |
+          ./deps/ffmpeg-kit-next/build-ffmpeg.sh
+          make SIDELOADED=1
+      - name: Bundle libraries and resources
+        working-directory: main
+        run: |
+          mkdir -p ../deliverables
+          cp .theos/obj/debug/BHTwitter.dylib ../deliverables/
+          cp .theos/obj/debug/libbhFLEX.dylib ../deliverables/
+          cp .theos/obj/debug/zxPluginsInject.dylib ../deliverables/
+          cp -R "layout/Library/Application Support/BHT/BHTwitter.bundle" ../deliverables/
+          cp -R deps/OpenTwitterSafariExtension/OpenTwitterSafariExtension.appex ../deliverables/
+          git rev-parse HEAD > ../deliverables/commit.txt
+          tar -czf ../ltr-sideload-libraries.tar.gz -C ../deliverables .
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ltr-sideload-libraries
+          path: ltr-sideload-libraries.tar.gz
+          retention-days: 7
+          if-no-files-found: error
