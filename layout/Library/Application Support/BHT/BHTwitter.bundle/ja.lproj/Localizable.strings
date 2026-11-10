@@ -64,6 +64,7 @@ MODERN_SETTINGS_SEARCH_SUBTITLE" = "「話題を検索」タブに表示され�
 
 "COOL_KIDS_SECTION_HEADER_TITLE" = "イケてる仲間たち";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "特別な感謝";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "翻訳者";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "NeoFreeBirdをフォロー";
 
 /*General*/
@@ -228,6 +229,9 @@ MODERN_SETTINGS_SEARCH_SUBTITLE" = "「話題を検索」タブに表示され�
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "動画の字幕を非表示";
 
 "FORCE_TWEET_FULL_FRAME_TITLE" = "画像を大きく表示";
+
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "ダブルタップによる「いいね」を無効化";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "動画をダブルタップして「いいね」を付ける機能を防ぎます。";
 
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "動画のタイムスタンプ";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "没入型プレーヤーにタイムスタンプを表示します。";
