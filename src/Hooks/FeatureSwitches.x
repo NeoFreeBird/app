@@ -821,6 +821,7 @@ BOOL panelIsGenuinelyAvailable(long long panelID) {
 
 static __thread BOOL DashPanelIDQuery = NO;
 
+// [T1PanelIdentity iconImageNameForPanelID:] is where you can match panel IDs to their icons (aka names)
 static NSArray* panelIDsForDashSnapshot(NSArray* panelIDs) {
     if (!DashPanelIDQuery || !panelIDs) {
         return panelIDs;
@@ -848,6 +849,7 @@ static NSArray* panelIDsForDashSnapshot(NSArray* panelIDs) {
     }
     claim(@17); // Money
     claim(@20); // News
+    claim(@25); // Calls
 
     return spoofed;
 }
