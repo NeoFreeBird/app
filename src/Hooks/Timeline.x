@@ -592,7 +592,7 @@ static NSSet<NSNumber*>* ConversationAuthorRepliedToUserIDs(NSArray* sections,
         IsInHierarchyOfClass(dataViewController, @"T1ConversationContainerViewController");
     context.inProfile = IsInHierarchyOfClass(dataViewController, @"T1ProfileViewController");
     context.openedFromProfile = IsInProfileOriginConversation(dataViewController);
-    context.inSearch = IsInHierarchyOfClass(dataViewController, @"TTSSearchContainerViewControllerV2");
+    context.inSearch = IsInHierarchyOfClass(dataViewController, @"TTSSearchContainerViewControllerV2") || IsInHierarchyOfClass(dataViewController, @"TTSSearchContainerViewController");
     context.inEditHistory = IsInEditHistory(dataViewController);
     context.inNotifications = IsInHierarchyOfClass(dataViewController, @"T1NotificationsViewController");
 
