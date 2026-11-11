@@ -506,3 +506,7 @@
 
 "GITHUB_DOWNLOAD_WARNING_TITLE" = "Welcome!";
 "GITHUB_DOWNLOAD_WARNING_MESSAGE" = "Make sure that you installed NeoFreeBird from our official GitHub. We can't help with issues from other iPAs, and you may not know whether your version is free from harmful code. If you have any questions, please make a GitHub issue.";
+
+"COMPOSITION_COMPLETE_SENDING_TWEET_TOAST_NOTIFICATION_MESSAGE" = "Your reply has been sent!";
+"DM_MESSAGE_ACTION_OPEN_GENERIC_TITLE" = "Open Tweet";
+"DISMISS_LABEL" = "Dismiss";
