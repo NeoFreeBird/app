@@ -144,6 +144,9 @@
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "Disable media carousel";
 "DISABLE_MEDIA_CAROUSEL_DETAIL" = "Reverts the new look for mulitple media attachments.";
 
+"HIDE_MEDIA_PREVIEWS_TITLE" = "Hide media previews";
+"HIDE_MEDIA_PREVIEWS_DETAIL" = "Hide photos, videos, and GIFs in timelines. (Data saver mode)";
+
 "HIDE_BOOKMARK_BUTTON_TITLE" = "Hide bookmarks";
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Remove the bookmark button from Tweets.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Hide downvotes";
