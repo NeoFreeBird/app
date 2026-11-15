@@ -65,6 +65,7 @@
 
 "COOL_KIDS_SECTION_HEADER_TITLE" = "イケてる仲間たち";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "特別な感謝";
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "翻訳者";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "NeoFreeBirdをフォロー";
 
 /*General*/
@@ -74,6 +75,9 @@
 
 "NO_FOCUS_LOST_TITLE" = "フォーカスを維持";
 "NO_FOCUS_LOST_DETAIL" = "別のアプリに切り替えたことをXが検知するのをブロックするため、スレッド内で読んでいた位置を見失うことがなくなります。";
+
+"IPAD_SPLIT_VIEW_TITLE" = "iPadの分割表示を有効にする";	
+"IPAD_SPLIT_VIEW_DETAIL" = "iPad（およびiPhone Duo）でTwitterを分割表示で使用できるようになります。これにより、画面の片側でツイートを開いたまま、もう片側でタイムラインを表示しておくことができます。";
 
 "HIDE_TIMELINE_PROMPTS_TITLE" = "タイムラインの案内を非表示";
 "HIDE_TIMELINE_PROMPTS_DETAIL" = "「連絡先を追加」などの案内バナーを非表示にします。";
@@ -140,10 +144,15 @@
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "ポスト内のメディアをグリッド表示";
 "DISABLE_MEDIA_CAROUSEL_DETAIL" = "ポスト内のメディアをカルーセルではなく、グリッド一覧で表示します。";
 
+"HIDE_MEDIA_PREVIEWS_TITLE" = "メディアのプレビューを非表示";
+"HIDE_MEDIA_PREVIEWS_DETAIL" = "タイムライン上の写真、動画、GIFを非表示にします。（省データモード）";
+
 "HIDE_BOOKMARK_BUTTON_TITLE" = "ブックマークボタンを非表示";
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "ポストに表示されるブックマークボタンを非表示にします。";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "低評価ボタンを非表示";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "ポストに表示される低評価ボタンを非表示にします。";
+"HIDE_MADE_ON_X_TITLE" = "「Made on X」を非表示";	
+"HIDE_MADE_ON_X_DETAIL" = "ツイートから「Made on X」のラベルを削除します。";
 
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "センシティブ警告を非表示";
 
@@ -224,6 +233,9 @@
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "動画の字幕を非表示";
 
 "FORCE_TWEET_FULL_FRAME_TITLE" = "画像を大きく表示";
+
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "ダブルタップによる「いいね」を無効化";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "動画をダブルタップして「いいね」を付ける機能を防ぎます。";
 
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "動画のタイムスタンプ";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "没入型プレーヤーにタイムスタンプを表示します。";
@@ -491,3 +503,10 @@
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "オフ";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld秒";
+
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "ようこそ！";	
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "NeoFreeBirdは必ず公式のGitHubからインストールしてください。他のIPAファイルに関する問題についてはサポートいたしかねます。また、お使いのバージョンに有害なコードが含まれていないか確認できません。ご不明な点がございましたら、GitHubでIssueを作成してください。";
+
+"COMPOSITION_COMPLETE_SENDING_TWEET_TOAST_NOTIFICATION_MESSAGE" = "返信が送信されました！";
+"DM_MESSAGE_ACTION_OPEN_GENERIC_TITLE" = "ツイートを開く";
+"DISMISS_LABEL" = "閉じる";

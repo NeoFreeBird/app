@@ -47,7 +47,7 @@ static const CGFloat ListRowSpacing = 8;
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [fontGroup performSelector:@selector(bodyFont)];
     self.titleLabel.textColor = [UIColor labelColor];
-    self.titleLabel.numberOfLines = 0;
+    self.titleLabel.numberOfLines = 2;
 
     self.subtitleLabel = [[UILabel alloc] init];
     self.subtitleLabel.font = [fontGroup performSelector:@selector(subtext2Font)];
@@ -175,6 +175,8 @@ static const CGFloat ListRowSpacing = 8;
 
 - (void)setupViews {
     self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.numberOfLines = 2;
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     id fontGroup = [BHTManager sharedFontGroup];
     self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
@@ -253,6 +255,8 @@ static const CGFloat ListRowSpacing = 8;
 
 - (void)setupViews {
     self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.numberOfLines = 2;
+    self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     id fontGroup = [BHTManager sharedFontGroup];
     self.titleLabel.font = [fontGroup performSelector:@selector(bodyBoldFont)];
@@ -356,6 +360,8 @@ static const CGFloat ListRowSpacing = 8;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = [Palette currentBackgroundColor];
         self.titleLabel = [UILabel new];
+        self.titleLabel.numberOfLines = 2;
+        self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:self.titleLabel];
         self.subtitleLabel = [UILabel new];

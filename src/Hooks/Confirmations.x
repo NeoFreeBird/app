@@ -148,6 +148,9 @@ static void ShowConfirmation(void (^confirmed)(void)) {
 %hook _TtC14T1TwitterSwift32ImmersiveDoubleTapLikePluginView
 
 - (void)handleDoubleTap:(id)gesture {
+    if ([BHTSettings boolForKey:@"disable_double_tap_like"]) {
+        return;
+    }
     if (![BHTSettings boolForKey:@"like_confirm"]) {
         return %orig;
     }

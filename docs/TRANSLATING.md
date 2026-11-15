@@ -99,3 +99,34 @@ This is slightly different, since instead of modifying an existing file (if it d
 
 The left side contains the new terminology the X app uses, while the right side uses terminology the old Twitter app used. Since the words differ between languages, make sure to double check before adding to this file. Once you're done, you can go through the same flow as committing and making a PR as with the normal strings.
 
+
+### Grammar and context
+
+Renaming uses three layers, in this order:
+
+1. `RenameOverrides.strings`: the app's localization key mapped to a complete
+   replacement. Use this when the same text has different meanings in different
+   UI contexts. Preserve all format placeholders and their argument positions.
+2. `RenamePhrases.strings`: exact, case-sensitive source text mapped to a complete
+   replacement. This also works for server-composed text without a localization
+   key. Include each actual spelling explicitly; phrases are not fragments or
+   format patterns. An identity entry prevents generic replacements for that text.
+3. `RenameWords.strings`: terminology fragments that remain correct in context.
+   Longer matches win. Lowercase entries support original, initial-capital and
+   all-capital forms using locale-aware casing (including Turkish dotted I).
+   Uppercase-bearing keys such as `X` require an exact match. Japanese and Chinese
+   terms can match next to other characters without spaces.
+
+Do not translate grammar by swapping a noun stem or a general verb everywhere.
+List inflected forms and preposition phrases explicitly (see Polish `we wpisie`),
+which lets the replacement change the whole construction. Use full phrases or
+localization keys for gender agreement, word order, and ambiguous actions like
+“publish” or “quote”. Unknown inflections stay unchanged. Keep replacements stable
+when processed twice. Missing tables never fall back to another language.
+
+Run the Foundation regression checks on macOS from the repository root:
+
+```sh
+xcrun clang -fobjc-arc -framework Foundation -Isrc src/Core/BHTTerminology.m tests/TerminologyTests.m -o /tmp/nfb-terminology-tests
+/tmp/nfb-terminology-tests
+```

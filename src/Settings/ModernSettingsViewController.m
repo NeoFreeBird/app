@@ -103,6 +103,8 @@
     UILabel* titleLabel = [[UILabel alloc] init];
     titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
     titleLabel.text = title;
+    titleLabel.numberOfLines = 2;
+    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
 
     id fontGroup = [BHTManager sharedFontGroup];
     titleLabel.font = [fontGroup performSelector:@selector(headline1BoldFont)];

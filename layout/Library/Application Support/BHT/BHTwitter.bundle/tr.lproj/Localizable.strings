@@ -25,7 +25,7 @@
 "MODERN_SETTINGS_LAYOUT_TITLE" = "Genel";
 "MODERN_SETTINGS_LAYOUT_SUBTITLE" = "Uygulamayı kilitleyin, gezinme çubuğunu görünür tutun ve daha fazlasını yapın.";
 
-"MODERN_SETTINGS_MEDIA_TITLE" = "Fotoğraflar Ve Videolar";
+"MODERN_SETTINGS_MEDIA_TITLE" = "Fotoğraflar ve Videolar";
 "MODERN_SETTINGS_MEDIA_SUBTITLE" = "Videoları indirin, video zaman etiketlerini etkinleştirin ve daha fazlasını yapın.";
 
 "MODERN_SETTINGS_APPEARANCE_TITLE" = "Görünüm";
@@ -40,23 +40,23 @@
 "MODERN_SETTINGS_PROFILES_TITLE" = "Profiller";
 "MODERN_SETTINGS_PROFILES_SUBTITLE" = "Kullanıcı profillerinde ne göreceğinizi seçin.";
 
-"MODERN_SETTINGS_TWEETS_TITLE" = "Tweetler Ve Yanıtlar";
-"MODERN_SETTINGS_TWEETS_SUBTITLE" = "Tweetlerin görünümünü değiştirin ve kullanmayabileceğiniz özellikleri kaldırın.";
+"MODERN_SETTINGS_TWEETS_TITLE" = "Tweetler ve Yanıtlar";
+"MODERN_SETTINGS_TWEETS_SUBTITLE" = "Tweetlerin görünümünü değiştirin ve kullanmadığınız özellikleri kaldırın.";
 
 "MODERN_SETTINGS_CHAT_TITLE" = "Sohbet";
 "MODERN_SETTINGS_CHAT_SUBTITLE" = "Sohbet arayüzüne yeni özellikler ekleyin.";
 
-"MODERN_SETTINGS_SEARCH_TITLE" = "Arama Ve Keşfet";
+"MODERN_SETTINGS_SEARCH_TITLE" = "Arama ve Keşfet";
 "MODERN_SETTINGS_SEARCH_SUBTITLE" = "Arama sekmesinde ne gördüğünüzü değiştirin.";
 
 "MODERN_SETTINGS_PRESETS_TITLE" = "Hazır Ayarlar";
 "MODERN_SETTINGS_PRESETS_SUBTITLE" = "Önceden yapılandırılmış bir ayar setini uygulayın veya kendi ayarlarınızı dışa ve içe aktarın.";
 
-"MODERN_SETTINGS_WEB_TITLE" = "Web Ve Bağlantılar";
+"MODERN_SETTINGS_WEB_TITLE" = "Web ve Bağlantılar";
 "MODERN_SETTINGS_WEB_SUBTITLE" = "Bağlantıların ve Twitter’ın uygulama içi tarayıcısının nasıl davranacağını ayarlayın.";
 
 "MODERN_SETTINGS_BRANDING_TITLE" = "Marka";
-"MODERN_SETTINGS_BRANDING_SUBTITLE" = "Ne kadar Twitter markalaması göreceğinizi ayarlayın.";
+"MODERN_SETTINGS_BRANDING_SUBTITLE" = "Twitter marka değişikliklerinin ne kadarının görüneceğini ayarlayın.";
 
 "MODERN_SETTINGS_EXPERIMENTAL_TITLE" = "Laboratuvar";
 "MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "Şu anda test ettiğimiz özellikleri deneyin.";
@@ -67,7 +67,7 @@
 "COOL_KIDS_SECTION_HEADER_TITLE" = "Havalı Çocuklar";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "Özel Teşekkürler";
 "TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "Çevirmenler";
-"FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "NeoFreeBird’i takip et";
+"FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "NeoFreeBird’ü takip et";
 
 
 /* General */
@@ -88,10 +88,10 @@
 "HIDE_VIDEOS_FOR_YOU_DETAIL" = "Zaman akışınızdaki ‘Sizin için videolar’ modülünü gizler.";
 
 "HIDE_BLOCKED_RETWEETS_TITLE" = "Engellenen Retweetleri gizle";
-"HIDE_BLOCKED_RETWEETS_DETAIL" = "Engellediğiniz hesapların Retweetlerini gizler.";
+"HIDE_BLOCKED_RETWEETS_DETAIL" = "Sizi engelleyen hesapların Retweetlerini gizler.";
 
 "PADLOCK_TITLE" = "Twitter’ı kilitle";
-"PADLOCK_DETAIL" = "Twitter’ı açmak için Face ID veya parola gerektir.";
+"PADLOCK_DETAIL" = "Twitter’ı açmak için Face ID veya parola gerektirir.";
 
 "NEW_INAPP_WEBVIEW_TITLE" = "Geliştirilmiş uygulama içi tarayıcı (beta)";
 "NEW_INAPP_WEBVIEW_DETAIL" = "Bağlantıları açmak için Twitter’ın yeni uygulama içi tarayıcısını kullanır.";
@@ -100,13 +100,12 @@
 "ALWAYS_OPEN_SAFARI_DETAIL" = "Bağlantıları Safari’de veya varsayılan tarayıcınızda açar.";
 
 "BLOCK_LINK_TRACKING_TITLE" = "Bağlantı takibini engelle";
-"BLOCK_LINK_TRACKING_DETAIL" = "Bağlantıları arka planda t.co istekleri veya reklam tık kimlikleri olmadan, doğrudan t.co üzerinden değil doğrudan açar. Twitter'ın güvensiz bağlantı uyarıları görünmez.";
+"BLOCK_LINK_TRACKING_DETAIL" = "Bağlantıları t.co yönlendirmesi, arka plan t.co istekleri ve reklam takip parametreleri olmadan doğrudan açar. Twitter’ın güvensiz bağlantı uyarıları görünmez.";
 
 "STRIP_TRACKING_PARAMS_TITLE" = "Takip parametrelerini kaldır";
 "STRIP_TRACKING_PARAMS_DETAIL" = "Açtığınız bağlantılardan utm_ ve diğer takip etiketlerini ayıklar.";
 
 "SHARING_DOMAIN_TITLE" = "Paylaşım alan adı";
-"SHARING_DOMAIN_DETAIL" = "Paylaşılan bağlantılarda kullanılacak alan adını ayarlamanızı sağlar.";
 
 
 /* Tweets */
@@ -136,7 +135,7 @@
 "SHOW_POLL_RESULTS_DETAIL" = "Diğer kişilerin nasıl oy kullandığını görebilmeniz için oy vermeden önce anket sonuçlarını seçenek adlarının yanında gösterir.";
 
 "RESTORE_TWEET_LABELS_TITLE" = "Tweet kaynağı etiketlerini göster";
-"RESTORE_TWEET_LABELS_DETAIL" = "Tweetlerin hangi istemciden gönderildiğini göster.";
+"RESTORE_TWEET_LABELS_DETAIL" = "Tweetlerin hangi istemciden gönderildiğini gösterir.";
 
 "SHOW_ACCOUNT_LOCATION_TITLE" = "Hesap konumunu göster";
 "SHOW_ACCOUNT_LOCATION_DETAIL" = "Tweet’i paylaşan hesabın konumunu Tweet alt bilgisinde gösterir.";
@@ -165,10 +164,8 @@
 "BYPASS_AGE_VERIFICATION_DETAIL" = "Hassas içerik için yaş doğrulama akışını atlar.";
 
 "HIDE_GROK_ANALYZE_TITLE" = "Grok analiz düğmelerini gizle";
-"HIDE_GROK_ANALYZE_DETAIL" = "Tweetlerde ve diğer içeriklerde Grok analiz seçeneklerini gösteren düğmeleri gizler.";
 
 "HIDE_GROK_SIDEBAR_TITLE" = "Kenar çubuğunda Grok’u gizle";
-"HIDE_GROK_SIDEBAR_DETAIL" = "Grok’u uygulamanın kenar çubuğundan kaldırır.";
 
 "HIDE_GROK_CREATE_TITLE" = "Grok oluşturma düğmelerini gizle";
 "HIDE_GROK_CREATE_DETAIL" = "Grok ile görsel ve video oluşturma veya düzenleme seçeneklerini kaldırır.";
@@ -210,7 +207,7 @@
 "COPY_PROFILE_INFO_DETAIL" = "Kullanıcı adlarını, biyografileri ve daha fazlasını tek dokunuşla kopyalamanızı sağlar.";
 
 "FAST_BLOCK_TITLE" = "Hızlı engelle/sessize al";
-"FAST_BLOCK_DETAIL" = "Onay iletişim kutusu olmadan hesapları engellemenizi veya sessize almanızı sağlar.";
+"FAST_BLOCK_DETAIL" = "Onay istemeden hesapları doğrudan engeller veya sessize alır.";
 
 "DISABLE_ARTICLES_TITLE" = "Makaleler sekmesini gizle";
 "DISABLE_ARTICLES_DETAIL" = "Profillerdeki Makaleler sekmesini gizler.";
@@ -228,7 +225,7 @@
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "Tweetlerde ve profillerde Abone Ol düğmesini gizler.";
 
 "SHOW_UNROUNDED_COUNTS_TITLE" = "Yuvarlanmamış sayıları göster";
-"SHOW_UNROUNDED_COUNTS_DETAIL" = "Takipçi, takip ve Tweet sayılarını en yakın bine veya milyona yuvarlamak yerine tam sayıları gösterir.";
+"SHOW_UNROUNDED_COUNTS_DETAIL" = "Takipçi, takip edilen ve Tweet sayılarını en yakın bine veya milyona yuvarlamak yerine tam sayıyı gösterir.";
 
 
 /* Search */
@@ -246,10 +243,8 @@
 "AUTO_HIGHEST_LOAD_DETAIL" = "Fotoğrafları ve videoları her zaman mümkün olan en yüksek çözünürlükte yükler.";
 
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "Video altyazılarını devre dışı bırak";
-"DISABLE_VIDEO_CAPTIONS_DETAIL" = "Videolardaki altyazıların gösterilmesini devre dışı bırakır.";
 
 "FORCE_TWEET_FULL_FRAME_TITLE" = "Büyük görseller";
-"FORCE_TWEET_FULL_FRAME_DETAIL" = "Tweetlerdeki görsellerin tam çerçevede ve daha büyük gösterilmesini sağlar.";
 
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "Video zaman etiketini göster";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "Sürükleyici oynatıcıda zaman etiketini gösterir.";
@@ -258,7 +253,6 @@
 "TAP_TO_PAUSE_DETAIL" = "Duraklat düğmesini kullanmak yerine videoyu iki parmakla dokunarak duraklatmanızı sağlar.";
 
 "DISABLE_IMMERSIVE_SCROLL_TITLE" = "Video akışı kaydırmasını devre dışı bırak";
-"DISABLE_IMMERSIVE_SCROLL_DETAIL" = "Sürükleyici video akışındaki kaydırma davranışını devre dışı bırakır.";
 
 "DISABLE_VIDEO_DOCKING_TITLE" = "Video sabitlemeyi devre dışı bırak";
 "DISABLE_VIDEO_DOCKING_DETAIL" = "Videoları dışarı sürüklerken Resim İçinde Resim (PiP) düğmesinin görünmesini engeller.";
@@ -291,9 +285,9 @@
 
 "THEME_OPTION_TITLE" = "Temayı değiştir";
 
-"APP_ICON_TITLE" = "Uygulama Simgesini Değiştir";
+"APP_ICON_TITLE" = "Uygulama simgesini değiştir";
 
-"CUSTOM_TAB_BAR_OPTION_TITLE" = "Gezinme Çubuğunu Özelleştir";
+"CUSTOM_TAB_BAR_OPTION_TITLE" = "Gezinme çubuğunu düzenle";
 
 
 /* Layout */
@@ -307,7 +301,6 @@
 "HIDE_CUSTOM_TIMELINES_DETAIL" = "Ana zaman akışı sekmelerinden Ekle düğmesini kaldırır.";
 
 "RESTORE_REFRESH_SOUNDS_TITLE" = "Yenileme seslerini geri yükle";
-"RESTORE_REFRESH_SOUNDS_DETAIL" = "Yenileme hareketi sırasında kullanılan sesleri geri getirir.";
 
 "HIDE_TRENDS_TITLE" = "Trend içeriğini gizle";
 "HIDE_TRENDS_DETAIL" = "Keşfet sekmesinde yalnızca arama çubuğunu gösterir; tüm trendleri, haberleri ve sayfa sekmelerini gizler.";
@@ -319,7 +312,6 @@
 "DISABLE_RTL_DETAIL" = "Sağdan sola okunan dillerde bile soldan sağa bir düzeni zorlar.";
 
 "SHOW_SCROLL_INDICATOR_TITLE" = "Kaydırma çubuğunu her zaman göster";
-"SHOW_SCROLL_INDICATOR_DETAIL" = "Sayfayı kaydırırken kaydırma göstergesini her zaman görünür tutar.";
 
 "CUSTOM_FONTS_TITLE" = "Özel yazı tipleri";
 "CUSTOM_FONTS_DETAIL" = "Twitter için özel bir yazı tipi seçin.";
@@ -332,9 +324,9 @@
 /* Labs */
 
 "REPLY_IN_WEBVIEW_TITLE" = "Web görünümünde yanıtla";
-"REPLY_IN_WEBVIEW_DETAIL" = "Doğrulamadan kaçınmak için yanıt kutusunu bir web görünümünde açar.";
+"REPLY_IN_WEBVIEW_DETAIL" = "Yanıtlar gönderilemediğinde alternatif olarak kullanılır. Yanıtları uygulama yerine x.com üzerinden gönderir.";
 
-"LIQUID_GLASS_TITLE" = "Liquid Glass'ı Etkinleştir";
+"LIQUID_GLASS_TITLE" = "Liquid Glass’ı etkinleştir";
 "LIQUID_GLASS_DETAIL" = "X'in yeni Liquid Glass arayüzünü etkinleştirir. Bu deneysel bir yeniden tasarımdır ve sorunlara neden olabilir.";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass yeniden tasarımı, değişikliklerin etkili olması için yeniden başlatma gerektirir.";
 
@@ -392,7 +384,7 @@
 
 /* Tab bar */
 
-"CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "Gezinme Çubuğunu Özelleştir";
+"CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "Özel Gezinme Çubuğu";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Eklemek veya kaldırmak için bir öğeye dokunun. Yeniden sıralamak için aşağıdaki çubuğu sürükleyin.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Gezinme çubuğunu varsayılan durumuna geri yüklemek istediğinizden emin misiniz?";
 
@@ -406,8 +398,8 @@
 "COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "Üst çubuktaki Twitter simgesine vurgu rengini uygular.";
 
 "REFRESH_PILL_TEXT" = "Tweetlendi";
-"REFRESH_PILL_LABEL_TITLE" = "Yenileme hapına etiket ekle";
-"REFRESH_PILL_LABEL_DETAIL" = "Birisi Tweet attığında yenileme hapına etiketi geri ekler.";
+"REFRESH_PILL_LABEL_TITLE" = "Yenileme göstergesine etiket ekle";
+"REFRESH_PILL_LABEL_DETAIL" = "Biri Tweet attığında yenileme göstergesine etiketi geri ekler.";
 
 "RESTORE_TWITTER_NAMES_TITLE" = "Twitter terminolojisini geri yükle";
 "RESTORE_TWITTER_NAMES_DETAIL" = "Uygulama arayüzü genelinde “X” yerine “Twitter”, “Post” yerine “Tweet”, “Repost” yerine “Retweet” vb. ifadeleri kullanır.";
@@ -419,7 +411,7 @@
 /* Dim Theme */
 
 "ENABLE_DIM_THEME_TITLE" = "Alacakaranlık temasını etkinleştir";
-"ENABLE_DIM_THEME_DETAIL" = "Twitter için kaldırılan alacakaranlık temasını geri getirir. Koyu modun etkin olmasını ve yeniden başlatmayı gerektir.";
+"ENABLE_DIM_THEME_DETAIL" = "Twitter için kaldırılan alacakaranlık temasını geri getirir. Koyu modun etkin olmasını ve yeniden başlatma gerektirir.";
 
 "DIM_THEME_RESTART_ALERT_TITLE" = "Yeniden başlatma gerekli";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "Alacakaranlık temasının etkili olması için yeniden başlatma gerekir.";
@@ -517,7 +509,7 @@
 
 /* Subscription Keys */
 
-"SUBSCRIPTION_APP_ICON_SETTINGS_TITLE" = "Uygulama Simgesini Değiştir";
+"SUBSCRIPTION_APP_ICON_SETTINGS_TITLE" = "Uygulama simgesini değiştir";
 "SUBSCRIPTION_APP_ICON_SETTINGS_DETAIL" = "Cihazınızın ana ekranı için özel bir uygulama simgesi seçin. İstediğiniz zaman değiştirin.";
 
 "SUBSCRIPTION_TAB_CUSTOMIZATION_RESTORE_BUTTON_TITLE" = "Varsayılana sıfırla";

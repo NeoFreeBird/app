@@ -28,6 +28,15 @@
       ],
       "versions": [
         {
+          "version": "12.39",
+          "buildVersion": "20",
+          "date": "2026-11-06T22:02:42Z",
+          "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/v7.3.1/NeoFreeBird-sideloaded-Twitter_7.3.1_12.39.ipa",
+          "size": 273601732,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Version 7.3.1\n\nNew Features\n- Add a toggle for the Split View on iPad\n- Add support for the Split View on macOS (tested) and iPhone Duo (untested)\n- Added a toggle to hide the “Made on X” footer\n- Added a section in settings to thank all translators for NeoFreeBird!\n- Updated X to 12.39\n\nFixes\n- Fixed the sharing domain not working\n- Fixed issues with custom tints and the classic tab bar\n- Fixed tab labels not showing on the old design\n- Fixed the legacy tab selector not respecting the profile button\n- Fixed the blur when scrolling from not being dim when dim theme was enabled\n- Fixed stale cached text overwriting others, causing text errors in the app\n- Fixed the padlock screen sometimes showing a black screen until a restart\n- Fixed the autoplay accessibility setting not respecting GIFs\n- Fixed the “No focus lost” option to never go back to the home tab\n- Fixed the app stopping audio when scrolling through muted videos on the timeline\n- Fixed the square avatar icon looking weird on Liquid Glass\n- Fixed verified users’ notifications not showing when the filter option was on\n- Fixed localization logic to be more durable and allow full sentence replacement"
+        },
+        {
           "version": "12.38.1",
           "buildVersion": "2",
           "date": "2026-10-28T18:17:50Z",

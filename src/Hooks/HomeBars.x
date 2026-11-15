@@ -118,6 +118,19 @@ static void SyncHomeAddTabButton(id container, BOOL hidden) {
     return %orig;
 }
 
+// Attachment types 2, 3, and 4 are photo, video, and GIF media respectively.
+// Returning NO removes only the inline attachment; the post itself remains
+// available to open, where the media can still be viewed.
+- (BOOL)shouldBeVisibleForViewModel:(id)viewModel {
+    BOOL visible = %orig;
+    if (!visible || ![BHTSettings boolForKey:@"hide_media_previews"]) {
+        return visible;
+    }
+
+    NSUInteger attachmentType = self.attachmentType;
+    return attachmentType != 2 && attachmentType != 3 && attachmentType != 4;
+}
+
 %end
 
 // MARK: - Hide the Spaces bar

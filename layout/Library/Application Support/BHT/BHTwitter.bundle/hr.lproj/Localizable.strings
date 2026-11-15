@@ -187,7 +187,7 @@
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "Sakriva gumb za pretplatu u tweetovima i profilima.";
 
 "SHOW_UNROUNDED_COUNTS_TITLE" = "Prikaži pune brojeve";
-"SHOW_UNROUNDED_COUNTS_DETAIL" = "Prikazuje točan broj pratitelja, praćenih profila i tweetova umjesto zaokruživanja na najbližu tisućicu ili milijun.";
+"SHOW_UNROUNDED_COUNTS_DETAIL" = "Prikazuje točan broj pratitelja, praćenih profila i tweetova umjesto zaokruživanja na najbližu tisuću ili milijun.";
 
 /*Search*/
 "NO_HISTORY_TITLE" = "Bez povijesti pretrage";
@@ -259,7 +259,7 @@
 "TAB_BAR_THEMING_TITLE" = "Klasična navigacijska traka";
 "TAB_BAR_THEMING_DETAIL" = "Primjenjuje vašu naglašenu boju na trenutno odabranu stavku.";
 
-"DISABLE_RTL_TITLE" = "Korištenje izgleda s lijeva na desno";
+"DISABLE_RTL_TITLE" = "Korištenje izgleda slijeva nadesno";
 "DISABLE_RTL_DETAIL" = "Prisilno koristi LTR čak i za RTL jezike.";
 
 "SHOW_SCROLL_INDICATOR_TITLE" = "Uvijek prikaži traku za pomicanje";
@@ -341,7 +341,7 @@
 "HIDE_VERIFIED_TWEETS_TITLE" = "Sakrij tweetove potvrđenih računa";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Skriva tweetove s potvrđenih računa u vašoj vremenskoj liniji i odgovorima, osim ako autor nije odgovorio na njih u istom threadu ili ako pratite račun.";
 
-"HIDE_TWEET_BUTTON_TITLE" = "Skarij Tweet gumb";
+"HIDE_TWEET_BUTTON_TITLE" = "Sakrij Tweet gumb";
 "HIDE_TWEET_BUTTON_DETAIL" = "Uklanja gumb za Tweetanje iz navigacijske trake.";
 
 /*Deprecated*/
@@ -375,7 +375,7 @@
 "LEGACY_LOGIN_VERIFYING_STATUS" = "Verifying…";
 "LEGACY_LOGIN_SIGNING_IN_STATUS" = "Signing in…";
 "LEGACY_LOGIN_UNAVAILABLE_TITLE" = "Unavailable";
-"PHONE_OR_EMAIL_OR_USERNAME_LABEL" = "Broj telefona, email ili korisničko ime";
+"PHONE_OR_EMAIL_OR_USERNAME_LABEL" = "Broj telefona, e-mail ili korisničko ime";
 "PASSWORD_LABEL" = "Lozinka";
 "LOG_IN_ACTION_LABEL" = "Prijavi se";
 "LOG_IN_TITLE" = "Prijavi se";
@@ -412,7 +412,7 @@
 "SETTINGS_IMPORT_TITLE" = "Uvezi postavke";
 
 "SETTINGS_EXPORT_FAILED_TITLE" = "Izvoz postavki nije uspio";
-"SETTINGS_EXPORT_WRITE_FAILED" = "Datoteka sa postavkama nije mogla biti napravljena.";
+"SETTINGS_EXPORT_WRITE_FAILED" = "Datoteka s postavkama nije mogla biti napravljena.";
 
 "SETTINGS_IMPORT_CONFIRM_TITLE" = "Uvezi postavke?";
 "SETTINGS_IMPORT_CONFIRM_MESSAGE" = "Tvoje trenutne NeoFreeBird postavke bit će zamijenjene postavkama iz datoteke koju odabereš.";
@@ -439,3 +439,49 @@
 /* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "Isključeno";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld sekundi";
+
+"TRANSLATOR_PAGE_SECTION_HEADER_TITLE" = "Prevoditelji";
+"IPAD_SPLIT_VIEW_TITLE" = "Omogući podijeljeni prikaz na iPadu";
+"IPAD_SPLIT_VIEW_DETAIL" = "Omogućuje korištenje Twittera u podijeljenom prikazu na iPadu i iPhoneu Duo. Tako možeš imati otvoren tweet na jednoj strani, a vremensku crtu na drugoj.";
+"HIDE_VIDEOS_FOR_YOU_TITLE" = "Sakrij 'Videozapisi za tebe'";
+"HIDE_VIDEOS_FOR_YOU_DETAIL" = "Sakriva odjeljak 'Videozapisi za tebe' s vremenske crte.";
+"BLOCK_LINK_TRACKING_TITLE" = "Blokiraj praćenje poveznica";
+"BLOCK_LINK_TRACKING_DETAIL" = "Poveznice će se otvarati direktno umjesto kroz t.co, bez pozadinskih zahtjeva prema t.co ili identifikatora klikova na oglase. Twitterova obavijest o nesigurnim poveznicama neće se prikazivati.";
+"STRIP_TRACKING_PARAMS_TITLE" = "Ukloni parametre za praćenje";
+"STRIP_TRACKING_PARAMS_DETAIL" = "Ukloni utm_ i druge oznake za praćenje iz poveznica koje otvaraš.";
+"SHOW_QUOTE_NUMBERS_TITLE" = "Prikaži broj citiranja";
+"SHOW_QUOTE_NUMBERS_DETAIL" = "Prikaži broj citiranja i retweetova koje je tweet dobio.";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "Prikaži nezaokruženi broj citiranja";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "Prikaži točan broj citiranja i retweetova koje je tweet dobio. Tekst može izlaziti 'van' granica ekrana.";
+"POST_INTERACTIONS_COUNTS_TITLE" = "Citiranja: %@  Retweetovi: %@";
+"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Citiranja: %lld  Retweetovi: %lld";
+"HIDE_MADE_ON_X_TITLE" = "Sakrij 'Izrađeno na X-u'";
+"HIDE_MADE_ON_X_DETAIL" = "Uklanja 'Izrađeno na X-u' oznaku s tweetova.";
+"DEFAULT_REPLY_SORTING_TITLE" = "Zadano sortiranje odgovora";
+"DEFAULT_REPLY_SORTING_DETAIL" = "Izaberi zadani način sortiranja odgovora za sve tweetove.";
+"DOWNLOAD_ALL_VIDEOS_TITLE" = "Preuzmi sve videozapise";
+"DOWNLOAD_ALL_VIDEOS_DETAIL" = "Dodaj opciju za preuzimanje svakog videozapisa u tweetu.";
+"LIQUID_GLASS_TITLE" = "Omogući Liquid Glass";
+"LIQUID_GLASS_DETAIL" = "Omogućuje novi X-ov Liquid Glass izgled. Ovo je eksperimentalna postavka i može uzrokovati probleme.";
+"LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass dizajn zahtijeva restart aplikacije kako bi se primijenio.";
+"DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "Preuzmi sve videozapise";
+"APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "Promjena ikone nije uspjela";
+"APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "Ikone se ne mogu promijeniti na macOS-u. Ovo su limitacije macOS-a.";
+"HIDE_QUOTE_TWEETS_TITLE" = "Sakrij citirane tweetove";
+"HIDE_QUOTE_TWEETS_DETAIL" = "Sakrij citirane tweetove s vremenske crte.";
+"HIDE_RETWEETS_TITLE" = "Sakrij retweetove";
+"HIDE_RETWEETS_DETAIL" = "Sakrij retweetove s vremenske crte.";
+"HIDE_QUICK_COMPOSE_TITLE" = "Sakrij gumb za brzo pisanje";
+"HIDE_QUICK_COMPOSE_DETAIL" = "Uklanja gumb za brzo pisanje iz navigacijske trake (samo kada je Liquid Glass uključen).";
+"SETTINGS_RESET_TITLE" = "Vrati zadane postavke";
+"SETTINGS_RESET_CONFIRM_TITLE" = "Vrati sve postavke na zadane vrijednosti?";
+"SETTINGS_RESET_CONFIRM_MESSAGE" = "Sve postavke NeoFreeBirda vratit će se na zadane postavke.";
+"SETTINGS_RESET_CONFIRM_BUTTON" = "Vrati na zadano";
+"SETTINGS_RESET_SUCCESS_TITLE" = "Postavke vraćene na zadano";
+"SETTINGS_RESET_SUCCESS_MESSAGE" = "Sve postavke vraćene su na zadane vrijednosti. Ponovno pokreni aplikaciju kako bi se primijenile sve promjene.";
+"CUSTOM_SEND_SOUND_TITLE" = "Uvezi zvuk slanja";
+"CUSTOM_SEND_SOUND_DEFAULT" = "Nije odabran prilagođeni zvuk";
+"CUSTOM_SEND_SOUND_FAILED_TITLE" = "Uvoz zvuka slanja nije uspio";
+"CUSTOM_SEND_SOUND_TOO_LONG" = "Odabrani zvuk je predug. Zvuk slanja može biti maksimalno 7 sekundi dug.";
+"GITHUB_DOWNLOAD_WARNING_TITLE" = "Dobro došao!";
+"GITHUB_DOWNLOAD_WARNING_MESSAGE" = "Provjeri je li NeoFreeBird instaliran s našeg službenog GitHuba. Ne možemo pomoći s problemima uzrokovanim drugim IPA datotekama, a možda ne možeš ni znati sadrži li tvoja verzija zlonamjerni kod. Ako imaš pitanja, otvori prijavu na GitHubu.";
