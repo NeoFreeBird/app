@@ -173,6 +173,9 @@
 
 "FORCE_TWEET_FULL_FRAME_TITLE" = "大图显示";
 
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "禁用双击点赞";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "防止双击视频点赞。";
+
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "视频时间戳";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "在沉浸式播放器中显示时间戳。";
 
@@ -450,6 +453,9 @@
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "禁用媒体轮播";
 "DISABLE_MEDIA_CAROUSEL_DETAIL" = "恢复多张媒体附件原来的显示方式。";
 
+"HIDE_MEDIA_PREVIEWS_TITLE" = "隐藏媒体预览";
+"HIDE_MEDIA_PREVIEWS_DETAIL" = "隐藏时间线中的照片、视频和 GIF（省流量模式）。";
+
 /*Profiles*/
 "FAST_BLOCK_TITLE" = "快速屏蔽/静音";
 "FAST_BLOCK_DETAIL" = "无需确认对话框即可屏蔽或静音账号。";
@@ -504,3 +510,7 @@
 
 "GITHUB_DOWNLOAD_WARNING_TITLE" = "欢迎！";
 "GITHUB_DOWNLOAD_WARNING_MESSAGE" = "确保你从我们的官方 GitHub 仓库安装 NeoFreeBird。我们无法帮助解决其他 iPA 的问题，而且你可能无法确定使用的版本是否包含有害代码。如有疑问，请在 GitHub 上提交 issue。";
+
+"COMPOSITION_COMPLETE_SENDING_TWEET_TOAST_NOTIFICATION_MESSAGE" = "你的回复已发送！";
+"DM_MESSAGE_ACTION_OPEN_GENERIC_TITLE" = "打开推文";
+"DISMISS_LABEL" = "关闭";
