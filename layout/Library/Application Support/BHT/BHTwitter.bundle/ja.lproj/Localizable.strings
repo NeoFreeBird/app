@@ -313,7 +313,9 @@
 
 "LIQUID_GLASS_TITLE" = "リキッドグラスを有効にする";
 "LIQUID_GLASS_DETAIL" = "Xの新しいリキッドグラスインターフェイスを有効にします。これは実験的な再デザインであり、問題を引き起こす可能性があります。";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "再起動が必要です";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "リキッドグラスのデザイン変更を適用するには、再起動が必要です。";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "再起動";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "デバッグモード";
@@ -376,10 +378,6 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "ダークブルーテーマを有効にする";
-"ENABLE_DIM_THEME_DETAIL" = "廃止された旧Twitterのダークブルー（Dim）テーマを復元します。ダークモードを有効にして、アプリを再起動する必要があります。";
-"DIM_THEME_RESTART_ALERT_TITLE" = "再起動が必要です";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "ダークブルーテーマを適用するには、アプリを再起動する必要があります。";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "再起動";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "引用ポストを非表示";
 "HIDE_QUOTE_TWEETS_DETAIL" = "タイムライン上の引用ポストを非表示にします。";

@@ -42,4 +42,5 @@
 @interface T1ColorSettings : NSObject
 + (void)_t1_applyPrimaryColorOption;
 + (void)_t1_updateOverrideUserInterfaceStyle;
++ (void)transitionToDarkMode:(BOOL)dark animated:(BOOL)animated;
 @end

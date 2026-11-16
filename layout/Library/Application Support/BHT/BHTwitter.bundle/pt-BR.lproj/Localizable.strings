@@ -218,7 +218,9 @@
 "REPLY_IN_WEBVIEW_DETAIL" = "Alternativa caso uma resposta falhe. Responde pelo x.com em vez do app.";
 "LIQUID_GLASS_TITLE" = "Ativar Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "Ativa a nova interface Liquid Glass do X. É um redesign experimental e pode apresentar problemas.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Reinicialização necessária";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "O Liquid Glass exige reiniciar o app para ser aplicado.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Reiniciar";
 
 /*Depuração*/
 "FLEX_TWITTER_TITLE" = "Modo de depuração";
@@ -273,10 +275,6 @@
 
 /*Tema Dim*/
 "ENABLE_DIM_THEME_TITLE" = "Ativar tema Dim";
-"ENABLE_DIM_THEME_DETAIL" = "Restaura o tema Dim removido do Twitter. Requer modo escuro e reinicialização.";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Reinicialização necessária";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "O tema Dim exige reiniciar o app para ser aplicado.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Reiniciar";
 "HIDE_QUOTE_TWEETS_TITLE" = "Ocultar Tweets citados";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Oculta Tweets citados da timeline.";
 "HIDE_RETWEETS_TITLE" = "Ocultar Retweets";

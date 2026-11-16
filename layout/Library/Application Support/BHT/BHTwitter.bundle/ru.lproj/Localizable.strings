@@ -307,7 +307,9 @@
 
 "LIQUID_GLASS_TITLE" = "Включить Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "Включает новый интерфейс X в стиле Liquid Glass. Это экспериментальный редизайн, который может вызывать проблемы.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Требуется перезапуск";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Для применения редизайна Liquid Glass необходимо перезапустить приложение.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Перезапустить";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Режим отладки FLEX";
@@ -370,10 +372,6 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "Включить тему Dim";
-"ENABLE_DIM_THEME_DETAIL" = "Возвращает удаленную тему Dim для Twitter. Требуется включить темный режим и перезапустить приложение.";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Требуется перезапуск";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "Для применения темы Dim необходимо перезапустить приложение.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Перезапустить";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "Скрывать твиты с цитатами";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Скрывает твиты с цитатами в вашей ленте.";

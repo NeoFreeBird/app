@@ -315,7 +315,9 @@
 
 "LIQUID_GLASS_TITLE" = "Activar Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "Habilita la nueva interfaz de X con Liquid Glass. Este es un rediseño experimental y podría causar problemas.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Se requiere reiniciar";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "El rediseño de Liquid Glass requiere reiniciar para surtir efecto.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Reiniciar";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Modo de depuración";
@@ -378,11 +380,7 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "Activar tema tenue";
-"ENABLE_DIM_THEME_DETAIL" = "Restaura el tema tenue eliminado de Twitter. Requiere tener activado el modo oscuro y reiniciar.";
 
-"DIM_THEME_RESTART_ALERT_TITLE" = "Se requiere reiniciar";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "El tema tenue requiere un reinicio para aplicarse.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Reiniciar";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "Ocultar Tweets citados";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Oculta los Tweets citados en tu cronología.";

@@ -12,6 +12,8 @@
 #import "Headers/TWHeaders.h"
 #import "Settings/ModernSettingsCells.h"
 
+extern void BHTDimSettingDidChange(BOOL enabled);
+
 @interface AppearanceSettingsViewController () <UIFontPickerViewControllerDelegate>
 @end
 
@@ -186,22 +188,7 @@
             [self refreshAllTabViews];
         });
     } else if ([key isEqualToString:@"enable_dim_theme"]) {
-        UIAlertController* alertController =
-            [UIAlertController alertControllerWithTitle:[[BHTBundle sharedBundle]
-                                                            localizedStringForKey:@"DIM_THEME_RESTART_ALERT_TITLE"]
-                                                message:[[BHTBundle sharedBundle]
-                                                            localizedStringForKey:@"DIM_THEME_RESTART_ALERT_MESSAGE"]
-                                         preferredStyle:UIAlertControllerStyleAlert];
-
-        alertController.modalPresentationStyle = UIModalPresentationFullScreen;
-        UIAlertAction* restartAction = [UIAlertAction actionWithTitle:[[BHTBundle sharedBundle]
-                                                                          localizedStringForKey:@"DIM_THEME_RESTART_ALERT_RESTART_BUTTON"]
-                                                                style:UIAlertActionStyleDestructive
-                                                              handler:^(UIAlertAction* action) {
-                                                                  exit(0);
-                                                              }];
-        [alertController addAction:restartAction];
-        [self presentViewController:alertController animated:YES completion:nil];
+        BHTDimSettingDidChange(sender.isOn);
     }
 }
 

@@ -328,7 +328,9 @@
 
 "LIQUID_GLASS_TITLE" = "Liquid Glass’ı etkinleştir";
 "LIQUID_GLASS_DETAIL" = "X'in yeni Liquid Glass arayüzünü etkinleştirir. Bu deneysel bir yeniden tasarımdır ve sorunlara neden olabilir.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Yeniden başlatma gerekli";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass yeniden tasarımı, değişikliklerin etkili olması için yeniden başlatma gerektirir.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Yeniden başlat";
 
 
 /* Debug */
@@ -411,11 +413,7 @@
 /* Dim Theme */
 
 "ENABLE_DIM_THEME_TITLE" = "Alacakaranlık temasını etkinleştir";
-"ENABLE_DIM_THEME_DETAIL" = "Twitter için kaldırılan alacakaranlık temasını geri getirir. Koyu modun etkin olmasını ve yeniden başlatma gerektirir.";
 
-"DIM_THEME_RESTART_ALERT_TITLE" = "Yeniden başlatma gerekli";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "Alacakaranlık temasının etkili olması için yeniden başlatma gerekir.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Yeniden başlat";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "Alıntı Tweetleri gizle";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Zaman akışınızdaki alıntı Tweetleri gizler.";

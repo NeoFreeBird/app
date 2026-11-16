@@ -49,8 +49,8 @@ bool NFBLiquidGlassEnabled(void);
 // Custom theme color re-apply (Theme.x)
 void applySelectedThemeColor(void);
 
-// Dim recolor for the Swift-drawn immersive video controls (Theme.x)
-void BHTApplyDimToVideoControls(UIView* controlsView);
+// Applies or removes Dim without a restart when the setting changes (Theme.x)
+void BHTDimSettingDidChange(BOOL enabled);
 
 // Long press on the home navigation bar opens NeoFreeBird settings (Settings.x)
 void attachNeoFreeBirdSettingsGesture(UIViewController* home);

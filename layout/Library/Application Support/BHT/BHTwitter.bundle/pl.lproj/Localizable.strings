@@ -331,10 +331,8 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "Włącz przyciemniony motyw";
-"ENABLE_DIM_THEME_DETAIL" = "Przywraca usunięty z Twittera przyciemniony motyw. Wymaga włączonego trybu ciemnego i ponownego uruchomienia.";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Wymagane ponowne uruchomienie";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "Przyciemniony motyw zacznie działać po ponownym uruchomieniu aplikacji.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Uruchom ponownie";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Wymagane ponowne uruchomienie";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Uruchom ponownie";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "Ukryj Tweety zweryfikowanych kont";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Ukrywa Tweety zweryfikowanych kont na osi czasu i w odpowiedziach, chyba że autor odpowiedział im w tym samym wątku albo obserwujesz dane konto.";

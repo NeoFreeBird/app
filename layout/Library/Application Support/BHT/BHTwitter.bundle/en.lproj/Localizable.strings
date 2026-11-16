@@ -313,7 +313,9 @@
 
 "LIQUID_GLASS_TITLE" = "Enable Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "Enables X's new Liquid Glass interface. This is an experimental redesign and may cause issues.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Restart required";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "The Liquid Glass redesign requires a restart to take effect.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Restart";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Debug mode";
@@ -376,10 +378,7 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "Enable dim theme";
-"ENABLE_DIM_THEME_DETAIL" = "Restores the removed dim theme for Twitter. Requires dark mode to be enabled and a restart.";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Restart required";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "The dim theme requires a restart to take effect.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Restart";
+"ENABLE_DIM_THEME_DETAIL" = "Uses Twitter's removed dim theme instead of the black theme when dark mode is on.";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "Hide quote Tweets";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Hides quote Tweets in your timeline.";

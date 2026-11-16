@@ -333,10 +333,6 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "Uključi dim temu";
-"ENABLE_DIM_THEME_DETAIL" = "Vraća dim temu za Twitter. Potrebno je imati upaljen dark mode te napraviti restart.";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Restart potreban";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "Za primjenu dim teme potrebno je ponovno pokrenuti aplikaciju.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Restart";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "Sakrij tweetove potvrđenih računa";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Skriva tweetove s potvrđenih računa u vašoj vremenskoj liniji i odgovorima, osim ako autor nije odgovorio na njih u istom threadu ili ako pratite račun.";
@@ -463,7 +459,9 @@
 "DOWNLOAD_ALL_VIDEOS_DETAIL" = "Dodaj opciju za preuzimanje svakog videozapisa u tweetu.";
 "LIQUID_GLASS_TITLE" = "Omogući Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "Omogućuje novi X-ov Liquid Glass izgled. Ovo je eksperimentalna postavka i može uzrokovati probleme.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Restart potreban";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass dizajn zahtijeva restart aplikacije kako bi se primijenio.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Restart";
 "DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "Preuzmi sve videozapise";
 "APP_ICON_SETTINGS_MAC_ALERT_TITLE" = "Promjena ikone nije uspjela";
 "APP_ICON_SETTINGS_MAC_ALERT_MESSAGE" = "Ikone se ne mogu promijeniti na macOS-u. Ovo su limitacije macOS-a.";
