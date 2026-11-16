@@ -158,6 +158,43 @@ static UIFont* BHTReplaceFont(UIFont* originalFont, BOOL isBold) {
     return BHTReplaceFont(originalFont, isBold);
 }
 
+- (id)tfn_CTFont {
+    id ctFont = %orig;
+    if (!ctFont || ctFont == self) {
+        // Chirp / system font fast path in X: the UIFont itself is the
+        // attribute value and is retained normally. Nothing to do.
+        return ctFont;
+    }
+    // X's -[UIFont(TFNUIFontGroup) tfn_CTFont] backs named fonts with a
+    // static NSCache (countLimit = 3) and returns the CTFont unretained:
+    // the cache is the sole owner. Once regular AND bold custom fonts are
+    // both set, a single tweet detail view creates 4+ "name-size"
+    // combinations, the cache evicts an in-use CTFont, and the next
+    // addAttribute: crashes in attributeDictionaryHash (#269).
+    // Pin the CTFonts of the user's custom fonts for the process lifetime.
+    NSString* regularName = CustomFontName(NO);
+    NSString* boldName = CustomFontName(YES);
+    BOOL isCustom = (regularName && [self.fontName isEqualToString:regularName]) ||
+                    (boldName && [self.fontName isEqualToString:boldName]);
+    if (!isCustom) {
+        return ctFont;
+    }
+    static NSMutableDictionary* pinnedCTFonts = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        pinnedCTFonts = [NSMutableDictionary new];
+    });
+    // Same "name-size" key format X's NSCache uses, so each distinct
+    // combination is pinned exactly once.
+    NSString* key = [NSString stringWithFormat:@"%@-%@", self.fontName, @(self.pointSize)];
+    @synchronized (pinnedCTFonts) {
+        if (!pinnedCTFonts[key]) {
+            pinnedCTFonts[key] = ctFont;
+        }
+    }
+    return ctFont;
+}
+
 %end
 
 // XDSFoundation.Fonts wraps the result of +fontForToken: as a SwiftUI.Font.
