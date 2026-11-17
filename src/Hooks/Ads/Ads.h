@@ -1,5 +1,3 @@
-// Ads.h
-
 #import "../HookHelpers.h"
 
 BOOL StatusItemIsPromoted(id item);
