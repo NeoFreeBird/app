@@ -3,288 +3,213 @@
   NeoFreeBird
 */
 
-"NFB_SETTINGS_TITLE" = "NeoFreeBird";
-"NFB_SETTINGS_DETAIL" = "Atur Twitter kamu: sembunyikan iklan, aktifkan fitur Blue, dan lainnya.";
+/* general */
 
-/*Alerts and popups*/
-
-"CONFIRM_ALERT_MESSAGE" = "Yakin mau melakukan itu?";
-
-/*Settings*/
 "MODERN_SETTINGS_LAYOUT_TITLE" = "Umum";
 "MODERN_SETTINGS_LAYOUT_SUBTITLE" = "Kunci aplikasi, jaga bilah navigasi tetap terlihat, dan banyak lagi.";
+"PADLOCK_TITLE" = "Kunci Twitter";
+"PADLOCK_DETAIL" = "Butuh Face ID atau kode untuk membuka Twitter.";
+"HIDE_PROMOTED_TITLE" = "Tanpa iklan";
+"HIDE_PROMOTED_DETAIL" = "Hapus semua iklan.";
+"HIDE_PREMIUM_OFFER_TITLE" = "Tanpa promosi Twitter Blue";
+"HIDE_PREMIUM_OFFER_DETAIL" = "Sembunyikan tombol 'Verifikasi' dan 'Upgrade'.";
+"NO_TAB_BAR_HIDING_TITLE" = "Tampilkan tab bar terus";
+"NO_TAB_BAR_HIDING_DETAIL" = "Jangan sembunyikan tab saat digulir.";
+"DISABLE_RTL_TITLE" = "Gunakan tampilan kiri-ke-kanan";
+"DISABLE_RTL_DETAIL" = "Paksa tampilan LTR, meski bahasanya RTL.";
+"SHOW_SCROLL_INDICATOR_TITLE" = "Selalu tampilkan scroll bar";
 
-"MODERN_SETTINGS_MEDIA_TITLE" = "Media";
-"MODERN_SETTINGS_MEDIA_SUBTITLE" = "Unduh video, aktifkan penanda waktu, dan lainnya.";
+/* appearance */
 
 "MODERN_SETTINGS_APPEARANCE_TITLE" = "Tampilan";
 "MODERN_SETTINGS_APPEARANCE_SUBTITLE" = "Jadikan Twitter milik Anda dengan tema, ikon aplikasi khusus, font, dan lainnya.";
+"THEME_OPTION_TITLE" = "Ganti tema";
+"APP_ICON_TITLE" = "Ganti ikon aplikasi";
+"CUSTOM_TAB_BAR_OPTION_TITLE" = "Edit tab bar";
+"TAB_BAR_THEMING_TITLE" = "Bilah Navigasi Klasik";
+"TAB_BAR_THEMING_DETAIL" = "Terapkan warna aksen Anda ke item navigasi yang dipilih.";
+"RESTORE_TAB_LABELS_TITLE" = "Label Navigasi";
+"RESTORE_TAB_LABELS_DETAIL" = "Tampilkan label di bawah ikon di bilah navigasi seperti versi lama Twitter.";
+"CUSTOM_FONTS_TITLE" = "Font khusus";
+"CUSTOM_FONTS_DETAIL" = "Pilih font khusus untuk Twitter.";
+"REGULAR_FONTS_PICKER_OPTION_TITLE" = "Pilih font";
+"FONT_SYSTEM_DEFAULT_SUBTITLE" = "System Default";
+"BOLD_FONTS_PICKER_OPTION_TITLE" = "Pilih font tebal";
+
+/* timelines */
 
 "MODERN_SETTINGS_TIMELINES_TITLE" = "Linimasa";
 "MODERN_SETTINGS_TIMELINES_SUBTITLE" = "Hapus iklan, saran untuk diikuti, dan gangguan lainnya di linimasa.";
+"HIDE_WHO_TO_FOLLOW_TITLE" = "Tanpa 'Siapa yang harus diikuti'";
+"HIDE_WHO_TO_FOLLOW_DETAIL" = "Sembunyikan saran akun dari profil.";
+"HIDE_TIMELINE_PROMPTS_TITLE" = "Tanpa ajakan di linimasa";
+"HIDE_TIMELINE_PROMPTS_DETAIL" = "Sembunyikan spanduk seperti 'Tambahkan kontak'.";
+"HIDE_SPACES_TITLE" = "Sembunyikan bilah Spaces";
+"HIDE_CUSTOM_TIMELINES_TITLE" = "Sembunyikan linimasa khusus";
+"HIDE_CUSTOM_TIMELINES_DETAIL" = "Hapus tombol Tambah dari tab linimasa beranda.";
+"RESTORE_REFRESH_SOUNDS_TITLE" = "Suara saat menyegarkan";
+
+/* grok */
 
 "MODERN_SETTINGS_GROK_TITLE" = "Grok";
 "MODERN_SETTINGS_GROK_SUBTITLE" = "Sembunyikan tombol Grok dan atur terjemahan otomatis.";
+"HIDE_GROK_ANALYZE_TITLE" = "Sembunyikan Tombol Analisis Grok";
+"HIDE_GROK_SIDEBAR_TITLE" = "Sembunyikan Grok di bilah samping";
+"HIDE_GROK_CREATE_TITLE" = "Sembunyikan tombol pembuatan Grok";
+"HIDE_GROK_CREATE_DETAIL" = "Menghapus opsi untuk membuat atau mengedit gambar dan video dengan Grok.";
+"DISABLE_AUTO_TRANSLATE_TITLE" = "Nonaktifkan terjemahan otomatis";
+"DISABLE_AUTO_TRANSLATE_DETAIL" = "Jangan pernah menerjemahkan postingan atau bio secara otomatis.";
+
+/* media_downloads */
+
+"MODERN_SETTINGS_MEDIA_TITLE" = "Media";
+"MODERN_SETTINGS_MEDIA_SUBTITLE" = "Unduh video, aktifkan penanda waktu, dan lainnya.";
+"DOWNLOAD_VIDEOS_TITLE" = "Unduh media";
+"DOWNLOAD_VIDEOS_DETAIL" = "Simpan video atau GIF langsung dari Tweet.";
+"DIRECT_SAVE_TITLE" = "Simpan ke Foto";
+"DIRECT_SAVE_DETAIL" = "Video disimpan langsung ke aplikasi Foto.";
+"DISABLE_VIDEO_CAPTIONS_TITLE" = "Tanpa subtitle video";
+"AUTO_HIGHEST_LOAD_TITLE" = "Media kualitas tinggi";
+"AUTO_HIGHEST_LOAD_DETAIL" = "Unggah dan tampilkan media dalam kualitas terbaik.";
+"FORCE_TWEET_FULL_FRAME_TITLE" = "Gambar besar";
+"RESTORE_VIDEO_TIMESTAMP_TITLE" = "Penanda Waktu Video";
+"RESTORE_VIDEO_TIMESTAMP_DETAIL" = "Menampilkan penanda waktu pada pemutar penuh.";
+"DISABLE_IMMERSIVE_SCROLL_TITLE" = "Tanpa menggulir umpan video";
+
+/* profiles */
 
 "MODERN_SETTINGS_PROFILES_TITLE" = "Profil";
 "MODERN_SETTINGS_PROFILES_SUBTITLE" = "Ubah apa yang Anda lihat di profil.";
+"FOLLOW_CONFIRM_TITLE" = "Konfirmasi follow";
+"FOLLOW_CONFIRM_DETAIL" = "Tanya dulu sebelum mengikuti akun.";
+"COPY_PROFILE_INFO_TITLE" = "Salin info profil";
+"COPY_PROFILE_INFO_DETAIL" = "Salin username, bio, dan lainnya dengan sekali ketuk.";
+"DISABLE_ARTICLES_TITLE" = "Tanpa tab Artikel";
+"DISABLE_ARTICLES_DETAIL" = "Sembunyikan tab Artikel di profil.";
+"DISABLE_HIGHLIGHTS_TITLE" = "Tanpa tab Sorotan";
+"DISABLE_HIGHLIGHTS_DETAIL" = "Sembunyikan tab Sorotan di profil.";
+"HIDE_BLUE_VERIFIED_TITLE" = "Sembunyikan lencana verifikasi Blue";
+"HIDE_BLUE_VERIFIED_DETAIL" = "Sembunyikan lencana verifikasi berbayar pada Tweet. Ini tidak termasuk akun merek atau pemerintah.";
+"HIDE_FOLLOW_BUTTON_TITLE" = "Tanpa Tombol Ikuti di Tweet";
+"HIDE_FOLLOW_BUTTON_DETAIL" = "Sembunyikan tombol Ikuti pada Tweet.";
+"RESTORE_FOLLOW_BUTTON_TITLE" = "Tanpa Tombol Berlangganan";
+"RESTORE_FOLLOW_BUTTON_DETAIL" = "Sembunyikan tombol Berlangganan pada Tweet dan profil.";
+"SQUARE_AVATARS_TITLE" = "Foto Profil Kotak";
+"SQUARE_AVATARS_DETAIL" = "Semua pengguna memiliki foto profil kotak seperti akun merek di Twitter lama.";
+
+/* tweets */
 
 "MODERN_SETTINGS_TWEETS_TITLE" = "Tweet dan Balasan";
 "MODERN_SETTINGS_TWEETS_SUBTITLE" = "Ubah cara kerja tweet dan sembunyikan fitur yang tidak Anda gunakan.";
-
-"MODERN_SETTINGS_SEARCH_TITLE" = "Pencarian dan penemuan";
-"MODERN_SETTINGS_SEARCH_SUBTITLE" = "Ubah apa yang Anda lihat di tab Pencarian.";
-
-"MODERN_SETTINGS_PRESETS_TITLE" = "Preset";
-"MODERN_SETTINGS_PRESETS_SUBTITLE" = "Terapkan sekumpulan pengaturan siap pakai, atau ekspor dan impor milik Anda sendiri.";
-
-"MODERN_SETTINGS_WEB_TITLE" = "Web dan tautan";
-"MODERN_SETTINGS_WEB_SUBTITLE" = "Atur cara kerja tautan dan browser dalam aplikasi Twitter.";
-
-"MODERN_SETTINGS_BRANDING_TITLE" = "Branding";
-"MODERN_SETTINGS_BRANDING_SUBTITLE" = "Atur seberapa banyak pemulihan branding Twitter yang Anda lihat.";
-
-"MODERN_SETTINGS_EXPERIMENTAL_TITLE" = "Lab";
-"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "Coba fitur yang belum stabil.";
-
-"MODERN_SETTINGS_DEBUG_TITLE" = "Debug";
-"MODERN_SETTINGS_DEBUG_SUBTITLE" = "Cari tahu kenapa ada yang tidak berfungsi.";
-
-"COOL_KIDS_SECTION_HEADER_TITLE" = "Anak keren";
-"SPECIAL_THANKS_SECTION_HEADER_TITLE" = "Ucapan terima kasih khusus";
-"FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "Ikuti NeoFreeBird";
-
-/*General*/
-
-"HIDE_WHO_TO_FOLLOW_TITLE" = "Tanpa 'Siapa yang harus diikuti'";
-"HIDE_WHO_TO_FOLLOW_DETAIL" = "Sembunyikan saran akun dari profil.";
-
-"HIDE_TIMELINE_PROMPTS_TITLE" = "Tanpa ajakan di linimasa";
-"HIDE_TIMELINE_PROMPTS_DETAIL" = "Sembunyikan spanduk seperti 'Tambahkan kontak'.";
-
-"PADLOCK_TITLE" = "Kunci Twitter";
-"PADLOCK_DETAIL" = "Butuh Face ID atau kode untuk membuka Twitter.";
-
-"NEW_INAPP_WEBVIEW_TITLE" = "Browser dalam aplikasi yang ditingkatkan (beta)";
-"NEW_INAPP_WEBVIEW_DETAIL" = "Gunakan browser dalam aplikasi baru Twitter untuk membuka tautan.";
-
-"ALWAYS_OPEN_SAFARI_TITLE" = "Gunakan browser eksternal";
-"ALWAYS_OPEN_SAFARI_DETAIL" = "Buka tautan di Safari atau browser default.";
-
-"SHARING_DOMAIN_TITLE" = "Domain berbagi";
-
-/*Tweets*/
-"TWEET_TO_IMAGE_TITLE" = "Simpan Tweet sebagai gambar";
-"TWEET_TO_IMAGE_DETAIL" = "Tekan lama tombol bagikan untuk ekspor ke gambar.";
-
-"LIKE_CONFIRM_TITLE" = "Konfirmasi suka";
-"LIKE_CONFIRM_DETAIL" = "Tanya dulu sebelum menyukai Tweet.";
-
+"UNDO_TWEET_TITLE" = "Batalkan Tweet";
 "TWEET_CONFIRM_TITLE" = "Konfirmasi Tweet";
 "TWEET_CONFIRM_DETAIL" = "Tanya dulu sebelum nge-Tweet.";
-
-"HIDE_BLUE_VERIFIED_TITLE" = "Sembunyikan lencana verifikasi Blue";
-"HIDE_BLUE_VERIFIED_DETAIL" = "Sembunyikan lencana verifikasi berbayar pada Tweet. Ini tidak termasuk akun merek atau pemerintah.";
-
+"LIKE_CONFIRM_TITLE" = "Konfirmasi suka";
+"LIKE_CONFIRM_DETAIL" = "Tanya dulu sebelum menyukai Tweet.";
+"TWEET_TO_IMAGE_TITLE" = "Simpan Tweet sebagai gambar";
+"TWEET_TO_IMAGE_DETAIL" = "Tekan lama tombol bagikan untuk ekspor ke gambar.";
 "HIDE_VIEW_COUNT_TITLE" = "Sembunyikan jumlah tampilan";
 "HIDE_VIEW_COUNT_DETAIL" = "Jangan tampilkan jumlah tayangan di bawah Tweet.";
-
 "HIDE_BOOKMARK_BUTTON_TITLE" = "Sembunyikan bookmark";
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Hapus tombol bookmark dari Tweet.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "Sembunyikan downvote";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "Hapus tombol downvote dari Tweet.";
-
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "Tanpa peringatan konten sensitif";
-
 "BYPASS_AGE_VERIFICATION_TITLE" = "Lewati verifikasi usia";
 "BYPASS_AGE_VERIFICATION_DETAIL" = "Lewati proses verifikasi usia untuk konten sensitif.";
-
-"HIDE_GROK_ANALYZE_TITLE" = "Sembunyikan Tombol Analisis Grok";
-
-"HIDE_GROK_SIDEBAR_TITLE" = "Sembunyikan Grok di bilah samping";
-
-"HIDE_GROK_CREATE_TITLE" = "Sembunyikan tombol pembuatan Grok";
-"HIDE_GROK_CREATE_DETAIL" = "Menghapus opsi untuk membuat atau mengedit gambar dan video dengan Grok.";
-
-"DISABLE_AUTO_TRANSLATE_TITLE" = "Nonaktifkan terjemahan otomatis";
-"DISABLE_AUTO_TRANSLATE_DETAIL" = "Jangan pernah menerjemahkan postingan atau bio secara otomatis.";
-
-"SQUARE_AVATARS_TITLE" = "Foto Profil Kotak";
-"SQUARE_AVATARS_DETAIL" = "Semua pengguna memiliki foto profil kotak seperti akun merek di Twitter lama.";
-
 "REPLY_SORTING_TITLE" = "Tanpa Pengurutan Balasan";
 "REPLY_SORTING_DETAIL" = "Menonaktifkan fitur pengurutan balasan dalam percakapan Tweet.";
-
 "RESTORE_REPLY_CONTEXT_TITLE" = "Pulihkan Konteks Balasan";
 "RESTORE_REPLY_CONTEXT_DETAIL" = "Menampilkan kepada siapa balasan ditujukan di bawah Tweet.";
 
-"RESTORE_TWEET_LABELS_TITLE" = "Tampilkan label sumber Tweet";
-"RESTORE_TWEET_LABELS_DETAIL" = "Tampilkan dari aplikasi mana Tweet dibuat (oleh @nyaathea).";
+/* search */
 
-/*Profiles*/
-"FOLLOW_CONFIRM_TITLE" = "Konfirmasi follow";
-"FOLLOW_CONFIRM_DETAIL" = "Tanya dulu sebelum mengikuti akun.";
-
-"COPY_PROFILE_INFO_TITLE" = "Salin info profil";
-"COPY_PROFILE_INFO_DETAIL" = "Salin username, bio, dan lainnya dengan sekali ketuk.";
-
-"DISABLE_ARTICLES_TITLE" = "Tanpa tab Artikel";
-"DISABLE_ARTICLES_DETAIL" = "Sembunyikan tab Artikel di profil.";
-
-"DISABLE_HIGHLIGHTS_TITLE" = "Tanpa tab Sorotan";
-"DISABLE_HIGHLIGHTS_DETAIL" = "Sembunyikan tab Sorotan di profil.";
-
-"HIDE_FOLLOW_BUTTON_TITLE" = "Tanpa Tombol Ikuti di Tweet";
-"HIDE_FOLLOW_BUTTON_DETAIL" = "Sembunyikan tombol Ikuti pada Tweet.";
-
-"RESTORE_FOLLOW_BUTTON_TITLE" = "Tanpa Tombol Berlangganan";
-"RESTORE_FOLLOW_BUTTON_DETAIL" = "Sembunyikan tombol Berlangganan pada Tweet dan profil.";
-
-/*Search*/
+"MODERN_SETTINGS_SEARCH_TITLE" = "Pencarian dan penemuan";
+"MODERN_SETTINGS_SEARCH_SUBTITLE" = "Ubah apa yang Anda lihat di tab Pencarian.";
 "NO_HISTORY_TITLE" = "Tanpa riwayat pencarian";
 "NO_HISTORY_DETAIL" = "Twitter tidak akan menyimpan pencarianmu.";
-
+"HIDE_TRENDS_TITLE" = "Sembunyikan konten trending";
+"HIDE_TRENDS_DETAIL" = "Hanya tampilkan bilah pencarian di tab Jelajahi, sembunyikan semua tren, berita, dan tab halaman.";
 "HIDE_TREND_VIDEOS_TITLE" = "Tanpa video trending";
 "HIDE_TREND_VIDEOS_DETAIL" = "Hapus video trending dari menu pencarian.";
 
-/*Photos and Videos*/
-"AUTO_HIGHEST_LOAD_TITLE" = "Media kualitas tinggi";
-"AUTO_HIGHEST_LOAD_DETAIL" = "Unggah dan tampilkan media dalam kualitas terbaik.";
+/* branding */
 
-"DISABLE_VIDEO_CAPTIONS_TITLE" = "Tanpa subtitle video";
+"MODERN_SETTINGS_BRANDING_TITLE" = "Branding";
+"MODERN_SETTINGS_BRANDING_SUBTITLE" = "Atur seberapa banyak pemulihan branding Twitter yang Anda lihat.";
+"RESTORE_TWITTER_NAMES_TITLE" = "Pulihkan terminologi Twitter";
+"RESTORE_TWITTER_NAMES_DETAIL" = "Ganti 'X' dengan 'Twitter', 'Post' dengan 'Tweet', 'Repost' dengan 'Retweet', dan seterusnya di seluruh antarmuka aplikasi.";
+"REFRESH_PILL_LABEL_TITLE" = "Tambahkan label ke pill segarkan";
+"REFRESH_PILL_LABEL_DETAIL" = "Kembalikan label pada pill segarkan saat seseorang nge-Tweet.";
+"COLOR_TWITTER_ICON_IN_TOP_BAR_TITLE" = "Warnai ikon Twitter";
+"COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "Terapkan warna aksen ke ikon Twitter di bilah atas.";
 
-"FORCE_TWEET_FULL_FRAME_TITLE" = "Gambar besar";
+/* presets */
 
-"RESTORE_VIDEO_TIMESTAMP_TITLE" = "Penanda Waktu Video";
-"RESTORE_VIDEO_TIMESTAMP_DETAIL" = "Menampilkan penanda waktu pada pemutar penuh.";
+"MODERN_SETTINGS_PRESETS_TITLE" = "Preset";
+"MODERN_SETTINGS_PRESETS_SUBTITLE" = "Terapkan sekumpulan pengaturan siap pakai, atau ekspor dan impor milik Anda sendiri.";
 
-"DISABLE_IMMERSIVE_SCROLL_TITLE" = "Tanpa menggulir umpan video";
+/* experimental */
 
-/*Twitter Blue*/
-"HIDE_PROMOTED_TITLE" = "Tanpa iklan";
-"HIDE_PROMOTED_DETAIL" = "Hapus semua iklan.";
-
-"UNDO_TWEET_TITLE" = "Batalkan Tweet";
-
-"DOWNLOAD_VIDEOS_TITLE" = "Unduh media";
-"DOWNLOAD_VIDEOS_DETAIL" = "Simpan video atau GIF langsung dari Tweet.";
-
-"DIRECT_SAVE_TITLE" = "Simpan ke Foto";
-"DIRECT_SAVE_DETAIL" = "Video disimpan langsung ke aplikasi Foto.";
-
-"HIDE_PREMIUM_OFFER_TITLE" = "Tanpa promosi Twitter Blue";
-"HIDE_PREMIUM_OFFER_DETAIL" = "Sembunyikan tombol 'Verifikasi' dan 'Upgrade'.";
-
-"THEME_OPTION_TITLE" = "Ganti tema";
-
-"APP_ICON_TITLE" = "Ganti ikon aplikasi";
-
-"CUSTOM_TAB_BAR_OPTION_TITLE" = "Edit tab bar";
-
-/*Layout*/
-"HIDE_SPACES_TITLE" = "Sembunyikan bilah Spaces";
-
-"NO_TAB_BAR_HIDING_TITLE" = "Tampilkan tab bar terus";
-"NO_TAB_BAR_HIDING_DETAIL" = "Jangan sembunyikan tab saat digulir.";
-
-"HIDE_CUSTOM_TIMELINES_TITLE" = "Sembunyikan linimasa khusus";
-"HIDE_CUSTOM_TIMELINES_DETAIL" = "Hapus tombol Tambah dari tab linimasa beranda.";
-
-"RESTORE_REFRESH_SOUNDS_TITLE" = "Suara saat menyegarkan";
-
-"HIDE_TRENDS_TITLE" = "Sembunyikan konten trending";
-"HIDE_TRENDS_DETAIL" = "Hanya tampilkan bilah pencarian di tab Jelajahi, sembunyikan semua tren, berita, dan tab halaman.";
-
-"TAB_BAR_THEMING_TITLE" = "Bilah Navigasi Klasik";
-"TAB_BAR_THEMING_DETAIL" = "Terapkan warna aksen Anda ke item navigasi yang dipilih.";
-
-"DISABLE_RTL_TITLE" = "Gunakan tampilan kiri-ke-kanan";
-"DISABLE_RTL_DETAIL" = "Paksa tampilan LTR, meski bahasanya RTL.";
-
-"SHOW_SCROLL_INDICATOR_TITLE" = "Selalu tampilkan scroll bar";
-
-"CUSTOM_FONTS_TITLE" = "Font khusus";
-"CUSTOM_FONTS_DETAIL" = "Pilih font khusus untuk Twitter.";
-
-"REGULAR_FONTS_PICKER_OPTION_TITLE" = "Pilih font";
-
-"BOLD_FONTS_PICKER_OPTION_TITLE" = "Pilih font tebal";
-
-/*Labs*/
+"MODERN_SETTINGS_EXPERIMENTAL_TITLE" = "Lab";
+"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "Coba fitur yang belum stabil.";
 "REPLY_IN_WEBVIEW_TITLE" = "Balas di web view";
 "REPLY_IN_WEBVIEW_DETAIL" = "Buka kotak balasan di web view untuk menghindari attestation.";
 
-/*Debug*/
+/* web */
+
+"MODERN_SETTINGS_WEB_TITLE" = "Web dan tautan";
+"MODERN_SETTINGS_WEB_SUBTITLE" = "Atur cara kerja tautan dan browser dalam aplikasi Twitter.";
+"SHARING_DOMAIN_TITLE" = "Domain berbagi";
+"ALWAYS_OPEN_SAFARI_TITLE" = "Gunakan browser eksternal";
+"ALWAYS_OPEN_SAFARI_DETAIL" = "Buka tautan di Safari atau browser default.";
+"NEW_INAPP_WEBVIEW_TITLE" = "Browser dalam aplikasi yang ditingkatkan (beta)";
+"NEW_INAPP_WEBVIEW_DETAIL" = "Gunakan browser dalam aplikasi baru Twitter untuk membuka tautan.";
+
+/* debug */
+
+"MODERN_SETTINGS_DEBUG_TITLE" = "Debug";
+"MODERN_SETTINGS_DEBUG_SUBTITLE" = "Cari tahu kenapa ada yang tidak berfungsi.";
 "FLEX_TWITTER_TITLE" = "Mode debug FLEX";
 "FLEX_TWITTER_DETAIL" = "Gunakan FLEX untuk debug Twitter.";
 
-/*Developers*/
-"DEVELOPER_SECTION_HEADER_TITLE" = "Developer";
+/* Other application strings */
 
-/*Custom fonts*/
+"NFB_SETTINGS_TITLE" = "NeoFreeBird";
+"NFB_SETTINGS_DETAIL" = "Atur Twitter kamu: sembunyikan iklan, aktifkan fitur Blue, dan lainnya.";
+"CONFIRM_ALERT_MESSAGE" = "Yakin mau melakukan itu?";
+"COOL_KIDS_SECTION_HEADER_TITLE" = "Anak keren";
+"SPECIAL_THANKS_SECTION_HEADER_TITLE" = "Ucapan terima kasih khusus";
+"FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "Ikuti NeoFreeBird";
+"RESTORE_TWEET_LABELS_TITLE" = "Tampilkan label sumber Tweet";
+"RESTORE_TWEET_LABELS_DETAIL" = "Tampilkan dari aplikasi mana Tweet dibuat (oleh @nyaathea).";
+"DEVELOPER_SECTION_HEADER_TITLE" = "Developer";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Font khusus";
 "CUSTOM_FONTS_MENU_TITLE" = "\nPilih font";
 "CUSTOM_FONTS_TUT_ALERT_MESSAGE" = "Belum ada font khusus. Instal iFont dari App Store.";
-
-/*Dwonload*/
 "DOWNLOAD_MENU_TITLE" = "\nPilih kualitas video";
 "FETCHING_PROGRESS_TITLE" = "Tunggu sebentar...";
 "DOWNLOAD_AS_GIF_OPTION_TITLE" = "Unduh sebagai GIF";
 "DOWNLOAD_AS_MP4_OPTION_TITLE" = "Unduh sebagai MP4";
-
-/*App icon*/
-
-/*Copy profile info*/
 "COPY_PROFILE_INFO_MENU_OPTION_1" = "Salin bio";
 "COPY_PROFILE_INFO_MENU_OPTION_2" = "Salin username";
 "COPY_PROFILE_INFO_MENU_OPTION_3" = "Salin username lengkap";
 "COPY_PROFILE_INFO_MENU_OPTION_4" = "Salin link bio";
 "COPY_PROFILE_INFO_MENU_OPTION_5" = "Salin lokasi";
-
-/*Theme*/
 "THEME_SETTINGS_NAVIGATION_TITLE" = "Ganti tema";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "Pilih warna tema yang hanya terlihat oleh Anda.";
-
-/*Tab bar*/
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "Edit tab bar";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Tap a destination to add or remove it. Drag the bar below to reorder.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Apakah Anda yakin ingin mengembalikan bilah navigasi ke pengaturan default?";
-
-/* Restore tab labels */
-"RESTORE_TAB_LABELS_TITLE" = "Label Navigasi";
-"RESTORE_TAB_LABELS_DETAIL" = "Tampilkan label di bawah ikon di bilah navigasi seperti versi lama Twitter.";
-
-"COLOR_TWITTER_ICON_IN_TOP_BAR_TITLE" = "Warnai ikon Twitter";
-"COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "Terapkan warna aksen ke ikon Twitter di bilah atas.";
-
 "REFRESH_PILL_TEXT" = "Telah diposting";
-"REFRESH_PILL_LABEL_TITLE" = "Tambahkan label ke pill segarkan";
-"REFRESH_PILL_LABEL_DETAIL" = "Kembalikan label pada pill segarkan saat seseorang nge-Tweet.";
-
-"RESTORE_TWITTER_NAMES_TITLE" = "Pulihkan terminologi Twitter";
-"RESTORE_TWITTER_NAMES_DETAIL" = "Ganti 'X' dengan 'Twitter', 'Post' dengan 'Tweet', 'Repost' dengan 'Retweet', dan seterusnya di seluruh antarmuka aplikasi.";
-
-/*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Belum ada yang bisa dilihat di sini.";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "Bagian ini akan segera hadir. Nantikan lebih banyak fitur NeoFreeBird!";
-
 "SOURCE_UNAVAILABLE" = "Sumber Tidak Tersedia";
-
-/*App lock*/
 "PADLOCK_LOCKED_LABEL" = "Locked";
-
-/*Source labels*/
 "UNKNOWN_SOURCE" = "Unknown Source";
-
-/*Media downloads*/
 "DOWNLOAD_VIDEO_NUMBER_TITLE" = "Video %lu";
 "UNKNOWN_ERROR" = "An unknown error occurred.";
-
-/*Custom fonts*/
 "INSTALL_IFONT_BUTTON_TITLE" = "iFont application";
-"FONT_SYSTEM_DEFAULT_SUBTITLE" = "System Default";
-
-/*Legacy login*/
 "LEGACY_LOGIN_INFO_LABEL" = "Log in with your username and password.\n\nGoogle and Apple sign-in aren't supported. If your account uses one of those, add a password to it first.";
 "LEGACY_LOGIN_MISSING_INPUT_TITLE" = "Missing input";
 "LEGACY_LOGIN_MISSING_INPUT_MESSAGE" = "Enter username and password.";
