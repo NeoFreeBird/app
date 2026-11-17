@@ -418,3 +418,6 @@
 @interface T1StatusEditedOnXLabelAdapter: NSObject
 - (_Bool)shouldBeVisibleForViewModel:(id)model;
 @end
+
+@interface TUIAvatarImageView : TFNAvatarImageView
+@end
