@@ -149,6 +149,9 @@
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "Medya atlıkarıncasını devre dışı bırak";
 "DISABLE_MEDIA_CAROUSEL_DETAIL" = "Birden fazla medya eki için kullanılan yeni görünümü eski hâline döndürür.";
 
+"HIDE_MEDIA_PREVIEWS_TITLE" = "Medya önizlemelerini gizle";
+"HIDE_MEDIA_PREVIEWS_DETAIL" = "Zaman akışındaki fotoğrafları, videoları ve GIF'leri gizler. (Veri tasarrufu modu)";
+
 "HIDE_BOOKMARK_BUTTON_TITLE" = "Yer imlerini gizle";
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "Tweetlerden yer imi düğmesini kaldırır.";
 
@@ -245,6 +248,9 @@
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "Video altyazılarını devre dışı bırak";
 
 "FORCE_TWEET_FULL_FRAME_TITLE" = "Büyük görseller";
+
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "Çift dokunarak beğenmeyi devre dışı bırak";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "Videoları beğenmek için üzerlerine çift dokunulmasını engeller.";
 
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "Video zaman etiketini göster";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "Sürükleyici oynatıcıda zaman etiketini gösterir.";
@@ -572,3 +578,7 @@
 
 "GITHUB_DOWNLOAD_WARNING_TITLE" = "Hoş Geldiniz!";
 "GITHUB_DOWNLOAD_WARNING_MESSAGE" = "NeoFreeBird'ü resmi GitHub sayfamızdan yüklediğinizden emin olun. Diğer kaynaklardan gelen IPA'lardaki sorunlara yardımcı olamayız ve sürümünüzün zararlı kod içermediğini bilemezsiniz. Herhangi bir sorunuz olursa lütfen bir GitHub sorunu (issue) oluşturun.";
+
+"COMPOSITION_COMPLETE_SENDING_TWEET_TOAST_NOTIFICATION_MESSAGE" = "Yanıtınız gönderildi!";
+"DM_MESSAGE_ACTION_OPEN_GENERIC_TITLE" = "Tweet'i Aç";
+"DISMISS_LABEL" = "Kapat";
