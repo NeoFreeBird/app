@@ -1,29 +1,10 @@
-//
-//  Ads.x
-//  NeoFreeBird
-//
+#import "Ads.h"
 
-#import "HookHelpers.h"
 
 // Timeline items are removed from the section data before it reaches the data
 // view controller, so no empty cells or gaps are left behind. This covers every
 // timeline surface (home, profile, search, conversations) regardless of whether
 // it renders through a table view or the newer diffable collection view path.
-
-static BOOL StatusItemIsPromoted(id item) {
-    SEL isPromoted = @selector(isPromoted);
-    if ([item respondsToSelector:isPromoted] && [item isPromoted]) {
-        return YES;
-    }
-
-    Ivar statusIvar = class_getInstanceVariable([item class], "status");
-    if (!statusIvar) {
-        return NO;
-    }
-
-    TFNTwitterStatus* status = object_getIvar(item, statusIvar);
-    return [status respondsToSelector:@selector(isPromoted)] && status.isPromoted;
-}
 
 // Promoted trends and event summary heroes (the image ads at the top of
 // explore) carry their promotion in the Swift-side `promotedContent` stored
@@ -89,8 +70,26 @@ static BOOL ShouldHideItem(id item, NSString* location) {
     return NO;
 }
 
-static NSArray* FilteredSections(TFNItemsDataViewController* dataViewController,
-                                 NSArray* sections) {
+
+BOOL StatusItemIsPromoted(id item) {
+    SEL isPromoted = @selector(isPromoted);
+    if ([item respondsToSelector:isPromoted] && [item isPromoted]) {
+        return YES;
+    }
+
+    Ivar statusIvar = class_getInstanceVariable([item class], "status");
+    if (!statusIvar) {
+        return NO;
+    }
+
+    TFNTwitterStatus* status = object_getIvar(item, statusIvar);
+    return [status respondsToSelector:@selector(isPromoted)] && status.isPromoted;
+}
+
+
+
+NSArray* FilteredSections(TFNItemsDataViewController* dataViewController,
+                          NSArray* sections) {
     if (!([BHTSettings boolForKey:@"hide_promoted"] ||
           [BHTSettings boolForKey:@"hide_premium_offer"] ||
           [BHTSettings boolForKey:@"hide_trend_videos"])) {
@@ -141,40 +140,43 @@ static NSArray* FilteredSections(TFNItemsDataViewController* dataViewController,
     return modified ? filteredSections : sections;
 }
 
-%hook TFNItemsDataViewController
-
-- (void)setSections:(NSArray*)sections
-    restoreScrollPosition:(BOOL)restoreScrollPosition {
-    %orig(FilteredSections(self, sections), restoreScrollPosition);
+BOOL IsImmersiveTimelineURL(NSURL* url) {
+    NSArray* parts = url.path.pathComponents;
+    return [parts containsObject:@"graphql"] &&
+           [@[@"ImmersiveViewerExploreMixerTimeline", @"ImmersiveProfileViewer"]
+               containsObject:parts.lastObject];
 }
 
-- (void)updateSections:(NSArray*)sections
-    reconfigureItemIdentifiers:(NSArray*)identifiers
-              withRowAnimation:(long long)animation
-                    completion:(id)completion {
-    %orig(FilteredSections(self, sections), identifiers, animation,
-              completion);
+id RemovePromotedEntries(id node, BOOL* removed) {
+    if ([node isKindOfClass:[NSArray class]]) {
+        NSMutableArray* kept = [NSMutableArray array];
+        for (id value in node) {
+            id entryID = [value isKindOfClass:[NSDictionary class]]
+                             ? value[@"entry_id"]
+                             : nil;
+            if ([entryID isKindOfClass:[NSString class]] &&
+                [entryID hasPrefix:@"promoted-tweet-"]) {
+                *removed = YES;
+                continue;
+            }
+
+            [kept addObject:RemovePromotedEntries(value, removed)];
+        }
+        return kept;
+    }
+
+    if ([node isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary* copy = [node mutableCopy];
+        for (NSString* key in node) {
+            copy[key] = RemovePromotedEntries(node[key], removed);
+        }
+        return copy;
+    }
+
+    return node;
 }
 
-%end
-
-%hook TFNTwitterStatus
-
-- (_Bool)isCardHidden {
-    return ([BHTSettings boolForKey:@"hide_promoted"] && [self isPromoted])
-               ? true
-               : %orig;
-}
-
-%end
-
-// MARK: - Immersive video feed
-
-// The vertical video feed keeps its own card list and never goes through
-// TFNItemsDataViewController, so promoted cards are dropped from that list
-// before they become pages.
-
-static BOOL ImmersiveCardIsPromoted(id card) {
+BOOL ImmersiveCardIsPromoted(id card) {
     if ([card isKindOfClass:objc_getClass("_TtC14T1TwitterSwift36ImmersiveGoogleNativeAdCardViewModel")]) {
         return YES;
     }
@@ -187,7 +189,7 @@ static BOOL ImmersiveCardIsPromoted(id card) {
 // The coordinator's `items` is a Swift [ImmersiveCardViewModelProtocol]. Its
 // buffer has the count at +16 and the elements from +32, two words each: the
 // card and its protocol witness table.
-static void RemovePromotedImmersiveCards(id viewController) {
+void RemovePromotedImmersiveCards(id viewController) {
     if (!viewController || ![BHTSettings boolForKey:@"hide_promoted"]) {
         return;
     }
@@ -245,71 +247,3 @@ static void RemovePromotedImmersiveCards(id viewController) {
     }
     *count = kept;
 }
-
-%hook T1ImmersiveViewController
-
-- (void)viewWillLayoutSubviews {
-    RemovePromotedImmersiveCards(self);
-    %orig;
-}
-
-%end
-
-static BOOL IsImmersiveTimelineURL(NSURL* url) {
-    NSArray* parts = url.path.pathComponents;
-    return [parts containsObject:@"graphql"] &&
-           [@[@"ImmersiveViewerExploreMixerTimeline", @"ImmersiveProfileViewer"]
-               containsObject:parts.lastObject];
-}
-
-static id RemovePromotedEntries(id node, BOOL* removed) {
-    if ([node isKindOfClass:[NSArray class]]) {
-        NSMutableArray* kept = [NSMutableArray array];
-        for (id value in node) {
-            id entryID = [value isKindOfClass:[NSDictionary class]]
-                             ? value[@"entry_id"]
-                             : nil;
-            if ([entryID isKindOfClass:[NSString class]] &&
-                [entryID hasPrefix:@"promoted-tweet-"]) {
-                *removed = YES;
-                continue;
-            }
-
-            [kept addObject:RemovePromotedEntries(value, removed)];
-        }
-        return kept;
-    }
-
-    if ([node isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary* copy = [node mutableCopy];
-        for (NSString* key in node) {
-            copy[key] = RemovePromotedEntries(node[key], removed);
-        }
-        return copy;
-    }
-
-    return node;
-}
-
-%hook TNLResponseInfo
-
-- (instancetype)initWithFinalURLRequest:(NSURLRequest*)request
-                            URLResponse:(NSURLResponse*)response
-                                 source:(NSInteger)source
-                                   data:(NSData*)data
-                     temporarySavedFile:(id)temporarySavedFile {
-    if ([BHTSettings boolForKey:@"hide_promoted"] && data &&
-        IsImmersiveTimelineURL(request.URL)) {
-        id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        BOOL removed = NO;
-        id filtered = json ? RemovePromotedEntries(json, &removed) : nil;
-        if (removed) {
-            data = [NSJSONSerialization dataWithJSONObject:filtered options:0 error:nil]
-                       ?: data;
-        }
-    }
-
-    return %orig(request, response, source, data, temporarySavedFile);
-}
-
-%end
