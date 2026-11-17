@@ -163,10 +163,6 @@
 @property (nonatomic, strong) UIColor* backgroundColor;
 @end
 
-@interface UIFont (TFNUIFontGroup)
-- (UIFont*)tfn_withMonospacedDigits;
-@end
-
 @interface UIImage (TFNAdditions)
 + (id)tfn_vectorImageNamed:(id)arg1
                   fitsSize:(struct CGSize)arg2
