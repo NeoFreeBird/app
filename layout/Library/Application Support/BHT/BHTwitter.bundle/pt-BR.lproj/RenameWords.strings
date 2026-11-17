@@ -1,0 +1,22 @@
+/*
+ Generic terminology replacements for "Restore Twitter names".
+ Brazilian Portuguese (pt-BR).
+
+ Keep substitutions specific to Twitter terminology. Avoid generic words
+ such as "publicação", "publicar" and "premium", which may refer to
+ unrelated content or subscriptions.
+*/
+
+"repost" = "retweet";
+"reposts" = "retweets";
+"repostar" = "retweetar";
+"repostado" = "retweetado";
+"repostada" = "retweetada";
+"repostando" = "retweetando";
+"post" = "Tweet";
+"posts" = "Tweets";
+"postar" = "Tweetar";
+"postado" = "Tweetado";
+"postada" = "Tweetada";
+"postando" = "Tweetando";
+"X" = "Twitter";
