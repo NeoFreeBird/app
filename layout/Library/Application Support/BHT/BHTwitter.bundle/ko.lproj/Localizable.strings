@@ -3,13 +3,236 @@
   NeoFreeBird
 */
 
+/* general */
+
+"MODERN_SETTINGS_LAYOUT_TITLE" = "일반";
+"MODERN_SETTINGS_LAYOUT_SUBTITLE" = "앱을 잠그고, 내비게이션 바를 항상 표시하는 등 다양한 기능을 제공합니다.";
+"PADLOCK_TITLE" = "앱 잠금";
+"PADLOCK_DETAIL" = "트위터를 열기 전 Face ID나 비밀번호를 요구합니다.";
+"HIDE_PROMOTED_TITLE" = "광고 제거";
+"HIDE_PROMOTED_DETAIL" = "모든 광고를 제거합니다.";
+"HIDE_PREMIUM_OFFER_TITLE" = "Twitter Blue 구독 권유 제거";
+"HIDE_PREMIUM_OFFER_DETAIL" = "'인증받기', '업그레이드' 버튼을 제거합니다.";
+"NO_TAB_BAR_HIDING_TITLE" = "내비게이션 바 항상 표시";
+"NO_TAB_BAR_HIDING_DETAIL" = "스크롤해도 내비게이션 바가 사라지지 않도록 유지합니다.";
+"DISABLE_RTL_TITLE" = "LTR 레이아웃 사용";
+"DISABLE_RTL_DETAIL" = "오른쪽에서 왼쪽으로 읽는 언어 환경에서도 왼쪽에서 오른쪽으로 읽는(LTR) 레이아웃을 강제합니다.";
+"NO_FOCUS_LOST_TITLE" = "포커스 유지";
+"NO_FOCUS_LOST_DETAIL" = "트위터가 다른 앱으로 전환된 것을 감지하지 못하게 하여 타래(스레드)에서 보고 있던 위치를 잃지 않도록 합니다.";
+"SHOW_SCROLL_INDICATOR_TITLE" = "스크롤 바 항상 표시";
+
+/* appearance */
+
+"MODERN_SETTINGS_APPEARANCE_TITLE" = "모양";
+"MODERN_SETTINGS_APPEARANCE_SUBTITLE" = "테마, 커스텀 앱 아이콘, 글꼴 등으로 당신만의 Twitter를 만들어 보세요.";
+"THEME_OPTION_TITLE" = "테마 변경";
+"APP_ICON_TITLE" = "앱 아이콘 변경";
+"CUSTOM_TAB_BAR_OPTION_TITLE" = "내비게이션 바 편집";
+"TAB_BAR_THEMING_TITLE" = "클래식 탭 바";
+"TAB_BAR_THEMING_DETAIL" = "현재 선택된 탭 항목에 테마 강조 색상을 적용합니다.";
+"RESTORE_TAB_LABELS_TITLE" = "탭 라벨 표시";
+"RESTORE_TAB_LABELS_DETAIL" = "탭 바의 아이콘 아래에 라벨을 표시합니다.";
+"ENABLE_DIM_THEME_TITLE" = "어두운(Dim) 테마 활성화";
+"ENABLE_DIM_THEME_DETAIL" = "삭제된 트위터의 어두운(Dim) 테마를 복원합니다. 다크 모드가 켜져 있어야 하며 앱 재시작이 필요합니다.";
+"CUSTOM_FONTS_TITLE" = "사용자 지정 글꼴";
+"CUSTOM_FONTS_DETAIL" = "트위터에서 사용할 글꼴을 선택합니다.";
+"REGULAR_FONTS_PICKER_OPTION_TITLE" = "글꼴 선택";
+"FONT_SYSTEM_DEFAULT_SUBTITLE" = "시스템 기본값";
+"BOLD_FONTS_PICKER_OPTION_TITLE" = "굵은 글꼴 선택";
+
+/* timelines */
+
+"MODERN_SETTINGS_TIMELINES_TITLE" = "타임라인";
+"MODERN_SETTINGS_TIMELINES_SUBTITLE" = "광고, 팔로우 추천 등 타임라인의 불필요한 요소를 제거합니다.";
+"HIDE_WHO_TO_FOLLOW_TITLE" = "팔로우 추천 제거";
+"HIDE_WHO_TO_FOLLOW_DETAIL" = "팔로우 추천을 제거합니다.";
+"HIDE_TIMELINE_PROMPTS_TITLE" = "타임라인 프롬프트 제거";
+"HIDE_TIMELINE_PROMPTS_DETAIL" = "'연락처 추가' 같은 배너를 제거합니다.";
+"HIDE_SPACES_TITLE" = "스페이스 바 숨기기";
+"HIDE_CUSTOM_TIMELINES_TITLE" = "사용자 지정 타임라인 숨기기";
+"HIDE_CUSTOM_TIMELINES_DETAIL" = "홈 타임라인 탭에서 추가 버튼을 제거합니다.";
+"SHOW_QUOTE_NUMBERS_TITLE" = "인용 수 표시";
+"SHOW_QUOTE_NUMBERS_DETAIL" = "트윗이 받은 인용 및 리트윗 수를 표시합니다.";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "정확한 인용 수 표시";
+"SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "트윗의 인용 및 리트윗 수를 반올림 없이 정확한 숫자로 표시합니다. 줄바꿈 문제가 발생할 수 있습니다.";
+"HIDE_BLOCKED_RETWEETS_TITLE" = "차단된 리트윗 숨기기";
+"HIDE_BLOCKED_RETWEETS_DETAIL" = "나를 차단한 계정의 리트윗을 숨깁니다.";
+"HIDE_TWEET_BUTTON_TITLE" = "트윗 버튼 숨기기";
+"HIDE_TWEET_BUTTON_DETAIL" = "내비게이션 바에서 트윗 버튼을 제거합니다.";
+"HIDE_VERIFIED_TWEETS_TITLE" = "인증된 계정의 트윗 숨기기";
+"HIDE_VERIFIED_TWEETS_DETAIL" = "타임라인과 답글에서 인증된 계정의 트윗을 숨깁니다. 단, 작성자가 해당 타래에서 답글을 달았거나 내가 팔로우 중인 계정은 제외됩니다.";
+"RESTORE_REFRESH_SOUNDS_TITLE" = "당겨서 새로고침 효과음";
+
+/* grok */
+
+"MODERN_SETTINGS_GROK_TITLE" = "Grok";
+"MODERN_SETTINGS_GROK_SUBTITLE" = "Grok 버튼을 숨기고 자동 번역을 관리합니다.";
+"HIDE_GROK_ANALYZE_TITLE" = "Grok 분석 버튼 숨기기";
+"HIDE_GROK_SIDEBAR_TITLE" = "사이드바에서 Grok 숨기기";
+"HIDE_GROK_CREATE_TITLE" = "Grok 생성 버튼 숨기기";
+"HIDE_GROK_CREATE_DETAIL" = "Grok으로 이미지와 비디오를 생성하거나 편집하는 옵션을 제거합니다.";
+"DISABLE_AUTO_TRANSLATE_TITLE" = "자동 번역 비활성화";
+"DISABLE_AUTO_TRANSLATE_DETAIL" = "게시물이나 프로필을 자동으로 번역하지 않습니다.";
+
+/* media_downloads */
+
+"MODERN_SETTINGS_MEDIA_TITLE" = "사진과 비디오";
+"MODERN_SETTINGS_MEDIA_SUBTITLE" = "비디오 다운로드, 비디오 타임스탬프 활성화 등 다양한 설정을 변경합니다.";
+"DOWNLOAD_VIDEOS_TITLE" = "미디어 다운로드";
+"DOWNLOAD_VIDEOS_DETAIL" = "트윗 더보기 메뉴에서 동영상이나 GIF를 바로 저장합니다.";
+"DOWNLOAD_HIGHEST_QUALITY_TITLE" = "항상 최고 화질로 다운로드";
+"DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "품질 선택 창을 건너뛰고 가장 고화질의 MP4를 즉시 저장합니다.";
+"DOWNLOAD_ALL_VIDEOS_TITLE" = "모든 동영상 다운로드";
+"DOWNLOAD_ALL_VIDEOS_DETAIL" = "트윗에 포함된 모든 동영상을 한 번에 다운로드하는 옵션을 추가합니다.";
+"DIRECT_SAVE_TITLE" = "'사진'에 저장";
+"DIRECT_SAVE_DETAIL" = "저장한 동영상이 사진 앱으로 바로 저장됩니다.";
+"DISABLE_VIDEO_CAPTIONS_TITLE" = "비디오 자막 비활성화";
+"AUTO_HIGHEST_LOAD_TITLE" = "고품질 미디어";
+"AUTO_HIGHEST_LOAD_DETAIL" = "항상 가능한 최대 해상도로 사진과 비디오를 불러옵니다.";
+"FORCE_TWEET_FULL_FRAME_TITLE" = "큰 이미지로 표시";
+"RESTORE_VIDEO_TIMESTAMP_TITLE" = "비디오 타임스탬프 표시";
+"RESTORE_VIDEO_TIMESTAMP_DETAIL" = "몰입형(전체 화면) 플레이어에서 타임스탬프를 표시합니다.";
+"DISABLE_IMMERSIVE_SCROLL_TITLE" = "동영상 피드 스크롤 사용 안 함";
+"DISABLE_VIDEO_DOCKING_TITLE" = "비디오 도킹 비활성화";
+"DISABLE_VIDEO_DOCKING_DETAIL" = "동영상을 밖으로 드래그할 때 PiP 버튼이 표시되지 않도록 합니다.";
+"TAP_TO_PAUSE_TITLE" = "탭하여 비디오 일시정지";
+"TAP_TO_PAUSE_DETAIL" = "일시정지 버튼을 누르는 대신 두 손가락으로 비디오를 탭하여 일시정지합니다.";
+
+/* profiles */
+
+"MODERN_SETTINGS_PROFILES_TITLE" = "프로필";
+"MODERN_SETTINGS_PROFILES_SUBTITLE" = "사용자 프로필에 표시할 항목을 제어합니다.";
+"FOLLOW_CONFIRM_TITLE" = "팔로우 시 확인 창 표시";
+"FOLLOW_CONFIRM_DETAIL" = "누군가를 팔로우하기 전에 다시 한 번 묻습니다.";
+"COPY_PROFILE_INFO_TITLE" = "프로필 정보 복사";
+"COPY_PROFILE_INFO_DETAIL" = "탭 한 번으로 사용자 아이디, 소개글 등을 복사합니다.";
+"FAST_BLOCK_TITLE" = "빠른 차단/뮤트";
+"FAST_BLOCK_DETAIL" = "확인 창 없이 즉시 계정을 차단하거나 뮤트합니다.";
+"DISABLE_ARTICLES_TITLE" = "아티클 탭 제거";
+"DISABLE_ARTICLES_DETAIL" = "프로필의 아티클 탭을 숨깁니다.";
+"DISABLE_HIGHLIGHTS_TITLE" = "하이라이트 탭 제거";
+"DISABLE_HIGHLIGHTS_DETAIL" = "프로필의 하이라이트 탭을 숨깁니다.";
+"HIDE_BLUE_VERIFIED_TITLE" = "파란 '인증됨' 체크마크 제거";
+"HIDE_BLUE_VERIFIED_DETAIL" = "트윗에서 유료 인증 체크마크를 제거합니다. 브랜드/정부 계정은 제외됩니다.";
+"HIDE_FOLLOW_BUTTON_TITLE" = "트윗에서 팔로우 버튼 숨기기";
+"HIDE_FOLLOW_BUTTON_DETAIL" = "트윗에서 팔로우 버튼을 숨깁니다.";
+"HIDE_MESSAGE_BUTTON_TITLE" = "트윗에서 메시지 버튼 숨기기";
+"HIDE_MESSAGE_BUTTON_DETAIL" = "트윗에서 메시지 버튼을 숨깁니다.";
+"SHOW_UNROUNDED_COUNTS_TITLE" = "정확한 수치 표시";
+"SHOW_UNROUNDED_COUNTS_DETAIL" = "팔로워, 팔로잉, 트윗 수를 천 또는 백만 단위로 반올림하지 않고 정확한 숫자로 표시합니다.";
+"RESTORE_FOLLOW_BUTTON_TITLE" = "구독 버튼 숨기기";
+"RESTORE_FOLLOW_BUTTON_DETAIL" = "트윗과 프로필에서 구독 버튼을 숨깁니다.";
+"SQUARE_AVATARS_TITLE" = "정사각형 프로필 사진";
+"SQUARE_AVATARS_DETAIL" = "예전 트위터 시절이나 브랜드 계정처럼 모든 사용자에게 정사각형 프로필 사진을 적용합니다.";
+
+/* chat */
+
+"MODERN_SETTINGS_CHAT_TITLE" = "채팅";
+"MODERN_SETTINGS_CHAT_SUBTITLE" = "XChat 인터페이스에 다양한 기능을 추가합니다.";
+"HIDE_TYPING_INDICATOR_TITLE" = "입력 중 표시 숨기기";
+"HIDE_TYPING_INDICATOR_DETAIL" = "채팅 상대방에게 \"입력 중...\" 상태를 전송하지 않습니다.";
+"DOWNLOAD_VOICE_MESSAGES_TITLE" = "음성 메시지 다운로드";
+"DOWNLOAD_VOICE_MESSAGES_DETAIL" = "음성 메시지를 재생한 후 기기에 저장합니다 (오디오 메시지를 두 손가락으로 길게 누르면 다운로드됩니다).";
+"BLOCK_SCREENSHOT_DETECTION_TITLE" = "스크린샷 감지 차단";
+"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "\"보안\" 채팅에서 차단되지 않고 스크린샷을 찍을 수 있도록 합니다.";
+
+/* tweets */
+
+"MODERN_SETTINGS_TWEETS_TITLE" = "트윗과 답글";
+"MODERN_SETTINGS_TWEETS_SUBTITLE" = "트윗의 모양을 변경하고 불필요한 기능들을 제거할 수 있습니다.";
+"UNDO_TWEET_TITLE" = "트윗 전송 취소";
+"TWEET_CONFIRM_TITLE" = "트윗 시 확인 창 표시";
+"TWEET_CONFIRM_DETAIL" = "트윗을 작성하기 전에 확인합니다.";
+"LIKE_CONFIRM_TITLE" = "'마음에 들어요' 확인 창 표시";
+"LIKE_CONFIRM_DETAIL" = "트윗에 '마음에 들어요'를 누르기 전에 확인합니다.";
+"TWEET_TO_IMAGE_TITLE" = "트윗을 사진으로 저장";
+"TWEET_TO_IMAGE_DETAIL" = "트윗을 사진으로 저장하려면 공유 버튼을 길게 누릅니다.";
+"HIDE_VIEW_COUNT_TITLE" = "조회수 표시 제거";
+"HIDE_VIEW_COUNT_DETAIL" = "트윗 아래의 조회수 표시를 제거합니다.";
+"HIDE_BOOKMARK_BUTTON_TITLE" = "북마크 추가 버튼 제거";
+"HIDE_BOOKMARK_BUTTON_DETAIL" = "트윗에서 북마크 추가 버튼을 제거합니다.";
+"HIDE_DOWNVOTE_BUTTON_TITLE" = "다운보트 버튼 제거";
+"HIDE_DOWNVOTE_BUTTON_DETAIL" = "트윗에서 다운보트 버튼을 제거합니다.";
+"USE_TENOR_GIFS_TITLE" = "Tenor GIF 사용";
+"USE_TENOR_GIFS_DETAIL" = "트위터 기본 GIF(GIPHY) 대신 Tenor GIF를 사용합니다. Tenor에 더 많은 옵션이 있습니다.";
+"DISABLE_MEDIA_CAROUSEL_TITLE" = "미디어 캐러셀 비활성화";
+"DISABLE_MEDIA_CAROUSEL_DETAIL" = "여러 미디어가 첨부되었을 때 적용되는 새로운 디자인을 이전 형태로 되돌립니다.";
+"DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "민감한 콘텐츠 경고 비활성화";
+"SHOW_POLL_RESULTS_TITLE" = "투표 전 결과 표시";
+"SHOW_POLL_RESULTS_DETAIL" = "투표하기 전에 항목 이름 옆에 투표 결과를 표시하여 다른 사람들의 투표 현황을 볼 수 있습니다.";
+"SHOW_ACCOUNT_LOCATION_TITLE" = "계정 위치 표시";
+"SHOW_ACCOUNT_LOCATION_DETAIL" = "트윗 하단에 해당 트윗을 작성한 계정의 위치를 표시합니다.";
+"UPLOAD_FULL_HD_VIDEOS_TITLE" = "Full HD 동영상 업로드";
+"UPLOAD_FULL_HD_VIDEOS_DETAIL" = "1080p 해상도의 동영상 업로드 기능을 잠금 해제합니다.";
+"CUSTOM_SEND_SOUND_TITLE" = "전송 효과음 가져오기";
+"CUSTOM_SEND_SOUND_DEFAULT" = "선택된 사용자 지정 효과음 없음";
+"BYPASS_AGE_VERIFICATION_TITLE" = "연령 확인 우회";
+"BYPASS_AGE_VERIFICATION_DETAIL" = "민감한 콘텐츠에 대한 연령 확인 절차를 건너뜁니다.";
+"REPLY_SORTING_TITLE" = "답글 정렬 기준 선택 메뉴 제거";
+"REPLY_SORTING_DETAIL" = "트윗 대화에서 답글 정렬 기능을 비활성화합니다.";
+"RESTORE_REPLY_CONTEXT_TITLE" = "답글 타래 표시 방법 복원";
+"RESTORE_REPLY_CONTEXT_DETAIL" = "트윗 아래에서 답장을 받은 사람들을 표시합니다.";
+
+/* search */
+
+"MODERN_SETTINGS_SEARCH_TITLE" = "검색 및 탐색하기";
+"MODERN_SETTINGS_SEARCH_SUBTITLE" = "검색 화면에 표시할 항목을 제어합니다.";
+"NO_HISTORY_TITLE" = "검색 기록 비활성화";
+"NO_HISTORY_DETAIL" = "트위터가 사용자의 검색 기록을 더 이상 추적하거나 저장하지 않습니다.";
+"HIDE_TRENDS_TITLE" = "트렌딩 콘텐츠 숨기기";
+"HIDE_TRENDS_DETAIL" = "탐색하기 탭에서 검색 바만 표시하고, 모든 트렌드, 뉴스 및 페이지 탭을 숨깁니다.";
+"HIDE_TREND_VIDEOS_TITLE" = "트렌딩 비디오 제거";
+"HIDE_TREND_VIDEOS_DETAIL" = "검색 메뉴에서 트렌딩 비디오를 제거합니다.";
+
+/* branding */
+
+"MODERN_SETTINGS_BRANDING_TITLE" = "브랜딩";
+"MODERN_SETTINGS_BRANDING_SUBTITLE" = "트위터 브랜딩 복원 수준을 제어합니다.";
+"RESTORE_TWITTER_NAMES_TITLE" = "트위터 용어 복원";
+"RESTORE_TWITTER_NAMES_DETAIL" = "앱 인터페이스 전반에서 'X'를 'Twitter'로, '게시'를 '트윗'으로, '재게시'를 '리트윗' 등으로 복원합니다.";
+"REFRESH_PILL_LABEL_TITLE" = "새로고침 알림에 라벨 추가";
+"REFRESH_PILL_LABEL_DETAIL" = "누군가 트윗하면 새로고침 알림에 라벨을 다시 표시합니다.";
+"COLOR_TWITTER_ICON_IN_TOP_BAR_TITLE" = "트위터 아이콘 색 입히기";
+"COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "상단 바의 트위터 아이콘에 강조 색상을 적용합니다.";
+"BLUE_LAUNCH_SCREEN_TITLE" = "파란색 시작 화면 복원";
+"BLUE_LAUNCH_SCREEN_DETAIL" = "기존의 파란색 시작(로딩) 화면을 복원합니다.";
+
+/* presets */
+
+"MODERN_SETTINGS_PRESETS_TITLE" = "프리셋";
+"MODERN_SETTINGS_PRESETS_SUBTITLE" = "사전 구성된 설정을 적용하거나 기기에 저장된 설정을 내보내고 불러옵니다.";
+"SETTINGS_EXPORT_TITLE" = "설정 내보내기";
+"SETTINGS_IMPORT_TITLE" = "설정 불러오기";
+
+/* experimental */
+
+"MODERN_SETTINGS_EXPERIMENTAL_TITLE" = "연구실";
+"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "현재 테스트 중인 기능을 체험해보세요.";
+"REPLY_IN_WEBVIEW_TITLE" = "웹뷰에서 답글 작성";
+"REPLY_IN_WEBVIEW_DETAIL" = "인증(attestation)을 피하기 위해 답글 작성 창을 웹뷰에서 엽니다.";
+
+/* web */
+
+"MODERN_SETTINGS_WEB_TITLE" = "웹 및 링크";
+"MODERN_SETTINGS_WEB_SUBTITLE" = "링크 동작 및 트위터 인앱 브라우저 작동 방식을 제어합니다.";
+"SHARING_DOMAIN_TITLE" = "공유 도메인";
+"ALWAYS_OPEN_SAFARI_TITLE" = "외부 브라우저 사용";
+"ALWAYS_OPEN_SAFARI_DETAIL" = "링크를 Safari나 사용자의 기본 브라우저로 엽니다.";
+"NEW_INAPP_WEBVIEW_TITLE" = "개선된 인앱 브라우저 (베타)";
+"NEW_INAPP_WEBVIEW_DETAIL" = "링크를 열 때 트위터의 새 인앱 브라우저를 사용합니다.";
+
+/* debug */
+
+"MODERN_SETTINGS_DEBUG_TITLE" = "디버그";
+"MODERN_SETTINGS_DEBUG_SUBTITLE" = "기능이 작동하지 않는 이유를 파악합니다.";
+"FLEX_TWITTER_TITLE" = "디버그 모드";
+"FLEX_TWITTER_DETAIL" = "트위터의 작동 및 데이터를 검사하고 디버깅하기 위해 FLEX를 활성화합니다.";
+
+/* Other application strings */
+
 "NFB_SETTINGS_TITLE" = "NeoFreeBird";
 "NFB_SETTINGS_DETAIL" = "트위터를 커스텀 해보세요. 광고를 숨기거나 Twitter Blue의 기능을 활성화할 수 있으며, 이외에도 다양한 기능이 있습니다.";
-
-/*Alerts and popups*/
-
 "CONFIRM_ALERT_MESSAGE" = "정말 진행하시겠습니까?";
-
 "YES_ACTION_LABEL" = "예";
 "NO_ACTION_LABEL" = "아니요";
 "CANCEL_ACTION_LABEL" = "취소";
@@ -18,292 +241,18 @@
 "SAVE" = "저장";
 "SAVE_ACTION_LABEL" = "저장";
 "OK_ACTION_LABEL" = "확인";
-
-
-/*Settings*/
-"MODERN_SETTINGS_LAYOUT_TITLE" = "일반";
-"MODERN_SETTINGS_LAYOUT_SUBTITLE" = "앱을 잠그고, 내비게이션 바를 항상 표시하는 등 다양한 기능을 제공합니다.";
-
-"MODERN_SETTINGS_MEDIA_TITLE" = "사진과 비디오";
-"MODERN_SETTINGS_MEDIA_SUBTITLE" = "비디오 다운로드, 비디오 타임스탬프 활성화 등 다양한 설정을 변경합니다.";
-
-"MODERN_SETTINGS_APPEARANCE_TITLE" = "모양";
-"MODERN_SETTINGS_APPEARANCE_SUBTITLE" = "테마, 커스텀 앱 아이콘, 글꼴 등으로 당신만의 Twitter를 만들어 보세요.";
-
-"MODERN_SETTINGS_TIMELINES_TITLE" = "타임라인";
-"MODERN_SETTINGS_TIMELINES_SUBTITLE" = "광고, 팔로우 추천 등 타임라인의 불필요한 요소를 제거합니다.";
-
-"MODERN_SETTINGS_GROK_TITLE" = "Grok";
-"MODERN_SETTINGS_GROK_SUBTITLE" = "Grok 버튼을 숨기고 자동 번역을 관리합니다.";
-
-"MODERN_SETTINGS_PROFILES_TITLE" = "프로필";
-"MODERN_SETTINGS_PROFILES_SUBTITLE" = "사용자 프로필에 표시할 항목을 제어합니다.";
-
-"MODERN_SETTINGS_TWEETS_TITLE" = "트윗과 답글";
-"MODERN_SETTINGS_TWEETS_SUBTITLE" = "트윗의 모양을 변경하고 불필요한 기능들을 제거할 수 있습니다.";
-
-"MODERN_SETTINGS_CHAT_TITLE" = "채팅";
-"MODERN_SETTINGS_CHAT_SUBTITLE" = "XChat 인터페이스에 다양한 기능을 추가합니다.";
-
-"MODERN_SETTINGS_SEARCH_TITLE" = "검색 및 탐색하기";
-"MODERN_SETTINGS_SEARCH_SUBTITLE" = "검색 화면에 표시할 항목을 제어합니다.";
-
-"MODERN_SETTINGS_PRESETS_TITLE" = "프리셋";
-"MODERN_SETTINGS_PRESETS_SUBTITLE" = "사전 구성된 설정을 적용하거나 기기에 저장된 설정을 내보내고 불러옵니다.";
-
-"MODERN_SETTINGS_WEB_TITLE" = "웹 및 링크";
-"MODERN_SETTINGS_WEB_SUBTITLE" = "링크 동작 및 트위터 인앱 브라우저 작동 방식을 제어합니다.";
-
-"MODERN_SETTINGS_BRANDING_TITLE" = "브랜딩";
-"MODERN_SETTINGS_BRANDING_SUBTITLE" = "트위터 브랜딩 복원 수준을 제어합니다.";
-
-"MODERN_SETTINGS_EXPERIMENTAL_TITLE" = "연구실";
-"MODERN_SETTINGS_EXPERIMENTAL_SUBTITLE" = "현재 테스트 중인 기능을 체험해보세요.";
-
-"MODERN_SETTINGS_DEBUG_TITLE" = "디버그";
-"MODERN_SETTINGS_DEBUG_SUBTITLE" = "기능이 작동하지 않는 이유를 파악합니다.";
-
 "COOL_KIDS_SECTION_HEADER_TITLE" = "멋진 분들";
 "SPECIAL_THANKS_SECTION_HEADER_TITLE" = "도움을 주신 분들";
 "FOLLOW_OFFICIAL_PAGE_SECTION_HEADER_TITLE" = "NeoFreeBird 팔로우하기";
-
-/*General*/
-
-"HIDE_WHO_TO_FOLLOW_TITLE" = "팔로우 추천 제거";
-"HIDE_WHO_TO_FOLLOW_DETAIL" = "팔로우 추천을 제거합니다.";
-
-"NO_FOCUS_LOST_TITLE" = "포커스 유지";
-"NO_FOCUS_LOST_DETAIL" = "트위터가 다른 앱으로 전환된 것을 감지하지 못하게 하여 타래(스레드)에서 보고 있던 위치를 잃지 않도록 합니다.";
-
-"HIDE_TIMELINE_PROMPTS_TITLE" = "타임라인 프롬프트 제거";
-"HIDE_TIMELINE_PROMPTS_DETAIL" = "'연락처 추가' 같은 배너를 제거합니다.";
-
-"HIDE_BLOCKED_RETWEETS_TITLE" = "차단된 리트윗 숨기기";
-"HIDE_BLOCKED_RETWEETS_DETAIL" = "나를 차단한 계정의 리트윗을 숨깁니다.";
-
-"PADLOCK_TITLE" = "앱 잠금";
-"PADLOCK_DETAIL" = "트위터를 열기 전 Face ID나 비밀번호를 요구합니다.";
-
-"NEW_INAPP_WEBVIEW_TITLE" = "개선된 인앱 브라우저 (베타)";
-"NEW_INAPP_WEBVIEW_DETAIL" = "링크를 열 때 트위터의 새 인앱 브라우저를 사용합니다.";
-
-"ALWAYS_OPEN_SAFARI_TITLE" = "외부 브라우저 사용";
-"ALWAYS_OPEN_SAFARI_DETAIL" = "링크를 Safari나 사용자의 기본 브라우저로 엽니다.";
-
-"SHARING_DOMAIN_TITLE" = "공유 도메인";
-
-/*Tweets*/
-"TWEET_TO_IMAGE_TITLE" = "트윗을 사진으로 저장";
-"TWEET_TO_IMAGE_DETAIL" = "트윗을 사진으로 저장하려면 공유 버튼을 길게 누릅니다.";
-
-"LIKE_CONFIRM_TITLE" = "'마음에 들어요' 확인 창 표시";
-"LIKE_CONFIRM_DETAIL" = "트윗에 '마음에 들어요'를 누르기 전에 확인합니다.";
-
-"SHOW_QUOTE_NUMBERS_TITLE" = "인용 수 표시";
-"SHOW_QUOTE_NUMBERS_DETAIL" = "트윗이 받은 인용 및 리트윗 수를 표시합니다.";
-
-"SHOW_UNROUNDED_QUOTE_NUMBERS_TITLE" = "정확한 인용 수 표시";
-"SHOW_UNROUNDED_QUOTE_NUMBERS_DETAIL" = "트윗의 인용 및 리트윗 수를 반올림 없이 정확한 숫자로 표시합니다. 줄바꿈 문제가 발생할 수 있습니다.";
-
-"USE_TENOR_GIFS_TITLE" = "Tenor GIF 사용";
-"USE_TENOR_GIFS_DETAIL" = "트위터 기본 GIF(GIPHY) 대신 Tenor GIF를 사용합니다. Tenor에 더 많은 옵션이 있습니다.";
-
-"TWEET_CONFIRM_TITLE" = "트윗 시 확인 창 표시";
-"TWEET_CONFIRM_DETAIL" = "트윗을 작성하기 전에 확인합니다.";
-
-"SHOW_POLL_RESULTS_TITLE" = "투표 전 결과 표시";
-"SHOW_POLL_RESULTS_DETAIL" = "투표하기 전에 항목 이름 옆에 투표 결과를 표시하여 다른 사람들의 투표 현황을 볼 수 있습니다.";
-
-"SHOW_ACCOUNT_LOCATION_TITLE" = "계정 위치 표시";
-"SHOW_ACCOUNT_LOCATION_DETAIL" = "트윗 하단에 해당 트윗을 작성한 계정의 위치를 표시합니다.";
-
-"HIDE_BLUE_VERIFIED_TITLE" = "파란 '인증됨' 체크마크 제거";
-"HIDE_BLUE_VERIFIED_DETAIL" = "트윗에서 유료 인증 체크마크를 제거합니다. 브랜드/정부 계정은 제외됩니다.";
-
-"HIDE_VIEW_COUNT_TITLE" = "조회수 표시 제거";
-"HIDE_VIEW_COUNT_DETAIL" = "트윗 아래의 조회수 표시를 제거합니다.";
-
-"DISABLE_MEDIA_CAROUSEL_TITLE" = "미디어 캐러셀 비활성화";
-"DISABLE_MEDIA_CAROUSEL_DETAIL" = "여러 미디어가 첨부되었을 때 적용되는 새로운 디자인을 이전 형태로 되돌립니다.";
-
-"HIDE_BOOKMARK_BUTTON_TITLE" = "북마크 추가 버튼 제거";
-"HIDE_BOOKMARK_BUTTON_DETAIL" = "트윗에서 북마크 추가 버튼을 제거합니다.";
-"HIDE_DOWNVOTE_BUTTON_TITLE" = "다운보트 버튼 제거";
-"HIDE_DOWNVOTE_BUTTON_DETAIL" = "트윗에서 다운보트 버튼을 제거합니다.";
-
-"DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "민감한 콘텐츠 경고 비활성화";
-
-"BYPASS_AGE_VERIFICATION_TITLE" = "연령 확인 우회";
-"BYPASS_AGE_VERIFICATION_DETAIL" = "민감한 콘텐츠에 대한 연령 확인 절차를 건너뜁니다.";
-
-"HIDE_GROK_ANALYZE_TITLE" = "Grok 분석 버튼 숨기기";
-
-"HIDE_GROK_SIDEBAR_TITLE" = "사이드바에서 Grok 숨기기";
-
-"HIDE_GROK_CREATE_TITLE" = "Grok 생성 버튼 숨기기";
-"HIDE_GROK_CREATE_DETAIL" = "Grok으로 이미지와 비디오를 생성하거나 편집하는 옵션을 제거합니다.";
-
-"DISABLE_AUTO_TRANSLATE_TITLE" = "자동 번역 비활성화";
-"DISABLE_AUTO_TRANSLATE_DETAIL" = "게시물이나 프로필을 자동으로 번역하지 않습니다.";
-
-"SQUARE_AVATARS_TITLE" = "정사각형 프로필 사진";
-"SQUARE_AVATARS_DETAIL" = "예전 트위터 시절이나 브랜드 계정처럼 모든 사용자에게 정사각형 프로필 사진을 적용합니다.";
-
-"REPLY_SORTING_TITLE" = "답글 정렬 기준 선택 메뉴 제거";
-"REPLY_SORTING_DETAIL" = "트윗 대화에서 답글 정렬 기능을 비활성화합니다.";
-
-"RESTORE_REPLY_CONTEXT_TITLE" = "답글 타래 표시 방법 복원";
-"RESTORE_REPLY_CONTEXT_DETAIL" = "트윗 아래에서 답장을 받은 사람들을 표시합니다.";
-
-/*Chat*/
-"HIDE_TYPING_INDICATOR_TITLE" = "입력 중 표시 숨기기";
-"HIDE_TYPING_INDICATOR_DETAIL" = "채팅 상대방에게 \"입력 중...\" 상태를 전송하지 않습니다.";
-
-"DOWNLOAD_VOICE_MESSAGES_TITLE" = "음성 메시지 다운로드";
-"DOWNLOAD_VOICE_MESSAGES_DETAIL" = "음성 메시지를 재생한 후 기기에 저장합니다 (오디오 메시지를 두 손가락으로 길게 누르면 다운로드됩니다).";
-
-"BLOCK_SCREENSHOT_DETECTION_TITLE" = "스크린샷 감지 차단";
-"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "\"보안\" 채팅에서 차단되지 않고 스크린샷을 찍을 수 있도록 합니다.";
-
-/*Profiles*/
-"FOLLOW_CONFIRM_TITLE" = "팔로우 시 확인 창 표시";
-"FOLLOW_CONFIRM_DETAIL" = "누군가를 팔로우하기 전에 다시 한 번 묻습니다.";
-
-"COPY_PROFILE_INFO_TITLE" = "프로필 정보 복사";
-"COPY_PROFILE_INFO_DETAIL" = "탭 한 번으로 사용자 아이디, 소개글 등을 복사합니다.";
-
-"FAST_BLOCK_TITLE" = "빠른 차단/뮤트";
-"FAST_BLOCK_DETAIL" = "확인 창 없이 즉시 계정을 차단하거나 뮤트합니다.";
-
-"DISABLE_ARTICLES_TITLE" = "아티클 탭 제거";
-"DISABLE_ARTICLES_DETAIL" = "프로필의 아티클 탭을 숨깁니다.";
-
-"DISABLE_HIGHLIGHTS_TITLE" = "하이라이트 탭 제거";
-"DISABLE_HIGHLIGHTS_DETAIL" = "프로필의 하이라이트 탭을 숨깁니다.";
-
-"HIDE_FOLLOW_BUTTON_TITLE" = "트윗에서 팔로우 버튼 숨기기";
-"HIDE_FOLLOW_BUTTON_DETAIL" = "트윗에서 팔로우 버튼을 숨깁니다.";
-
-"HIDE_MESSAGE_BUTTON_TITLE" = "트윗에서 메시지 버튼 숨기기";
-"HIDE_MESSAGE_BUTTON_DETAIL" = "트윗에서 메시지 버튼을 숨깁니다.";
-
-"RESTORE_FOLLOW_BUTTON_TITLE" = "구독 버튼 숨기기";
-"RESTORE_FOLLOW_BUTTON_DETAIL" = "트윗과 프로필에서 구독 버튼을 숨깁니다.";
-
-"SHOW_UNROUNDED_COUNTS_TITLE" = "정확한 수치 표시";
-"SHOW_UNROUNDED_COUNTS_DETAIL" = "팔로워, 팔로잉, 트윗 수를 천 또는 백만 단위로 반올림하지 않고 정확한 숫자로 표시합니다.";
-
-/*Search*/
-"NO_HISTORY_TITLE" = "검색 기록 비활성화";
-"NO_HISTORY_DETAIL" = "트위터가 사용자의 검색 기록을 더 이상 추적하거나 저장하지 않습니다.";
-
-"HIDE_TREND_VIDEOS_TITLE" = "트렌딩 비디오 제거";
-"HIDE_TREND_VIDEOS_DETAIL" = "검색 메뉴에서 트렌딩 비디오를 제거합니다.";
-
-/*Photos and Videos*/
-"AUTO_HIGHEST_LOAD_TITLE" = "고품질 미디어";
-"AUTO_HIGHEST_LOAD_DETAIL" = "항상 가능한 최대 해상도로 사진과 비디오를 불러옵니다.";
-
-"DISABLE_VIDEO_CAPTIONS_TITLE" = "비디오 자막 비활성화";
-
-"FORCE_TWEET_FULL_FRAME_TITLE" = "큰 이미지로 표시";
-
-"RESTORE_VIDEO_TIMESTAMP_TITLE" = "비디오 타임스탬프 표시";
-"RESTORE_VIDEO_TIMESTAMP_DETAIL" = "몰입형(전체 화면) 플레이어에서 타임스탬프를 표시합니다.";
-
-"TAP_TO_PAUSE_TITLE" = "탭하여 비디오 일시정지";
-"TAP_TO_PAUSE_DETAIL" = "일시정지 버튼을 누르는 대신 두 손가락으로 비디오를 탭하여 일시정지합니다.";
-
-"DISABLE_IMMERSIVE_SCROLL_TITLE" = "동영상 피드 스크롤 사용 안 함";
-
-"DISABLE_VIDEO_DOCKING_TITLE" = "비디오 도킹 비활성화";
-"DISABLE_VIDEO_DOCKING_DETAIL" = "동영상을 밖으로 드래그할 때 PiP 버튼이 표시되지 않도록 합니다.";
-
-/*Twitter Blue*/
-"HIDE_PROMOTED_TITLE" = "광고 제거";
-"HIDE_PROMOTED_DETAIL" = "모든 광고를 제거합니다.";
-
-"UNDO_TWEET_TITLE" = "트윗 전송 취소";
-
-"DOWNLOAD_VIDEOS_TITLE" = "미디어 다운로드";
-"DOWNLOAD_VIDEOS_DETAIL" = "트윗 더보기 메뉴에서 동영상이나 GIF를 바로 저장합니다.";
-
-"DOWNLOAD_HIGHEST_QUALITY_TITLE" = "항상 최고 화질로 다운로드";
-"DOWNLOAD_HIGHEST_QUALITY_DETAIL" = "품질 선택 창을 건너뛰고 가장 고화질의 MP4를 즉시 저장합니다.";
-
-"DOWNLOAD_ALL_VIDEOS_TITLE" = "모든 동영상 다운로드";
-"DOWNLOAD_ALL_VIDEOS_DETAIL" = "트윗에 포함된 모든 동영상을 한 번에 다운로드하는 옵션을 추가합니다.";
-
-"UPLOAD_FULL_HD_VIDEOS_TITLE" = "Full HD 동영상 업로드";
-"UPLOAD_FULL_HD_VIDEOS_DETAIL" = "1080p 해상도의 동영상 업로드 기능을 잠금 해제합니다.";
-
-"DIRECT_SAVE_TITLE" = "'사진'에 저장";
-"DIRECT_SAVE_DETAIL" = "저장한 동영상이 사진 앱으로 바로 저장됩니다.";
-
-"HIDE_PREMIUM_OFFER_TITLE" = "Twitter Blue 구독 권유 제거";
-"HIDE_PREMIUM_OFFER_DETAIL" = "'인증받기', '업그레이드' 버튼을 제거합니다.";
-
-"THEME_OPTION_TITLE" = "테마 변경";
-
-"APP_ICON_TITLE" = "앱 아이콘 변경";
-
-"CUSTOM_TAB_BAR_OPTION_TITLE" = "내비게이션 바 편집";
-
-/*Layout*/
-"HIDE_SPACES_TITLE" = "스페이스 바 숨기기";
-
-"NO_TAB_BAR_HIDING_TITLE" = "내비게이션 바 항상 표시";
-"NO_TAB_BAR_HIDING_DETAIL" = "스크롤해도 내비게이션 바가 사라지지 않도록 유지합니다.";
-
-"HIDE_CUSTOM_TIMELINES_TITLE" = "사용자 지정 타임라인 숨기기";
-"HIDE_CUSTOM_TIMELINES_DETAIL" = "홈 타임라인 탭에서 추가 버튼을 제거합니다.";
-
-"RESTORE_REFRESH_SOUNDS_TITLE" = "당겨서 새로고침 효과음";
-
-"HIDE_TRENDS_TITLE" = "트렌딩 콘텐츠 숨기기";
-"HIDE_TRENDS_DETAIL" = "탐색하기 탭에서 검색 바만 표시하고, 모든 트렌드, 뉴스 및 페이지 탭을 숨깁니다.";
-
-"TAB_BAR_THEMING_TITLE" = "클래식 탭 바";
-"TAB_BAR_THEMING_DETAIL" = "현재 선택된 탭 항목에 테마 강조 색상을 적용합니다.";
-
-"DISABLE_RTL_TITLE" = "LTR 레이아웃 사용";
-"DISABLE_RTL_DETAIL" = "오른쪽에서 왼쪽으로 읽는 언어 환경에서도 왼쪽에서 오른쪽으로 읽는(LTR) 레이아웃을 강제합니다.";
-
-"SHOW_SCROLL_INDICATOR_TITLE" = "스크롤 바 항상 표시";
-
-"CUSTOM_FONTS_TITLE" = "사용자 지정 글꼴";
-"CUSTOM_FONTS_DETAIL" = "트위터에서 사용할 글꼴을 선택합니다.";
-
-"REGULAR_FONTS_PICKER_OPTION_TITLE" = "글꼴 선택";
-
-"BOLD_FONTS_PICKER_OPTION_TITLE" = "굵은 글꼴 선택";
-
-/*Labs*/
-"REPLY_IN_WEBVIEW_TITLE" = "웹뷰에서 답글 작성";
-"REPLY_IN_WEBVIEW_DETAIL" = "인증(attestation)을 피하기 위해 답글 작성 창을 웹뷰에서 엽니다.";
-
-/*Debug*/
-"FLEX_TWITTER_TITLE" = "디버그 모드";
-"FLEX_TWITTER_DETAIL" = "트위터의 작동 및 데이터를 검사하고 디버깅하기 위해 FLEX를 활성화합니다.";
-
-/*Developers*/
 "DEVELOPER_SECTION_HEADER_TITLE" = "개발진";
-
-/*Custom fonts*/
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "사용자 지정 글꼴";
 "CUSTOM_FONTS_MENU_TITLE" = "\n글꼴을 선택하세요";
 "CUSTOM_FONTS_TUT_ALERT_MESSAGE" = "사용자 지정 글꼴이 없습니다. App Store의 iFont 앱에서 글꼴을 설치하세요.";
-
-/*Download*/
 "DOWNLOAD_MENU_TITLE" = "\n비디오 화질 선택";
 "FETCHING_PROGRESS_TITLE" = "잠시만 기다려주세요...";
 "DOWNLOAD_AS_GIF_OPTION_TITLE" = "GIF로 다운로드";
 "DOWNLOAD_AS_MP4_OPTION_TITLE" = "MP4로 다운로드";
 "DOWNLOAD_ALL_VIDEOS_OPTION_TITLE" = "모든 동영상 다운로드";
-
-/*App icon*/
-
-/*Copy profile info*/
 "COPY_PROFILE_INFO_MENU_OPTION_1" = "소개 복사";
 "COPY_PROFILE_INFO_MENU_OPTION_2" = "아이디 복사";
 "COPY_PROFILE_INFO_MENU_OPTION_3" = "이름 복사";
@@ -312,71 +261,25 @@
 "COPY_PROFILE_INFO_MENU_OPTION_6" = "프로필 URL 복사";
 "COPY_PROFILE_INFO_MENU_OPTION_7" = "사용자 ID 복사";
 "COPY_PROFILE_INFO_MENU_OPTION_8" = "가입일 복사";
-
-/*Theme*/
 "THEME_SETTINGS_NAVIGATION_TITLE" = "테마";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "트위터에서 사용할 테마 색상을 선택합니다. 본인에게만 적용됩니다.";
-
-/*Tab bar*/
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "내비게이션 편집";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "항목을 탭하여 추가하거나 제거할 수 있습니다. 아래 막대를 드래그하여 순서를 변경하세요.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "내비게이션 바를 기본 상태로 복원하시겠습니까?";
-
-/* Restore tab labels */
-"RESTORE_TAB_LABELS_TITLE" = "탭 라벨 표시";
-"RESTORE_TAB_LABELS_DETAIL" = "탭 바의 아이콘 아래에 라벨을 표시합니다.";
-
-"COLOR_TWITTER_ICON_IN_TOP_BAR_TITLE" = "트위터 아이콘 색 입히기";
-"COLOR_TWITTER_ICON_IN_TOP_BAR_DETAIL" = "상단 바의 트위터 아이콘에 강조 색상을 적용합니다.";
-
 "REFRESH_PILL_TEXT" = "게시됨";
-"REFRESH_PILL_LABEL_TITLE" = "새로고침 알림에 라벨 추가";
-"REFRESH_PILL_LABEL_DETAIL" = "누군가 트윗하면 새로고침 알림에 라벨을 다시 표시합니다.";
-
-"RESTORE_TWITTER_NAMES_TITLE" = "트위터 용어 복원";
-"RESTORE_TWITTER_NAMES_DETAIL" = "앱 인터페이스 전반에서 'X'를 'Twitter'로, '게시'를 '트윗'으로, '재게시'를 '리트윗' 등으로 복원합니다.";
-
-"BLUE_LAUNCH_SCREEN_TITLE" = "파란색 시작 화면 복원";
-"BLUE_LAUNCH_SCREEN_DETAIL" = "기존의 파란색 시작(로딩) 화면을 복원합니다.";
-
-/*Dim Theme*/
-"ENABLE_DIM_THEME_TITLE" = "어두운(Dim) 테마 활성화";
-"ENABLE_DIM_THEME_DETAIL" = "삭제된 트위터의 어두운(Dim) 테마를 복원합니다. 다크 모드가 켜져 있어야 하며 앱 재시작이 필요합니다.";
 "DIM_THEME_RESTART_ALERT_TITLE" = "재시작 필요";
 "DIM_THEME_RESTART_ALERT_MESSAGE" = "어두운 테마를 적용하려면 앱을 재시작해야 합니다.";
 "DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "재시작";
-
-"HIDE_VERIFIED_TWEETS_TITLE" = "인증된 계정의 트윗 숨기기";
-"HIDE_VERIFIED_TWEETS_DETAIL" = "타임라인과 답글에서 인증된 계정의 트윗을 숨깁니다. 단, 작성자가 해당 타래에서 답글을 달았거나 내가 팔로우 중인 계정은 제외됩니다.";
-
-"HIDE_TWEET_BUTTON_TITLE" = "트윗 버튼 숨기기";
-"HIDE_TWEET_BUTTON_DETAIL" = "내비게이션 바에서 트윗 버튼을 제거합니다.";
-
-/*Deprecated*/
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "아직 표시할 내용이 없습니다";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "이 섹션은 곧 출시될 예정입니다. NeoFreeBird의 다음 업데이트를 기대해 주세요!";
-
 "SOURCE_UNAVAILABLE" = "소스 확인 불가";
-
 "LOCATION_UNAVAILABLE" = "위치 확인 불가";
-
 "CONTRIBUTOR_PAGE_SECTION_HEADER_TITLE" = "기여자";
-
-/*App lock*/
 "PADLOCK_LOCKED_LABEL" = "잠김";
-
-/*Source labels*/
 "UNKNOWN_SOURCE" = "알 수 없는 출처";
-
-/*Media downloads*/
 "DOWNLOAD_VIDEO_NUMBER_TITLE" = "비디오 %lu";
 "UNKNOWN_ERROR" = "알 수 없는 오류가 발생했습니다.";
-
-/*Custom fonts*/
 "INSTALL_IFONT_BUTTON_TITLE" = "iFont 앱";
-"FONT_SYSTEM_DEFAULT_SUBTITLE" = "시스템 기본값";
-
-/*Legacy login*/
 "LEGACY_LOGIN_INFO_LABEL" = "사용자 아이디와 비밀번호로 로그인하세요.\n\nGoogle 및 Apple 로그인은 지원되지 않습니다. 계정에 해당 로그인을 사용하는 경우 먼저 비밀번호를 설정하세요.";
 "LEGACY_LOGIN_MISSING_INPUT_TITLE" = "입력값 누락";
 "LEGACY_LOGIN_MISSING_INPUT_MESSAGE" = "사용자 아이디와 비밀번호를 입력하세요.";
@@ -401,32 +304,18 @@
 "LEGACY_LOGIN_RATE_LIMITED_TITLE" = "요청 한도 초과 가능성 (243)";
 "LEGACY_LOGIN_RATE_LIMITED_MESSAGE" = "시도 횟수가 너무 많습니다. 잠시 기다리거나 네트워크/VPN을 변경한 후 다시 시도하세요.\n\n세부정보:\n%@";
 "LEGACY_LOGIN_UNKNOWN_ERROR" = "알 수 없는 오류";
-
 "DOWNLOAD_ACTIVITY_VIEW_LABEL" = "미디어 다운로드";
 "DOWNLOAD_LIVE_ACTIVITY_DOWNLOADING" = "다운로드 중";
-
-/* Subscription Keys */
 "SUBSCRIPTION_APP_ICON_SETTINGS_TITLE" = "앱 아이콘 변경";
 "SUBSCRIPTION_APP_ICON_SETTINGS_DETAIL" = "기기 홈 화면에 사용할 커스텀 앱 아이콘을 선택하세요. 언제든지 변경할 수 있습니다.";
-
 "SUBSCRIPTION_TAB_CUSTOMIZATION_RESTORE_BUTTON_TITLE" = "기본값으로 복원";
 "Restore to default" = "기본값으로 복원";
-
 "SUBSCRIPTION_UNDO_SEND_DURATION_TITLE" = "전송 취소 대기 시간";
 "SUBSCRIPTION_UNDO_SEND_DURATION_DETAIL" = "트윗을 전송한 후 취소 버튼이 유지되는 시간을 설정합니다.";
-
-/* Presets — settings import and export */
-"SETTINGS_EXPORT_TITLE" = "설정 내보내기";
-"SETTINGS_IMPORT_TITLE" = "설정 불러오기";
-
-"CUSTOM_SEND_SOUND_TITLE" = "전송 효과음 가져오기";
-"CUSTOM_SEND_SOUND_DEFAULT" = "선택된 사용자 지정 효과음 없음";
 "CUSTOM_SEND_SOUND_FAILED_TITLE" = "전송 효과음 가져오기 실패";
 "CUSTOM_SEND_SOUND_TOO_LONG" = "선택한 사운드가 너무 깁니다. 7초 이하여야 합니다.";
-
 "SETTINGS_EXPORT_FAILED_TITLE" = "내보내기 실패";
 "SETTINGS_EXPORT_WRITE_FAILED" = "설정 파일을 생성할 수 없습니다.";
-
 "SETTINGS_IMPORT_CONFIRM_TITLE" = "설정을 불러오시겠습니까?";
 "SETTINGS_IMPORT_CONFIRM_MESSAGE" = "현재 NeoFreeBird 설정이 선택한 파일의 설정으로 대체됩니다.";
 "SETTINGS_IMPORT_CONFIRM_BUTTON" = "파일 선택";
@@ -435,12 +324,9 @@
 "SETTINGS_IMPORT_SUCCESS_MESSAGE" = "%ld개의 설정이 적용되었습니다. 모든 설정을 적용하려면 앱을 재시작하세요.";
 "SETTINGS_IMPORT_RESTART_BUTTON" = "재시작";
 "SETTINGS_IMPORT_LATER_BUTTON" = "나중에";
-
 "SETTINGS_TRANSFER_UNREADABLE_FILE" = "해당 파일을 읽을 수 없습니다.";
 "SETTINGS_TRANSFER_MALFORMED_FILE" = "해당 파일은 NeoFreeBird 설정 내보내기 파일이 아닙니다.";
 "SETTINGS_TRANSFER_NO_SETTINGS" = "해당 파일에 현재 버전에서 인식할 수 있는 설정이 포함되어 있지 않습니다.";
-
-/* Common UI Elements & Time Selectors */
 "Off" = "끔";
 "Cancel" = "취소";
 "5 seconds" = "5초";
@@ -448,7 +334,5 @@
 "20 seconds" = "20초";
 "30 seconds" = "30초";
 "60 seconds" = "60초";
-
-/* Undo Duration Labels (Added for TweetsSettingsViewController) */
 "GENERIC_OFF_LABEL" = "끔";
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld초";
