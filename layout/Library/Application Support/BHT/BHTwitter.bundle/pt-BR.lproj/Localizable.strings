@@ -385,3 +385,12 @@
 
 "GITHUB_DOWNLOAD_WARNING_TITLE" = "Boas-vindas!";
 "GITHUB_DOWNLOAD_WARNING_MESSAGE" = "Certifique-se de que instalou o NeoFreeBird pelo GitHub oficial. Não podemos ajudar com problemas de outros IPAs, e você pode não saber se sua versão contém código malicioso. Se tiver dúvidas, abra uma issue no GitHub.";
+
+/* New translations for v7 */
+"HIDE_MEDIA_PREVIEWS_TITLE" = "Ocultar prévias de mídia";
+"HIDE_MEDIA_PREVIEWS_DETAIL" = "Oculta fotos, vídeos e GIFs nas timelines. (Modo de economia de dados)";
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "Desativar curtida com dois toques";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "Impede que você curta um vídeo ao tocar duas vezes nele.";
+"COMPOSITION_COMPLETE_SENDING_TWEET_TOAST_NOTIFICATION_MESSAGE" = "Sua resposta foi enviada!";
+"DM_MESSAGE_ACTION_OPEN_GENERIC_TITLE" = "Abrir Tweet";
+"DISMISS_LABEL" = "Dispensar";
