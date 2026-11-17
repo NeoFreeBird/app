@@ -368,6 +368,10 @@ static NSNumber* FeatureSwitchOverrideValueForKey(NSString* key) {
         return @YES;
     }
 
+    if ([key isEqualToString:@"ios_home_timeline_logo_pull_to_refresh_enabled"]) {
+        return [BHTManager isTwitterBranded] ? @NO : @YES;
+    }
+
     // Premium / verification upsells. Not all gate on !isPremiumTierUser, so
     // every upsell surface present in 12.3 is disabled here.
     if ([key isEqualToString:@"ios_profile_analytics_upsell_enabled"] ||
