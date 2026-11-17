@@ -990,7 +990,7 @@ static char SensitiveMediaButtonHiddenKey;
 
 // X's own Show/Hide button, or nil until the overlay has created and attached it.
 static UIButton* BHTSensitiveMediaRevealButton(HFSensitiveTweetBlurredInterstitialView* overlay) {
-    UIButton* button = nfb_objectIvar(overlay, "$__lazy_storage_$_showOrHideMediaButton");
+    UIButton* button = objectIvar(overlay, "$__lazy_storage_$_showOrHideMediaButton");
     if (![button isKindOfClass:UIButton.class] || ![button isDescendantOfView:overlay]) {
         return nil;
     }
