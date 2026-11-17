@@ -332,3 +332,31 @@
 }
 
 %end
+
+// MARK: - Hide the Spaces bar
+
+// The bar is still the repurposed Fleets line; both home timeline implementations
+// share this visibility gate, re-evaluated on every content or settings update.
+%hook T1FleetLineHeaderController
+
+- (BOOL)_t1_shouldShowFleetLine {
+    if ([BHTSettings boolForKey:@"hide_spaces"]) {
+        return NO;
+    }
+
+    return %orig;
+}
+
+%end
+
+%hook _TtC14T1TwitterSwift28FleetLineAccessoryController
+
+- (BOOL)isHidden {
+    return [BHTSettings boolForKey:@"hide_spaces"] ? YES : %orig;
+}
+
+- (UIView*)accessoryView {
+    return [BHTSettings boolForKey:@"hide_spaces"] ? nil : %orig;
+}
+
+%end
