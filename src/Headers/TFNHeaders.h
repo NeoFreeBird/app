@@ -206,3 +206,7 @@
 @interface TFNAvatarImageView : UIView
 @property (nonatomic) NSInteger style;
 @end
+
+@interface TFNPullToRefreshControl : UIView
+- (BOOL)loading;
+@end
