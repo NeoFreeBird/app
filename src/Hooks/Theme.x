@@ -198,6 +198,124 @@ static UIColor* BHTReplaceKnownAccent(UIColor* color, UIColor* currentNative) {
 
 // MARK: - Dim background recolor
 
+@interface BHTDimGlassPlacement : NSObject
+@property (nonatomic, weak) UIView* originalParent;
+@property (nonatomic) NSUInteger originalIndex;
+@property (nonatomic) UIViewAutoresizing originalAutoresizingMask;
+@property (nonatomic, strong) UIView* toastTint;
+@end
+@implementation BHTDimGlassPlacement
+@end
+
+static char BHTDimGlassPlacementKey;
+
+static BOOL BHTDimGlassIsInContainer(UIView* glass, NSString* className) {
+    Class container = NSClassFromString(className);
+    for (UIView* view = glass.superview; view; view = view.superview) {
+        if ([view isKindOfClass:container]) return YES;
+    }
+    return NO;
+}
+
+static BOOL BHTDimGlassContainsForeground(UIView* host) {
+    Class buttonClass = NSClassFromString(@"TFNButton");
+    NSMutableArray<UIView*>* pending = [host.subviews mutableCopy];
+    while (pending.count) {
+        UIView* view = pending.lastObject;
+        [pending removeLastObject];
+        if ([view isKindOfClass:UILabel.class] || [view isKindOfClass:UIImageView.class] ||
+            [view isKindOfClass:buttonClass]) return YES;
+        [pending addObjectsFromArray:view.subviews];
+    }
+    return NO;
+}
+
+
+static void BHTUpdateDimGlass(UIView* glass) {
+    SEL selector = @selector(contentView);
+    if (![glass respondsToSelector:selector]) return;
+    UIView* host = ((id (*)(id, SEL))objc_msgSend)(glass, selector);
+    if (![host isKindOfClass:UIView.class]) return;
+
+    BHTDimGlassPlacement* placement = objc_getAssociatedObject(glass, &BHTDimGlassPlacementKey);
+    BOOL toast = BHTDimGlassIsInContainer(glass, @"XDSToastContainerView");
+    BOOL enabled = NFBLiquidGlassEnabled() && BHTDimThemeEnabled() &&
+        glass.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark &&
+        (toast || BHTDimGlassIsInContainer(glass, @"XDSButton") ||
+         BHTDimGlassContainsForeground(host));
+    if (!enabled) {
+        [placement.toastTint removeFromSuperview];
+        UIView* parent = placement.originalParent;
+        if (parent && host.superview == glass) {
+            CGRect frame = [glass convertRect:host.frame toView:parent];
+            [parent insertSubview:host atIndex:MIN(placement.originalIndex, parent.subviews.count)];
+            host.frame = frame;
+            host.autoresizingMask = placement.originalAutoresizingMask;
+        }
+        objc_setAssociatedObject(glass, &BHTDimGlassPlacementKey, nil,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return;
+    }
+
+    if (!placement) {
+        UIView* parent = host.superview;
+        UIVisualEffectView* effect = [parent.superview isKindOfClass:UIVisualEffectView.class]
+            ? (UIVisualEffectView*)parent.superview : nil;
+        if (!effect || parent != effect.contentView ||
+            ![effect.effect isKindOfClass:NSClassFromString(@"UIGlassEffect")] ||
+            !host.translatesAutoresizingMaskIntoConstraints) return;
+        for (NSLayoutConstraint* constraint in parent.constraints) {
+            if (constraint.active && (constraint.firstItem == host || constraint.secondItem == host)) return;
+        }
+        placement = [BHTDimGlassPlacement new];
+        placement.originalParent = parent;
+        placement.originalIndex = [parent.subviews indexOfObjectIdenticalTo:host];
+        placement.originalAutoresizingMask = host.autoresizingMask;
+        CGRect frame = [parent convertRect:host.frame toView:glass];
+        objc_setAssociatedObject(glass, &BHTDimGlassPlacementKey, placement,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [glass addSubview:host];
+        host.frame = frame;
+        host.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+
+    if (!toast && placement.toastTint.superview) {
+        [placement.toastTint removeFromSuperview];
+    } else if (toast && host.superview == glass) {
+        if (!placement.toastTint) {
+            UIView* tint = [[UIView alloc] initWithFrame:host.bounds];
+            tint.userInteractionEnabled = NO;
+            tint.isAccessibilityElement = NO;
+            tint.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            tint.backgroundColor = [BHTDimElevatedBackgroundColor() colorWithAlphaComponent:0.75];
+            placement.toastTint = tint;
+        }
+        if (placement.toastTint.superview != host) [host insertSubview:placement.toastTint atIndex:0];
+        if (host.subviews.firstObject != placement.toastTint) [host sendSubviewToBack:placement.toastTint];
+        placement.toastTint.frame = host.bounds;
+    }
+    if (host.superview == glass && glass.subviews.lastObject != host) [glass bringSubviewToFront:host];
+}
+
+%hook XDSGlass
+
+- (void)layoutSubviews {
+    %orig;
+    BHTUpdateDimGlass((UIView*)self);
+}
+
+- (void)didMoveToWindow {
+    %orig;
+    BHTUpdateDimGlass((UIView*)self);
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection*)previousTraits {
+    %orig;
+    BHTUpdateDimGlass((UIView*)self);
+}
+
+%end
+
 static BOOL BHTIsInsideScrollEdgeTreatment(UIView* view) {
     Class treatmentClass = NSClassFromString(@"_TtC13XDesignSystem19ScrollEdgeTreatment");
     for (UIView* parent = view.superview; parent; parent = parent.superview) {
@@ -536,6 +654,18 @@ static UIColor* BHTDimNormalizedViewBackground(UIView* view, UIColor* color) {
         UIColor* normalized = BHTDimNormalizedViewBackground(self, self.backgroundColor);
         if (normalized != self.backgroundColor) {
             self.backgroundColor = normalized;
+        }
+    }
+
+    if (self.window && NFBLiquidGlassEnabled() && BHTDimThemeEnabled() &&
+        ([self isKindOfClass:UILabel.class] || [self isKindOfClass:UIImageView.class] ||
+         [self isKindOfClass:NSClassFromString(@"TFNButton")])) {
+        Class glassClass = NSClassFromString(@"XDSGlass");
+        for (UIView* parent = self.superview; parent; parent = parent.superview) {
+            if ([parent isKindOfClass:glassClass]) {
+                BHTUpdateDimGlass(parent);
+                break;
+            }
         }
     }
 }
