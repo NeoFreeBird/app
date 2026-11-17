@@ -41,4 +41,5 @@
 // NSCache with a count limit of 3; see the hook in Hooks/Fonts.x.
 @interface UIFont (TFNUIFontGroup)
 - (id)tfn_CTFont;
+- (UIFont*)tfn_withMonospacedDigits;
 @end
