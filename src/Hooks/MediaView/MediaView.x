@@ -1,4 +1,4 @@
-#import "HookHelpers.h"
+#import "MediaView.h"
 
 // MARK: - Force tweet images to full frame
 
