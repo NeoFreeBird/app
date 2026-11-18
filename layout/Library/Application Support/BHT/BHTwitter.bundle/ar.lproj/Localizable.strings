@@ -144,6 +144,9 @@
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "تعطيل معرض الوسائط";
 "DISABLE_MEDIA_CAROUSEL_DETAIL" = "استعادة المظهر السابق للتغريدات التي تضم عدة وسائط.";
 
+"HIDE_MEDIA_PREVIEWS_TITLE" = "إخفاء معاينة الوسائط";
+"HIDE_MEDIA_PREVIEWS_DETAIL" = "إخفاء الصور والفيديوهات وصور GIF في الخطوط الزمنية. (وضع توفير البيانات)";
+
 "HIDE_BOOKMARK_BUTTON_TITLE" = "إخفاء العلامات المرجعية";
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "إزالة زر العلامة المرجعية من التغريدات.";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "إخفاء زر عدم الإعجاب";
@@ -230,6 +233,9 @@
 "DISABLE_VIDEO_CAPTIONS_TITLE" = "إخفاء النصوص التوضيحية للفيديو";
 
 "FORCE_TWEET_FULL_FRAME_TITLE" = "صور كبيرة";
+
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "تعطيل النقر المزدوج للإعجاب";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "منع النقر المزدوج على الفيديو للإعجاب به.";
 
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "توقيت الفيديو";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "عرض توقيت الفيديو في مشغل ملء الشاشة.";
@@ -498,3 +504,7 @@
 
 "GITHUB_DOWNLOAD_WARNING_TITLE" = "مرحبًا!";
 "GITHUB_DOWNLOAD_WARNING_MESSAGE" = "تأكد من تثبيت NeoFreeBird من صفحتنا الرسمية على GitHub. لا يمكننا المساعدة في المشكلات الناتجة عن ملفات IPA أخرى، وقد لا تعرف ما إذا كانت نسختك خالية من الشيفرة الضارة. إذا كانت لديك أي أسئلة، فافتح بلاغًا على GitHub.";
+
+"COMPOSITION_COMPLETE_SENDING_TWEET_TOAST_NOTIFICATION_MESSAGE" = "أُرسل ردك!";
+"DM_MESSAGE_ACTION_OPEN_GENERIC_TITLE" = "فتح التغريدة";
+"DISMISS_LABEL" = "إغلاق";
