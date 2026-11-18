@@ -35,3 +35,11 @@
 
 @interface _TtC13XDesignSystem18ScrollEdgeFadeView : UIView
 @end
+
+// XServiceLibraries implements this category on UIFont. -tfn_CTFont returns
+// a CTFontRef (toll-free bridged to UIFont) whose only owner is a static
+// NSCache with a count limit of 3; see the hook in Hooks/Fonts.x.
+@interface UIFont (TFNUIFontGroup)
+- (id)tfn_CTFont;
+- (UIFont*)tfn_withMonospacedDigits;
+@end

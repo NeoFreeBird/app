@@ -33,6 +33,7 @@ static NSString* const NativeBearer =
 
 static NSString* const WebQueryIDDefaultsKey = @"nfb_createtweet_queryid";
 static NSString* WebCreateTweetQueryID = @"vwzfnq1lLOa1Nfx7htM2mw";
+static NSString* const WebCreateNoteTweetQueryID = @"SZfgMjZCY6hPBEzJ4h0K9Q";
 
 // MARK: - Session state
 
@@ -79,6 +80,7 @@ static void prewarmCreateTweetXTID(void);
 static NSString* cachedXTIDForKey(NSString* key);
 static NSString* xtidKey(NSString* method, NSString* path);
 static NSString* createTweetPath(void);
+static NSString* createNoteTweetPath(void);
 static void refreshWebCookiesViaWebView(void);
 static void teardownWebHarvestWindow(void);
 static void seedWebSessionCookies(WKHTTPCookieStore* store, NSDictionary<NSString*, NSString*>* pairs,
@@ -447,7 +449,9 @@ static void refreshWebCookiesViaWebView(void) {
         return;
     }
     if (WebHelperWebView) {
-        if (WebHelperReady && !cachedXTIDForKey(xtidKey(@"POST", createTweetPath())).length) {
+        if (WebHelperReady &&
+            (!cachedXTIDForKey(xtidKey(@"POST", createTweetPath())).length ||
+             !cachedXTIDForKey(xtidKey(@"POST", createNoteTweetPath())).length)) {
             prewarmCreateTweetXTID();
         }
         return;
@@ -598,7 +602,14 @@ static NSString* createTweetPath(void) {
     }
 }
 
-static void prewarmCreateTweetXTID(void) { refreshXTIDForMethodPath(@"POST", createTweetPath()); }
+static NSString* createNoteTweetPath(void) {
+    return [NSString stringWithFormat:@"/i/api/graphql/%@/CreateNoteTweet", WebCreateNoteTweetQueryID];
+}
+
+static void prewarmCreateTweetXTID(void) {
+    refreshXTIDForMethodPath(@"POST", createTweetPath());
+    refreshXTIDForMethodPath(@"POST", createNoteTweetPath());
+}
 
 static NSString* transactionIdForRequest(NSURLRequest* request) {
     NSURL* url = request.URL;
@@ -941,7 +952,11 @@ static BOOL resolveWebCreds(NSString* userID, NSString** outAuthToken, NSString*
 
 // MARK: - Request transform
 
-static BOOL isCreateTweetURL(NSURL* url) { return url && [url.path hasSuffix:@"/CreateTweet"]; }
+// Both mutations use the same web posting transport, but retain distinct query IDs.
+static BOOL isCreateTweetURL(NSURL* url) {
+    return url && ([url.path hasSuffix:@"/CreateTweet"] ||
+                   [url.path hasSuffix:@"/CreateNoteTweet"]);
+}
 
 static BOOL isAccountURL(NSURL* url) { return url && ([url.path containsString:@"/1.1/account"] || [url.path containsString:@"/1.1/users/"]); }
 
@@ -972,6 +987,11 @@ static NSURL* webEquivalentURL(NSURL* url) {
     }
 
     NSURLComponents* c = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+    if (c && [url.path hasSuffix:@"/CreateNoteTweet"]) {
+        c.host = @"x.com";
+        c.path = createNoteTweetPath();
+        return c.URL ?: url;
+    }
     if (c && isPeriscopeAuthURL(url)) {
         c.host = @"x.com";
         c.path = @"/i/api/1.1/oauth/authenticate_periscope.json";
