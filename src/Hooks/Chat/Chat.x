@@ -18,6 +18,48 @@
 }
 %end
 
+// MARK: - Disable screenshot and screen recording detection
+
+%hook NSNotificationCenter
+
+- (id)addObserverForName:(NSNotificationName)name
+                  object:(id)obj
+                   queue:(NSOperationQueue*)queue
+              usingBlock:(void (^)(NSNotification* note))block {
+    if ([name isEqualToString:UIApplicationUserDidTakeScreenshotNotification]) {
+        return %orig(name, obj, queue,
+                         ^(NSNotification* note){});
+    }
+    if ([name isEqualToString:UIScreenCapturedDidChangeNotification]) {
+        return %orig(name, obj, queue,
+                         ^(NSNotification* note){});
+    }
+
+    return %orig;
+}
+
+- (void)addObserver:(id)observer
+           selector:(SEL)aSelector
+               name:(NSNotificationName)aName
+             object:(id)anObject {
+    if ([aName isEqualToString:UIApplicationUserDidTakeScreenshotNotification]) {
+        return;
+    }
+    if ([aName isEqualToString:UIScreenCapturedDidChangeNotification]) {
+        return;
+    }
+
+    return %orig;
+}
+
+%end
+
+%hook UIScreen
+- (BOOL)isCaptured {
+    return NO;
+}
+%end
+
 // MARK: - Chat screenshot protection
 
 %hook UITextField

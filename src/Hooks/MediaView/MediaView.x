@@ -27,3 +27,18 @@
 }
 
 %end
+
+%hook T1AccountAutoplayPolicy
+
+- (id)initWithCurrentSettings:(id)settings
+    currentNetworkReachabilityStatus:(id)status
+    notificationCenter:(id)center
+    ignoreCurrentSettingsWhenAutoplayingGif:(_Bool)ignore {
+    return %orig(settings, status, center, NO);
+}
+
+- (id)initWithIgnoreCurrentSettingsWhenAutoplayingGif:(_Bool)ignore {
+    return %orig(NO);
+}
+
+%end
