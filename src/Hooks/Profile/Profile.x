@@ -1,57 +1,6 @@
-//
-//  Profile.x
-//  NeoFreeBird
-//
-
-#import "HookHelpers.h"
+#import "Profile.h"
 
 // MARK: - Copy profile info
-
-static void PresentCopyProfileInfoSheet(T1ProfileUserViewModel* viewModel) {
-    NSMutableArray<TFNActionItem*>* items = [NSMutableArray array];
-
-    void (^addCopyItem)(NSString*, NSString*, NSString*) =
-        ^(NSString* titleKey, NSString* iconName, NSString* value) {
-            if (!value.length) {
-                return;
-            }
-            TFNActionItem* item = [%c(TFNActionItem)
-                actionItemWithTitle:[[BHTBundle sharedBundle] localizedStringForKey:titleKey]
-                          imageName:iconName
-                             action:^{
-                                 UIPasteboard.generalPasteboard.string = value;
-                             }];
-            if (item) {
-                [items addObject:item];
-            }
-        };
-
-    addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_3", @"account", viewModel.fullName);
-    addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_2", @"at", viewModel.username);
-    addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_1", @"news_stroke", viewModel.bio);
-    addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_5", @"location_stroke", viewModel.location);
-    addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_4", @"link", viewModel.url);
-    if (viewModel.username.length) {
-        addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_6", @"link",
-                    [NSString stringWithFormat:@"https://x.com/%@", viewModel.username]);
-    }
-    addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_7", @"bar_chart", [NSString stringWithFormat:@"%ld", (long)viewModel.userDataSource.user.userID]);
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterLongStyle;
-    addCopyItem(@"COPY_PROFILE_INFO_MENU_OPTION_8", @"calendar",
-                [dateFormatter stringFromDate:viewModel.userDataSource.user.createdDate]);
-
-    if (!items.count) {
-        return;
-    }
-
-    TFNMenuSheetViewController* sheet = [[%c(TFNMenuSheetViewController) alloc]
-        initWithTitle:[[BHTBundle sharedBundle] localizedStringForKey:@"COPY_PROFILE_INFO_TITLE"]
-          actionItems:items];
-    [sheet tfnPresentedCustomPresentFromViewController:topMostController()
-                                              animated:YES
-                                            completion:nil];
-}
 
 %hook T1ProfileHeaderViewController
 
@@ -63,9 +12,6 @@ static void PresentCopyProfileInfoSheet(T1ProfileUserViewModel* viewModel) {
         return items;
     }
 
-    // Only extend a menu built the way this expects: if the action items ever
-    // stop being TFNActionItems, the copy entry drops out rather than handing
-    // the menu something it cannot show.
     if (![items.firstObject isKindOfClass:%c(TFNActionItem)]) {
         return items;
     }
@@ -80,9 +26,6 @@ static void PresentCopyProfileInfoSheet(T1ProfileUserViewModel* viewModel) {
                                 localizedStringForKey:@"COPY_PROFILE_INFO_TITLE"]
                   imageName:@"copy_stroke"
                      action:^{
-                         // The more-actions menu is still on its way out when
-                         // the action fires, so let it finish before stacking
-                         // the copy sheet on top.
                          dispatch_async(dispatch_get_main_queue(), ^{
                              PresentCopyProfileInfoSheet(viewModel);
                          });
