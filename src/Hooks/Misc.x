@@ -63,39 +63,3 @@
     return NO;
 }
 %end
-
-%hook TUIFollowControlCustomScreenshot
-- (void)didMoveToWindow {
-    %orig;
-    self.hidden = true;
-    self.alpha = 0.0;
-    self.userInteractionEnabled = false;
-}
-%end
-
-// MARK: Hide the refresh pill at the top of the page that appears when new tweets are available
-%hook TFNPillControl
-- (void)didMoveToWindow {
-    %orig;
-
-    if ([BHTSettings boolForKey:@"hide_timeline_prompts"]) {
-        self.userInteractionEnabled = NO;
-        self.hidden = YES;
-        self.alpha = 0.0;
-    }
-}
-
-%end
-
-%hook TFNFloatingActionButton
-- (void)didMoveToWindow {
-    %orig;
-
-    if ([BHTSettings boolForKey:@"hide_tweet_button"]) {
-        self.userInteractionEnabled = NO;
-        self.hidden = YES;
-        self.alpha = 0.0;
-    }
-}
-
-%end
