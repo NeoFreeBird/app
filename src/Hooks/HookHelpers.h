@@ -17,6 +17,7 @@
 #import "Core/BHTBundle.h"
 #import "Core/BHTManager.h"
 #import "Core/BHTSettings.h"
+#import "Core/BHTTerminology.h"
 #import "CustomTabBar/CustomTabBarUtility.h"
 #import "Download/DownloadInlineButton.h"
 #import "Headers/TWHeaders.h"
