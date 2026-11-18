@@ -421,3 +421,9 @@
 
 @interface TUIAvatarImageView : TFNAvatarImageView
 @end
+
+@interface T1ConversationFooterItem : NSObject
+@property (nonatomic, retain) NSNumber* viewCount;
+@property (nonatomic, copy) NSString* timeAgo;
+@end
+

@@ -111,10 +111,6 @@ static NSString* displayableValue(NSString* cached, NSString* unavailable) {
 
 // --- Model / view seams verified against classdump/12.3 (T1Twitter.c) ---
 
-@interface T1ConversationFooterItem : NSObject
-@property (nonatomic, copy) NSString* timeAgo;
-@end
-
 @interface T1ConversationFooterTextView (SourceLabels)
 @property (nonatomic, readonly) T1ConversationFooterItem* footerItem;
 @property (nonatomic, readonly) TFNAttributedTextView* textView;
