@@ -1,16 +1,4 @@
-//
-//  SplitTweetView.x
-//  Made by orionblur
-//
-// Before 12.38, the old app style uses X's extended-content column (where the search column is).
-// Liquid Glass, and both styles on 12.38+, use our two-pane content container instead.
-// Both styles reuse the conversation controllers and navigation styles made by X, so this file just
-// stitches the two-pane layout into the app's split view and tab navigation.
-
-#import "Headers/T1Headers.h"
-#import "Headers/TFNHeaders.h"
-#import "Headers/XHeaders.h"
-#import "HookHelpers.h"
+#import "SplitTweetView.h"
 
 @protocol BHTSplitAppNavigation <NSObject>
 - (id)appNavigation;
@@ -20,72 +8,6 @@
 @interface T1TabbedAppNavigationViewController (BHTSplitTweet)
 @property (nonatomic, readonly) UINavigationController* currentTabNavigationController;
 @end
-
-static char BHTSplitTweetStateKey;
-static const CGFloat BHTSplitTweetPrimaryWidthFraction = 0.55;
-
-static BOOL BHTSplitTweetViewEnabled(void) {
-    return [BHTSettings boolForKey:@"ipad_split_view"];
-}
-
-@interface BHTSplitTweetHostController : UIViewController
-@property (nonatomic, strong) UIViewController* content;
-@property (nonatomic, strong) UINavigationController* detail;
-@property (nonatomic, strong) UIView* divider;
-@property (nonatomic) BOOL detailVisible;
-@property (nonatomic) BOOL appeared;
-@property (nonatomic, strong) UIViewPropertyAnimator* columnAnimator;
-- (instancetype)initWithContent:(UIViewController*)content detail:(UINavigationController*)detail;
-- (BOOL)hasRoomForDetail;
-- (void)finishColumnAnimation;
-- (void)setDetailVisible:(BOOL)visible animated:(BOOL)animated completion:(void (^)(void))completion;
-@end
-
-@interface BHTSplitTweetState : NSObject
-@property (nonatomic, weak) T1AppSplitViewController* split;
-@property (nonatomic, weak) BHTSplitTweetHostController* glassHost;
-@property (nonatomic, weak) UINavigationController* detail;
-@property (nonatomic, weak) UINavigationController* primary;
-@property (nonatomic, weak) UIViewController* primaryScreen;
-@property (nonatomic, weak) UIViewController* conversation;
-@property (nonatomic, strong) UIViewController* emptyController;
-@property (nonatomic, copy) NSArray<UIBarButtonItem*>* originalLeftItems;
-@property (nonatomic, strong) UIBarButtonItem* closeItem;
-@property (nonatomic) BOOL active;
-@property (nonatomic) BOOL collapsed;
-@property (nonatomic) BOOL updating;
-@property (nonatomic) BOOL updateScheduled;
-@property (nonatomic) BOOL waitingForTransition;
-@property (nonatomic) BOOL nativeColumnTransitioning;
-- (BOOL)showConversation:(UIViewController*)controller
-             fromPrimary:(UINavigationController*)primary;
-- (void)scheduleUpdate;
-- (void)discardHiddenDetail;
-@end
-
-static BHTSplitTweetState* BHTTweetState(id object) {
-    return object ? objc_getAssociatedObject(object, &BHTSplitTweetStateKey) : nil;
-}
-
-static BHTSplitTweetState* BHTTweetStateForController(UIViewController* controller) {
-    while (controller) {
-        BHTSplitTweetState* state = BHTTweetState(controller);
-        if (state) {
-            return state;
-        }
-        controller = controller.parentViewController;
-    }
-    return nil;
-}
-
-static BOOL BHTIsConversationController(UIViewController* controller) {
-    Class conversationClass = NSClassFromString(@"T1ConversationContainerViewController");
-    Class linkClass = NSClassFromString(@"T1XLinkViewController");
-    // XLinks is the tweet + linked-article container used by the modern router.
-    // Its Swift initializer can bypass an Objective-C initializer hook entirely.
-    return (conversationClass && [controller isKindOfClass:conversationClass]) ||
-           (linkClass && [controller isKindOfClass:linkClass]);
-}
 
 @implementation BHTSplitTweetHostController
 
@@ -99,8 +21,7 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
 }
 
 - (BOOL)hasRoomForDetail {
-    // Measure live content width, including folding and Mac/Stage Manager window resizing.
-    // Reserve roughly 440 points for the timeline and 360 for tweet details.
+    // Should only be true for macOS, iPads, and unfolded iPhone Duo.
     return self.isViewLoaded && self.view.window && CGRectGetWidth(self.view.bounds) >= 800.0;
 }
 
@@ -160,8 +81,7 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
     }
     _detailVisible = visible;
     self.divider.hidden = NO;
-    // Keep the actual detail controller attached until the closing animation
-    // ends. Emptying its stack early would animate a blank pane.
+    // Keep the actual detail controller attached until the closing animation ends
     __weak BHTSplitTweetHostController* weakSelf = self;
     void (^layout)(void) = ^{
         BHTSplitTweetHostController* host = weakSelf;
@@ -289,8 +209,7 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
     if (!split.isViewLoaded || !split.view.window) {
         return NO;
     }
-    // These are the extended-content modes checked by X's own
-    // -private_updateExtendedContentAvailable. Let X calculate widths/insets.
+    // Let X's code take over
     NSInteger mode = [split private_splitModeForSize:split.view.bounds.size
                               displayExtendedContent:YES
                                       displaySideBar:split.displaySideBar];
@@ -357,8 +276,6 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
                               }];
     } else {
         [self setDetailVisible:NO animated:animated];
-        // The native split's completion hook discards the stack after it slides
-        // out. Nonanimated cleanup can finish immediately.
         if (!animated || UIAccessibilityIsReduceMotionEnabled()) [self discardHiddenDetail];
     }
 }
@@ -414,8 +331,6 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
         return;
     }
 
-    // Moving controllers during a push/pop or while a sheet is presented can
-    // invalidate UIKit's presentation hierarchy. Retry after the transition.
     if (primary.presentedViewController || selected.presentedViewController ||
         self.detail.presentedViewController || self.split.presentedViewController) {
         return;
@@ -433,8 +348,6 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
                                                               [weakSelf scheduleUpdate];
                                                           }];
             if (!registered) {
-                // A coordinator can stop accepting callbacks before it leaves
-                // the hierarchy. Retry without spinning the main run loop.
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
                                    weakSelf.waitingForTransition = NO;
@@ -447,9 +360,6 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
 
     BOOL hasRoom = [self hasRoomForDetail];
     if (selected != primary) {
-        // Persistence requires the same account-scoped split owner. Never move
-        // a collapsed conversation out of an inactive tab, or adopt a modal /
-        // detached tab. UIKit exceptions cannot prove a drawing hierarchy safe.
         if (self.collapsed || !hasRoom || BHTTweetStateForController(selected) != self ||
             !selected.topViewController || BHTIsConversationController(selected.topViewController) ||
             selected.viewIfLoaded.window != self.split.viewIfLoaded.window ||
@@ -546,64 +456,6 @@ static BOOL BHTIsConversationController(UIViewController* controller) {
 
 @end
 
-static BOOL BHTRouteTweetToDetail(UINavigationController* primary, UIViewController* controller) {
-    if (!BHTSplitTweetViewEnabled() || !BHTIsConversationController(controller)) {
-        return NO;
-    }
-    BHTSplitTweetState* state = BHTTweetStateForController(primary);
-    if (!state || primary == state.detail) {
-        return NO;
-    }
-    return [state showConversation:controller fromPrimary:primary];
-}
-
-static BOOL BHTRouteAppendedTweet(UINavigationController* primary, NSArray<UIViewController*>* controllers) {
-    NSArray<UIViewController*>* existing = primary.viewControllers;
-    if (!existing.count || controllers.count != existing.count + 1) {
-        return NO;
-    }
-    for (NSUInteger index = 0; index < existing.count; index++) {
-        if (existing[index] != controllers[index]) {
-            return NO;
-        }
-    }
-    return BHTRouteTweetToDetail(primary, controllers.lastObject);
-}
-
-static BHTSplitTweetHostController* BHTMakeTweetColumnHost(UIViewController* content) {
-    Class factory = NSClassFromString(@"NavigationControllerFactoryTFNFallback");
-    if (!BHTSplitTweetViewEnabled() || !content || content.parentViewController ||
-        [content isKindOfClass:BHTSplitTweetHostController.class] ||
-        ![factory respondsToSelector:@selector(makeWithRootViewController:)]) {
-        return nil;
-    }
-
-    UIViewController* empty = [UIViewController new];
-    // XNAVNavigationController's standard UIKit initializers trap. X's own
-    // factory supplies its pinned glass configuration and pop-gesture policy.
-    UINavigationController* detail = [factory makeWithRootViewController:empty];
-    if (![detail isKindOfClass:UINavigationController.class]) {
-        return nil;
-    }
-    BHTSplitTweetHostController* host = [[BHTSplitTweetHostController alloc] initWithContent:content detail:detail];
-    BHTSplitTweetState* state = [BHTSplitTweetState new];
-    state.glassHost = host;
-    state.detail = detail;
-    state.emptyController = empty;
-    objc_setAssociatedObject(host, &BHTSplitTweetStateKey, state, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(detail, &BHTSplitTweetStateKey, state, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    return host;
-}
-
-static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetHostController* host) {
-    if (!split) {
-        return;
-    }
-    BHTSplitTweetState* state = BHTTweetState(host);
-    state.split = split;
-    objc_setAssociatedObject(split, &BHTSplitTweetStateKey, state, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 %group BHTIPadModernTweetColumn
 
 %hook T1AppSplitViewController
@@ -613,8 +465,6 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
      tabBottomSegmentViewController:(id)bottomSegment
               contentViewController:(UIViewController*)content
                             account:(id)account {
-    // 12.38 removed extendedContentViewController: and the native auxiliary
-    // column. Both navigation styles now enter through this initializer.
     BHTSplitTweetHostController* host = BHTMakeTweetColumnHost(content);
     if (!host) {
         return %orig;
@@ -687,13 +537,9 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
 - (void)setDisplayExtendedContent:(BOOL)display animated:(BOOL)animated {
     BHTSplitTweetState* state = BHTTweetState(self);
     if (state.glassHost) {
-        // Liquid Glass keeps X's single-content layout. The two panes live
-        // inside that content, without changing the redesign/phone-stack gate.
         %orig(NO, animated);
         return;
     }
-    // The legacy display setting controls the auxiliary pane. Our pane is
-    // instead visible while it has a selected conversation and enough room.
     %orig(state ? (state.active && !state.collapsed) : display, animated);
 }
 
@@ -704,7 +550,7 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
     if (state && !state.glassHost && prelayout) state.nativeColumnTransitioning = YES;
     %orig;
     // Both native animation branches call this with removeSubviews:YES and
-    // transition:NO at completion. Do not clear content in the animation block.
+    // transition:NO at completion. 
     if (state && !state.glassHost && removeSubviews && !prelayout) {
         state.nativeColumnTransitioning = NO;
         [state discardHiddenDetail];
@@ -785,8 +631,6 @@ static void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetH
 }
 
 - (id)viewController:(UIViewController*)controller willPresentWithPresentationInfo:(id)info {
-    // The original implementation re-presents the destination from the main
-    // panel and returns nil. Keep replies/profiles in the detail stack instead.
     return BHTTweetState(self) ? controller : %orig;
 }
 
