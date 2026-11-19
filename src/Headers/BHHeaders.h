@@ -40,3 +40,7 @@
 - (BOOL)isEqualToContext:(BHTimelineFilterContext*)other;
 
 @end
+
+@interface NFBSettingsGesture : NSObject <UIGestureRecognizerDelegate>
+@property (nonatomic, weak) UIViewController* home;
+@end
