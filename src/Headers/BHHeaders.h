@@ -82,3 +82,15 @@
 - (void)scheduleUpdate;
 - (void)discardHiddenDetail;
 @end
+
+@class HFSensitiveTweetBlurredInterstitialView;
+
+@protocol BHTSensitiveMediaOverlayDelegate <NSObject>
+- (BOOL)blurViewRequiresAgeVerificationToRevealWithBlurView:(HFSensitiveTweetBlurredInterstitialView*)view;
+@end
+
+@interface HFSensitiveTweetBlurredInterstitialView : UIView
+@property (nonatomic, readonly) BOOL blurViewIsHidden;
+@property (nonatomic, readonly) id<BHTSensitiveMediaOverlayDelegate> delegate;
+- (void)showOrHideMediaButtonPressed:(id)sender;
+@end
