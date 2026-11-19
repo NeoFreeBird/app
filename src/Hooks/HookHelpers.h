@@ -29,6 +29,10 @@
 #import "ThemeColor/Palette.h"
 #import "WebLogin/WebLoginViewController.h"
 
+static NSString* const WebClientBearer = @"Bearer "
+                                       @"AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puT"
+                                       @"s%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA";
+
 // Recursive view traversal (BHTHookHelpers.m)
 void EnumerateSubviewsRecursively(UIView* view,
                                   void (^block)(UIView* currentView));
