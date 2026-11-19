@@ -1,38 +1,4 @@
-//
-//  MediaDownloads.x
-//  NeoFreeBird
-//
-
-#import <objc/runtime.h>
-#import "HookHelpers.h"
-
-static NSURL* nfbLastCapturedVoiceURL = nil;
-
-static BOOL IsVoiceMediaURL(NSURL* url) {
-    if (url == nil) {
-        return NO;
-    }
-    if ([url.path containsString:@"/decrypted-media-v2/"]) {
-        return YES;
-    }
-    static NSSet* audioExtensions = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        audioExtensions = [NSSet setWithArray:@[@"m4a", @"aac", @"caf", @"wav", @"mp3"]];
-    });
-    return [audioExtensions containsObject:url.pathExtension.lowercaseString];
-}
-
-static void CaptureVoiceURL(NSURL* url, NSString* source) {
-    if (![BHTSettings boolForKey:@"download_voice_messages"]) {
-        return;
-    }
-    BOOL kept = IsVoiceMediaURL(url);
-    NSLog(@"[NFB] voice capture (%@) %@: %@", source, kept ? @"kept" : @"ignored", url);
-    if (kept) {
-        nfbLastCapturedVoiceURL = url;
-    }
-}
+#import "MediaDownloads.h"
 
 %hook AVURLAsset
 - (id)initWithURL:(NSURL*)url options:(NSDictionary*)options {
@@ -56,74 +22,7 @@ static void CaptureVoiceURL(NSURL* url, NSString* source) {
 }
 %end
 
-// DM voice notes are pre-decrypted straight to disk (Documents/dm/.../
-// decrypted-media-v2/.../*.m4a), so the captured URL is normally a local
-// file URL already -- just copy it out and hand it to the share sheet. The
-// network branch is kept as a fallback in case that ever changes.
-static void DownloadVoiceMessage(NSURL* sourceURL) {
-    NSString* extension = sourceURL.pathExtension.length ? sourceURL.pathExtension : @"m4a";
-    NSURL* destination = [[NSURL fileURLWithPath:NSTemporaryDirectory()]
-        URLByAppendingPathComponent:[NSString
-                                        stringWithFormat:@"%@.%@", NSUUID.UUID.UUIDString, extension]];
-
-    if (sourceURL.isFileURL) {
-        NSError* copyError = nil;
-        [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destination error:&copyError];
-        if (copyError) {
-            NSLog(@"[NFB] DownloadVoiceMessage copy failed: %@", copyError);
-            return;
-        }
-        [BHTManager showSaveVC:destination];
-        return;
-    }
-
-    TFNHUD* hud = [[objc_getClass("TFNHUD") alloc]
-        initWithText:[[BHTBundle sharedBundle]
-                         localizedStringForKey:@"DOWNLOAD_LIVE_ACTIVITY_DOWNLOADING"]];
-    [hud show];
-    NSURLSessionDownloadTask* task = [[NSURLSession sharedSession]
-        downloadTaskWithURL:sourceURL
-          completionHandler:^(NSURL* location, NSURLResponse* response, NSError* error) {
-              dispatch_async(dispatch_get_main_queue(), ^{
-                  [hud hide];
-                  if (!location || error) {
-                      return;
-                  }
-                  NSError* moveError = nil;
-                  [[NSFileManager defaultManager] moveItemAtURL:location toURL:destination error:&moveError];
-                  if (moveError) {
-                      return;
-                  }
-                  [BHTManager showSaveVC:destination];
-              });
-          }];
-    [task resume];
-}
-
 // MARK: - DM video download
-
-// The DM UI is Swift now: media messages live in DMConversation.MessageAttachmentView,
-// which hosts a shared TweetMediaAttachments media view exposing its models through
-// -inlineMediaInfos. Collect the entities from whichever descendant carries them.
-static NSArray* DMVideoEntities(UIView* attachmentView) {
-    NSMutableArray* entities = [NSMutableArray new];
-
-    EnumerateSubviewsRecursively(attachmentView, ^(UIView* view) {
-        if (![view respondsToSelector:@selector(inlineMediaInfos)]) {
-            return;
-        }
-
-        for (TFSTwitterMediaInfo* info in
-             [(_TtC21TweetMediaAttachments14MultiMediaView*)view inlineMediaInfos]) {
-            TFSTwitterEntityMedia* media = info.mediaEntity;
-            if (media.videoInfo.variants.count > 0) {
-                [entities addObject:media];
-            }
-        }
-    });
-
-    return [entities copy];
-}
 
 %hook _TtC14DMConversation21MessageAttachmentView
 %property (nonatomic, strong) UIContextMenuInteraction* downloadMenuInteraction;
@@ -166,24 +65,6 @@ static NSArray* DMVideoEntities(UIView* attachmentView) {
                      }];
 }
 %end
-
-// MARK: - Chat voice bubble
-//
-// The audio view sits inside MessageAttachmentView but carries its own gesture
-// rather than sharing the video download menu above, so that a long press on a
-// voice note wins over the stock chat context menu.
-
-static const void* kVoiceDownloadLongPressKey = &kVoiceDownloadLongPressKey;
-
-static UILongPressGestureRecognizer* VoiceDownloadLongPressRecognizer(UIView* view) {
-    return objc_getAssociatedObject(view, kVoiceDownloadLongPressKey);
-}
-
-static void SetVoiceDownloadLongPressRecognizer(UIView* view,
-                                                UILongPressGestureRecognizer* recognizer) {
-    objc_setAssociatedObject(view, kVoiceDownloadLongPressKey, recognizer,
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
 
 %hook _TtC6ChatUI26MessageAttachmentAudioView
 
@@ -244,88 +125,6 @@ static void SetVoiceDownloadLongPressRecognizer(UIView* view,
                                             completion:nil];
 }
 
-%end
-
-// MARK: - Upload custom voice
-
-// Overwrites the recording at the attachment's existing file path, so the
-// composer picks up the replacement without any model changes.
-%hook T1MediaAttachmentsViewCell
-%property (nonatomic, strong) UIButton* uploadButton;
-- (void)updateCellElements {
-    %orig;
-
-    BOOL isVoiceRecording = [self.attachment isKindOfClass:%c(TTMAssetVoiceRecording)];
-
-    if (isVoiceRecording && self.uploadButton == nil) {
-        TFNButton* removeButton = [self valueForKey:@"_removeButton"];
-        if (removeButton == nil) {
-            return;
-        }
-
-        self.uploadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImageSymbolConfiguration* smallConfig =
-            [UIImageSymbolConfiguration configurationWithScale:UIImageSymbolScaleSmall];
-        UIImage* arrowUpImage = [UIImage systemImageNamed:@"arrow.up" withConfiguration:smallConfig];
-        [self.uploadButton setImage:arrowUpImage forState:UIControlStateNormal];
-        [self.uploadButton addTarget:self
-                              action:@selector(handleUploadButton:)
-                    forControlEvents:UIControlEventTouchUpInside];
-        [self.uploadButton setTintColor:UIColor.labelColor];
-        [self.uploadButton setBackgroundColor:[UIColor blackColor]];
-        [self.uploadButton.layer setCornerRadius:29 / 2];
-        [self.uploadButton setTranslatesAutoresizingMaskIntoConstraints:false];
-
-        [self addSubview:self.uploadButton];
-        [NSLayoutConstraint activateConstraints:@[
-            [self.uploadButton.trailingAnchor constraintEqualToAnchor:removeButton.leadingAnchor
-                                                             constant:-10],
-            [self.uploadButton.topAnchor constraintEqualToAnchor:removeButton.topAnchor],
-            [self.uploadButton.widthAnchor constraintEqualToConstant:29],
-            [self.uploadButton.heightAnchor constraintEqualToConstant:29],
-        ]];
-    }
-
-    self.uploadButton.hidden = !isVoiceRecording;
-}
-%new
-- (void)handleUploadButton:(UIButton*)sender {
-    UIImagePickerController* videoPicker = [[UIImagePickerController alloc] init];
-    videoPicker.mediaTypes = @[(NSString*)kUTTypeMovie];
-    videoPicker.delegate = self;
-
-    [topMostController() presentViewController:videoPicker animated:YES completion:nil];
-}
-%new
-- (void)imagePickerController:(UIImagePickerController*)picker
-    didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey, id>*)info {
-    NSURL* videoURL = info[UIImagePickerControllerMediaURL];
-    TTMAssetVoiceRecording* attachment = self.attachment;
-    NSURL* recorder_url = [NSURL fileURLWithPath:attachment.filePath];
-
-    if (recorder_url != nil) {
-        NSFileManager* fileManager = [NSFileManager defaultManager];
-
-        NSError* error = nil;
-        if ([fileManager fileExistsAtPath:[recorder_url path]]) {
-            [fileManager removeItemAtURL:recorder_url error:&error];
-            if (error) {
-                NSLog(@"[NFB] Error removing existing file: %@", error);
-            }
-        }
-
-        [fileManager copyItemAtURL:videoURL toURL:recorder_url error:&error];
-        if (error) {
-            NSLog(@"[NFB] Error copying file: %@", error);
-        }
-    }
-
-    [picker dismissViewControllerAnimated:true completion:nil];
-}
-%new
-- (void)imagePickerControllerDidCancel:(UIImagePickerController*)picker {
-    [picker dismissViewControllerAnimated:true completion:nil];
-}
 %end
 
 // MARK: - Save tweet as an image
