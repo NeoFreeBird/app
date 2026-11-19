@@ -6,7 +6,7 @@
 //  Modified by: actuallyaridan at 27/04/2025
 //
 
-#import "Download/DownloadInlineButton.h"
+#import "DownloadInlineButton.h"
 #import <objc/runtime.h>
 #import "Core/BHTBundle.h"
 #import "Core/BHTSettings.h"
