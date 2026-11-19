@@ -14,6 +14,7 @@
 #import <math.h>
 #import <objc/message.h>
 #import <objc/runtime.h>
+#import <CoreText/CoreText.h>
 #import "Core/BHTBundle.h"
 #import "Core/BHTManager.h"
 #import "Core/BHTSettings.h"
