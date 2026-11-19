@@ -47,3 +47,38 @@
 
 @interface BHTTenorURLProtocol : NSURLProtocol
 @end
+
+@interface BHTSplitTweetHostController : UIViewController
+@property (nonatomic, strong) UIViewController* content;
+@property (nonatomic, strong) UINavigationController* detail;
+@property (nonatomic, strong) UIView* divider;
+@property (nonatomic) BOOL detailVisible;
+@property (nonatomic) BOOL appeared;
+@property (nonatomic, strong) UIViewPropertyAnimator* columnAnimator;
+- (instancetype)initWithContent:(UIViewController*)content detail:(UINavigationController*)detail;
+- (BOOL)hasRoomForDetail;
+- (void)finishColumnAnimation;
+- (void)setDetailVisible:(BOOL)visible animated:(BOOL)animated completion:(void (^)(void))completion;
+@end
+
+@interface BHTSplitTweetState : NSObject
+@property (nonatomic, weak) T1AppSplitViewController* split;
+@property (nonatomic, weak) BHTSplitTweetHostController* glassHost;
+@property (nonatomic, weak) UINavigationController* detail;
+@property (nonatomic, weak) UINavigationController* primary;
+@property (nonatomic, weak) UIViewController* primaryScreen;
+@property (nonatomic, weak) UIViewController* conversation;
+@property (nonatomic, strong) UIViewController* emptyController;
+@property (nonatomic, copy) NSArray<UIBarButtonItem*>* originalLeftItems;
+@property (nonatomic, strong) UIBarButtonItem* closeItem;
+@property (nonatomic) BOOL active;
+@property (nonatomic) BOOL collapsed;
+@property (nonatomic) BOOL updating;
+@property (nonatomic) BOOL updateScheduled;
+@property (nonatomic) BOOL waitingForTransition;
+@property (nonatomic) BOOL nativeColumnTransitioning;
+- (BOOL)showConversation:(UIViewController*)controller
+             fromPrimary:(UINavigationController*)primary;
+- (void)scheduleUpdate;
+- (void)discardHiddenDetail;
+@end
