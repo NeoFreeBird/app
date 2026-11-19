@@ -180,3 +180,7 @@ id objectIvar(id object, const char* name) {
     Ivar ivar = class_getInstanceVariable(object_getClass(object), name);
     return ivar ? object_getIvar(object, ivar) : nil;
 }
+
+id ObjectForSelector(id object, SEL selector) {
+    return ((id (*)(id, SEL))objc_msgSend)(object, selector);
+}
