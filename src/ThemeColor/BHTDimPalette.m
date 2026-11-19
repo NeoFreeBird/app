@@ -188,7 +188,7 @@ BOOL BHTColorIsCloseToWhite(UIColor* color) {
 #pragma mark - Overridden background family
 
 - (UIColor*)backgroundColor {
-    UIColor* real = [self.realPalette backgroundColor];
+    UIColor* real = [(id<TAEColorPalette>)self.realPalette backgroundColor];
     return BHTColorIsCloseToWhite(real) ? real : BHTDimBackgroundColor();
 }
 - (UIColor*)backgroundPrimary {

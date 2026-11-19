@@ -998,7 +998,7 @@ static void BHTApplyGlassTabLabels(UIView* bar) {
         if (bar.subviews.lastObject != overlay) [bar bringSubviewToFront:overlay];
     }
 
-    NSMutableSet<UILabel*>* activeLabels = [NSMutableSet new];
+    NSMutableSet<UIView*>* activeLabels = [NSMutableSet new];
     for (NSUInteger index = 0; index < items.count; index++) {
         UIView* item = items[index];
         UILabel* label = objc_getAssociatedObject(item, &BHTGlassTabLabelKey);
