@@ -34,6 +34,11 @@ static NSString* const WebClientBearer = @"Bearer "
                                        @"AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puT"
                                        @"s%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA";
 
+static NSString* const NativeClientBearer =
+    @"Bearer "
+    @"AAAAAAAAAAAAAAAAAAAAAAj4AQAAAAAAPraK64zCZ9CSzdLesbE7LB%2Bw4uE%"
+    @"3DVJQREvQNCZJNiz3rHO7lOXlkVOQkzzdsgu6wWgcazdMUaGoUGm";
+
 // Recursive view traversal (BHTHookHelpers.m)
 void EnumerateSubviewsRecursively(UIView* view,
                                   void (^block)(UIView* currentView));
@@ -69,19 +74,8 @@ void applyHideCustomTimelinesSetting(void);
 // gates (FeatureSwitches.x)
 BOOL panelIsGenuinelyAvailable(long long panelID);
 
-// Web session cookie harvesting (WebCreateTweet.x)
-void prewarmWebCookiesIfNeeded(void);
-void maybeHandleHarvestWebView(__unsafe_unretained id webViewController);
-id accountForAuthenticatedWebView(void);
-
-// Webview cookie login -> WebCreateTweet.x session (WebCreateTweet.x)
-void webLoginDidCaptureCookies(NSString* userID, NSString* username,
-                               NSDictionary<NSString*, NSString*>* cookiePairs);
-BOOL isCookieLoginUserID(NSString* userID);
-
-// Current web-session credentials (auth_token + ct0) for read-only web GraphQL
-// requests such as restoring tweet source labels (WebCreateTweet.x)
-NSDictionary* currentWebCredentials(void);
+// Web session and posting helpers.
+#import "WebCreateTweet/WebCreateTweet.h"
 
 BOOL boolIvar(id object, const char* name, BOOL fallback);
 
