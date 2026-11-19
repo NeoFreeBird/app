@@ -295,6 +295,7 @@
 "THEME_SETTINGS_NAVIGATION_TITLE" = "Theme";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "Choose a theme color for your Twitter experience. This can only be seen by you.";
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "Custom navigation";
+"CUSTOM_TAB_BAR_UNAVAILABLE_MESSAGE" = "Custom tab bar customization isn't available in this version of the app.";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Tap a destination to add or remove it. Drag the bar below to reorder.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Are you sure you'd like to restore the navigation bar to its default state?";
 "REFRESH_PILL_TEXT" = "posted";
