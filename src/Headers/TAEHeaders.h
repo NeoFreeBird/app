@@ -22,6 +22,7 @@
 
 @protocol TAEColorPalette
 - (id)colorPalette;
+- (UIColor*)backgroundColor;
 - (UIColor*)primaryColorForOption:(NSUInteger)colorOption;
 - (UIColor*)tabBarItemColor;
 @end

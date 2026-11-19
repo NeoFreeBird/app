@@ -38,7 +38,7 @@ static const NSUInteger kAccentOptionCount = 6;
 static NSInteger const kCustomAccentOption = -1;
 static NSString* const kCustomAccentColorKey = @"bh_color_theme_customColor";
 static NSString* const kLastNativeAccentOptionKey = @"bh_color_theme_lastNativeColorOption";
-static NSString* const kAccentColorNames[kAccentOptionCount] = {@"BLUE", @"YELLOW", @"RED",
+static NSString* const kAccentColorNames[] = {@"BLUE", @"YELLOW", @"RED",
                                                                 @"PURPLE", @"ORANGE", @"GREEN"};
 
 static UIColor* NativeAccentColor(NSUInteger option) {
