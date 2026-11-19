@@ -12,6 +12,7 @@
 #import <WebKit/WebKit.h>
 #import <dlfcn.h>
 #import <math.h>
+#import <string.h>
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import <CoreText/CoreText.h>
@@ -22,6 +23,7 @@
 #import "CustomTabBar/CustomTabBarUtility.h"
 #import "Download/DownloadInlineButton.h"
 #import "Headers/TWHeaders.h"
+#import "Headers/BHHeaders.h"
 #import "Headers/XHeaders.h"
 #import "Padlock/AuthViewController.h"
 #import "Settings/ModernSettingsViewController.h"
@@ -87,3 +89,5 @@ BOOL boolIvar(id object, const char* name, BOOL fallback);
 void setBoolIvar(id object, const char* name, BOOL value);
 
 id objectIvar(id object, const char* name);
+
+id ObjectForSelector(id object, SEL selector);
