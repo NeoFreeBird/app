@@ -44,3 +44,6 @@
 @interface NFBSettingsGesture : NSObject <UIGestureRecognizerDelegate>
 @property (nonatomic, weak) UIViewController* home;
 @end
+
+@interface BHTTenorURLProtocol : NSURLProtocol
+@end

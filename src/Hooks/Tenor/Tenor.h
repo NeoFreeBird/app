@@ -24,3 +24,11 @@ typedef NS_ENUM(NSUInteger, BHTGifOperation) {
     BHTGifOperationCategories, // GifCategoriesQuery(image_format:)
 };
 
+BHTGifOperation operationForRequest(NSURLRequest* request);
+NSDictionary* variablesFromRequest(NSURLRequest* request);
+NSString* stringValue(id value);
+NSURL* tenorURL(NSString* path, NSDictionary<NSString*, NSString*>* extraParameters);
+NSURL* tenorURLForOperation(BHTGifOperation operation, NSDictionary* variables);
+NSData* payloadForOperation(BHTGifOperation operation, NSData* tenorData,
+                                   NSString* format);
+void installTenorProtocol(NSURLSessionConfiguration* configuration);
