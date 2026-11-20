@@ -1,4 +1,5 @@
 #import "Timeline.h"
+#import "../Ads/Ads.h"
 
 // MARK: - Hide "Discover more", who-to-follow and prompts
 
@@ -163,14 +164,16 @@
 %hook TFNItemsDataViewController
 
 - (void)setSections:(NSArray*)sections restoreScrollPosition:(BOOL)restoreScrollPosition {
-    %orig(FilteredTimelineSections(self, sections), restoreScrollPosition);
+    sections = FilteredTimelineSections(self, sections);
+    %orig(FilteredSections(self, sections), restoreScrollPosition);
 }
 
 - (void)updateSections:(NSArray*)sections
     reconfigureItemIdentifiers:(NSArray*)identifiers
               withRowAnimation:(long long)animation
                     completion:(id)completion {
-    %orig(FilteredTimelineSections(self, sections), identifiers, animation, completion);
+    sections = FilteredTimelineSections(self, sections);
+    %orig(FilteredSections(self, sections), identifiers, animation, completion);
 }
 
 %end

@@ -1,22 +1,5 @@
 #import "Ads.h"
 
-%hook TFNItemsDataViewController
-
-- (void)setSections:(NSArray*)sections
-    restoreScrollPosition:(BOOL)restoreScrollPosition {
-    %orig(FilteredSections(self, sections), restoreScrollPosition);
-}
-
-- (void)updateSections:(NSArray*)sections
-    reconfigureItemIdentifiers:(NSArray*)identifiers
-              withRowAnimation:(long long)animation
-                    completion:(id)completion {
-    %orig(FilteredSections(self, sections), identifiers, animation,
-              completion);
-}
-
-%end
-
 %hook TFNTwitterStatus
 
 - (_Bool)isCardHidden {
