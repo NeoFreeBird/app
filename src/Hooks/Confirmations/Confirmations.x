@@ -84,11 +84,16 @@
 
 %end
 
-// The fullscreen media viewer's heart has its own action path.
-%hook T1SlideshowStatusView
+%hook _TtC14T1TwitterSwift19ImmersiveActionView
 
-- (void)_favoriteAction:(id)sender {
+- (void)handleDidTap {
     if (![BHTSettings boolForKey:@"like_confirm"]) {
+        return %orig;
+    }
+
+    id actionButton = objectIvar(self, "button");
+    id inlineButton = objectIvar(actionButton, "inlineActionButton");
+    if (![inlineButton isKindOfClass:%c(TTAStatusInlineFavoriteButton)]) {
         return %orig;
     }
 
