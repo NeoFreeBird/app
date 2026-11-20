@@ -45,18 +45,6 @@
 
 %end
 
-%hook TFSDirectMessageUser
-
-- (id)isBlueVerified {
-    return [BHTSettings boolForKey:@"hide_blue_verified"] ? nil : %orig;
-}
-
-- (BOOL)verified {
-    return [BHTSettings boolForKey:@"hide_blue_verified"] ? NO : %orig;
-}
-
-%end
-
 // Status view models cache these flags at init, beyond the user model hooks;
 // the author row badge reads isFromUserVerified, and other view models forward
 // here.

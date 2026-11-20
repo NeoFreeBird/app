@@ -405,17 +405,3 @@ static BOOL updatingTabIconColor = NO;
 }
 
 %end
-
-%hook T1AppSplitSideBarViewController
-
-- (void)viewDidLoad {
-    %orig;
-    BHTApplySidebarIconTheme(self);
-}
-
-- (void)viewWillLayoutSubviews {
-    %orig;
-    BHTApplySidebarIconTheme(self);
-}
-
-%end
