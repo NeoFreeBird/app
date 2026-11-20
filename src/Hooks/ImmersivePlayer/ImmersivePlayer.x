@@ -60,18 +60,6 @@
 
 %end
 
-%hook T1ImmersiveViewControllerV2
-
-- (BOOL)isCurrentCardDockEligible {
-    if ([BHTSettings boolForKey:@"disable_video_docking"]) {
-        return NO;
-    }
-
-    return %orig;
-}
-
-%end
-
 // MARK: - Disable Immersive Feed Scrolling
 
 %hook T1ImmersiveViewController

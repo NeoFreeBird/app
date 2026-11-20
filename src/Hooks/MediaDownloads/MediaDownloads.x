@@ -22,50 +22,6 @@
 }
 %end
 
-// MARK: - DM video download
-
-%hook _TtC14DMConversation21MessageAttachmentView
-%property (nonatomic, strong) UIContextMenuInteraction* downloadMenuInteraction;
-%property (nonatomic, strong) DownloadInlineButton* downloadHandler;
-- (void)layoutSubviews {
-    %orig;
-
-    if ([BHTSettings boolForKey:@"download_videos"] && self.downloadMenuInteraction == nil) {
-        self.downloadMenuInteraction = [[UIContextMenuInteraction alloc] initWithDelegate:self];
-        [self addInteraction:self.downloadMenuInteraction];
-    }
-}
-%new
-- (UIContextMenuConfiguration*)contextMenuInteraction:(UIContextMenuInteraction*)interaction
-                       configurationForMenuAtLocation:(CGPoint)location {
-    NSArray* videoEntities = DMVideoEntities(self);
-    if (videoEntities.count == 0) {
-        return nil;
-    }
-
-    return [UIContextMenuConfiguration
-        configurationWithIdentifier:nil
-                    previewProvider:nil
-                     actionProvider:^UIMenu* _Nullable(
-                         NSArray<UIMenuElement*>* _Nonnull suggestedActions) {
-                         UIAction* saveAction = [UIAction
-                             actionWithTitle:
-                                 [[BHTBundle sharedBundle]
-                                     localizedTwitterStringForKey:@"DOWNLOAD_ACTIVITY_VIEW_LABEL"]
-                                       image:[UIImage systemImageNamed:@"square.and.arrow.down"]
-                                  identifier:nil
-                                     handler:^(__kindof UIAction* _Nonnull action) {
-                                         if (self.downloadHandler == nil) {
-                                             self.downloadHandler = [%c(DownloadInlineButton) new];
-                                         }
-                                         [self.downloadHandler
-                                             presentDownloadOptionsForMediaEntities:videoEntities];
-                                     }];
-                         return [UIMenu menuWithTitle:@"" children:@[saveAction]];
-                     }];
-}
-%end
-
 %hook _TtC6ChatUI26MessageAttachmentAudioView
 
 - (void)layoutSubviews {
