@@ -187,28 +187,24 @@
 
 %end
 
-%hook XNAVNavigationController
+%hook _TtC11XNavigation22NavigationBarTitleView
 
-- (void)viewDidLoad {
-    %orig;
+- (void)layoutSubviews {
+    for (NSString* name in @[@"titleLabel", @"subtitleLabel"]) {
+        id value = objectIvar(self, name.UTF8String);
+        if (![value isKindOfClass:[UILabel class]]) {
+            continue;
+        }
 
-    UINavigationBar* navigationBar = self.navigationBar;
-    navigationBar.standardAppearance =
-        BHTNavigationAppearanceWithFonts(navigationBar.standardAppearance);
-    if (navigationBar.scrollEdgeAppearance) {
-        navigationBar.scrollEdgeAppearance =
-            BHTNavigationAppearanceWithFonts(navigationBar.scrollEdgeAppearance);
-    }
-    if (navigationBar.compactAppearance) {
-        navigationBar.compactAppearance =
-            BHTNavigationAppearanceWithFonts(navigationBar.compactAppearance);
-    }
-    if (@available(iOS 15.0, *)) {
-        if (navigationBar.compactScrollEdgeAppearance) {
-            navigationBar.compactScrollEdgeAppearance =
-                BHTNavigationAppearanceWithFonts(navigationBar.compactScrollEdgeAppearance);
+        UILabel* label = value;
+        UIFont* originalFont = label.font;
+        UIFont* customFont =
+            BHTReplaceFont(originalFont, BHTFontIsBold(originalFont));
+        if (customFont != originalFont) {
+            label.font = customFont;
         }
     }
+    %orig;
 }
 
 %end
