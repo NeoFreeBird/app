@@ -31,9 +31,18 @@
 
 - (BOOL)homeIsVisible {
     UIViewController* home = self.home;
-    UINavigationController* nav = home.navigationController;
-    if (!home.viewIfLoaded.window || !nav) {
+    if (!home) {
         return NO;
+    }
+
+    UIView* homeView = home.viewIfLoaded;
+    if (!homeView.window || homeView.hidden) {
+        return NO;
+    }
+
+    UINavigationController* nav = home.navigationController;
+    if (!nav) {
+        return YES;
     }
 
     UIViewController* top = nav.topViewController;
@@ -64,12 +73,51 @@
         }
     }
 
-    [self.home.navigationController pushViewController:[BHTManager BHTSettingsWithAccount:account]
-                                              animated:YES];
+    UIViewController* settings = [BHTManager BHTSettingsWithAccount:account];
+    if (!settings) {
+        return;
+    }
+
+    UINavigationController* nav = self.home.navigationController;
+    if (nav) {
+        [nav pushViewController:settings animated:YES];
+        return;
+    }
+
+    UIViewController* presenter = topMostController();
+    if (!presenter) {
+        return;
+    }
+
+    if ([presenter isKindOfClass:[ModernSettingsViewController class]]) {
+        return;
+    }
+
+    UINavigationController* modal =
+        [[UINavigationController alloc] initWithRootViewController:settings];
+    [presenter presentViewController:modal animated:YES completion:nil];
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
-    return [self homeIsVisible];
+    if (![self homeIsVisible]) {
+        return NO;
+    }
+
+    UIView* view = gestureRecognizer.view;
+    if (!view) {
+        return NO;
+    }
+
+    CGRect bounds = view.bounds;
+    if (CGRectGetWidth(bounds) <= 0 || CGRectGetHeight(bounds) <= 0) {
+        return NO;
+    }
+
+    CGPoint point = [gestureRecognizer locationInView:view];
+    CGFloat x = (point.x - CGRectGetMinX(bounds)) / CGRectGetWidth(bounds);
+    CGFloat y = (point.y - CGRectGetMinY(bounds)) / CGRectGetHeight(bounds);
+
+    return y >= 0 && y <= 0.13 && x >= 0.15 && x <= 0.85;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer

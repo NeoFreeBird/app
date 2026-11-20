@@ -115,12 +115,15 @@ NSArray* sectionsWithNeoFreeBirdEntry(TFNItemsDataViewController* settingsVC,
 
 // Code lifted from nyaathea's Twitter tweak (now abandoned)
 void attachNeoFreeBirdSettingsGesture(UIViewController* home) {
-    UINavigationBar* bar = home.navigationController.navigationBar;
-    if (!bar) {
+    UIView* host = home.view.window;
+    if (!host) {
+        host = [UIApplication sharedApplication].keyWindow;
+    }
+    if (!host) {
         return;
     }
 
-    NFBSettingsGesture* target = objc_getAssociatedObject(bar, SettingsGestureKey);
+    NFBSettingsGesture* target = objc_getAssociatedObject(host, SettingsGestureKey);
     if (target) {
         target.home = home;
         return;
@@ -134,7 +137,7 @@ void attachNeoFreeBirdSettingsGesture(UIViewController* home) {
                                                       action:@selector(handleLongPress:)];
     press.cancelsTouchesInView = NO;
     press.delegate = target;
-    [bar addGestureRecognizer:press];
+    [host addGestureRecognizer:press];
 
-    objc_setAssociatedObject(bar, SettingsGestureKey, target, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(host, SettingsGestureKey, target, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
