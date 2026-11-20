@@ -82,3 +82,20 @@ void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetHostCont
     state.split = split;
     objc_setAssociatedObject(split, &BHTSplitTweetStateKey, state, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+UIView* BHTTweetColumnAppView(BHTSplitTweetHostController* host) {
+    id delegate = BHTTweetState(host).split.delegate;
+    if (![delegate isKindOfClass:UIViewController.class]) return nil;
+    for (UIViewController* parent = host.parentViewController; parent; parent = parent.parentViewController) {
+        if (parent == delegate) return parent.viewIfLoaded;
+    }
+    return nil;
+}
+
+void BHTLayoutTweetColumnChrome(BHTSplitTweetHostController* host) {
+    [host.content.viewIfLoaded layoutIfNeeded];
+    UIView* appView = BHTTweetColumnAppView(host);
+    [appView setNeedsLayout];
+    [appView layoutIfNeeded];
+    [host.content.viewIfLoaded layoutIfNeeded];
+}
