@@ -1,11 +1,4 @@
-//
-//  BHTDimPalette.m
-//  NeoFreeBird
-//
-//  Created by orionblur
-//
-
-#import "ThemeColor/BHTDimPalette.h"
+#import "BHTDimPalette.h"
 #import <objc/runtime.h>
 #import "Core/BHTSettings.h"
 #import "Headers/TAEHeaders.h"
@@ -21,11 +14,6 @@ static UIColor* BHTColorWithRGB(uint32_t rgb) {
                            alpha:1.0];
 }
 
-// Classic Twitter Dim palette: a navy background, a slightly lighter navy for
-// anything elevated/secondary, and a lighter shade still for pressed/selected
-// states. Text, links, and accent colors are left alone -- Dim only ever
-// changed the background family, never the foreground. Exposed (not static)
-// so Theme.x's UIColor hook can reuse the same three shades.
 UIColor* BHTDimBackgroundColor(void) {
     return BHTColorWithRGB(0x15202B);
 }
@@ -35,9 +23,6 @@ UIColor* BHTDimElevatedBackgroundColor(void) {
 UIColor* BHTDimHighlightBackgroundColor(void) {
     return BHTColorWithRGB(0x1C2836);
 }
-
-// The legacy Dim search field used its own neutral shade rather than any of
-// the three general-purpose background colors above.
 UIColor* BHTDimSearchPillColor(void) {
     return BHTColorWithRGB(0x29333F);
 }
@@ -62,18 +47,6 @@ static UIColor* BHTCurrentAccentColor(id<TAEColorPalette> palette) {
     return [palette primaryColorForOption:option] ?: [UIColor systemBlueColor];
 }
 
-// UIDynamicSystemColor/UIDynamicCatalogColor (the private classes backing
-// UIKit's system colors and asset-catalog +colorNamed: colors) never go
-// through TAEColorPalette or the named UIColor class methods, so anything
-// they draw has to be caught after the fact, once resolved to a flat RGBA
-// color. Since we don't know which named color it was, only remap colors
-// that plausibly *are* background chrome: fully opaque and achromatic (no
-// real hue -- rules out accent colors, media, everything colorful), sitting
-// in the narrow near-black band Apple actually uses for dark background
-// tones (systemBackground ~0.0, secondarySystemBackground ~0.11,
-// tertiarySystemBackground ~0.17). Brighter grays are left untouched, since
-// those are far more likely to be label/fill/separator colors that need to
-// stay legible rather than become part of the background.
 UIColor* _Nullable BHTDimReplacementForResolvedColor(UIColor* resolved) {
     CGFloat red = 0, green = 0, blue = 0, alpha = 0;
     if (![resolved getRed:&red green:&green blue:&blue alpha:&alpha]) {
@@ -101,11 +74,7 @@ UIColor* _Nullable BHTDimReplacementForResolvedColor(UIColor* resolved) {
     return BHTDimHighlightBackgroundColor();
 }
 
-// Self-contained white check -- deliberately not UIColor's private
-// safari_isCloseToWhite category, which didn't behave reliably here. Grayscale
-// colors (e.g. +whiteColor, which resolves via -getWhite:alpha: rather than
-// -getRed:green:blue:alpha:) are handled explicitly rather than falling
-// through to "not white".
+// Keeps white elements white
 BOOL BHTColorIsCloseToWhite(UIColor* color) {
     if (!color) {
         return NO;
@@ -141,20 +110,10 @@ BOOL BHTColorIsCloseToWhite(UIColor* color) {
 
 #pragma mark - Forwarding
 
-// Anything we don't explicitly override below (text, links, accents,
-// dividers, primaryColorForOption:, ...) goes straight through to the real
-// palette untouched via this fast path.
 - (id)forwardingTargetForSelector:(SEL)selector {
     return self.realPalette;
 }
 
-// NSProxy's -respondsToSelector:/-conformsToProtocol:/-isKindOfClass: are not
-// implemented in terms of -forwardingTargetForSelector: -- they're "real"
-// methods on NSProxy itself, so they never reach our overrides above and
-// instead fall into the slow invocation-based forwarding path below. Swift's
-// dynamic protocol casts (`as? TAEColorPalette`) call -conformsToProtocol:
-// directly, so without an explicit override here the proxy answers NO/crashes
-// instead of transparently reporting whatever the real palette would.
 - (BOOL)respondsToSelector:(SEL)selector {
     return [super respondsToSelector:selector] || [self.realPalette respondsToSelector:selector];
 }
@@ -175,8 +134,6 @@ BOOL BHTColorIsCloseToWhite(UIColor* color) {
     return [self.realPalette class];
 }
 
-// Slow-path forwarding: a safety net for anything the fast path above
-// doesn't catch (e.g. selectors NSProxy itself implements).
 - (NSMethodSignature*)methodSignatureForSelector:(SEL)selector {
     return [self.realPalette methodSignatureForSelector:selector];
 }

@@ -1,9 +1,4 @@
-//
-//  BHTHookHelpers.h
-//  NeoFreeBird
-//
 //  Shared imports and helpers for the hook files in src/Hooks.
-//
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
@@ -24,9 +19,11 @@
 #import "Headers/TWHeaders.h"
 #import "Headers/BHHeaders.h"
 #import "Headers/XHeaders.h"
+#import "Headers/TFNHeaders.h"
+#import "Headers/UIHeaders.h"
 #import "Padlock/AuthViewController.h"
 #import "Settings/ModernSettingsViewController.h"
-#import "ThemeColor/BHTDimPalette.h"
+#import "Theme/Theme.h"
 #import "ThemeColor/Palette.h"
 #import "WebLogin/WebLoginViewController.h"
 
@@ -57,12 +54,6 @@ void applySquareAvatarsSetting(void);
 NSString* formatNumberWithSuffix(long long number);
 
 bool NFBLiquidGlassEnabled(void);
-
-// Custom theme color re-apply (Theme.x)
-void applySelectedThemeColor(void);
-
-// Dim recolor for the Swift-drawn immersive video controls (Theme.x)
-void BHTApplyDimToVideoControls(UIView* controlsView);
 
 // Long press on the home navigation bar opens NeoFreeBird settings (Settings.x)
 void attachNeoFreeBirdSettingsGesture(UIViewController* home);
