@@ -307,7 +307,9 @@
 
 "LIQUID_GLASS_TITLE" = "啟用 Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "啟用 X 全新的 Liquid Glass 介面。此為實驗性改版，可能會導致問題發生。";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "需要重新啟動";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass 介面改版需要重新啟動應用程式才會生效。";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "重新啟動";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "啟用 FLEX 除錯模式";
@@ -370,10 +372,6 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "啟用暗色主題";
-"ENABLE_DIM_THEME_DETAIL" = "還原被移除的 Twitter 暗色主題。需要啟用深色模式並重新啟動。";
-"DIM_THEME_RESTART_ALERT_TITLE" = "需要重新啟動";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "暗色主題需要重新啟動才能生效。";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "重新啟動";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "隱藏引用推文";
 "HIDE_QUOTE_TWEETS_DETAIL" = "隱藏時間軸中的引用推文。";

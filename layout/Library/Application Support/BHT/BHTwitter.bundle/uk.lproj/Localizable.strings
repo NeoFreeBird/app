@@ -317,7 +317,6 @@
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "Виберіть кольорову тему, яку бачитимете лише ви.";
 
 "ENABLE_DIM_THEME_TITLE" = "Приглушена темна тема";
-"ENABLE_DIM_THEME_DETAIL" = "Відновлює прибрану темно-синю тему. Потребує перезапуск та увімкнення темної теми.";
 
 /*Tab bar*/
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "Редагування вкладок";

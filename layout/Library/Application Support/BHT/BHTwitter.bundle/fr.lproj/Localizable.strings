@@ -307,7 +307,9 @@
 
 "LIQUID_GLASS_TITLE" = "Activer Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "Active la nouvelle interface Liquid Glass de X. Cette refonte est expérimentale et peut entraîner des problèmes.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Redémarrage nécessaire";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "La refonte Liquid Glass nécessite un redémarrage pour prendre effet.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Redémarrer";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "Mode débogage";
@@ -370,10 +372,7 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "Activer le thème bleu nuit";
-"ENABLE_DIM_THEME_DETAIL" = "Rétablit le thème bleu nuit supprimé de Twitter. Nécessite l’activation du mode sombre et un redémarrage.";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Redémarrage nécessaire";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "Le thème bleu nuit nécessite un redémarrage pour prendre effet.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Redémarrer";
+"ENABLE_DIM_THEME_DETAIL" = "Utiliser le thème bleu nuit supprimé de Twitter au lieu du thème noir lorsque le mode sombre est actif.";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "Masquer les Tweets citant d’autres Tweets";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Masque les Tweets citant d’autres Tweets dans votre fil.";

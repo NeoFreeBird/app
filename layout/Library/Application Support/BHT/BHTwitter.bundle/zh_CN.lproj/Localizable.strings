@@ -243,7 +243,9 @@
 
 "LIQUID_GLASS_TITLE" = "启用 Liquid Glass";
 "LIQUID_GLASS_DETAIL" = "启用 X 的新 Liquid Glass 界面。这是一项实验性设计，可能会导致问题。";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "需要重启";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass 设计需要重新启动才能生效。";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "重启";
 
 /*Debug*/
 "FLEX_TWITTER_TITLE" = "FLEX 调试模式";
@@ -485,10 +487,6 @@
 "BLUE_LAUNCH_SCREEN_DETAIL" = "恢复原来的蓝色启动画面。";
 
 "ENABLE_DIM_THEME_TITLE" = "启用暗色主题";
-"ENABLE_DIM_THEME_DETAIL" = "恢复被移除的 Twitter 暗色主题。需要启用深色模式并重启。";
-"DIM_THEME_RESTART_ALERT_TITLE" = "需要重启";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "暗色主题需要重启才能生效。";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "重启";
 
 "HIDE_QUOTE_TWEETS_TITLE" = "隐藏引用推文";
 "HIDE_QUOTE_TWEETS_DETAIL" = "隐藏时间线中的引用推文。";

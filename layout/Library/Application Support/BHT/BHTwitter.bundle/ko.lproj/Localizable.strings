@@ -341,10 +341,8 @@
 
 /*Dim Theme*/
 "ENABLE_DIM_THEME_TITLE" = "어두운(Dim) 테마 활성화";
-"ENABLE_DIM_THEME_DETAIL" = "삭제된 트위터의 어두운(Dim) 테마를 복원합니다. 다크 모드가 켜져 있어야 하며 앱 재시작이 필요합니다.";
-"DIM_THEME_RESTART_ALERT_TITLE" = "재시작 필요";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "어두운 테마를 적용하려면 앱을 재시작해야 합니다.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "재시작";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "재시작 필요";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "재시작";
 
 "HIDE_VERIFIED_TWEETS_TITLE" = "인증된 계정의 트윗 숨기기";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "타임라인과 답글에서 인증된 계정의 트윗을 숨깁니다. 단, 작성자가 해당 타래에서 답글을 달았거나 내가 팔로우 중인 계정은 제외됩니다.";
