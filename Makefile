@@ -1,7 +1,6 @@
 ARCHS = arm64
 TARGET := iphone:clang:16.5:15.0
 include $(THEOS)/makefiles/common.mk
-DEBUG = 1
 
 TWEAK_NAME = BHTwitter
 
