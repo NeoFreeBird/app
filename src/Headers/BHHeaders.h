@@ -94,3 +94,6 @@
 @property (nonatomic, readonly) id<BHTSensitiveMediaOverlayDelegate> delegate;
 - (void)showOrHideMediaButtonPressed:(id)sender;
 @end
+
+@interface BHTPostInteractionTitleLabel : UILabel
+@end

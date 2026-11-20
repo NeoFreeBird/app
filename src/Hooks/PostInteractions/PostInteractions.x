@@ -2,6 +2,11 @@
 
 %hook T1PostInteractionsViewController
 
+- (void)viewWillLayoutSubviews {
+    %orig;
+    BHTUpdatePostInteractionTitle(self);
+}
+
 + (id)viewControllerWithAccount:(TFNTwitterAccount*)account
                        statusID:(long long)statusID
                    statusUserID:(long long)statusUserID
