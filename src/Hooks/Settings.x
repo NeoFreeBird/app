@@ -156,11 +156,25 @@ static NSArray* sectionsWithNeoFreeBirdEntry(TFNItemsDataViewController* setting
 
 @implementation NFBSettingsGesture
 
+// X 12.45.1 (Liquid Glass) does not reliably give the home timeline a navigation
+// controller any more, so visibility is judged by the home view itself and the
+// stack check only applies when a navigation controller is actually there.
 - (BOOL)homeIsVisible {
     UIViewController* home = self.home;
-    UINavigationController* nav = home.navigationController;
-    if (!home.viewIfLoaded.window || !nav) {
+    if (!home) {
         return NO;
+    }
+
+    UIView* homeView = home.viewIfLoaded;
+    if (!homeView.window || homeView.hidden) {
+        return NO;
+    }
+
+    UINavigationController* nav = home.navigationController;
+    if (!nav) {
+        // Liquid Glass home: there is no stack to consult, so the home view
+        // being on screen and unhidden is the whole test.
+        return YES;
     }
 
     UIViewController* top = nav.topViewController;
@@ -191,12 +205,56 @@ static NSArray* sectionsWithNeoFreeBirdEntry(TFNItemsDataViewController* setting
         }
     }
 
-    [self.home.navigationController pushViewController:[BHTManager BHTSettingsWithAccount:account]
-                                              animated:YES];
+    UIViewController* settings = [BHTManager BHTSettingsWithAccount:account];
+    if (!settings) {
+        return;
+    }
+
+    UINavigationController* nav = self.home.navigationController;
+    if (nav) {
+        [nav pushViewController:settings animated:YES];
+        return;
+    }
+
+    UIViewController* presenter = topMostController();
+    if (!presenter) {
+        return;
+    }
+
+    // The press can land on the sheet we just opened, so don't stack another.
+    if ([presenter isKindOfClass:[ModernSettingsViewController class]]) {
+        return;
+    }
+
+    // No stack to push onto: present the settings wrapped in a navigation
+    // controller so its own pages can still push and the sheet can be swiped away.
+    UINavigationController* modal =
+        [[UINavigationController alloc] initWithRootViewController:settings];
+    [presenter presentViewController:modal animated:YES completion:nil];
 }
 
+// The gesture lives on the window, so only the top-centre logo band belongs to
+// it; every other long press has to keep going to the app.
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer*)gestureRecognizer {
-    return [self homeIsVisible];
+    if (![self homeIsVisible]) {
+        return NO;
+    }
+
+    UIView* view = gestureRecognizer.view;
+    if (!view) {
+        return NO;
+    }
+
+    CGRect bounds = view.bounds;
+    if (CGRectGetWidth(bounds) <= 0 || CGRectGetHeight(bounds) <= 0) {
+        return NO;
+    }
+
+    CGPoint point = [gestureRecognizer locationInView:view];
+    CGFloat x = (point.x - CGRectGetMinX(bounds)) / CGRectGetWidth(bounds);
+    CGFloat y = (point.y - CGRectGetMinY(bounds)) / CGRectGetHeight(bounds);
+
+    return y >= 0 && y <= 0.13 && x >= 0.15 && x <= 0.85;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer*)gestureRecognizer
@@ -209,13 +267,19 @@ static NSArray* sectionsWithNeoFreeBirdEntry(TFNItemsDataViewController* setting
 static const void* SettingsGestureKey = &SettingsGestureKey;
 
 // Code lifted from nyaathea's Twitter tweak (now abandoned)
+// Attached to the home window rather than to its navigation bar: on X 12.45.1
+// the bar answers hitTest: with nil over the logo, so a recognizer on the bar
+// never saw the press at all.
 void attachNeoFreeBirdSettingsGesture(UIViewController* home) {
-    UINavigationBar* bar = home.navigationController.navigationBar;
-    if (!bar) {
+    UIView* host = home.view.window;
+    if (!host) {
+        host = [UIApplication sharedApplication].keyWindow;
+    }
+    if (!host) {
         return;
     }
 
-    NFBSettingsGesture* target = objc_getAssociatedObject(bar, SettingsGestureKey);
+    NFBSettingsGesture* target = objc_getAssociatedObject(host, SettingsGestureKey);
     if (target) {
         target.home = home;
         return;
@@ -229,7 +293,7 @@ void attachNeoFreeBirdSettingsGesture(UIViewController* home) {
                                                       action:@selector(handleLongPress:)];
     press.cancelsTouchesInView = NO;
     press.delegate = target;
-    [bar addGestureRecognizer:press];
+    [host addGestureRecognizer:press];
 
-    objc_setAssociatedObject(bar, SettingsGestureKey, target, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(host, SettingsGestureKey, target, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
