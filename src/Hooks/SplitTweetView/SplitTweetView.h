@@ -11,3 +11,5 @@ BOOL BHTRouteTweetToDetail(UINavigationController* primary, UIViewController* co
 BOOL BHTRouteAppendedTweet(UINavigationController* primary, NSArray<UIViewController*>* controllers);
 BHTSplitTweetHostController* BHTMakeTweetColumnHost(UIViewController* content);
 void BHTAttachTweetColumn(T1AppSplitViewController* split, BHTSplitTweetHostController* host);
+UIView* BHTTweetColumnAppView(BHTSplitTweetHostController* host);
+void BHTLayoutTweetColumnChrome(BHTSplitTweetHostController* host);

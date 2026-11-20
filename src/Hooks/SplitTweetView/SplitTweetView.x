@@ -87,6 +87,7 @@
         BHTSplitTweetHostController* host = weakSelf;
         [host.view setNeedsLayout];
         [host.view layoutIfNeeded];
+        BHTLayoutTweetColumnChrome(host);
     };
     void (^finish)(UIViewAnimatingPosition) = ^(UIViewAnimatingPosition position) {
         BHTSplitTweetHostController* host = weakSelf;
@@ -136,7 +137,12 @@
     CGSize contentSize = [self sizeForChildContentContainer:self.content
                                     withParentContainerSize:bounds.size];
     CGFloat leftWidth = contentSize.width;
+    BOOL contentResized = !CGSizeEqualToSize(self.content.view.bounds.size, contentSize);
     self.content.view.frame = CGRectMake(0, 0, leftWidth, bounds.size.height);
+    if (contentResized) {
+        [self.content.view setNeedsLayout];
+        [BHTTweetColumnAppView(self) setNeedsLayout];
+    }
     if (self.detailVisible) {
         self.divider.frame = CGRectMake(leftWidth, 0, dividerWidth, bounds.size.height);
         self.detail.view.frame = CGRectMake(leftWidth + dividerWidth, 0,
