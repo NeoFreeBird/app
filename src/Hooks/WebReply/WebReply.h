@@ -1,6 +1,5 @@
 #import "../HookHelpers.h"
 
-
 static const void* KeepReplyInWebViewKey = &KeepReplyInWebViewKey;
 static const void* ReplyWebViewDismissingKey = &ReplyWebViewDismissingKey;
 

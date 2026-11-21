@@ -9,4 +9,4 @@ void DownloadVoiceMessage(NSURL* sourceURL);
 NSArray* DMVideoEntities(UIView* attachmentView);
 UILongPressGestureRecognizer* VoiceDownloadLongPressRecognizer(UIView* view);
 void SetVoiceDownloadLongPressRecognizer(UIView* view,
-                                                UILongPressGestureRecognizer* recognizer);
+                                         UILongPressGestureRecognizer* recognizer);

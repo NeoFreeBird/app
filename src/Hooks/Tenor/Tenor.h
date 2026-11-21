@@ -1,6 +1,5 @@
 #import "../HookHelpers.h"
 
-
 static NSString* const TenorAPIBase = @"https://api.tenor.com/v1";
 static NSString* const TenorAPIKey = @"3Z0688EVWYKH";
 static NSString* const TenorContentFilter = @"medium";
@@ -30,5 +29,5 @@ NSString* stringValue(id value);
 NSURL* tenorURL(NSString* path, NSDictionary<NSString*, NSString*>* extraParameters);
 NSURL* tenorURLForOperation(BHTGifOperation operation, NSDictionary* variables);
 NSData* payloadForOperation(BHTGifOperation operation, NSData* tenorData,
-                                   NSString* format);
+                            NSString* format);
 void installTenorProtocol(NSURLSessionConfiguration* configuration);

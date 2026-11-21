@@ -7,7 +7,7 @@
 // Preserve Swift's calling convention and context register when forwarding.
 typedef void* (*ReplySortingStateInitFn)(
     uint8_t mode, void* __attribute__((swift_context)) context) __attribute__((swiftcall));
-    
+
 static ReplySortingStateInitFn originalReplySortingStateInit;
 static NSInteger userActionDepth;
 
@@ -55,7 +55,7 @@ static void ReplaceBoundPointer(void** slot, void* replacement) {
     // page writable; the replacement does not modify executable code.
     vm_address_t page = (vm_address_t)slot & ~(vm_address_t)vm_page_mask;
     kern_return_t result = vm_protect(mach_task_self(), page, vm_page_size, false,
-                                     VM_PROT_READ | VM_PROT_WRITE | VM_PROT_COPY);
+                                      VM_PROT_READ | VM_PROT_WRITE | VM_PROT_COPY);
     if (result != KERN_SUCCESS) {
         return;
     }
@@ -65,7 +65,7 @@ static void ReplaceBoundPointer(void** slot, void* replacement) {
 }
 
 static void RebindSectionPointers(const struct section_64* section, intptr_t slide,
-                                 void* target, void* replacement) {
+                                  void* target, void* replacement) {
     uint32_t type = section->flags & SECTION_TYPE;
     if (type != S_NON_LAZY_SYMBOL_POINTERS && type != S_LAZY_SYMBOL_POINTERS) {
         return;

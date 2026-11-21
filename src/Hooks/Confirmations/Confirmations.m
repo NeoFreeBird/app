@@ -28,19 +28,20 @@ void PlayCustomSendSound(void) {
 // answered without being shown (Fast block/mute, below).
 
 void ShowConfirmation(void (^confirmed)(void)) {
-    [(Class)objc_getClass("FLEXAlert") makeAlert:^(FLEXAlert* make) {
-        make.message([[BHTBundle sharedBundle]
-            localizedStringForKey:@"CONFIRM_ALERT_MESSAGE"]);
+    [(Class)objc_getClass("FLEXAlert")
+        makeAlert:^(FLEXAlert* make) {
+            make.message([[BHTBundle sharedBundle]
+                localizedStringForKey:@"CONFIRM_ALERT_MESSAGE"]);
 
-        make.button([[BHTBundle sharedBundle]
-                        localizedStringForKey:@"YES_ACTION_LABEL"])
-            .handler(^(NSArray<NSString*>* strings) {
-                confirmed();
-            });
+            make.button([[BHTBundle sharedBundle]
+                            localizedStringForKey:@"YES_ACTION_LABEL"])
+                .handler(^(NSArray<NSString*>* strings) {
+                    confirmed();
+                });
 
-        make.button([[BHTBundle sharedBundle]
-                        localizedStringForKey:@"NO_ACTION_LABEL"])
-            .cancelStyle();
-    }
-     showFrom:topMostController()];
+            make.button([[BHTBundle sharedBundle]
+                            localizedStringForKey:@"NO_ACTION_LABEL"])
+                .cancelStyle();
+        }
+         showFrom:topMostController()];
 }

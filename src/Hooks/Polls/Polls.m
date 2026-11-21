@@ -32,8 +32,8 @@ static NSString* BHTPollPercentageString(double fraction) {
 }
 
 NSString* BHTPollTitleWithPercentage(TFCCardData* cardData,
-                                            NSString* key,
-                                            NSString* title) {
+                                     NSString* key,
+                                     NSString* title) {
     NSUInteger choice = BHTPollChoiceIndexForKey(key);
     if (choice == 0 || choice > BHTPollMaxChoices || title.length == 0 ||
         ![BHTSettings boolForKey:@"show_poll_results"]) {

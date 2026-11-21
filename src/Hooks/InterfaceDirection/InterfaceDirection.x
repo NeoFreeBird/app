@@ -109,7 +109,7 @@
 %end
 %end
 
-%ctor {
+    %ctor {
     %init;
     if (class_getClassMethod(UIView.class, @selector(tfn_isRightToLeftTransformSystemActive))) {
         %init(TwitterMirroring);

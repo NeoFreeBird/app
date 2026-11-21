@@ -17,7 +17,7 @@ enum {
 };
 
 BOOL isImmersiveCardPan(id viewController,
-                               UIGestureRecognizer* gesture);
+                        UIGestureRecognizer* gesture);
 BOOL isUpwardPan(UIGestureRecognizer* gesture);
 TAVPlayer* immersivePagePlayer(UIView* pageView);
 void togglePlayback(TAVPlayer* player);

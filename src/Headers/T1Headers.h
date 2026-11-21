@@ -415,7 +415,7 @@
 @interface PaymentsButtonViewModel : NSObject
 @end
 
-@interface T1StatusEditedOnXLabelAdapter: NSObject
+@interface T1StatusEditedOnXLabelAdapter : NSObject
 - (_Bool)shouldBeVisibleForViewModel:(id)model;
 @end
 
@@ -426,4 +426,3 @@
 @property (nonatomic, retain) NSNumber* viewCount;
 @property (nonatomic, copy) NSString* timeAgo;
 @end
-

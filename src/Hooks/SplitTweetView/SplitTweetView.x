@@ -484,9 +484,9 @@
 
 %end
 
-%group BHTIPadLegacyTweetColumn
+    %group BHTIPadLegacyTweetColumn
 
-%hook XTabbedAppNavigationSplitViewControllerFactory
+    %hook XTabbedAppNavigationSplitViewControllerFactory
 
 + (id)splitViewControllerWithDashContentController:(id)dash
                              contentViewController:(UIViewController*)content
@@ -556,7 +556,7 @@
     if (state && !state.glassHost && prelayout) state.nativeColumnTransitioning = YES;
     %orig;
     // Both native animation branches call this with removeSubviews:YES and
-    // transition:NO at completion. 
+    // transition:NO at completion.
     if (state && !state.glassHost && removeSubviews && !prelayout) {
         state.nativeColumnTransitioning = NO;
         [state discardHiddenDetail];
@@ -568,9 +568,9 @@
 
 %end
 
-%group BHTIPadTweetColumn
+    %group BHTIPadTweetColumn
 
-%hook T1AppSplitViewController
+    %hook T1AppSplitViewController
 
 - (void)viewDidLayoutSubviews {
     %orig;
@@ -623,9 +623,9 @@
 
 %end
 
-%group BHTIPadLegacyDetailNavigation
+    %group BHTIPadLegacyDetailNavigation
 
-%hook T1ExtendedContentNavigationController
+    %hook T1ExtendedContentNavigationController
 
 - (void)_t1_updateContentViewControllerAnimated:(BOOL)animated {
     BHTSplitTweetState* state = BHTTweetState(self);
@@ -653,7 +653,7 @@
 
 %end
 
-%ctor {
+    %ctor {
     %init(BHTIPadTweetColumn);
     Class splitClass = NSClassFromString(@"T1AppSplitViewController");
     if (class_getInstanceMethod(splitClass, @selector(initWithDashContentController:tabBarViewController:tabBottomSegmentViewController:contentViewController:account:))) {

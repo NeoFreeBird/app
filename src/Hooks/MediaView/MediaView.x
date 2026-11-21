@@ -31,8 +31,8 @@
 %hook T1AccountAutoplayPolicy
 
 - (id)initWithCurrentSettings:(id)settings
-    currentNetworkReachabilityStatus:(id)status
-    notificationCenter:(id)center
+           currentNetworkReachabilityStatus:(id)status
+                         notificationCenter:(id)center
     ignoreCurrentSettingsWhenAutoplayingGif:(_Bool)ignore {
     return %orig(settings, status, center, NO);
 }

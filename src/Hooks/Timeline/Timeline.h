@@ -16,6 +16,6 @@ BOOL NavigationMetadataIsFromProfile(id metadata);
 BOOL IsInProfileOriginConversation(UIViewController* viewController);
 long long ConversationRootUserID(NSArray* sections);
 NSSet<NSNumber*>* ConversationAuthorRepliedToUserIDs(NSArray* sections,
-                                                            long long rootUserID);
+                                                     long long rootUserID);
 NSArray* FilteredTimelineSections(TFNItemsDataViewController* dataViewController,
-                                         NSArray* sections);
+                                  NSArray* sections);

@@ -6,4 +6,4 @@ static const void* SettingsGestureKey = &SettingsGestureKey;
 
 void insertNeoFreeBirdSettingsIfRoot(TFNItemsDataViewController* settingsVC);
 NSArray* sectionsWithNeoFreeBirdEntry(TFNItemsDataViewController* settingsVC,
-                                             NSArray* sections);
+                                      NSArray* sections);
