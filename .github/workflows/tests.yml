@@ -9,8 +9,8 @@ permissions:
   contents: read
 
 jobs:
-  terminology:
-    name: Terminology tests
+  tests:
+    name: Tests
     runs-on: macos-latest
     timeout-minutes: 10
 
@@ -23,7 +23,11 @@ jobs:
       - name: Verify Apple toolchain
         run: |
           xcrun --sdk macosx --find clang
+          xcrun --sdk macosx --find clang-format
           xcrun --sdk macosx --show-sdk-path
+      
+      - name: Install clang-format
+        run: brew install clang-format
 
       - name: Run Localization Tests
         run: ./test.sh
