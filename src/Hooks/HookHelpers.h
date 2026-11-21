@@ -1,12 +1,8 @@
-//
-//  BHTHookHelpers.h
-//  NeoFreeBird
-//
 //  Shared imports and helpers for the hook files in src/Hooks.
-//
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <CoreText/CoreText.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
@@ -14,18 +10,31 @@
 #import <math.h>
 #import <objc/message.h>
 #import <objc/runtime.h>
+#import <string.h>
 #import "Core/BHTBundle.h"
 #import "Core/BHTManager.h"
 #import "Core/BHTSettings.h"
+#import "Core/BHTTerminology.h"
 #import "CustomTabBar/CustomTabBarUtility.h"
-#import "Download/DownloadInlineButton.h"
+#import "Headers/BHHeaders.h"
+#import "Headers/TFNHeaders.h"
 #import "Headers/TWHeaders.h"
+#import "Headers/UIHeaders.h"
 #import "Headers/XHeaders.h"
 #import "Padlock/AuthViewController.h"
 #import "Settings/ModernSettingsViewController.h"
-#import "ThemeColor/BHTDimPalette.h"
+#import "Theme/Theme.h"
 #import "ThemeColor/Palette.h"
 #import "WebLogin/WebLoginViewController.h"
+
+static NSString* const WebClientBearer = @"Bearer "
+                                         @"AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puT"
+                                         @"s%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA";
+
+static NSString* const NativeClientBearer =
+    @"Bearer "
+    @"AAAAAAAAAAAAAAAAAAAAAAj4AQAAAAAAPraK64zCZ9CSzdLesbE7LB%2Bw4uE%"
+    @"3DVJQREvQNCZJNiz3rHO7lOXlkVOQkzzdsgu6wWgcazdMUaGoUGm";
 
 // Recursive view traversal (BHTHookHelpers.m)
 void EnumerateSubviewsRecursively(UIView* view,
@@ -46,12 +55,6 @@ NSString* formatNumberWithSuffix(long long number);
 
 bool NFBLiquidGlassEnabled(void);
 
-// Custom theme color re-apply (Theme.x)
-void applySelectedThemeColor(void);
-
-// Dim recolor for the Swift-drawn immersive video controls (Theme.x)
-void BHTApplyDimToVideoControls(UIView* controlsView);
-
 // Long press on the home navigation bar opens NeoFreeBird settings (Settings.x)
 void attachNeoFreeBirdSettingsGesture(UIViewController* home);
 
@@ -62,22 +65,13 @@ void applyHideCustomTimelinesSetting(void);
 // gates (FeatureSwitches.x)
 BOOL panelIsGenuinelyAvailable(long long panelID);
 
-// Web session cookie harvesting (WebCreateTweet.x)
-void prewarmWebCookiesIfNeeded(void);
-void maybeHandleHarvestWebView(__unsafe_unretained id webViewController);
-id accountForAuthenticatedWebView(void);
+// Web session and posting helpers.
+#import "WebCreateTweet/WebCreateTweet.h"
 
-// Webview cookie login -> WebCreateTweet.x session (WebCreateTweet.x)
-void webLoginDidCaptureCookies(NSString* userID, NSString* username,
-                               NSDictionary<NSString*, NSString*>* cookiePairs);
-BOOL isCookieLoginUserID(NSString* userID);
+BOOL boolIvar(id object, const char* name, BOOL fallback);
 
-// Current web-session credentials (auth_token + ct0) for read-only web GraphQL
-// requests such as restoring tweet source labels (WebCreateTweet.x)
-NSDictionary* currentWebCredentials(void);
+void setBoolIvar(id object, const char* name, BOOL value);
 
-BOOL nfb_boolIvar(id object, const char* name, BOOL fallback);
+id objectIvar(id object, const char* name);
 
-void nfb_setBoolIvar(id object, const char* name, BOOL value);
-
-id nfb_objectIvar(id object, const char* name);
+id ObjectForSelector(id object, SEL selector);

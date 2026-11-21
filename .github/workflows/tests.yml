@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [v7]
+
+permissions:
+  contents: read
+
+jobs:
+  terminology:
+    name: Terminology tests
+    runs-on: macos-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Verify Apple toolchain
+        run: |
+          xcrun --sdk macosx --find clang
+          xcrun --sdk macosx --show-sdk-path
+
+      - name: Run tests
+        run: ./test.sh

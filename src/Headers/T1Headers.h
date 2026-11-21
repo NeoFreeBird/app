@@ -415,6 +415,14 @@
 @interface PaymentsButtonViewModel : NSObject
 @end
 
-@interface T1StatusEditedOnXLabelAdapter: NSObject
+@interface T1StatusEditedOnXLabelAdapter : NSObject
 - (_Bool)shouldBeVisibleForViewModel:(id)model;
+@end
+
+@interface TUIAvatarImageView : TFNAvatarImageView
+@end
+
+@interface T1ConversationFooterItem : NSObject
+@property (nonatomic, retain) NSNumber* viewCount;
+@property (nonatomic, copy) NSString* timeAgo;
 @end

@@ -8,7 +8,6 @@
 #import "CustomTabBarUtility.h"
 #import <objc/message.h>
 #import "Core/BHTSettings.h"
-#import "CustomTabBarViewController.h"
 #import "Headers/T1Headers.h"
 
 @protocol BHTNativeTabCustomizationInitializing <NSObject>
@@ -44,7 +43,7 @@ static NSString* const kLegacyHiddenKey = @"bh_tabs_hidden";
 
 + (UIViewController*)editorForAccount:(id)account {
     if (![self usesNativeEditor]) {
-        return [[CustomTabBarViewController alloc] init];
+        return nil;
     }
 
     Class editorClass = NSClassFromString(@"T1TabCustomizationViewController");

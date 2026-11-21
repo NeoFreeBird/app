@@ -1,18 +1,9 @@
-//
-//  WebLoginViewController.m
-//  NeoFreeBird
-//
-
 #import "WebLoginViewController.h"
 #import <WebKit/WebKit.h>
 #import <objc/message.h>
 #import <objc/runtime.h>
 #import "Core/BHTBundle.h"
-
-// Implemented in WebCreateTweet.x: seed the web-session cache for `userID` and mark it
-// a cookie-login account so its native calls get re-signed with these cookies.
-extern void webLoginDidCaptureCookies(NSString* userID, NSString* username,
-                                      NSDictionary<NSString*, NSString*>* cookiePairs);
+#import "Hooks/WebCreateTweet/WebCreateTweet.h"
 
 static NSString* const kWebLoginUserAgent =
     @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36";
@@ -348,9 +339,7 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
         pairs[@"auth_multi"] = authMulti;
     }
 
-    // Hand the session to WebCreateTweet.x first: it caches the cookies, records the
-    // account as cookie-login, and pre-warms the transaction-id generator so the very
-    // first tweet/reply already has a valid x-client-transaction-id.
+    // Hand the session to WebCreateTweet.x
     webLoginDidCaptureCookies(userID, username, pairs);
 
     id account = [self registerNativeAccountForUserID:userID username:username authToken:authToken];
@@ -367,8 +356,7 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
 
 #pragma mark - Native account registration
 
-// Register a dummy OAuth1 account in the native store so any code that reads the account's oauth token
-// still recovers the correct userID.
+// Register a dummy OAuth1 account in the native store so any code that reads the account's oauth token still recovers the correct userID.
 - (id)registerNativeAccountForUserID:(NSString*)userID
                             username:(NSString*)username
                            authToken:(NSString*)authToken {

@@ -83,9 +83,11 @@ That is expected. NeoFreeBird is built on BHTwitter and some internal file names
 |:-------------------------:|:-------------------------:|:-------------------------:|
 |<img width="1604" alt="Screenshot 1" src="resources/settings/settings1.png">|<img width="1604" alt="Screenshot 2" src="resources/settings/settings2.png">|<img width="1604" alt="Screenshot 3" src="resources/settings/settings3.png">|
 |<img width="1604" alt="Screenshot 4" src="resources/settings/settings4.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings5.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings6.png">|
-|<img width="1604" alt="Screenshot 4" src="resources/settings/settings7.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings8.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings9.png">|
-|<img width="1604" alt="Screenshot 4" src="resources/settings/settings10.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings11.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings12.png">|
-|<img width="1604" alt="Screenshot 4" src="resources/settings/settings13.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings14.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings15.png">|
+|<img width="1604" alt="Screenshot 7" src="resources/settings/settings7.png">|<img width="1604" alt="Screenshot 8" src="resources/settings/settings8.png">|<img width="1604" alt="Screenshot 9" src="resources/settings/settings9.png">|
+|<img width="1604" alt="Screenshot 10" src="resources/settings/settings10.png">|<img width="1604" alt="Screenshot 11" src="resources/settings/settings11.png">|<img width="1604" alt="Screenshot 12" src="resources/settings/settings12.png">|
+|<img width="1604" alt="Screenshot 13" src="resources/settings/settings13.png">|<img width="1604" alt="Screenshot 14" src="resources/settings/settings14.png">|<img width="1604" alt="Screenshot 15" src="resources/settings/settings15.png">| 
+|<img width="1604" alt="Screenshot 16" src="resources/settings/settings16.png">|<img width="1604" alt="Screenshot 17" src="resources/settings/settings17.png">|<img width="1604" alt="Screenshot 18" src="resources/settings/settings18.png">| 
+|<img width="1604" alt="Screenshot 19" src="resources/settings/settings19.png">|<img width="1604" alt="Screenshot 20" src="resources/settings/settings20.png">|<img width="1604" alt="Screenshot 21" src="resources/settings/settings21.png">| 
 
 # Downloading
 Go to the [Releases](https://github.com/NeoFreeBird/app/releases) page to download the latest version of NeoFreeBird. You can also build it yourself by following the instructions below.
