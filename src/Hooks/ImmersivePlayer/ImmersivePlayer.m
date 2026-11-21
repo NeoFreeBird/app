@@ -73,7 +73,7 @@ static BOOL progressLabelAlphaFromState(id pluginView, CGFloat* outAlpha) {
 }
 
 BOOL isImmersiveCardPan(id viewController,
-                               UIGestureRecognizer* gesture) {
+                        UIGestureRecognizer* gesture) {
     Ivar panIvar =
         class_getInstanceVariable([viewController class], "panRecognizer");
     return panIvar && object_getIvar(viewController, panIvar) == gesture;

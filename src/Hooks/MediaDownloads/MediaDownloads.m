@@ -68,7 +68,6 @@ void DownloadVoiceMessage(NSURL* sourceURL) {
     [task resume];
 }
 
-
 NSArray* DMVideoEntities(UIView* attachmentView) {
     NSMutableArray* entities = [NSMutableArray new];
 
@@ -94,7 +93,7 @@ UILongPressGestureRecognizer* VoiceDownloadLongPressRecognizer(UIView* view) {
 }
 
 void SetVoiceDownloadLongPressRecognizer(UIView* view,
-                                                UILongPressGestureRecognizer* recognizer) {
+                                         UILongPressGestureRecognizer* recognizer) {
     objc_setAssociatedObject(view, kVoiceDownloadLongPressKey, recognizer,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }

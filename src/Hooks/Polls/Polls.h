@@ -4,5 +4,5 @@
 static const NSUInteger BHTPollMaxChoices = 4;
 
 NSString* BHTPollTitleWithPercentage(TFCCardData* cardData,
-                                            NSString* key,
-                                            NSString* title);
+                                     NSString* key,
+                                     NSString* title);

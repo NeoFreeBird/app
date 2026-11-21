@@ -6,7 +6,7 @@ void UpdateDashAvatarDecorations(UIView* avatar) {
 
     BOOL square = [BHTSettings boolForKey:@"square_avatars"];
     NSNumber* borderWidth = objc_getAssociatedObject(avatar,
-                                                      &kDashAvatarOriginalBorderWidth);
+                                                     &kDashAvatarOriginalBorderWidth);
     if (square) {
         if (!borderWidth) {
             objc_setAssociatedObject(avatar, &kDashAvatarOriginalBorderWidth,
@@ -16,7 +16,8 @@ void UpdateDashAvatarDecorations(UIView* avatar) {
         if (avatar.layer.borderWidth != 0) avatar.layer.borderWidth = 0;
         Class avatarClass = objc_getClass("TFNAvatarImageView");
         Ivar shadowIvar = avatarClass ? class_getInstanceVariable(
-            avatarClass, "_circularShadowLayer") : NULL;
+                                            avatarClass, "_circularShadowLayer")
+                                      : NULL;
         CALayer* shadow = shadowIvar ? object_getIvar(avatar, shadowIvar) : nil;
         if (shadow && !shadow.hidden) shadow.hidden = YES;
     } else if (borderWidth) {
@@ -39,7 +40,7 @@ void RefreshAvatarBarBackgrounds(void) {
     SEL setter = NSSelectorFromString(@"setHidesSharedBackground:");
     for (UIBarButtonItem* item in AvatarBarItems().allObjects) {
         NSNumber* original = objc_getAssociatedObject(item,
-                                                       &kAvatarBarOriginalBackground);
+                                                      &kAvatarBarOriginalBackground);
         if (original && [item respondsToSelector:setter]) {
             ((void (*)(id, SEL, BOOL))objc_msgSend)(item, setter,
                                                     original.boolValue);

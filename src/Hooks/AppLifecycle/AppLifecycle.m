@@ -86,35 +86,37 @@ void scheduleTestAlertIfNeeded(void) {
     testAlertScheduled = YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)),
                    dispatch_get_main_queue(), ^{
-        testAlertScheduled = NO;
-        if (UIApplication.sharedApplication.applicationState != UIApplicationStateActive)
-            return;
+                       testAlertScheduled = NO;
+                       if (UIApplication.sharedApplication.applicationState != UIApplicationStateActive)
+                           return;
 
-        UIWindow* window = activeKeyWindow();
-        UIViewController* root = window.rootViewController;
-        UIViewController* host = topMostController();
-        if (!host || !root.view.window ||
-            ([BHTSettings boolForKey:@"padlock"] && !padlockAuthenticated) ||
-            [host isKindOfClass:UIAlertController.class] ||
-            [host isKindOfClass:AuthViewController.class]) {
-            scheduleTestAlertIfNeeded();
-            return;
-        }
+                       UIWindow* window = activeKeyWindow();
+                       UIViewController* root = window.rootViewController;
+                       UIViewController* host = topMostController();
+                       if (!host || !root.view.window ||
+                           ([BHTSettings boolForKey:@"padlock"] && !padlockAuthenticated) ||
+                           [host isKindOfClass:UIAlertController.class] ||
+                           [host isKindOfClass:AuthViewController.class]) {
+                           scheduleTestAlertIfNeeded();
+                           return;
+                       }
 
-        NSString* version = testAlertVersion();
-        if ([[NSUserDefaults.standardUserDefaults stringForKey:testAlertVersionKey]
-                isEqualToString:version]) return;
+                       NSString* version = testAlertVersion();
+                       if ([[NSUserDefaults.standardUserDefaults stringForKey:testAlertVersionKey]
+                               isEqualToString:version]) return;
 
-        UIAlertController* alert = [UIAlertController
-            alertControllerWithTitle:[[BHTBundle sharedBundle] localizedStringForKey:@"GITHUB_DOWNLOAD_WARNING_TITLE"]
-                             message:[[BHTBundle sharedBundle] localizedStringForKey:@"GITHUB_DOWNLOAD_WARNING_MESSAGE"]
-                      preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"OK"
-                                                style:UIAlertActionStyleDefault
-                                              handler:nil]];
-        [topMostController() presentViewController:alert animated:YES completion:^{
-            [NSUserDefaults.standardUserDefaults setObject:version
-                                                    forKey:testAlertVersionKey];
-        }];
-    });
+                       UIAlertController* alert = [UIAlertController
+                           alertControllerWithTitle:[[BHTBundle sharedBundle] localizedStringForKey:@"GITHUB_DOWNLOAD_WARNING_TITLE"]
+                                            message:[[BHTBundle sharedBundle] localizedStringForKey:@"GITHUB_DOWNLOAD_WARNING_MESSAGE"]
+                                     preferredStyle:UIAlertControllerStyleAlert];
+                       [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                                 style:UIAlertActionStyleDefault
+                                                               handler:nil]];
+                       [topMostController() presentViewController:alert
+                                                         animated:YES
+                                                       completion:^{
+                                                           [NSUserDefaults.standardUserDefaults setObject:version
+                                                                                                   forKey:testAlertVersionKey];
+                                                       }];
+                   });
 }

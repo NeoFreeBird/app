@@ -368,7 +368,6 @@ BOOL IsInHierarchyOfClass(UIViewController* viewController, NSString* className)
 
 // Need to tag edit history since it reuses a generic class
 
-
 BOOL IsInEditHistory(UIViewController* viewController) {
     UIViewController* currentVC = viewController;
 
@@ -462,7 +461,7 @@ long long ConversationRootUserID(NSArray* sections) {
 }
 
 NSSet<NSNumber*>* ConversationAuthorRepliedToUserIDs(NSArray* sections,
-                                                            long long rootUserID) {
+                                                     long long rootUserID) {
     NSMutableSet<NSNumber*>* repliedToUserIDs = [NSMutableSet set];
     if (rootUserID == 0) {
         return repliedToUserIDs;
@@ -494,7 +493,7 @@ NSSet<NSNumber*>* ConversationAuthorRepliedToUserIDs(NSArray* sections,
 }
 
 NSArray* FilteredTimelineSections(TFNItemsDataViewController* dataViewController,
-                                         NSArray* sections) {
+                                  NSArray* sections) {
     BHTimelineFilterContext* context =
         [BHTimelineFilterContext contextForDataViewController:dataViewController];
     if (!context.shouldFilter) {

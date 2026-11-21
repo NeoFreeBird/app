@@ -136,7 +136,7 @@
     // Same "name-size" key format X's NSCache uses, so each distinct
     // combination is pinned exactly once.
     NSString* key = [NSString stringWithFormat:@"%@-%@", self.fontName, @(self.pointSize)];
-    @synchronized (pinnedCTFonts) {
+    @synchronized(pinnedCTFonts) {
         if (!pinnedCTFonts[key]) {
             pinnedCTFonts[key] = ctFont;
         }

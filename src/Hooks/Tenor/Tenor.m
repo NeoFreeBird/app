@@ -90,7 +90,6 @@ static NSDictionary* gifItemFromResult(NSDictionary* result, NSString* format) {
     };
 }
 
-
 static NSData* payloadFromRoot(NSDictionary* root) {
     return [NSJSONSerialization dataWithJSONObject:@{@"data": root} options:0 error:nil];
 }
@@ -297,9 +296,8 @@ NSURL* tenorURLForOperation(BHTGifOperation operation, NSDictionary* variables) 
     return nil;
 }
 
-
 NSData* payloadForOperation(BHTGifOperation operation, NSData* tenorData,
-                                   NSString* format) {
+                            NSString* format) {
     id json = tenorData ? [NSJSONSerialization JSONObjectWithData:tenorData options:0 error:nil] : nil;
     if (![json isKindOfClass:[NSDictionary class]]) {
         return nil;

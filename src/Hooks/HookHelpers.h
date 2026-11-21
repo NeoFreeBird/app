@@ -2,25 +2,25 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <CoreText/CoreText.h>
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 #import <dlfcn.h>
 #import <math.h>
-#import <string.h>
 #import <objc/message.h>
 #import <objc/runtime.h>
-#import <CoreText/CoreText.h>
+#import <string.h>
 #import "Core/BHTBundle.h"
 #import "Core/BHTManager.h"
 #import "Core/BHTSettings.h"
 #import "Core/BHTTerminology.h"
 #import "CustomTabBar/CustomTabBarUtility.h"
-#import "Headers/TWHeaders.h"
 #import "Headers/BHHeaders.h"
-#import "Headers/XHeaders.h"
 #import "Headers/TFNHeaders.h"
+#import "Headers/TWHeaders.h"
 #import "Headers/UIHeaders.h"
+#import "Headers/XHeaders.h"
 #import "Padlock/AuthViewController.h"
 #import "Settings/ModernSettingsViewController.h"
 #import "Theme/Theme.h"
@@ -28,8 +28,8 @@
 #import "WebLogin/WebLoginViewController.h"
 
 static NSString* const WebClientBearer = @"Bearer "
-                                       @"AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puT"
-                                       @"s%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA";
+                                         @"AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puT"
+                                         @"s%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA";
 
 static NSString* const NativeClientBearer =
     @"Bearer "

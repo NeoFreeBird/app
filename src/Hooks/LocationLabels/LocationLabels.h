@@ -19,6 +19,6 @@ NSDictionary* dictionaryValue(id container, NSString* key);
 NSMutableURLRequest* webGraphQLRequest(NSURL* url);
 NSDictionary* jsonFromResponse(NSData* data, NSURLResponse* response, NSError* error);
 void pruneCache(NSMutableDictionary* cache, NSString* unavailable,
-                       NSMutableDictionary* pending, NSMutableDictionary* retries);
+                NSMutableDictionary* pending, NSMutableDictionary* retries);
 NSString* displayableValue(NSString* cached, NSString* unavailable);
 NSString* screenNameFromStatus(id status);

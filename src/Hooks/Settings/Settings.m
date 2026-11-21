@@ -19,7 +19,6 @@ static BOOL settingsVCIsRoot(TFNItemsDataViewController* settingsVC) {
     return NO;
 }
 
-
 static BOOL sectionsContainNeoFreeBirdEntry(NSArray* sections) {
     for (id section in sections) {
         if (![section isKindOfClass:[NSArray class]]) {
@@ -97,7 +96,7 @@ void insertNeoFreeBirdSettingsIfRoot(TFNItemsDataViewController* settingsVC) {
 }
 
 NSArray* sectionsWithNeoFreeBirdEntry(TFNItemsDataViewController* settingsVC,
-                                             NSArray* sections) {
+                                      NSArray* sections) {
     if (!isSettingsClass(settingsVC)) {
         return sections;
     }

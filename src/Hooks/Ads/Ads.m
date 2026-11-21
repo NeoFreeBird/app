@@ -1,6 +1,5 @@
 #import "Ads.h"
 
-
 // Timeline items are removed from the section data before it reaches the data
 // view controller, so no empty cells or gaps are left behind. This covers every
 // timeline surface (home, profile, search, conversations) regardless of whether
@@ -70,7 +69,6 @@ static BOOL ShouldHideItem(id item, NSString* location) {
     return NO;
 }
 
-
 BOOL StatusItemIsPromoted(id item) {
     SEL isPromoted = @selector(isPromoted);
     if ([item respondsToSelector:isPromoted] && [item isPromoted]) {
@@ -85,8 +83,6 @@ BOOL StatusItemIsPromoted(id item) {
     TFNTwitterStatus* status = object_getIvar(item, statusIvar);
     return [status respondsToSelector:@selector(isPromoted)] && status.isPromoted;
 }
-
-
 
 NSArray* FilteredSections(TFNItemsDataViewController* dataViewController,
                           NSArray* sections) {

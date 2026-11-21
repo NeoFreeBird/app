@@ -1,5 +1,5 @@
-#import "../HookHelpers.h"
 #import <CydiaSubstrate.h>
+#import "../HookHelpers.h"
 
 BOOL BlocksLinkTracking(void);
 BOOL IsTalonURL(NSURL* url);

@@ -99,7 +99,7 @@
 %end
 %end
 
-%ctor {
+    %ctor {
     %init(_ungrouped);
     if (class_getInstanceMethod([UIBarButtonItem class],
                                 NSSelectorFromString(@"setHidesSharedBackground:"))) {

@@ -68,7 +68,7 @@ NSDictionary* jsonFromResponse(NSData* data, NSURLResponse* response, NSError* e
 }
 
 void pruneCache(NSMutableDictionary* cache, NSString* unavailable,
-                       NSMutableDictionary* pending, NSMutableDictionary* retries) {
+                NSMutableDictionary* pending, NSMutableDictionary* retries) {
     if (cache.count <= MAX_SOURCE_CACHE_SIZE) return;
 
     NSMutableArray* keysToRemove = [NSMutableArray array];

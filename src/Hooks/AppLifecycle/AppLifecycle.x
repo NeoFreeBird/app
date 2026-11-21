@@ -78,7 +78,7 @@
 
 %hook TFNTwitterAccount
 - (_Bool)shouldJumpBackToHomeWithActiveTimeStamp:(double)active
-                                inactiveTimeStamp:(double)inactive {
+                               inactiveTimeStamp:(double)inactive {
     if ([BHTSettings boolForKey:@"no_focus_lost"])
         return NO;
     return %orig(active, inactive);

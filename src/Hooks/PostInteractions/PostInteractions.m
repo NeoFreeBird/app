@@ -32,8 +32,8 @@ void BHTSetPostInteractionCounts(UIViewController* controller, TFNTwitterStatus*
         NSString* titleFormat =
             [[BHTBundle sharedBundle] localizedStringForKey:@"POST_INTERACTIONS_COUNTS_TITLE"];
         title = [NSString stringWithFormat:titleFormat,
-                                          formatNumberWithSuffix(status.quoteCount),
-                                          formatNumberWithSuffix(status.retweetCount)];
+                                           formatNumberWithSuffix(status.quoteCount),
+                                           formatNumberWithSuffix(status.retweetCount)];
     } else {
         NSString* titleFormat = [[BHTBundle sharedBundle]
             localizedStringForKey:@"POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE"];
