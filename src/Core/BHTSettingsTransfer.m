@@ -27,7 +27,6 @@ static const NSInteger kFormatVersion = 1;
 // mirrored into Twitter's own key, but that is done on apply rather than
 // carried in the file.
 static NSString* const kAccentColorKey = @"bh_color_theme_selectedColor";
-static NSString* const kVisibleTabsKey = @"bh_tabs_visible";
 // Kept in step with AppIconViewController, which trusts this key over
 // UIApplication's stale alternateIconName on sideloaded installs.
 static NSString* const kAppIconKey = @"bh_last_selected_app_icon";
@@ -43,7 +42,6 @@ static NSDictionary<NSString*, Class>* BHTExtraTransferableKeys(void) {
     dispatch_once(&onceToken, ^{
         keys = @{
             kAccentColorKey: [NSNumber class],
-            kVisibleTabsKey: [NSArray class],
             kAppIconKey: [NSString class]
         };
     });

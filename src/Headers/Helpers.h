@@ -51,6 +51,11 @@ static BOOL is_iPad() {
     return NO;
 }
 
+static BOOL is_Mac(void) {
+    NSProcessInfo* info = NSProcessInfo.processInfo;
+    return info.isiOSAppOnMac || info.isMacCatalystApp;
+}
+
 // https://github.com/julioverne/MImport/blob/0275405812ff41ed2ca56e98f495fd05c38f41f2/mimporthook/MImport.xm#L59
 static UIViewController* _Nullable _topMostController(
     UIViewController* _Nonnull cont) {

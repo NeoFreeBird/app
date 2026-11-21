@@ -1,0 +1,96 @@
+{
+  "name": "NeoFreeBird",
+  "subtitle": "A modified Twitter app with BHTwitter and other QoL modifications.",
+  "iconURL": "https://raw.githubusercontent.com/NeoFreeBird/app/v6/resources/x_icon_rounded.png",
+  "headerURL": "https://pbs.twimg.com/profile_banners/1878595268255297537/1755453861/1500x500",
+  "website": "https://neofreebird.com",
+  "tintColor": "#000000",
+  "apps": [
+    {
+      "name": "X",
+      "bundleIdentifier": "com.atebits.Tweetie2",
+      "developerName": "actuallyaridan, orionblur, nyaathea",
+      "subtitle": "NeoFreeBird version 6.10.1",
+      "localizedDescription": "NeoFreeBird, looking like the modern X app.",
+      "iconURL": "https://raw.githubusercontent.com/NeoFreeBird/app/v6/resources/x_icon_rounded.png",
+      "tintColor": "#000000",
+      "category": "lifestyle",
+      "screenshots": [
+        "https://raw.githubusercontent.com/NeoFreeBird/app/v6/resources/timeline/timeline1.png",
+        "https://raw.githubusercontent.com/NeoFreeBird/app/v6/resources/timeline/timeline2.png",
+        "https://raw.githubusercontent.com/NeoFreeBird/app/v6/resources/timeline/timeline3.png",
+        "https://raw.githubusercontent.com/NeoFreeBird/app/v6/resources/timeline/timeline4.png",
+        "https://raw.githubusercontent.com/NeoFreeBird/app/v6/resources/timeline/timeline5.png"
+      ],
+      "versions": [
+        {
+          "version": "12.39",
+          "buildVersion": "20",
+          "date": "2026-11-06T22:10:24Z",
+          "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/v6.10.1/NeoFreeBird-sideloaded-X_6.10.1_12.39.ipa",
+          "size": 276955541,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Version 6.10.1\n\nNew Features\n- Add a toggle for the Split View on iPad\n- Add support for the Split View on macOS (tested) and iPhone Duo (untested)\n- Added a toggle to hide the “Made on X” footer\n- Added a section in settings to thank all translators for NeoFreeBird!\n- Updated X to 12.39\n\nFixes\n- Fixed the sharing domain not working\n- Fixed issues with custom tints and the classic tab bar\n- Fixed tab labels not showing on the old design\n- Fixed the legacy tab selector not respecting the profile button\n- Fixed the blur when scrolling from not being dim when dim theme was enabled\n- Fixed stale cached text overwriting others, causing text errors in the app\n- Fixed the padlock screen sometimes showing a black screen until a restart\n- Fixed the autoplay accessibility setting not respecting GIFs\n- Fixed the “No focus lost” option to never go back to the home tab\n- Fixed the app stopping audio when scrolling through muted videos on the timeline\n- Fixed the square avatar icon looking weird on Liquid Glass\n- Fixed verified users’ notifications not showing when the filter option was on\n- Fixed localization logic to be more durable and allow full sentence replacement"
+        },
+        {
+          "version": "12.38.1",
+          "buildVersion": "2",
+          "date": "2026-10-28T18:23:30Z",
+          "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/v6.10.0/NeoFreeBird-sideloaded-X_6.10.0_12.38.1.ipa",
+          "size": 273129858,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Version 6.10.0\n\nNew Features\n- Updated X to 12.38.1\n- Added experimental support for the Liquid Glass redesign. Most features have been adapted for it, but a couple aren’t possible to implement (see “Known Issues”)\n- Added an option to hide the “Videos for You” carousel\n- Hide the “Game” tab at the top of the timeline when a basketball game is ongoing\n- Added an option to reset settings\n- Added an option to use a custom color for the tint\n- Added a new split-view design for iPad which uses up the entire screen (instead of a stupid blown-up iPhone layout), allowing you to scroll the timeline in the left half and view an individual tweet or profile on the right half. This will not work on iPhone Duos since I do not have one to test this on, so right now it is hardcoded for iPads only.\n- Now hides the Money tab on profiles\n- Adds an option to hide the Quick Compose button (only on Liquid Glass)\n- Added a new method for blocking screenshot detection\n\nFixes\n- Made the app icon changer load differently to prevent the app hanging\n- Fixed quote tweets not being filtered in the timeline\n- Fixed downloading voice messages\n- Fixed fast block not working\n- Fixed the message button on tweets being clickable when hidden\n- Fixed certain ads appearing on the timeline\n- Fixed the custom font not appearing in a couple places\n\nKnown Issues\n- The tweet source label option has been removed (again). X seems hellbent on burning all traces of Twitter (unlike us), so this feature will stay removed unless there’s another endpoint that can be used. Please ping @orionblur on Twitter if you think you’ve found such an endpoint, and we can take it to DMs.\n- The “Keep the navigation bar visible” toggle doesn’t work on Liquid Glass, as quite a few app components rely on the tab bar being hidden at times, and in my testing trying to change this caused frequent crashes."
+        },
+        {
+          "version": "12.33",
+          "buildVersion": "31",
+          "date": "2026-10-16T19:30:34Z",
+          "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/v6.9.0/NeoFreeBird-sideloaded-X_6.9.0_12.33.ipa",
+          "size": 262409391,
+          "minOSVersion": "15.0",
+          "localizedDescription": "New Features\n- Added an option to choose the default reply sort\n- Updated X to 12.33\n- Added an option to hide retweets and quotes from the “For You” page\n- Added option to convert t.co links and remove link tracking\n- Updated NFB settings to use the new settings design. You now hold the bird (or X) on the For You page to access NFB settings\n- Brought back the Tweet source labels!\n- Removed the “Money” tab\n- Enabling the option to hide views now also hides it in the tweet footer.\n\nFixes\n- NeoFreeBird now more reliably filters out video ads\n- Fixed hiding both the “Follow” and “Message” button on tweets\n- Tweaked the wording of the “Reply in web view” option to highlight it’s a fallback\n- Added localization support for the “Show quote numbers option”"
+        },
+        {
+          "version": "12.31.1",
+          "buildVersion": "1",
+          "date": "2026-10-11T00:00:08Z",
+          "downloadURL": "https://github.com/NeoFreeBird/app/releases/download/v6.8.1/NeoFreeBird-sideloaded-X_6.8.1_12.31.1.ipa",
+          "size": 260418226,
+          "minOSVersion": "15.0",
+          "localizedDescription": "Merged orionblur’s fork back into the main repo."
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [
+          "aps-environment",
+          "com.apple.developer.siri",
+          "com.apple.developer.applesignin",
+          "com.apple.developer.payment-pass-provisioning",
+          "com.apple.developer.usernotifications.communication",
+          "com.apple.developer.usernotifications.time-sensitive",
+          "com.apple.developer.pass-type-identifiers",
+          "com.apple.developer.devicecheck.appattest-environment",
+          "com.apple.developer.networking.carrier-constrained.app-optimized",
+          "keychain-access-groups",
+          "com.apple.security.application-groups",
+          "com.apple.developer.associated-appclip-app-identifiers",
+          "com.apple.developer.networking.carrier-constrained.appcategory",
+          "com.apple.developer.associated-domains"
+        ],
+        "privacy": {
+          "NSCalendarsUsageDescription": "Add events to your calendar from X.",
+          "NSCameraUsageDescription": "Capture and post photos and videos from X.",
+          "NSContactsUsageDescription": "We will securely upload your contacts to our servers to help you connect with friends and suggest users to follow on X.",
+          "NSFaceIDUsageDescription": "Use FaceID to authenticate on X.",
+          "NSLocationUsageDescription": "Enjoy the X experience tailored to your location.",
+          "NSLocationWhenInUseUsageDescription": "Enjoy the X experience tailored to your location.",
+          "NSMicrophoneUsageDescription": "Capture and post videos with sound from X.",
+          "NSPhotoLibraryAddUsageDescription": ">This lets you download photos and videos to your Photos.",
+          "NSPhotoLibraryUsageDescription": "Allow access to share photos from your camera roll.",
+          "NSSpeechRecognitionUsageDescription": "Going forward, whenever you choose to share captions on this device, Apple will provide the service. Doing so helps make sure people of all hearing abilities can access your content.",
+          "NSUserTrackingUsageDescription": "This helps X show you more relevant ads."
+        }
+      }
+    }
+  ]
+}
