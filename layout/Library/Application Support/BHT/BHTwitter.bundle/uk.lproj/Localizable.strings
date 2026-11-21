@@ -92,7 +92,7 @@
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "Час у відео";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "Показує часову мітку в повноекранному режимі відео.";
 "DISABLE_IMMERSIVE_SCROLL_TITLE" = "Без прокручування відеострічки";
-"DISABLE_VIDEO_DOCKING_TITLE"" = "Не закріпляти відео";
+"DISABLE_VIDEO_DOCKING_TITLE" = "Не закріпляти відео";
 "DISABLE_VIDEO_DOCKING_DETAIL" = "Приховує кнопку режиму картинка-в-картинці під час свайпу по відео.";
 "TAP_TO_PAUSE_TITLE" = "Тапнути для паузи";
 "TAP_TO_PAUSE_DETAIL" = "Тапніть по відео двома пальцями, щоб поставити на паузу.";
