@@ -33,7 +33,6 @@
 "RESTORE_TAB_LABELS_TITLE" = "탭 라벨 표시";
 "RESTORE_TAB_LABELS_DETAIL" = "탭 바의 아이콘 아래에 라벨을 표시합니다.";
 "ENABLE_DIM_THEME_TITLE" = "어두운(Dim) 테마 활성화";
-"ENABLE_DIM_THEME_DETAIL" = "삭제된 트위터의 어두운(Dim) 테마를 복원합니다. 다크 모드가 켜져 있어야 하며 앱 재시작이 필요합니다.";
 "CUSTOM_FONTS_TITLE" = "사용자 지정 글꼴";
 "CUSTOM_FONTS_DETAIL" = "트위터에서 사용할 글꼴을 선택합니다.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "글꼴 선택";
@@ -267,9 +266,8 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "항목을 탭하여 추가하거나 제거할 수 있습니다. 아래 막대를 드래그하여 순서를 변경하세요.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "내비게이션 바를 기본 상태로 복원하시겠습니까?";
 "REFRESH_PILL_TEXT" = "게시됨";
-"DIM_THEME_RESTART_ALERT_TITLE" = "재시작 필요";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "어두운 테마를 적용하려면 앱을 재시작해야 합니다.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "재시작";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "재시작 필요";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "재시작";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "아직 표시할 내용이 없습니다";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "이 섹션은 곧 출시될 예정입니다. NeoFreeBird의 다음 업데이트를 기대해 주세요!";
 "SOURCE_UNAVAILABLE" = "소스 확인 불가";

@@ -67,16 +67,7 @@ static BOOL updatingTabIconColor = NO;
 %hook CAGradientLayer
 
 - (void)setColors:(NSArray*)colors {
-    UIView* owner = (UIView*)self.superlayer.delegate;
-    Class fadeClass = NSClassFromString(@"_TtC13XDesignSystem18ScrollEdgeFadeView");
-    if (![owner isKindOfClass:fadeClass] || !BHTIsInsideScrollEdgeTreatment(owner) ||
-        !BHTDimThemeEnabled() ||
-        owner.traitCollection.userInterfaceStyle != UIUserInterfaceStyleDark) {
-        %orig;
-        return;
-    }
-
-    %orig(BHTDimScrollEdgeColors(colors, owner.traitCollection));
+    %orig(BHTThemeGradientColors(self, colors));
 }
 
 %end
@@ -95,6 +86,20 @@ static BOOL updatingTabIconColor = NO;
 - (void)layoutSubviews {
     %orig;
     BHTApplyScrollEdgeFade(self);
+}
+
+%end
+
+%hook TFNGradientView
+
+- (void)layoutSubviews {
+    %orig;
+    BHTApplyScrollEdgeFade((UIView*)self);
+}
+
+- (void)didMoveToWindow {
+    %orig;
+    BHTApplyScrollEdgeFade((UIView*)self);
 }
 
 %end
@@ -179,16 +184,13 @@ static BOOL updatingTabIconColor = NO;
 %hook UIView
 
 - (void)setBackgroundColor:(UIColor*)color {
-    %orig(BHTDimNormalizedViewBackground(self, color));
+    %orig(BHTThemeViewBackground(self, color));
 }
 
 - (void)didMoveToWindow {
     %orig;
-    if (self.window && self.backgroundColor) {
-        UIColor* normalized = BHTDimNormalizedViewBackground(self, self.backgroundColor);
-        if (normalized != self.backgroundColor) {
-            self.backgroundColor = normalized;
-        }
+    if (self.window) {
+        BHTRefreshDimBackground(self);
     }
 
     if (self.window && NFBLiquidGlassEnabled() && BHTDimThemeEnabled() &&
@@ -210,8 +212,8 @@ static BOOL updatingTabIconColor = NO;
 
 - (void)didMoveToWindow {
     %orig;
-    if (BHTDimThemeEnabled()) {
-        self.hidden = TRUE;
+    if (((UIView*)self).window) {
+        BHTApplyDimSolidColorView((UIView*)self);
     }
 }
 
@@ -274,6 +276,13 @@ static BOOL updatingTabIconColor = NO;
     %orig(style);
 }
 
+- (void)didMoveToWindow {
+    %orig;
+    if (self.window) {
+        BHTRefreshSegmentedTabBarColors(self);
+    }
+}
+
 %end
 
 %hook _TtC10TFNUISwift31LegacySegmentedHighlightBarView
@@ -292,9 +301,37 @@ static BOOL updatingTabIconColor = NO;
 
 - (void)didMoveToWindow {
     %orig;
-    if (self.window && BHTDimThemeEnabled() && !NFBLiquidGlassEnabled()) {
-        self.backgroundColor = BHTDimBackgroundColor();
+    if (self.window) {
+        BHTApplyDimBarBackground(self);
     }
+}
+
+%end
+
+%hook T1TabCustomizationViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    %orig;
+    BHTApplyDisabledBarButtonTextColor((UIViewController*)self);
+}
+
+- (void)viewDidLayoutSubviews {
+    %orig;
+    BHTApplyDisabledBarButtonTextColor((UIViewController*)self);
+}
+
+%end
+
+%hook T1ColorSettings
+
++ (void)traitCollectionDidChange {
+    %orig;
+    BHTScheduleDimRefresh();
+}
+
++ (void)_t1_updateOverrideUserInterfaceStyle {
+    %orig;
+    BHTScheduleDimRefresh();
 }
 
 %end

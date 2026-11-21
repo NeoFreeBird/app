@@ -35,7 +35,6 @@
 "RESTORE_TAB_LABELS_TITLE" = "Подписи под иконками";
 "RESTORE_TAB_LABELS_DETAIL" = "Отображать подписи под значками на панели вкладок.";
 "ENABLE_DIM_THEME_TITLE" = "Включить тему Dim";
-"ENABLE_DIM_THEME_DETAIL" = "Возвращает удаленную тему Dim для Twitter. Требуется включить темный режим и перезапустить приложение.";
 "CUSTOM_FONTS_TITLE" = "Пользовательские шрифты";
 "CUSTOM_FONTS_DETAIL" = "Выбери свой шрифт для Twitter.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Выбери шрифт";
@@ -268,7 +267,9 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Цитаты: %lld  Ретвиты: %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "Показать источник твита";
 "RESTORE_TWEET_LABELS_DETAIL" = "Показывает, через какое приложение опубликован твит.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Требуется перезапуск";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Для применения редизайна Liquid Glass необходимо перезапустить приложение.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Перезапустить";
 "DEVELOPER_SECTION_HEADER_TITLE" = "Разработчики";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Пользовательские шрифты";
 "CUSTOM_FONTS_MENU_TITLE" = "\nВыбор шрифта";
@@ -294,9 +295,6 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Коснитесь пункта, чтобы добавить или убрать его. Перетащите панель ниже, чтобы изменить порядок.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Вы уверены, что хотите сбросить навигацию к настройкам по умолчанию?";
 "REFRESH_PILL_TEXT" = "Пост отправлен";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Требуется перезапуск";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "Для применения темы Dim необходимо перезапустить приложение.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Перезапустить";
 "HIDE_QUICK_COMPOSE_TITLE" = "Скрыть кнопку публикации";
 "HIDE_QUICK_COMPOSE_DETAIL" = "Убирает кнопку быстрой публикации из панели навигации (только в режиме Liquid Glass).";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Здесь пока ничего нет.";

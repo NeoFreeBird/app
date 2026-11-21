@@ -22,14 +22,14 @@
     if ([key isEqualToString:@"liquid_glass"]) {
         UIAlertController* alertController =
             [UIAlertController alertControllerWithTitle:[[BHTBundle sharedBundle]
-                                                            localizedStringForKey:@"DIM_THEME_RESTART_ALERT_TITLE"]
+                                                            localizedStringForKey:@"LIQUID_GLASS_RESTART_ALERT_TITLE"]
                                                 message:[[BHTBundle sharedBundle]
                                                             localizedStringForKey:@"LIQUID_GLASS_RESTART_ALERT_MESSAGE"]
                                          preferredStyle:UIAlertControllerStyleAlert];
 
         alertController.modalPresentationStyle = UIModalPresentationFullScreen;
         UIAlertAction* restartAction = [UIAlertAction actionWithTitle:[[BHTBundle sharedBundle]
-                                                                          localizedStringForKey:@"DIM_THEME_RESTART_ALERT_RESTART_BUTTON"]
+                                                                          localizedStringForKey:@"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON"]
                                                                 style:UIAlertActionStyleDestructive
                                                               handler:^(UIAlertAction* action) {
                                                                   exit(0);

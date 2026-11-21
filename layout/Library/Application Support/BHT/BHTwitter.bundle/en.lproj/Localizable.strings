@@ -35,7 +35,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Tab labels";
 "RESTORE_TAB_LABELS_DETAIL" = "Show labels under icons in the tab bar.";
 "ENABLE_DIM_THEME_TITLE" = "Enable dim theme";
-"ENABLE_DIM_THEME_DETAIL" = "Restores the removed dim theme for Twitter. Requires dark mode to be enabled and a restart.";
+"ENABLE_DIM_THEME_DETAIL" = "Uses Twitter's removed dim theme instead of the black theme when dark mode is on.";
 "CUSTOM_FONTS_TITLE" = "Custom fonts";
 "CUSTOM_FONTS_DETAIL" = "Select a custom font for Twitter.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Choose a font";
@@ -272,7 +272,9 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Quotes: %lld  Retweets: %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "Show Tweet source labels";
 "RESTORE_TWEET_LABELS_DETAIL" = "Shows what client Tweets were made from.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Restart required";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "The Liquid Glass redesign requires a restart to take effect.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Restart";
 "DEVELOPER_SECTION_HEADER_TITLE" = "Developers";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Custom fonts";
 "CUSTOM_FONTS_MENU_TITLE" = "\nChoose a font";
@@ -299,9 +301,6 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Tap a destination to add or remove it. Drag the bar below to reorder.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Are you sure you'd like to restore the navigation bar to its default state?";
 "REFRESH_PILL_TEXT" = "posted";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Restart required";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "The dim theme requires a restart to take effect.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Restart";
 "HIDE_QUICK_COMPOSE_TITLE" = "Hide Quick Compose";
 "HIDE_QUICK_COMPOSE_DETAIL" = "Removes the Quick Compose button from the navigation bar (only on Liquid Glass).";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Nothing to see here - yet";
