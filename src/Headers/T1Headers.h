@@ -188,9 +188,6 @@
 @interface T1ImmersiveViewController : UIViewController
 @end
 
-@interface T1ImmersiveViewControllerV2 : UIViewController
-@end
-
 @interface T1URTTimelineStatusItemViewModel : NSObject
 @property (nonatomic, readonly) BOOL isRetweet;
 @property (nonatomic, readonly) TFNTwitterUser* representedFromUser;
@@ -236,16 +233,6 @@
 #pragma mark - Media views
 
 @class DownloadInlineButton;
-
-// DM media message container (DMConversation.MessageAttachmentView)
-@interface _TtC14DMConversation21MessageAttachmentView : UIView
-@property (nonatomic, strong) UIContextMenuInteraction* downloadMenuInteraction;
-@property (nonatomic, strong) DownloadInlineButton* downloadHandler;
-@end
-
-@interface _TtC14DMConversation21MessageAttachmentView () <
-    UIContextMenuInteractionDelegate>
-@end
 
 // Shared media view (TweetMediaAttachments.MultiMediaView); its carousel
 // variant exposes -inlineMediaInfos as well
@@ -378,9 +365,6 @@
 @interface _TtC16ChatConversation24ScreenshotProtectionView : UIView
 @end
 
-@interface T1AppSplitSideBarViewController : UIViewController
-@end
-
 @interface T1ViewControllerScribeEventObserver : NSObject
 - (void)viewControllerApplicationDidBecomeActive:(id)active;
 @end
@@ -415,6 +399,14 @@
 @interface PaymentsButtonViewModel : NSObject
 @end
 
-@interface T1StatusEditedOnXLabelAdapter: NSObject
+@interface T1StatusEditedOnXLabelAdapter : NSObject
 - (_Bool)shouldBeVisibleForViewModel:(id)model;
+@end
+
+@interface TUIAvatarImageView : TFNAvatarImageView
+@end
+
+@interface T1ConversationFooterItem : NSObject
+@property (nonatomic, retain) NSNumber* viewCount;
+@property (nonatomic, copy) NSString* timeAgo;
 @end
