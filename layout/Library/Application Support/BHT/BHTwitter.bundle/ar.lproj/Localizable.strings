@@ -100,6 +100,8 @@
 "FORCE_TWEET_FULL_FRAME_TITLE" = "صور كبيرة";
 "RESTORE_VIDEO_TIMESTAMP_TITLE" = "توقيت الفيديو";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "عرض توقيت الفيديو في مشغل ملء الشاشة.";
+"DISABLE_DOUBLE_TAP_LIKE_TITLE" = "تعطيل النقر المزدوج للإعجاب";
+"DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "منع النقر المزدوج على الفيديو للإعجاب به.";
 "DISABLE_IMMERSIVE_SCROLL_TITLE" = "تعطيل التمرير في موجز الفيديو";
 "DISABLE_VIDEO_DOCKING_TITLE" = "تعطيل تثبيت الفيديو";
 "DISABLE_VIDEO_DOCKING_DETAIL" = "منع ظهور زر PiP عند سحب الفيديو إلى الخارج.";
@@ -167,6 +169,8 @@
 "USE_TENOR_GIFS_DETAIL" = "استخدام صور GIF من Tenor بدلًا من GIPHY في تويتر. يوفر Tenor خيارات أكثر.";
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "تعطيل معرض الوسائط";
 "DISABLE_MEDIA_CAROUSEL_DETAIL" = "استعادة المظهر السابق للتغريدات التي تضم عدة وسائط.";
+"HIDE_MEDIA_PREVIEWS_TITLE" = "إخفاء معاينة الوسائط";
+"HIDE_MEDIA_PREVIEWS_DETAIL" = "إخفاء الصور والفيديوهات وصور GIF في الخطوط الزمنية. (وضع توفير البيانات)";
 "DISABLE_SENSITIVE_TWEET_WARNINGS_TITLE" = "إخفاء تحذيرات المحتوى الحساس";
 "SHOW_POLL_RESULTS_TITLE" = "عرض نتائج الاستطلاع قبل التصويت";
 "SHOW_POLL_RESULTS_DETAIL" = "إضافة النتائج إلى أسماء الخيارات قبل التصويت، لتعرف كيف صوّت الآخرون.";
@@ -372,3 +376,6 @@
 "SUBSCRIPTION_UNDO_SEND_DURATION_LABEL" = "%ld ث";
 "GITHUB_DOWNLOAD_WARNING_TITLE" = "مرحبًا!";
 "GITHUB_DOWNLOAD_WARNING_MESSAGE" = "تأكد من تثبيت NeoFreeBird من صفحتنا الرسمية على GitHub. لا يمكننا المساعدة في المشكلات الناتجة عن ملفات IPA أخرى، وقد لا تعرف ما إذا كانت نسختك خالية من الشيفرة الضارة. إذا كانت لديك أي أسئلة، فافتح بلاغًا على GitHub.";
+"COMPOSITION_COMPLETE_SENDING_TWEET_TOAST_NOTIFICATION_MESSAGE" = "أُرسل ردك!";
+"DM_MESSAGE_ACTION_OPEN_GENERIC_TITLE" = "فتح التغريدة";
+"DISMISS_LABEL" = "إغلاق";
