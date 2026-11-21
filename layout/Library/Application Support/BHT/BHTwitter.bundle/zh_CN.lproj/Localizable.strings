@@ -295,6 +295,7 @@
 "THEME_SETTINGS_NAVIGATION_TITLE" = "更换主题";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "选择一个仅自己可见的主题颜色。";
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "自定义标签栏";
+"CUSTOM_TAB_BAR_UNAVAILABLE_MESSAGE" = "自定义标签烂在该版本的App不可用。";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "点按目的地可添加或移除。拖动下方栏可重新排序。";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "您确定要将导航栏恢复为默认设置吗？";
 "REFRESH_PILL_TEXT" = "已发帖";
