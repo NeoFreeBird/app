@@ -25,5 +25,8 @@ jobs:
           xcrun --sdk macosx --find clang
           xcrun --sdk macosx --show-sdk-path
 
-      - name: Run tests
+      - name: Run Localization Tests
         run: ./test.sh
+
+      - name: Run Formatting Tests
+        run: ./format.sh --check
