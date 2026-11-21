@@ -110,10 +110,6 @@
 }
 
 - (id)tfn_CTFont {
-    id ctFont = %orig;
-    if (!ctFont || ctFont == self) {
-        return ctFont;
-    }
     // X's -[UIFont(TFNUIFontGroup) tfn_CTFont] backs named fonts with a
     // static NSCache (countLimit = 3) and returns the CTFont unretained:
     // the cache is the sole owner. Once regular AND bold custom fonts are
@@ -123,11 +119,22 @@
     // Pin the CTFonts of the user's custom fonts for the process lifetime.
     NSString* regularName = CustomFontName(NO);
     NSString* boldName = CustomFontName(YES);
-    BOOL isCustom = (regularName && [self.fontName isEqualToString:regularName]) ||
-                    (boldName && [self.fontName isEqualToString:boldName]);
-    if (!isCustom) {
-        return ctFont;
+    if (!regularName && !boldName) {
+        return %orig;
     }
+    // The regular picker runs with includeFaces = NO, so that slot holds a
+    // family name, while the bold picker stores a PostScript face name and
+    // -fontName only reports the PostScript name of the resolved face. Match
+    // both properties: comparing -fontName alone never recognises the regular
+    // font as custom, so its CTFont keeps being evicted (#269).
+    BOOL isCustom = (regularName && ([self.fontName isEqualToString:regularName] ||
+                                     [self.familyName isEqualToString:regularName])) ||
+                    (boldName && ([self.fontName isEqualToString:boldName] ||
+                                  [self.familyName isEqualToString:boldName]));
+    if (!isCustom) {
+        return %orig;
+    }
+
     static NSMutableDictionary* pinnedCTFonts = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -136,10 +143,30 @@
     // Same "name-size" key format X's NSCache uses, so each distinct
     // combination is pinned exactly once.
     NSString* key = [NSString stringWithFormat:@"%@-%@", self.fontName, @(self.pointSize)];
+
+    // Answer from the pinned copy without calling %orig: routing the font back
+    // through X's cache could hand out (or release) a CTFont that the cache has
+    // already evicted while callers still use it.
     @synchronized(pinnedCTFonts) {
-        if (!pinnedCTFonts[key]) {
-            pinnedCTFonts[key] = ctFont;
+        id pinned = pinnedCTFonts[key];
+        if (pinned) {
+            return pinned;
         }
+    }
+
+    id ctFont = %orig;
+    if (!ctFont || ctFont == self) {
+        return ctFont;
+    }
+    @synchronized(pinnedCTFonts) {
+        id pinned = pinnedCTFonts[key];
+        if (pinned) {
+            // Another thread pinned this combination while %orig was running.
+            return pinned;
+        }
+        // The dictionary holds the only strong reference, keeping the CTFont
+        // alive after X's cache evicts it.
+        pinnedCTFonts[key] = ctFont;
     }
     return ctFont;
 }
