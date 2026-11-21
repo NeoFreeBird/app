@@ -61,6 +61,42 @@ NSInteger CoercedStyle(UIView* view, NSInteger style) {
     return style;
 }
 
+BOOL UpdateFleetBorderStyle(UIView* view) {
+    Class borderClass = objc_getClass("_TtC14T1TwitterSwift25FleetLineNestedBorderView");
+    if (!borderClass || ![view isKindOfClass:borderClass]) return NO;
+
+    Ivar styleIvar = class_getInstanceVariable(borderClass, "style");
+    Ivar nextIvar = class_getInstanceVariable(borderClass, "pillCornerRadius");
+    if (!styleIvar || !nextIvar) return NO;
+    ptrdiff_t offset = ivar_getOffset(styleIvar);
+    size_t size = class_getInstanceSize(object_getClass(view));
+    if (offset < (ptrdiff_t)sizeof(void*) ||
+        (size_t)offset + sizeof(NSInteger) > size ||
+        ivar_getOffset(nextIvar) - offset != sizeof(NSInteger)) {
+        return NO;
+    }
+
+    unsigned char* storage = (unsigned char*)(__bridge void*)view + offset;
+    NSInteger style;
+    memcpy(&style, storage, sizeof(style));
+    NSInteger updatedStyle = style;
+    NSNumber* original = objc_getAssociatedObject(view, &kFleetBorderOriginalStyle);
+    if ([BHTSettings boolForKey:@"square_avatars"]) {
+        if (style == 2) {
+            objc_setAssociatedObject(view, &kFleetBorderOriginalStyle, @2,
+                                     OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            updatedStyle = 3;
+        }
+    } else if (original) {
+        if (style == 3) updatedStyle = original.integerValue;
+        objc_setAssociatedObject(view, &kFleetBorderOriginalStyle, nil,
+                                 OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    if (updatedStyle == style) return NO;
+    memcpy(storage, &updatedStyle, sizeof(updatedStyle));
+    return YES;
+}
+
 void applySquareAvatarsSetting(void) {
     BOOL enabled = [BHTSettings boolForKey:@"square_avatars"];
     Class avatarClass = objc_getClass("TFNAvatarImageView");
@@ -69,6 +105,9 @@ void applySquareAvatarsSetting(void) {
 
     for (UIWindow* window in UIApplication.sharedApplication.windows) {
         EnumerateSubviewsRecursively(window, ^(UIView* view) {
+            if (UpdateFleetBorderStyle(view)) {
+                [view setNeedsLayout];
+            }
             if (![view isKindOfClass:avatarClass]) {
                 return;
             }

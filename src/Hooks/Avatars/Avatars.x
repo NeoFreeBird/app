@@ -13,6 +13,15 @@
 
 %end
 
+%hook _TtC14T1TwitterSwift25FleetLineNestedBorderView
+
+- (void)layoutSubviews {
+    UpdateFleetBorderStyle((UIView*)self);
+    %orig;
+}
+
+%end
+
 %hook _TtC11TwitterDash19DashAvatarImageView
 
 - (void)layoutSubviews {
