@@ -105,4 +105,4 @@ jobs:
           fi
 
       - name: Run Build Tests
-        run: make
+        run: make clean && make SIDELOADED=1
