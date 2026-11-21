@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="icon_rounded.png" alt="Twitter Bird Icon" width="130" height="130">
+    <img src="resources/icon_rounded.png" alt="Twitter Bird Icon" width="130" height="130">
 </div>
 <br>
 
@@ -13,26 +13,26 @@
   ## Twitter Branding
 
   <div>
-    <a href="https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/AltSource.json"><img src="images/badges/add_to_altstore.png" alt="Add to AltStore" height="40"></a>
+    <a href="https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/resources/AltSource.json"><img src="resources/badges/add_to_altstore.png" alt="Add to AltStore" height="40"></a>
     &nbsp;
-    <a href="https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/AltSource.json"><img src="images/badges/add_to_sidestore.png" alt="Add to SideStore" height="40"></a>
+    <a href="https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/resources/AltSource.json"><img src="resources/badges/add_to_sidestore.png" alt="Add to SideStore" height="40"></a>
     &nbsp;
-    <a href="https://intradeus.github.io/http-protocol-redirector?r=feather://source/https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/AltSource.json"><img src="images/badges/add_to_feather.png" alt="Add to Feather" height="40"></a>
+    <a href="https://intradeus.github.io/http-protocol-redirector?r=feather://source/https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/resources/AltSource.json"><img src="resources/badges/add_to_feather.png" alt="Add to Feather" height="40"></a>
     &nbsp;
-    <a href="https://github.com/NeoFreeBird/app/releases"><img src="images/badges/download_from_github.png" alt="Download from GitHub" height="40"></a>
+    <a href="https://github.com/NeoFreeBird/app/releases"><img src="resources/badges/download_from_github.png" alt="Download from GitHub" height="40"></a>
     &nbsp;
   </div>
 
   ## X Branding
 
   <div>
-    <a href="https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/AltSource-X.json"><img src="images/badges/add_to_altstore.png" alt="Add to AltStore" height="40"></a>
+    <a href="https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/resources/AltSource-X.json"><img src="resources/badges/add_to_altstore.png" alt="Add to AltStore" height="40"></a>
     &nbsp;
-    <a href="https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/AltSource-X.json"><img src="images/badges/add_to_sidestore.png" alt="Add to SideStore" height="40"></a>
+    <a href="https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/resources/AltSource-X.json"><img src="resources/badges/add_to_sidestore.png" alt="Add to SideStore" height="40"></a>
     &nbsp;
-    <a href="https://intradeus.github.io/http-protocol-redirector?r=feather://source/https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/AltSource-X.json"><img src="images/badges/add_to_feather.png" alt="Add to Feather" height="40"></a>
+    <a href="https://intradeus.github.io/http-protocol-redirector?r=feather://source/https://raw.githubusercontent.com/NeoFreeBird/app/refs/heads/v6/resources/AltSource-X.json"><img src="resources/badges/add_to_feather.png" alt="Add to Feather" height="40"></a>
     &nbsp;
-    <a href="https://github.com/NeoFreeBird/app/releases"><img src="images/badges/download_from_github.png" alt="Download from GitHub" height="40"></a>
+    <a href="https://github.com/NeoFreeBird/app/releases"><img src="resources/badges/download_from_github.png" alt="Download from GitHub" height="40"></a>
     &nbsp;
   </div>
 </div>
@@ -40,30 +40,30 @@
 
 | | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="Screenshot 1" src="images/main/1.png">|<img width="1604" alt="Screenshot 2" src="images/main/2.png">|<img width="1604" alt="Screenshot 3" src="images/main/3.png">|<img width="1604" alt="Screenshot 4" src="images/main/4.png">|
+|<img width="1604" alt="Screenshot 1" src="resources/main/1.png">|<img width="1604" alt="Screenshot 2" src="resources/main/2.png">|<img width="1604" alt="Screenshot 3" src="resources/main/3.png">|<img width="1604" alt="Screenshot 4" src="resources/main/4.png">|
 
 # Preview
 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="Screenshot 1" src="images/timeline/timeline1.png">|<img width="1604" alt="Screenshot 2" src="images/timeline/timeline2.png">|<img width="1604" alt="Screenshot 3" src="images/timeline/timeline3.png">|
-|<img width="1604" alt="Screenshot 4" src="images/timeline/timeline4.png">|<img width="1604" alt="Screenshot 5" src="images/timeline/timeline5.png">|<img width="1604" alt="Screenshot 6" src="images/timeline/timeline6.png">|
+|<img width="1604" alt="Screenshot 1" src="resources/timeline/timeline1.png">|<img width="1604" alt="Screenshot 2" src="resources/timeline/timeline2.png">|<img width="1604" alt="Screenshot 3" src="resources/timeline/timeline3.png">|
+|<img width="1604" alt="Screenshot 4" src="resources/timeline/timeline4.png">|<img width="1604" alt="Screenshot 5" src="resources/timeline/timeline5.png">|<img width="1604" alt="Screenshot 6" src="resources/timeline/timeline6.png">|
 
 # Features
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|<img width="1604" alt="Screenshot 1" src="images/settings/settings1.png">|<img width="1604" alt="Screenshot 2" src="images/settings/settings2.png">|<img width="1604" alt="Screenshot 3" src="images/settings/settings3.png">|
-|<img width="1604" alt="Screenshot 4" src="images/settings/settings4.png">|<img width="1604" alt="Screenshot 5" src="images/settings/settings5.png">|<img width="1604" alt="Screenshot 6" src="images/settings/settings6.png">|
-|<img width="1604" alt="Screenshot 4" src="images/settings/settings7.png">|<img width="1604" alt="Screenshot 5" src="images/settings/settings8.png">|<img width="1604" alt="Screenshot 6" src="images/settings/settings9.png">|
-|<img width="1604" alt="Screenshot 4" src="images/settings/settings10.png">|<img width="1604" alt="Screenshot 5" src="images/settings/settings11.png">|<img width="1604" alt="Screenshot 6" src="images/settings/settings12.png">|
-|<img width="1604" alt="Screenshot 4" src="images/settings/settings13.png">|<img width="1604" alt="Screenshot 5" src="images/settings/settings14.png">|<img width="1604" alt="Screenshot 6" src="images/settings/settings15.png">|
+|<img width="1604" alt="Screenshot 1" src="resources/settings/settings1.png">|<img width="1604" alt="Screenshot 2" src="resources/settings/settings2.png">|<img width="1604" alt="Screenshot 3" src="resources/settings/settings3.png">|
+|<img width="1604" alt="Screenshot 4" src="resources/settings/settings4.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings5.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings6.png">|
+|<img width="1604" alt="Screenshot 4" src="resources/settings/settings7.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings8.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings9.png">|
+|<img width="1604" alt="Screenshot 4" src="resources/settings/settings10.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings11.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings12.png">|
+|<img width="1604" alt="Screenshot 4" src="resources/settings/settings13.png">|<img width="1604" alt="Screenshot 5" src="resources/settings/settings14.png">|<img width="1604" alt="Screenshot 6" src="resources/settings/settings15.png">|
 
 # Downloading
 Go to the [Releases](https://github.com/NeoFreeBird/app/releases) page to download the latest version of NeoFreeBird. You can also build it yourself by following the instructions below.
 
 # Supporting the Project
 
-I welcome all help on NeoFreeBird! Translations, bug fixes, and new features are all welcome. If you do see any issues with the app, feel free to open an issue and follow the templates provided. I also have a Ko-Fi linked in the repo if you wish to support me directly, but by no means is it required! NeoFreeBird will always be open-source and free to use.
+I welcome all help on NeoFreeBird! Translations, bug fixes, and new features are all welcome. See the [contributing guide](docs/CONTRIBUTING.md) to get started. If you do see any issues with the app, feel free to open an issue and follow the templates provided. I also have a Ko-Fi linked in the repo if you wish to support me directly, but by no means is it required! NeoFreeBird will always be open-source and free to use.
 
 # Compiling NeoFreeBird
 

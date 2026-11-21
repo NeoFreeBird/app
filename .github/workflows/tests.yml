@@ -1,0 +1,36 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [v6]
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: macos-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Verify Apple toolchain
+        run: |
+          xcrun --sdk macosx --find clang
+          xcrun --sdk macosx --find clang-format
+          xcrun --sdk macosx --show-sdk-path
+      
+      - name: Install clang-format
+        run: brew install clang-format
+
+      - name: Run Localization Tests
+        run: ./test.sh
+
+      - name: Run Formatting Tests
+        run: ./format.sh --check

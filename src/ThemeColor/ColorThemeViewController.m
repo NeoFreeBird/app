@@ -38,8 +38,8 @@ static const NSUInteger kAccentOptionCount = 6;
 static NSInteger const kCustomAccentOption = -1;
 static NSString* const kCustomAccentColorKey = @"bh_color_theme_customColor";
 static NSString* const kLastNativeAccentOptionKey = @"bh_color_theme_lastNativeColorOption";
-static NSString* const kAccentColorNames[kAccentOptionCount] = {@"BLUE", @"YELLOW", @"RED",
-                                                                @"PURPLE", @"ORANGE", @"GREEN"};
+static NSString* const kAccentColorNames[] = {@"BLUE", @"YELLOW", @"RED",
+                                              @"PURPLE", @"ORANGE", @"GREEN"};
 
 static UIColor* NativeAccentColor(NSUInteger option) {
     static NSString* const presetSelectors[] = {
@@ -48,15 +48,14 @@ static UIColor* NativeAccentColor(NSUInteger option) {
         @"primaryColorOptionRedColor",
         @"primaryColorOptionPurpleColor",
         @"primaryColorOptionOrangeColor",
-        @"primaryColorOptionGreenColor"
-    };
+        @"primaryColorOptionGreenColor"};
     if (option < 1 || option > kAccentOptionCount) return nil;
     id palette =
         [[[objc_getClass("TAEColorSettings") sharedSettings] currentColorPalette] colorPalette];
     SEL selector = NSSelectorFromString(presetSelectors[option - 1]);
     UIColor* color = [palette respondsToSelector:selector]
-        ? ((UIColor* (*)(id, SEL))objc_msgSend)(palette, selector)
-        : [palette primaryColorForOption:option];
+                         ? ((UIColor * (*)(id, SEL)) objc_msgSend)(palette, selector)
+                         : [palette primaryColorForOption:option];
     return [color isKindOfClass:[UIColor class]] ? color : nil;
 }
 

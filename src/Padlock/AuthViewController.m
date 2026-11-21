@@ -6,8 +6,8 @@
 //
 
 #import "AuthViewController.h"
-#import "Core/BHTBundle.h"
 #import <LocalAuthentication/LocalAuthentication.h>
+#import "Core/BHTBundle.h"
 
 @interface AuthViewController ()
 
@@ -43,7 +43,8 @@
     self.unlockButton.translatesAutoresizingMaskIntoConstraints = NO;
     [self.unlockButton setTitle:@"Unlock" forState:UIControlStateNormal];
     self.unlockButton.titleLabel.font =
-        [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold];
+        [UIFont systemFontOfSize:17
+                          weight:UIFontWeightSemibold];
     [self.unlockButton addTarget:self
                           action:@selector(retryAuthentication)
                 forControlEvents:UIControlEventTouchUpInside];
@@ -54,13 +55,14 @@
     [NSLayoutConstraint activateConstraints:@[
         [icon.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
         [icon.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor
-                                          constant:-40],
+                                           constant:-40],
         [label.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
-        [label.topAnchor constraintEqualToAnchor:icon.bottomAnchor constant:12],
+        [label.topAnchor constraintEqualToAnchor:icon.bottomAnchor
+                                        constant:12],
         [self.unlockButton.centerXAnchor
             constraintEqualToAnchor:self.view.centerXAnchor],
         [self.unlockButton.topAnchor constraintEqualToAnchor:label.bottomAnchor
-                                                   constant:24]
+                                                    constant:24]
     ]];
 }
 
@@ -136,8 +138,8 @@
 }
 
 - (void)finishWithResult:(BOOL)success
-                  error:(NSError*)error
-             generation:(NSUInteger)generation {
+                   error:(NSError*)error
+              generation:(NSUInteger)generation {
     if (error) {
         NSLog(@"%@", error);
     }

@@ -8,6 +8,7 @@
 #import "Settings/Pages/AppearanceSettingsViewController.h"
 #import "Core/BHTBundle.h"
 #import "Core/BHTSettings.h"
+#import "Headers/Helpers.h"
 #import "Headers/TWHeaders.h"
 #import "Settings/ModernSettingsCells.h"
 
@@ -25,6 +26,16 @@
 
 - (NSString*)pageKey {
     return @"appearance";
+}
+
+- (void)updateVisibleToggles {
+    [super updateVisibleToggles];
+    if (is_Mac()) {
+        NSPredicate* supportedOnMac = [NSPredicate predicateWithBlock:^BOOL(NSDictionary* toggle, NSDictionary* bindings) {
+            return ![toggle[@"action"] isEqualToString:@"showAppIconViewController:"];
+        }];
+        self.visibleToggles = [self.visibleToggles filteredArrayUsingPredicate:supportedOnMac];
+    }
 }
 
 - (UITableViewCell*)tableView:(UITableView*)tableView
@@ -78,21 +89,17 @@
 - (void)showCustomTabBarVC:(NSDictionary*)sender {
     UIViewController* customTabBarVC = [CustomTabBarUtility editorForAccount:self.account];
     if (customTabBarVC) {
-        // X supplies the native editor's own title and account subtitle.
-        if (self.account && ![CustomTabBarUtility usesNativeEditor]) {
-            [customTabBarVC.navigationItem
-                setTitleView:[objc_getClass("TFNTitleView")
-                                 titleViewWithTitle:[[BHTBundle sharedBundle]
-                                                        localizedStringForKey:
-                                                            @"CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE"]
-                                           subtitle:self.account.displayUsername]];
-        }
         [self.navigationController pushViewController:customTabBarVC animated:YES];
     } else {
         BHTBundle* bundle = [BHTBundle sharedBundle];
+        NSString* messageKey = @"CUSTOM_TAB_BAR_UNAVAILABLE_MESSAGE";
+        NSString* message = [bundle localizedStringForKey:messageKey];
+        if (message.length == 0 || [message isEqualToString:messageKey]) {
+            message = @"Custom tab bar customization isn't available in this version of the app.";
+        }
         UIAlertController* alert = [UIAlertController
             alertControllerWithTitle:[bundle localizedStringForKey:@"CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE"]
-                             message:[bundle localizedStringForKey:@"UNKNOWN_ERROR"]
+                             message:message
                       preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:[bundle localizedStringForKey:@"OK_ACTION_LABEL"]
                                                   style:UIAlertActionStyleCancel
