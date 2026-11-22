@@ -1,4 +1,4 @@
-name: Tests
+name: v7 Tests
 
 on:
   pull_request:
@@ -9,21 +9,100 @@ permissions:
   contents: read
 
 jobs:
-  terminology:
-    name: Terminology tests
+  tests:
+    name: v7 Tests
     runs-on: macos-latest
-    timeout-minutes: 10
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: main
+    env:
+      THEOS: ${{ github.workspace }}/theos
+      BUILD_DIR: ${{ github.workspace }}/ffmpeg-build
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
         with:
+          path: main
+          submodules: recursive
           persist-credentials: false
 
       - name: Verify Apple toolchain
         run: |
           xcrun --sdk macosx --find clang
+          xcrun --sdk macosx --find clang-format
           xcrun --sdk macosx --show-sdk-path
 
-      - name: Run tests
+      - name: Install Dependencies
+        run: brew install clang-format make dpkg ldid
+        env:
+          HOMEBREW_NO_ASK: "1"
+
+      - name: Add GNU Make to PATH
+        run: echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
+
+      - name: Run Localization Tests
         run: ./test.sh
+
+      - name: Run Formatting Tests
+        run: ./format.sh --check
+
+      - name: Download Theos
+        uses: actions/checkout@v6
+        with:
+          repository: theos/theos
+          ref: master
+          path: theos
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Cache iOS 26.5 SDK
+        id: sdk-26
+        uses: actions/cache@v6
+        with:
+          path: theos/sdks/iPhoneOS26.5.sdk
+          key: iOS-26.5-SDK-v2
+
+      - name: Cache iOS 16.5 SDK
+        id: sdk-16
+        uses: actions/cache@v6
+        with:
+          path: theos/sdks/iPhoneOS16.5.sdk
+          key: iOS-16.5-SDK-v2
+
+      - name: Download missing iOS SDKs
+        if: steps.sdk-26.outputs.cache-hit != 'true' || steps.sdk-16.outputs.cache-hit != 'true'
+        run: |
+          git clone -n --depth=1 --filter=tree:0 https://github.com/xybp888/iOS-SDKs ios-sdks
+          cd ios-sdks
+          git sparse-checkout set --no-cone iPhoneOS26.5.sdk iPhoneOS16.5.sdk
+          git checkout
+          mkdir -p "${THEOS}/sdks"
+          for version in 26.5 16.5; do
+            if [[ ! -d "${THEOS}/sdks/iPhoneOS${version}.sdk" ]]; then
+              mv "iPhoneOS${version}.sdk" "${THEOS}/sdks/"
+            fi
+          done
+
+      - name: Compute ffmpeg Cache Key
+        id: ffmpeg-key
+        run: |
+          echo "key=ffmpeg-stack-sdk$(xcrun --sdk iphoneos --show-sdk-version)-$(git rev-parse --short HEAD:deps/ffmpeg-kit-next/upstream)-${{ hashFiles('main/deps/ffmpeg-kit-next/build-ffmpeg.sh') }}" >> "$GITHUB_OUTPUT"
+
+      - name: ffmpeg Stack Caching
+        uses: actions/cache@v6
+        with:
+          path: |
+            ffmpeg-build
+            main/deps/ffmpeg-kit-next/build
+          key: ${{ steps.ffmpeg-key.outputs.key }}
+
+      - name: Build ffmpeg Stack
+        run: |
+          if [[ ! -f deps/ffmpeg-kit-next/build/lib/libffmpegkit.a ]]; then
+            ./deps/ffmpeg-kit-next/build-ffmpeg.sh
+          fi
+
+      - name: Run Build Tests
+        run: make clean && make SIDELOADED=1

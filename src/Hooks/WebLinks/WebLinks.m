@@ -1,5 +1,32 @@
 #import "WebLinks.h"
 
+static id WebLinksEntityForStatusURL(id status, NSURL* url) {
+    if (![status respondsToSelector:@selector(entityForURL:)] ||
+        ![url isKindOfClass:[NSURL class]]) {
+        return nil;
+    }
+
+    id entity = ((id (*)(id, SEL, id))objc_msgSend)(status, @selector(entityForURL:),
+                                                    url.absoluteString);
+    if (entity != nil) {
+        return entity;
+    }
+
+    id entitySet = ObjectForSelector(status, @selector(entities));
+    id urlEntities = ObjectForSelector(entitySet, @selector(urls));
+    if ([urlEntities isKindOfClass:[NSArray class]]) {
+        for (id candidate in (NSArray*)urlEntities) {
+            NSString* networkURL = ObjectForSelector(candidate, @selector(networkURL));
+            NSURL* candidateURL = [NSURL URLWithString:networkURL];
+            if (IsTalonURL(candidateURL) &&
+                [TalonCacheKey(candidateURL) isEqualToString:TalonCacheKey(url)]) {
+                return candidate;
+            }
+        }
+    }
+    return nil;
+}
+
 BOOL BlocksLinkTracking(void) {
     return [BHTSettings boolForKey:@"block_link_tracking"];
 }
@@ -36,6 +63,20 @@ void RememberDestination(NSString* talonString, NSString* destinationString) {
     if (IsTalonURL(talonURL) && IsWebURL(destination) && !IsTalonURL(destination)) {
         [KnownDestinations() setObject:destination forKey:TalonCacheKey(talonURL)];
     }
+}
+
+NSURL* WebLinksExpandedURLForStatus(id status, NSURL* url) {
+    id entity = WebLinksEntityForStatusURL(status, url);
+
+    NSString* expandedString = ObjectForSelector(entity, @selector(expandedURL));
+    NSURL* expandedURL = [expandedString isKindOfClass:[NSString class]]
+                             ? [NSURL URLWithString:expandedString]
+                             : nil;
+    if (IsWebURL(expandedURL) && !IsTalonURL(expandedURL)) {
+        RememberDestination(url.absoluteString, expandedString);
+        return expandedURL;
+    }
+    return nil;
 }
 
 NSURL* DestinationForLink(NSURL* url, NSURL* expandedURL) {

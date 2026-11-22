@@ -6,6 +6,11 @@ static BOOL WebHelperInFlight = NO;
 
 static NSMutableDictionary<NSString*, NSString*>* WebXTIDByPath = nil;
 static NSMutableSet<NSString*>* WebXTIDInFlightKeys = nil;
+// Requests blocked in BHTTransactionIDForRequest (key -> @[method, path]), served as soon as the helper is ready.
+static NSMutableDictionary<NSString*, NSArray<NSString*>*>* WebXTIDWaiters = nil;
+// While the helper can't produce ids (page changed, session rejected, ...), requests don't wait for one
+// until this time, so a broken helper costs one bounded wait per cooldown, not one per request.
+static CFAbsoluteTime WebXTIDGiveUpUntil = 0;
 static NSObject* WebXTIDLock = nil;
 
 static UIWindow* WebHarvestWindow = nil;
@@ -15,6 +20,7 @@ static const void* WebHarvestWebViewKey = &WebHarvestWebViewKey;
 
 static void refreshXTIDForMethodPath(NSString* method, NSString* path);
 static void prewarmCreateTweetXTID(void);
+static void serveXTIDWaiters(void);
 static NSString* cachedXTIDForKey(NSString* key);
 static NSString* xtidKey(NSString* method, NSString* path);
 static void teardownWebHarvestWindow(void);
@@ -202,6 +208,7 @@ static void onHelperWebViewLoaded(WKWebView* webView) {
                   if (error || webView != WebHelperWebView) return;
                   WebHelperReady = YES;
                   prewarmCreateTweetXTID();
+                  serveXTIDWaiters();
               }];
 }
 
@@ -211,6 +218,7 @@ static NSObject* xtidLock(void) {
         WebXTIDLock = [NSObject new];
         WebXTIDByPath = [NSMutableDictionary dictionary];
         WebXTIDInFlightKeys = [NSMutableSet set];
+        WebXTIDWaiters = [NSMutableDictionary dictionary];
     });
     return WebXTIDLock;
 }
@@ -267,6 +275,7 @@ static void refreshXTIDForMethodPath(NSString* method, NSString* path) {
                                [WebXTIDInFlightKeys removeObject:key];
                                if (ok) {
                                    WebXTIDByPath[key] = [result copy];
+                                   WebXTIDGiveUpUntil = 0;
                                }
                            }
                        }];
@@ -283,6 +292,35 @@ static void prewarmCreateTweetXTID(void) {
     refreshXTIDForMethodPath(@"POST", BHTCreateNoteTweetPath());
 }
 
+// Generation is local to the helper page (no network), and refreshXTIDForMethodPath dedupes per key.
+static void serveXTIDWaiters(void) {
+    NSArray<NSArray<NSString*>*>* waiters;
+    @synchronized(xtidLock()) {
+        waiters = WebXTIDWaiters.allValues;
+    }
+    for (NSArray<NSString*>* waiter in waiters) {
+        refreshXTIDForMethodPath(waiter[0], waiter[1]);
+    }
+}
+
+// The wait runs on the app's shared network queue, so it is kept short: a healthy helper answers in
+// about a second. Sending without an id is what already happens when the wait times out.
+static const NSTimeInterval XTIDMaxWait = 6.0;
+static const NSTimeInterval XTIDGiveUpCooldown = 30.0;
+
+static BOOL isPostMutationPath(NSString* path) {
+    return [path hasSuffix:@"/CreateTweet"] || [path hasSuffix:@"/CreateNoteTweet"];
+}
+
+// Asks whichever stage the helper is in to make progress: create it, or mint this id.
+static void kickXTIDGeneration(NSString* method, NSString* path) {
+    if (!WebHelperWebView) {
+        BHTRefreshWebCookiesViaWebView();
+    } else if (WebHelperReady) {
+        refreshXTIDForMethodPath(method, path);
+    }
+}
+
 NSString* BHTTransactionIDForRequest(NSURLRequest* request) {
     NSURL* url = request.URL;
     if (url.path.length == 0) {
@@ -297,18 +335,32 @@ NSString* BHTTransactionIDForRequest(NSURLRequest* request) {
         return cached;
     }
 
-    waitUntil(
+    // Posts always wait (the user is waiting on them, and they have a native fallback); everything else
+    // skips the wait while the helper is known to be failing, and just retries in the background.
+    BOOL isPost = isPostMutationPath(url.path);
+    BOOL coolingDown;
+    @synchronized(xtidLock()) {
+        coolingDown = CFAbsoluteTimeGetCurrent() < WebXTIDGiveUpUntil;
+        if (!coolingDown || isPost) {
+            WebXTIDWaiters[key] = @[method, url.path];
+        }
+    }
+    if (coolingDown && !isPost) {
+        dispatch_async(dispatch_get_main_queue(), ^{ kickXTIDGeneration(method, url.path); });
+        return nil;
+    }
+
+    BOOL got = waitUntil(
         ^BOOL {
             return cachedXTIDForKey(key).length > 0;
         },
-        ^{
-            if (!WebHelperWebView) {
-                BHTRefreshWebCookiesViaWebView();
-            } else if (WebHelperReady) {
-                refreshXTIDForMethodPath(method, url.path);
-            }
-        },
-        20.0);
+        ^{ kickXTIDGeneration(method, url.path); }, XTIDMaxWait);
+    @synchronized(xtidLock()) {
+        [WebXTIDWaiters removeObjectForKey:key];
+        if (!got && ![NSThread isMainThread]) {
+            WebXTIDGiveUpUntil = CFAbsoluteTimeGetCurrent() + XTIDGiveUpCooldown;
+        }
+    }
     return cachedXTIDForKey(key);
 }
 
@@ -334,7 +386,8 @@ static void bootstrapAccount(id account, NSString* userID) {
         }
 
         Class webViewControllerClass = NSClassFromString(@"T1WebViewController");
-        SEL initSel = @selector(initWithRootURL:account:shouldAuthenticate:shouldPresentAsNativePage:
+        SEL initSel = @selector(initWithRootURL:
+                                account:shouldAuthenticate:shouldPresentAsNativePage:
                                 sourceStatus:scribeComponent:scribeParameters:);
         UIWindowScene* scene = activeWindowScene();
         if (!webViewControllerClass || !scene ||
