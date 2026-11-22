@@ -522,8 +522,36 @@ void BHTInvalidateWebCredentials(NSString* userID, NSURLRequest* request) {
     }
 }
 
+static BOOL isUsableCookiePair(NSDictionary* pair) {
+    return [pair[@"auth_token"] length] > 0 && [pair[@"ct0"] length] > 0;
+}
+
+// The session cookies used to seed the helper webview. The global session is only filled from the shared
+// cookie jar, which can be empty at launch, so fall back to a persisted per-account pair (the ones request
+// signing uses), cookie-login accounts first. A helper with no session is redirected to the logged-out
+// onboarding page, where the transaction id module never loads.
 NSDictionary* BHTCurrentWebSessionCookies(void) {
     @synchronized(accountCacheLock()) {
-        return @{@"auth_token": WebAuthToken ?: @"", @"ct0": WebCT0 ?: @"", @"twid": WebTwid ?: @""};
+        NSDictionary* current =
+            @{@"auth_token": WebAuthToken ?: @"", @"ct0": WebCT0 ?: @"", @"twid": WebTwid ?: @""};
+        if (isUsableCookiePair(current)) {
+            return current;
+        }
+
+        loadCookieLoginUsers();
+        NSDictionary* fallback = nil;
+        @synchronized(WebCookieLoginUserIDs) {
+            for (NSString* userID in WebCookieLoginUserIDs) {
+                if (isUsableCookiePair(WebAccountCookies[userID])) {
+                    fallback = WebAccountCookies[userID];
+                    break;
+                }
+            }
+        }
+        for (NSDictionary* pair in WebAccountCookies.allValues) {
+            if (fallback) break;
+            if (isUsableCookiePair(pair)) fallback = pair;
+        }
+        return fallback ?: current;
     }
 }
