@@ -65,7 +65,6 @@ void RememberDestination(NSString* talonString, NSString* destinationString) {
     }
 }
 
-
 NSURL* WebLinksExpandedURLForStatus(id status, NSURL* url) {
     id entity = WebLinksEntityForStatusURL(status, url);
 
