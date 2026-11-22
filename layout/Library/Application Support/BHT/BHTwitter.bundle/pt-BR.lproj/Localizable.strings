@@ -35,7 +35,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Rótulos das abas";
 "RESTORE_TAB_LABELS_DETAIL" = "Mostra rótulos abaixo dos ícones da barra de abas.";
 "ENABLE_DIM_THEME_TITLE" = "Ativar tema Dim";
-"ENABLE_DIM_THEME_DETAIL" = "Restaura o tema Dim removido do Twitter. Requer modo escuro e reinicialização.";
+"ENABLE_DIM_THEME_DETAIL" = "Usa o antigo tema Dim do Twitter em vez do tema preto quando o modo escuro está ativado.";
 "CUSTOM_FONTS_TITLE" = "Fontes personalizadas";
 "CUSTOM_FONTS_DETAIL" = "Selecione uma fonte personalizada para o Twitter.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Escolher uma fonte";
@@ -65,6 +65,10 @@
 "HIDE_TWEET_BUTTON_DETAIL" = "Remove o botão Tweet da barra de navegação.";
 "HIDE_RETWEETS_TITLE" = "Ocultar Retweets";
 "HIDE_RETWEETS_DETAIL" = "Oculta Retweets da timeline.";
+"HIDE_AI_TWEETS_TITLE" = "Ocultar Tweets feitos com IA";
+"HIDE_AI_TWEETS_DETAIL" = "Oculta Tweets marcados como \"Feito com IA\" na sua timeline.";
+"HIDE_PAID_TWEETS_TITLE" = "Ocultar Tweets com parceria paga";
+"HIDE_PAID_TWEETS_DETAIL" = "Oculta Tweets identificados como \"Parceria paga\" na sua timeline.";
 "HIDE_QUOTE_TWEETS_TITLE" = "Ocultar Tweets citados";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Oculta Tweets citados da timeline.";
 "HIDE_VERIFIED_TWEETS_TITLE" = "Ocultar Tweets verificados";
@@ -272,7 +276,9 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Citações: %lld  Retweets: %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "Mostrar origem do Tweet";
 "RESTORE_TWEET_LABELS_DETAIL" = "Mostra qual cliente foi usado para publicar o Tweet.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Reinicialização necessária";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "O Liquid Glass exige reiniciar o app para ser aplicado.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Reiniciar";
 "DEVELOPER_SECTION_HEADER_TITLE" = "Desenvolvedores";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Fontes personalizadas";
 "CUSTOM_FONTS_MENU_TITLE" = "\nEscolha uma fonte";
@@ -299,9 +305,6 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Toque em um destino para adicionar ou remover. Arraste a barra abaixo para reordenar.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Deseja restaurar a barra de navegação ao padrão?";
 "REFRESH_PILL_TEXT" = "publicou";
-"DIM_THEME_RESTART_ALERT_TITLE" = "Reinicialização necessária";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "O tema Dim exige reiniciar o app para ser aplicado.";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Reiniciar";
 "HIDE_QUICK_COMPOSE_TITLE" = "Ocultar composição rápida";
 "HIDE_QUICK_COMPOSE_DETAIL" = "Remove o botão de composição rápida da barra de navegação (somente no Liquid Glass).";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Nada para ver aqui — ainda";
