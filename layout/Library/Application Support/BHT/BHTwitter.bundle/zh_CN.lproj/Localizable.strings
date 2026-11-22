@@ -133,7 +133,7 @@
 "RESTORE_FOLLOW_BUTTON_TITLE" = "不显示订阅按钮";
 "RESTORE_FOLLOW_BUTTON_DETAIL" = "隐藏推文和个人资料中的订阅按钮。";
 "SQUARE_AVATARS_TITLE" = "方形头像";
-"SQUARE_AVATARS_DETAIL" = "为所有人显示方形头像，就像以前的品牌账号一样。";
+"SQUARE_AVATARS_DETAIL" = "为所有人显示方形头像，就像以前的 Twitter 一样。";
 
 /* chat */
 
@@ -163,8 +163,8 @@
 "HIDE_BOOKMARK_BUTTON_DETAIL" = "移除推文上的书签按钮。";
 "HIDE_DOWNVOTE_BUTTON_TITLE" = "隐藏点踩按钮";
 "HIDE_DOWNVOTE_BUTTON_DETAIL" = "移除推文上的点踩按钮。";
-"HIDE_MADE_ON_X_TITLE" = "隐藏“由 X 制作”";
-"HIDE_MADE_ON_X_DETAIL" = "从推文中移除“由 X 制作”标签。";
+"HIDE_MADE_ON_X_TITLE" = "隐藏“在 X 上制作”";
+"HIDE_MADE_ON_X_DETAIL" = "从推文中移除“在 X 上制作”标签。";
 "USE_TENOR_GIFS_TITLE" = "使用 Tenor GIF";
 "USE_TENOR_GIFS_DETAIL" = "使用 Tenor GIF 替代 Twitter 的 GIF（GIPHY）。Tenor 有更多选择。";
 "DISABLE_MEDIA_CAROUSEL_TITLE" = "禁用媒体轮播";
@@ -205,7 +205,7 @@
 "MODERN_SETTINGS_BRANDING_TITLE" = "品牌";
 "MODERN_SETTINGS_BRANDING_SUBTITLE" = "调整您看到多少 Twitter 品牌还原效果。";
 "RESTORE_TWITTER_NAMES_TITLE" = "还原 Twitter 术语";
-"RESTORE_TWITTER_NAMES_DETAIL" = "在应用界面中将“X”替换为“Twitter”，“帖子”替换为“推文”，“转发”替换为“转推”等等。";
+"RESTORE_TWITTER_NAMES_DETAIL" = "在应用界面中将“X”替换为“Twitter”，“帖子”替换为“推文”，“转帖”替换为“转推”等等。";
 "REFRESH_PILL_LABEL_TITLE" = "在刷新提示条上添加标签";
 "REFRESH_PILL_LABEL_DETAIL" = "当有人发推时，将标签重新添加到刷新提示条。";
 "COLOR_TWITTER_ICON_IN_TOP_BAR_TITLE" = "为 Twitter 图标着色";
@@ -295,7 +295,7 @@
 "THEME_SETTINGS_NAVIGATION_TITLE" = "更换主题";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "选择一个仅自己可见的主题颜色。";
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "自定义标签栏";
-"CUSTOM_TAB_BAR_UNAVAILABLE_MESSAGE" = "自定义标签烂在该版本的App不可用。";
+"CUSTOM_TAB_BAR_UNAVAILABLE_MESSAGE" = "自定义标签栏在该版本的 App 不可用。";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "点按目的地可添加或移除。拖动下方栏可重新排序。";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "您确定要将导航栏恢复为默认设置吗？";
 "REFRESH_PILL_TEXT" = "已发帖";
