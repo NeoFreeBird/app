@@ -136,7 +136,8 @@ case "$MODE" in
       if command -v cyan >/dev/null 2>&1; then
         cyan -i packages/com.atebits.Tweetie2.ipa -o packages/NeoFreeBird-sideloaded --ignore-encrypted \
           -uwf .theos/obj/debug/zxPluginsInject.dylib .theos/obj/debug/libbhFLEX.dylib \
-          .theos/obj/debug/BHTwitter.dylib layout/Library/Application\ Support/BHT/BHTwitter.bundle
+          .theos/obj/debug/BHTwitter.dylib layout/Library/Application\ Support/BHT/BHTwitter.bundle \
+          .theos/obj/debug/CallessKit.dylib
         say "Injecting OpenTwitterSafariExtension.appex into the IPA."  
         inject_appex packages/NeoFreeBird-sideloaded.ipa
       else
@@ -165,7 +166,8 @@ case "$MODE" in
       say "Merging NeoFreeBird to provided Twitter IPA."
       if command -v cyan >/dev/null 2>&1; then
         cyan -i packages/com.atebits.Tweetie2.ipa -o packages/NeoFreeBird-trollstore.tipa --ignore-encrypted \
-          -uwf .theos/obj/debug/BHTwitter.dylib .theos/obj/debug/libbhFLEX.dylib layout/Library/Application\ Support/BHT/BHTwitter.bundle
+          -uwf .theos/obj/debug/BHTwitter.dylib .theos/obj/debug/libbhFLEX.dylib layout/Library/Application\ Support/BHT/BHTwitter.bundle \
+          .theos/obj/debug/CallessKit.dylib
         say "Injecting OpenTwitterSafariExtension.appex into the IPA."  
         inject_appex packages/NeoFreeBird-trollstore.tipa
       else

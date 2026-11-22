@@ -10,3 +10,6 @@
 [submodule "OpenTwitterSafariExtension"]
 	path = deps/OpenTwitterSafariExtension
 	url = https://github.com/BandarHL/OpenTwitterSafariExtension
+[submodule "CallessKit"]
+	path = deps/CallessKit
+	url = git@github.com:NeoFreeBird/CallessKit.git
