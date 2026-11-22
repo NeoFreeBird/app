@@ -350,6 +350,35 @@ static BOOL updatingTabIconColor = NO;
 
 %end
 
+%hook _TtC11XNavigation16TabBarController
+
+- (void)viewDidLoad {
+    %orig;
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(nfb_glassTabBarDidBecomeActive:)
+                                               name:UIApplicationDidBecomeActiveNotification
+                                             object:nil];
+}
+
+%new
+- (void)nfb_glassTabBarDidBecomeActive:(NSNotification*)notification {
+    if (!NFBLiquidGlassEnabled()) return;
+    __weak UIViewController* weakController = (UIViewController*)self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIView* view = weakController.viewIfLoaded;
+        UIWindow* window = view.window;
+        if (!NFBLiquidGlassEnabled() || !window ||
+            window.windowScene.activationState != UISceneActivationStateForegroundActive) return;
+
+        for (UIView* ancestor = view; ancestor; ancestor = ancestor.superview) {
+            [ancestor setNeedsLayout];
+        }
+        [window layoutIfNeeded];
+    });
+}
+
+%end
+
 %hook _TtC11XNavigation10TabBarView
 
 - (void)layoutSubviews {
