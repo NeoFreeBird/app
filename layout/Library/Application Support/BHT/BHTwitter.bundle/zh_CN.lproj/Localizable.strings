@@ -35,6 +35,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "导航标签";
 "RESTORE_TAB_LABELS_DETAIL" = "在导航图标下方显示文字标签，如旧版 Twitter。";
 "ENABLE_DIM_THEME_TITLE" = "启用暗色主题";
+"ENABLE_DIM_THEME_DETAIL" = "恢复被移除的 Twitter 暗色主题。需要启用深色模式并重启。";
 "CUSTOM_FONTS_TITLE" = "自定义字体";
 "CUSTOM_FONTS_DETAIL" = "为 Twitter 选择一个自定义字体。";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "选择字体";
@@ -271,9 +272,7 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "引用：%lld  转推：%lld";
 "RESTORE_TWEET_LABELS_TITLE" = "显示推文来源";
 "RESTORE_TWEET_LABELS_DETAIL" = "显示推文是从哪个客户端发布的（来自 @nyaathea）。";
-"LIQUID_GLASS_RESTART_ALERT_TITLE" = "需要重启";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass 设计需要重新启动才能生效。";
-"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "重启";
 "DEVELOPER_SECTION_HEADER_TITLE" = "开发者";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "自定义字体";
 "CUSTOM_FONTS_MENU_TITLE" = "\n选择字体";
@@ -299,6 +298,9 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "点按目的地可添加或移除。拖动下方栏可重新排序。";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "您确定要将导航栏恢复为默认设置吗？";
 "REFRESH_PILL_TEXT" = "已发帖";
+"DIM_THEME_RESTART_ALERT_TITLE" = "需要重启";
+"DIM_THEME_RESTART_ALERT_MESSAGE" = "暗色主题需要重启才能生效。";
+"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "重启";
 "HIDE_QUICK_COMPOSE_TITLE" = "隐藏快速撰写";
 "HIDE_QUICK_COMPOSE_DETAIL" = "从导航栏中移除“快速撰写”按钮（仅在 Liquid Glass 上）。";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "这里暂时还没有内容。";

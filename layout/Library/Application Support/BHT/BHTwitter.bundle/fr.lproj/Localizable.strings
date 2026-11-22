@@ -35,7 +35,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Étiquettes de navigation";
 "RESTORE_TAB_LABELS_DETAIL" = "Affiche les étiquettes sous les icônes de la barre de navigation.";
 "ENABLE_DIM_THEME_TITLE" = "Activer le thème bleu nuit";
-"ENABLE_DIM_THEME_DETAIL" = "Utiliser le thème bleu nuit supprimé de Twitter au lieu du thème noir lorsque le mode sombre est actif.";
+"ENABLE_DIM_THEME_DETAIL" = "Rétablit le thème bleu nuit supprimé de Twitter. Nécessite l’activation du mode sombre et un redémarrage.";
 "CUSTOM_FONTS_TITLE" = "Polices personnalisées";
 "CUSTOM_FONTS_DETAIL" = "Choisissez une police personnalisée pour Twitter.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Choisir une police";
@@ -268,9 +268,7 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Citations : %lld  Retweets : %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "Afficher la source des Tweets";
 "RESTORE_TWEET_LABELS_DETAIL" = "Affiche l’application utilisée pour publier les Tweets.";
-"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Redémarrage nécessaire";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "La refonte Liquid Glass nécessite un redémarrage pour prendre effet.";
-"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Redémarrer";
 "DEVELOPER_SECTION_HEADER_TITLE" = "Développeurs";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Polices personnalisées";
 "CUSTOM_FONTS_MENU_TITLE" = "\nChoisir une police";
@@ -296,6 +294,9 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Touchez une destination pour l’ajouter ou la supprimer. Faites glisser les éléments de la barre ci-dessous pour les réordonner.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Voulez-vous vraiment réinitialiser la barre de navigation ?";
 "REFRESH_PILL_TEXT" = "Posté";
+"DIM_THEME_RESTART_ALERT_TITLE" = "Redémarrage nécessaire";
+"DIM_THEME_RESTART_ALERT_MESSAGE" = "Le thème bleu nuit nécessite un redémarrage pour prendre effet.";
+"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Redémarrer";
 "HIDE_QUICK_COMPOSE_TITLE" = "Masquer la composition rapide";
 "HIDE_QUICK_COMPOSE_DETAIL" = "Supprime le bouton de composition rapide de la barre de navigation (uniquement avec Liquid Glass).";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Rien à voir ici pour le moment.";

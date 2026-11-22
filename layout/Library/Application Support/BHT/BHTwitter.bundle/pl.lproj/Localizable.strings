@@ -33,6 +33,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Podpisy kart";
 "RESTORE_TAB_LABELS_DETAIL" = "Pokazuje podpisy pod ikonami na pasku kart.";
 "ENABLE_DIM_THEME_TITLE" = "Włącz przyciemniony motyw";
+"ENABLE_DIM_THEME_DETAIL" = "Przywraca usunięty z Twittera przyciemniony motyw. Wymaga włączonego trybu ciemnego i ponownego uruchomienia.";
 "CUSTOM_FONTS_TITLE" = "Własne czcionki";
 "CUSTOM_FONTS_DETAIL" = "Wybierz własną czcionkę dla Twittera.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Wybierz czcionkę";
@@ -257,8 +258,9 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Stuknij pozycję, żeby ją dodać lub usunąć. Kolejność zmienisz, przeciągając elementy na pasku poniżej.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Na pewno przywrócić domyślny układ paska nawigacji?";
 "REFRESH_PILL_TEXT" = "Nowe wpisy";
-"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Wymagane ponowne uruchomienie";
-"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Uruchom ponownie";
+"DIM_THEME_RESTART_ALERT_TITLE" = "Wymagane ponowne uruchomienie";
+"DIM_THEME_RESTART_ALERT_MESSAGE" = "Przyciemniony motyw zacznie działać po ponownym uruchomieniu aplikacji.";
+"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Uruchom ponownie";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Na razie nic tu nie ma";
 "MODERN_SETTINGS_PLACEHOLDER_DETAIL_TEXT" = "Ta sekcja pojawi się wkrótce. Wypatruj nowych funkcji NeoFreeBird!";
 "SOURCE_UNAVAILABLE" = "Źródło niedostępne";

@@ -35,6 +35,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Oznake navigacije";
 "RESTORE_TAB_LABELS_DETAIL" = "Prikaži oznake ispod ikona u navigaciji kao u starom Twitteru.";
 "ENABLE_DIM_THEME_TITLE" = "Uključi dim temu";
+"ENABLE_DIM_THEME_DETAIL" = "Vraća dim temu za Twitter. Potrebno je imati upaljen dark mode te napraviti restart.";
 "CUSTOM_FONTS_TITLE" = "Prilagođeni fontovi";
 "CUSTOM_FONTS_DETAIL" = "Odaberi vlastiti font za Twitter.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Odaberi font";
@@ -267,9 +268,7 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Citiranja: %lld  Retweetovi: %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "Prikaži izvor tweeta";
 "RESTORE_TWEET_LABELS_DETAIL" = "Prikazuje s koje je aplikacije tweet objavljen (@nyaathea).";
-"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Restart potreban";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass dizajn zahtijeva restart aplikacije kako bi se primijenio.";
-"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Restart";
 "DEVELOPER_SECTION_HEADER_TITLE" = "Razvojni tim";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Prilagođeni fontovi";
 "CUSTOM_FONTS_MENU_TITLE" = "\nOdaberi font";
@@ -295,6 +294,9 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Tap a destination to add or remove it. Drag the bar below to reorder.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Jeste li sigurni da želite vratiti navigacijsku traku na zadano stanje?";
 "REFRESH_PILL_TEXT" = "Objavljeno";
+"DIM_THEME_RESTART_ALERT_TITLE" = "Restart potreban";
+"DIM_THEME_RESTART_ALERT_MESSAGE" = "Za primjenu dim teme potrebno je ponovno pokrenuti aplikaciju.";
+"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Restart";
 "HIDE_QUICK_COMPOSE_TITLE" = "Sakrij gumb za brzo pisanje";
 "HIDE_QUICK_COMPOSE_DETAIL" = "Uklanja gumb za brzo pisanje iz navigacijske trake (samo kada je Liquid Glass uključen).";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Ovdje još ništa ne prikazujemo.";

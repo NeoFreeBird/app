@@ -35,6 +35,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Sekme etiketleri";
 "RESTORE_TAB_LABELS_DETAIL" = "Sekme çubuğundaki simgelerin altında etiketleri gösterir.";
 "ENABLE_DIM_THEME_TITLE" = "Alacakaranlık temasını etkinleştir";
+"ENABLE_DIM_THEME_DETAIL" = "Twitter için kaldırılan alacakaranlık temasını geri getirir. Koyu modun etkin olmasını ve yeniden başlatma gerektirir.";
 "CUSTOM_FONTS_TITLE" = "Özel yazı tipleri";
 "CUSTOM_FONTS_DETAIL" = "Twitter için özel bir yazı tipi seçin.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Bir yazı tipi seçin";
@@ -271,9 +272,7 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Alıntılar: %lld  Retweetler: %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "Tweet kaynağı etiketlerini göster";
 "RESTORE_TWEET_LABELS_DETAIL" = "Tweetlerin hangi istemciden gönderildiğini gösterir.";
-"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Yeniden başlatma gerekli";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass yeniden tasarımı, değişikliklerin etkili olması için yeniden başlatma gerektirir.";
-"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Yeniden başlat";
 "DEVELOPER_SECTION_HEADER_TITLE" = "Geliştiriciler";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Özel yazı tipleri";
 "CUSTOM_FONTS_MENU_TITLE" = "\nBir yazı tipi seçin";
@@ -299,6 +298,9 @@
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Eklemek veya kaldırmak için bir öğeye dokunun. Yeniden sıralamak için aşağıdaki çubuğu sürükleyin.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Gezinme çubuğunu varsayılan durumuna geri yüklemek istediğinizden emin misiniz?";
 "REFRESH_PILL_TEXT" = "Tweetlendi";
+"DIM_THEME_RESTART_ALERT_TITLE" = "Yeniden başlatma gerekli";
+"DIM_THEME_RESTART_ALERT_MESSAGE" = "Alacakaranlık temasının etkili olması için yeniden başlatma gerekir.";
+"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "Yeniden başlat";
 "HIDE_QUICK_COMPOSE_TITLE" = "Hızlı Oluştur'u gizle";
 "HIDE_QUICK_COMPOSE_DETAIL" = "Gezinme çubuğundan Hızlı Oluştur düğmesini kaldırır (yalnızca Liquid Glass üzerinde).";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "Burada henüz görülecek bir şey yok";

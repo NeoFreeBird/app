@@ -33,6 +33,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Підписи навігації";
 "RESTORE_TAB_LABELS_DETAIL" = "Показати підписи під іконками як у старому Twitter.";
 "ENABLE_DIM_THEME_TITLE" = "Приглушена темна тема";
+"ENABLE_DIM_THEME_DETAIL" = "Відновлює прибрану темно-синю тему. Потребує перезапуск та увімкнення темної теми.";
 "CUSTOM_FONTS_TITLE" = "Власні шрифти";
 "CUSTOM_FONTS_DETAIL" = "Виберіть шрифт для Twitter.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Вибрати шрифт";
