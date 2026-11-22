@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   tests:
-    name: v7 Tests / ${{ matrix.name }}
+    name: ${{ matrix.name }}
     runs-on: macos-latest
     timeout-minutes: 60
     strategy:
