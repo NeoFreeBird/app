@@ -12,13 +12,13 @@
 "HIDE_PROMOTED_TITLE" = "Reklamları gizle";
 "HIDE_PROMOTED_DETAIL" = "Tüm reklamları kaldırır.";
 "HIDE_PREMIUM_OFFER_TITLE" = "Twitter Blue istemlerini gizle";
-"HIDE_PREMIUM_OFFER_DETAIL" = "“Onaylan” ve “Yükselt” düğmelerini kaldırır.";
+"HIDE_PREMIUM_OFFER_DETAIL" = "“Doğrulan” ve “Yükselt” düğmelerini kaldırır.";
 "NO_TAB_BAR_HIDING_TITLE" = "Gezinme çubuğunu görünür tut";
-"NO_TAB_BAR_HIDING_DETAIL" = "Kaydırdığınızda gezinme çubuğunu gizlemez veya soluklaştırmaz.";
+"NO_TAB_BAR_HIDING_DETAIL" = "Kaydırdığınızda gezinme çubuğunu soluklaştırmaz.";
 "DISABLE_RTL_TITLE" = "Soldan sağa düzeni kullan";
 "DISABLE_RTL_DETAIL" = "Sağdan sola okunan dillerde bile soldan sağa bir düzeni zorlar.";
 "NO_FOCUS_LOST_TITLE" = "Odak kaybını önle";
-"NO_FOCUS_LOST_DETAIL" = "Başka bir uygulamaya geçtiğinizi Twitter’ın algılamasını engeller, böylece sohbet dizisindeki yerinizi kaybetmezsiniz.";
+"NO_FOCUS_LOST_DETAIL" = "Başka bir uygulamaya geçtiğinizi Twitter’ın algılamasını engeller, böylece konu dizisindeki yerinizi kaybetmezsiniz.";
 "SHOW_SCROLL_INDICATOR_TITLE" = "Kaydırma çubuğunu her zaman göster";
 "IPAD_SPLIT_VIEW_TITLE" = "iPad bölünmüş ekranını etkinleştir";
 "IPAD_SPLIT_VIEW_DETAIL" = "Twitter’ı iPad’de (ve iPhone Duo'da) bölünmüş ekranda kullanmanıza olanak tanır. Bu sayede bir tarafta bir tweet açıkken diğer tarafta zaman akışınızı görebilirsiniz.";
@@ -26,7 +26,7 @@
 /* appearance */
 
 "MODERN_SETTINGS_APPEARANCE_TITLE" = "Görünüm";
-"MODERN_SETTINGS_APPEARANCE_SUBTITLE" = "Temalar, özel uygulama simgeleri ve yazı tipleriyle Twitter’ı tamamen kendinize göre özelleştirin.";
+"MODERN_SETTINGS_APPEARANCE_SUBTITLE" = "Temalar, özel uygulama simgeleri, yazı tipleri ve daha fazlasıyla Twitter’ı tamamen kendinize göre özelleştirin.";
 "THEME_OPTION_TITLE" = "Temayı değiştir";
 "APP_ICON_TITLE" = "Uygulama simgesini değiştir";
 "CUSTOM_TAB_BAR_OPTION_TITLE" = "Gezinme çubuğunu düzenle";
@@ -35,7 +35,7 @@
 "RESTORE_TAB_LABELS_TITLE" = "Sekme etiketleri";
 "RESTORE_TAB_LABELS_DETAIL" = "Sekme çubuğundaki simgelerin altında etiketleri gösterir.";
 "ENABLE_DIM_THEME_TITLE" = "Alacakaranlık temasını etkinleştir";
-"ENABLE_DIM_THEME_DETAIL" = "Twitter için kaldırılan alacakaranlık temasını geri getirir. Koyu modun etkin olmasını ve yeniden başlatma gerektirir.";
+"ENABLE_DIM_THEME_DETAIL" = "Karanlık mod açıkken siyah tema yerine Twitter’ın kaldırılan alacakaranlık temasını kullanır.";
 "CUSTOM_FONTS_TITLE" = "Özel yazı tipleri";
 "CUSTOM_FONTS_DETAIL" = "Twitter için özel bir yazı tipi seçin.";
 "REGULAR_FONTS_PICKER_OPTION_TITLE" = "Bir yazı tipi seçin";
@@ -65,11 +65,15 @@
 "HIDE_TWEET_BUTTON_DETAIL" = "Gezinme çubuğundan Tweet düğmesini kaldırır.";
 "HIDE_RETWEETS_TITLE" = "Retweetleri gizle";
 "HIDE_RETWEETS_DETAIL" = "Zaman akışınızdaki retweetleri gizler.";
+"HIDE_AI_TWEETS_TITLE" = "Yapay zeka Tweetlerini gizle";
+"HIDE_AI_TWEETS_DETAIL" = "Zaman akışınızda \"Yapay zeka ile yapıldı\" olarak işaretlenen Tweetleri gizler.";
+"HIDE_PAID_TWEETS_TITLE" = "Ücretli Tweetleri gizle";
+"HIDE_PAID_TWEETS_DETAIL" = "Zaman akışınızda \"Ücretli Ortaklık\" olarak işaretlenen Tweetleri gizler.";
 "HIDE_QUOTE_TWEETS_TITLE" = "Alıntı Tweetleri gizle";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Zaman akışınızdaki alıntı Tweetleri gizler.";
 "HIDE_VERIFIED_TWEETS_TITLE" = "Onaylı Tweetleri gizle";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Yazar aynı dizide yanıt vermediği veya hesabı takip etmediğiniz sürece zaman akışınızda ve yanıtlarınızda onaylı hesapların Tweetlerini gizler.";
-"RESTORE_REFRESH_SOUNDS_TITLE" = "Yenileme seslerini geri yükle";
+"RESTORE_REFRESH_SOUNDS_TITLE" = "Yenileme sesleri";
 
 /* grok */
 
@@ -80,7 +84,7 @@
 "HIDE_GROK_CREATE_TITLE" = "Grok oluşturma düğmelerini gizle";
 "HIDE_GROK_CREATE_DETAIL" = "Grok ile görsel ve video oluşturma veya düzenleme seçeneklerini kaldırır.";
 "DISABLE_AUTO_TRANSLATE_TITLE" = "Otomatik çeviriyi devre dışı bırak";
-"DISABLE_AUTO_TRANSLATE_DETAIL" = "Tweetleri ve biyografileri otomatik olarak çevirmez.";
+"DISABLE_AUTO_TRANSLATE_DETAIL" = "Gönderileri veya biyografileri asla otomatik olarak çevirmez.";
 
 /* media_downloads */
 
@@ -98,7 +102,7 @@
 "AUTO_HIGHEST_LOAD_TITLE" = "Yüksek kaliteli medya";
 "AUTO_HIGHEST_LOAD_DETAIL" = "Fotoğrafları ve videoları her zaman mümkün olan en yüksek çözünürlükte yükler.";
 "FORCE_TWEET_FULL_FRAME_TITLE" = "Büyük görseller";
-"RESTORE_VIDEO_TIMESTAMP_TITLE" = "Video zaman etiketini göster";
+"RESTORE_VIDEO_TIMESTAMP_TITLE" = "Video zaman etiketi";
 "RESTORE_VIDEO_TIMESTAMP_DETAIL" = "Sürükleyici oynatıcıda zaman etiketini gösterir.";
 "DISABLE_DOUBLE_TAP_LIKE_TITLE" = "Çift dokunarak beğenmeyi devre dışı bırak";
 "DISABLE_DOUBLE_TAP_LIKE_DETAIL" = "Videoları beğenmek için üzerlerine çift dokunulmasını engeller.";
@@ -138,13 +142,13 @@
 /* chat */
 
 "MODERN_SETTINGS_CHAT_TITLE" = "Sohbet";
-"MODERN_SETTINGS_CHAT_SUBTITLE" = "Sohbet arayüzüne yeni özellikler ekleyin.";
+"MODERN_SETTINGS_CHAT_SUBTITLE" = "XChat arayüzüne özellikler ekleyin.";
 "HIDE_TYPING_INDICATOR_TITLE" = "Yazıyor göstergesini gizle";
 "HIDE_TYPING_INDICATOR_DETAIL" = "Sohbetlerde diğer kişilere \"yazıyor...\" göstergesinin gönderilmesini engeller.";
 "DOWNLOAD_VOICE_MESSAGES_TITLE" = "Sesli mesajları indir";
 "DOWNLOAD_VOICE_MESSAGES_DETAIL" = "Sesli mesajları oynattıktan sonra cihazınıza kaydeder (indirmek için sesli mesaja iki parmakla uzun basın).";
 "BLOCK_SCREENSHOT_DETECTION_TITLE" = "Ekran görüntüsü algılamayı engelle";
-"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "“Güvenli” sohbetlerde ekran görüntüsü algılamasını engeller.";
+"BLOCK_SCREENSHOT_DETECTION_DETAIL" = "“Güvenli” sohbetlerde engellenmeden ekran görüntüsü almanızı sağlar.";
 
 /* tweets */
 
@@ -203,7 +207,7 @@
 /* branding */
 
 "MODERN_SETTINGS_BRANDING_TITLE" = "Marka";
-"MODERN_SETTINGS_BRANDING_SUBTITLE" = "Twitter marka değişikliklerinin ne kadarının görüneceğini ayarlayın.";
+"MODERN_SETTINGS_BRANDING_SUBTITLE" = "Gördüğünüz Twitter marka geri dönüşlerinin miktarını ayarlayın.";
 "RESTORE_TWITTER_NAMES_TITLE" = "Twitter terminolojisini geri yükle";
 "RESTORE_TWITTER_NAMES_DETAIL" = "Uygulama arayüzü genelinde “X” yerine “Twitter”, “Post” yerine “Tweet”, “Repost” yerine “Retweet” vb. ifadeleri kullanır.";
 "REFRESH_PILL_LABEL_TITLE" = "Yenileme göstergesine etiket ekle";
@@ -272,7 +276,9 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "Alıntılar: %lld  Retweetler: %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "Tweet kaynağı etiketlerini göster";
 "RESTORE_TWEET_LABELS_DETAIL" = "Tweetlerin hangi istemciden gönderildiğini gösterir.";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "Yeniden başlatma gerekli";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "Liquid Glass yeniden tasarımı, değişikliklerin etkili olması için yeniden başlatma gerektirir.";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "Yeniden başlat";
 "DEVELOPER_SECTION_HEADER_TITLE" = "Geliştiriciler";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "Özel yazı tipleri";
 "CUSTOM_FONTS_MENU_TITLE" = "\nBir yazı tipi seçin";
@@ -295,6 +301,7 @@
 "THEME_SETTINGS_NAVIGATION_TITLE" = "Tema";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "Twitter deneyiminiz için bir tema rengi seçin. Bu yalnızca sizin tarafınızdan görülebilir.";
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "Özel Gezinme Çubuğu";
+"CUSTOM_TAB_BAR_UNAVAILABLE_MESSAGE" = "Özel sekme çubuğu özelleştirmesi uygulamanın bu sürümünde kullanılamıyor.";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "Eklemek veya kaldırmak için bir öğeye dokunun. Yeniden sıralamak için aşağıdaki çubuğu sürükleyin.";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "Gezinme çubuğunu varsayılan durumuna geri yüklemek istediğinizden emin misiniz?";
 "REFRESH_PILL_TEXT" = "Tweetlendi";
