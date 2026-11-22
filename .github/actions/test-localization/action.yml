@@ -1,0 +1,16 @@
+name: Localization tests
+description: Validate localization files and run terminology tests.
+runs:
+  using: composite
+  steps:
+    - name: Verify Apple toolchain
+      shell: bash
+      working-directory: main
+      run: |
+        xcrun --sdk macosx --find clang
+        xcrun --sdk macosx --show-sdk-path
+
+    - name: Run Localization Tests
+      shell: bash
+      working-directory: main
+      run: ./test.sh
