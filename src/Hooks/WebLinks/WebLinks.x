@@ -90,8 +90,44 @@
 
 %hook T1UnifiedCardBrowserDestinationHandlerHelper
 
+- (id)openHandlerWithUrl:(NSURL*)url scribeContext:(id)scribeContext {
+    if (!BlocksLinkTracking() || !IsTalonURL(url)) {
+        return %orig;
+    }
+
+    id sourceStatus = ObjectForSelector(self, @selector(sourceStatus));
+    NSURL* expandedURL = WebLinksExpandedURLForStatus(sourceStatus, url);
+    NSURL* destination = DestinationForLink(url, expandedURL);
+
+    if (destination == url) {
+        return %orig;
+    }
+    return %orig(destination, scribeContext);
+}
+
 - (NSURL*)urlByAppendingTwitterClickIDToUrl:(NSURL*)url scribeComponent:(id)scribeComponent {
     return BlocksLinkTracking() ? url : %orig;
+}
+
+%end
+
+%hook T1CardURLPresenter
+
+- (id)openHandlerForURL:(NSURL*)url withPresentable:(id)presentable {
+    if (!BlocksLinkTracking() || !IsTalonURL(url)) {
+        return %orig;
+    }
+
+    if (![presentable respondsToSelector:@selector(cardDataSource)]) {
+        return %orig;
+    }
+    id cardDataSource = ObjectForSelector(presentable, @selector(cardDataSource));
+    NSURL* expandedURL = WebLinksExpandedURLForStatus(cardDataSource, url);
+    NSURL* destination = DestinationForLink(url, expandedURL);
+    if (destination == url) {
+        return %orig;
+    }
+    return %orig(destination, presentable);
 }
 
 %end
