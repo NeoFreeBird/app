@@ -1,0 +1,4 @@
+/* Exact, case-sensitive UI phrases. Keep grammatical changes here or in
+RenameOverrides.strings, not in generic word substitutions. */
+
+"这里空空如也──暂时。" = "这条推文已被删除。";

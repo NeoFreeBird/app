@@ -1,4 +1,4 @@
-name: Tests
+name: v7 Tests
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   tests:
-    name: Tests
+    name: v7 Tests
     runs-on: macos-latest
     timeout-minutes: 60
     defaults:

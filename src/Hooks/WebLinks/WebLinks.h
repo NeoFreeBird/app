@@ -7,6 +7,7 @@ BOOL IsWebURL(NSURL* url);
 NSString* TalonCacheKey(NSURL* url);
 NSCache<NSString*, NSURL*>* KnownDestinations(void);
 void RememberDestination(NSString* talonString, NSString* destinationString);
+NSURL* WebLinksExpandedURLForStatus(id status, NSURL* url);
 NSURL* DestinationForLink(NSURL* url, NSURL* expandedURL);
 BOOL IsTrackingParameter(NSString* name, NSString* host);
 NSURL* URLByStrippingTrackingParameters(NSURL* url);
