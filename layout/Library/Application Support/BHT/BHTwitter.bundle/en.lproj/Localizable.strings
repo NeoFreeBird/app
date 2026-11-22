@@ -65,6 +65,10 @@
 "HIDE_TWEET_BUTTON_DETAIL" = "Removes the Tweet button from the navigation bar.";
 "HIDE_RETWEETS_TITLE" = "Hide retweets";
 "HIDE_RETWEETS_DETAIL" = "Hides retweets in your timeline.";
+"HIDE_AI_TWEETS_TITLE" = "Hide AI Tweets";
+"HIDE_AI_TWEETS_DETAIL" = "Hides Tweets that marked as \"Made with AI\" in your timeline.";
+"HIDE_PAID_TWEETS_TITLE" = "Hide paid Tweets";
+"HIDE_PAID_TWEETS_DETAIL" = "Hides Tweets that are marked as \"Paid Partnership\" in your timeline.";
 "HIDE_QUOTE_TWEETS_TITLE" = "Hide quote Tweets";
 "HIDE_QUOTE_TWEETS_DETAIL" = "Hides quote Tweets in your timeline.";
 "HIDE_VERIFIED_TWEETS_TITLE" = "Hide verified Tweets";
