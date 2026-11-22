@@ -1,11 +1,14 @@
 #import <UIKit/UIKit.h>
 #import "BHTDimPalette.h"
 
-@class T1TabView, XDSBlur;
+@class T1TabView, XDSBlur, _TtC10TFNUISwift25LegacySegmentedTabBarView;
 @protocol TAEColorPalette;
 
 void applySelectedThemeColor(void);
-void BHTApplyDimToVideoControls(UIView* controlsView);
+
+// Applies or removes Dim without a restart when the setting changes
+void BHTDimSettingDidChange(BOOL enabled);
+void BHTScheduleDimRefresh(void);
 
 NSNumber* BHTSelectedThemeColor(void);
 NSInteger BHTNativeThemeOption(NSInteger option);
@@ -17,11 +20,16 @@ UIColor* BHTThemeSystemBackground(UIColor* original, UIColor* dim);
 UIColor* BHTThemeResolvedBackground(UIColor* original, UITraitCollection* traits);
 void BHTUpdateDimGlass(UIView* glass);
 BOOL BHTIsInsideScrollEdgeTreatment(UIView* view);
-NSArray* BHTDimScrollEdgeColors(NSArray* colors, UITraitCollection* traits);
+NSArray* BHTThemeGradientColors(CAGradientLayer* layer, NSArray* colors);
 void BHTApplyScrollEdgeBlur(XDSBlur* blur);
 void BHTApplyScrollEdgeFade(UIView* fade);
 void BHTApplyDimScrollEdgeChildren(UIView* treatment);
-UIColor* BHTDimNormalizedViewBackground(UIView* view, UIColor* color);
+UIColor* BHTThemeViewBackground(UIView* view, UIColor* color);
+void BHTRefreshDimBackground(UIView* view);
+void BHTApplyDimSolidColorView(UIView* view);
+void BHTApplyDimBarBackground(UIView* bar);
+void BHTApplyDisabledBarButtonTextColor(UIViewController* controller);
+void BHTRefreshSegmentedTabBarColors(_TtC10TFNUISwift25LegacySegmentedTabBarView* tabBar);
 void BHTApplyDimSearchPill(UISearchBar* searchBar);
 UIImage* BHTDimSearchPillImage(void);
 BOOL BHTIsExploreSearchBackgroundView(UIView* view);
