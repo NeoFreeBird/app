@@ -34,6 +34,10 @@ fftools sources compile against FFmpeg internals).
 https://github.com/BandarHL/OpenTwitterSafariExtension
 Adds a Safari extension to the app, allowing users to open Twitter links in the app instead of Safari. The extension is built as part of the main app target. This is because universal app links do not work in sideloaded apps.
 
+## CallessKit
+https://github.com/NeoFreeBird/CallessKit
+Fixes a very specific issue with LiveContainer where requests to the CallKit API would throttle the CPU and bring app performance to a drag.
+
 ## Machine prerequisites
 
 - **Theos** at `$THEOS`.
