@@ -304,7 +304,7 @@ static BOOL updatingTabIconColor = NO;
 // The scroll-driven hide only reaches the tab bar as a collapse ratio, so
 // clamping it spares the deliberate hides (fullscreen media, immersive player).
 - (void)setTabBarCollapseRatio:(double)ratio {
-    if ([BHTSettings boolForKey:@"no_tab_bar_hiding"]) {
+    if ([BHTSettings boolForKey:@"no_tab_bar_hiding"] || NFBLiquidGlassEnabled()) {
         %orig(0.0);
     } else {
         %orig(ratio);
