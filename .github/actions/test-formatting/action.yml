@@ -1,0 +1,15 @@
+name: Formatting tests
+description: Check source formatting, including Logos hooks.
+runs:
+  using: composite
+  steps:
+    - name: Install clang-format
+      shell: bash
+      run: brew install clang-format
+      env:
+        HOMEBREW_NO_ASK: "1"
+
+    - name: Run Formatting Tests
+      shell: bash
+      working-directory: main
+      run: ./format.sh --check
