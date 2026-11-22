@@ -157,6 +157,34 @@ static BOOL ItemIsRetweet(id viewModel) {
     return YES;
 }
 
+static BOOL ItemIsAITweet(id viewModel) {
+    if (!ItemRespondsAndInvokesBOOL(viewModel, @selector(hasAIGeneratedDisclosure))) {
+        return NO;
+    }
+
+    long long currentAccountUserID = CurrentAccountUserID();
+    long long representedFromUserID = AdditionalItemRepresentedFromUserID(viewModel);
+    if (currentAccountUserID != 0 && representedFromUserID == currentAccountUserID) {
+        return NO;
+    }
+
+    return YES;
+}
+
+static BOOL ItemIsPaidTweet(id viewModel) {
+    if (!ItemRespondsAndInvokesBOOL(viewModel, @selector(hasPaidPromotionDisclosure))) {
+        return NO;
+    }
+
+    long long currentAccountUserID = CurrentAccountUserID();
+    long long representedFromUserID = AdditionalItemRepresentedFromUserID(viewModel);
+    if (currentAccountUserID != 0 && representedFromUserID == currentAccountUserID) {
+        return NO;
+    }
+
+    return YES;
+}
+
 static BOOL BHShouldHideVerifiedItem(id viewModel, BHTimelineFilterContext* context) {
     SEL verifiedSelector = @selector(isFromUserVerified);
     if (![viewModel respondsToSelector:verifiedSelector]) {
@@ -245,6 +273,14 @@ static BOOL ShouldHideTimelineItem(id item, BHTimelineFilterContext* context) {
     }
 
     if (!context.inProfile && context.hideRetweets && ItemIsRetweet(viewModel)) {
+        return YES;
+    }
+
+    if (!context.inProfile && context.hideAITweets && ItemIsAITweet(viewModel)) {
+        return YES;
+    }
+
+    if (!context.inProfile && context.hidePaidTweets && ItemIsPaidTweet(viewModel)) {
         return YES;
     }
 

@@ -17,6 +17,8 @@
 @property (nonatomic) BOOL hideQuoteTweets;
 @property (nonatomic) BOOL hideRetweets;
 @property (nonatomic) BOOL hideBlockedRetweets;
+@property (nonatomic) BOOL hideAITweets;
+@property (nonatomic) BOOL hidePaidTweets;
 
 // Surfaces.
 @property (nonatomic) BOOL inConversation;

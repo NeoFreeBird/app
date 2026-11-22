@@ -91,13 +91,15 @@
                               !inPostInteractions && !openedTweetFromProfile;
     context.hideRetweets = [BHTSettings boolForKey:@"hide_retweets"] &&
                            !inPostInteractions && !openedTweetFromProfile;
+    context.hideAITweets = [BHTSettings boolForKey:@"hide_ai_tweets"] && !openedTweetFromProfile;
+    context.hidePaidTweets = [BHTSettings boolForKey:@"hide_paid_tweets"] && !openedTweetFromProfile;
 
     return context;
 }
 
 - (BOOL)shouldFilter {
     return self.hideWhoToFollow || self.hidePrompts || self.hideVerified ||
-           self.hideQuoteTweets || self.hideRetweets || self.hideBlockedRetweets || self.inConversation;
+           self.hideAITweets || self.hidePaidTweets || self.hideQuoteTweets || self.hideRetweets || self.hideBlockedRetweets || self.inConversation;
 }
 
 - (void)resolveConversationLookupsInSections:(NSArray*)sections {
@@ -127,6 +129,9 @@
            self.hideRetweets == other.hideRetweets &&
            self.conversationRootUserID == other.conversationRootUserID &&
            self.inEditHistory == other.inEditHistory &&
+           self.inNotifications == other.inNotifications &&
+           self.hideAITweets == other.hideAITweets &&
+           self.hidePaidTweets == other.hidePaidTweets &&
            (self.authorRepliedToUserIDs == other.authorRepliedToUserIDs ||
             [self.authorRepliedToUserIDs isEqualToSet:other.authorRepliedToUserIDs]);
 }
