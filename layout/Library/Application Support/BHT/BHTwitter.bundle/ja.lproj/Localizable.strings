@@ -65,6 +65,10 @@
 "HIDE_TWEET_BUTTON_DETAIL" = "ナビゲーションバーからポストボタンを削除します。";
 "HIDE_RETWEETS_TITLE" = "リポストを非表示";
 "HIDE_RETWEETS_DETAIL" = "タイムライン上のリポストを非表示にします。";
+"HIDE_AI_TWEETS_TITLE" = "AIポストを非表示";
+"HIDE_AI_TWEETS_DETAIL" = "タイムライン上にある「AIで作成」と表示されたポストを非表示にします。";
+"HIDE_PAID_TWEETS_TITLE" = "PRポストを非表示";
+"HIDE_PAID_TWEETS_DETAIL" = "タイムライン上にある「タイアップ投稿」と表示されたポストを非表示にします。";
 "HIDE_QUOTE_TWEETS_TITLE" = "引用ポストを非表示";
 "HIDE_QUOTE_TWEETS_DETAIL" = "タイムライン上の引用ポストを非表示にします。";
 "HIDE_VERIFIED_TWEETS_TITLE" = "認証アカウントのポスト非表示";
