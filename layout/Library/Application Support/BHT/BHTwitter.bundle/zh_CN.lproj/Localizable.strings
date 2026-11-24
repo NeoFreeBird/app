@@ -65,6 +65,10 @@
 "HIDE_TWEET_BUTTON_DETAIL" = "从导航栏中移除发推按钮。";
 "HIDE_RETWEETS_TITLE" = "隐藏转推";
 "HIDE_RETWEETS_DETAIL" = "隐藏时间线中的转推。";
+"HIDE_AI_TWEETS_TITLE" = "隐藏 AI 推文";
+"HIDE_AI_TWEETS_DETAIL" = "在你的时间线隐藏包含“由AI生成”标签的推文。";
+"HIDE_PAID_TWEETS_TITLE" = "隐藏付费合作推文";
+"HIDE_PAID_TWEETS_DETAIL" = "在你的时间线隐藏包含“付费合作”标签的推文。";
 "HIDE_QUOTE_TWEETS_TITLE" = "隐藏引用推文";
 "HIDE_QUOTE_TWEETS_DETAIL" = "隐藏时间线中的引用推文。";
 "HIDE_VERIFIED_TWEETS_TITLE" = "隐藏已认证账号的推文";
