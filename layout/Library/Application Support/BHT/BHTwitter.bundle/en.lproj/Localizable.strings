@@ -73,6 +73,10 @@
 "HIDE_QUOTE_TWEETS_DETAIL" = "Hides quote Tweets in your timeline.";
 "HIDE_VERIFIED_TWEETS_TITLE" = "Hide verified Tweets";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Hides Tweets from verified accounts in your timeline and replies, unless the author has replied to them in the same thread or you follow the account.";
+"HIDE_VIDEO_HISTORY_TITLE" = "Hide the History Videos tab";
+"HIDE_VIDEO_HISTORY_DETAIL" = "Removes the Videos tab from History after restarting the app.";
+"HIDE_ARTICLE_HISTORY_TITLE" = "Hide the History Articles tab";
+"HIDE_ARTICLE_HISTORY_DETAIL" = "Removes the Articles tab from History after restarting the app.";
 "RESTORE_REFRESH_SOUNDS_TITLE" = "Pull-to-refresh sounds";
 
 /* grok */
