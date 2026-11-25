@@ -155,6 +155,10 @@ static __thread NSUInteger NFBLiquidGlassInstallationDepth;
 
 %hook T1AccountsViewController
 
+- (void)private_startLoginFlow {
+    [LegacyLoginViewController presentLoginFrom:(UIViewController*)self];
+}
+
 - (void)private_startLoginFlowWithSender:(id)sender {
     [LegacyLoginViewController presentLoginFrom:(UIViewController*)self];
 }
