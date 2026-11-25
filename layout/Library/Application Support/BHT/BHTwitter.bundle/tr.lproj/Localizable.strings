@@ -73,6 +73,10 @@
 "HIDE_QUOTE_TWEETS_DETAIL" = "Zaman akışınızdaki alıntı Tweetleri gizler.";
 "HIDE_VERIFIED_TWEETS_TITLE" = "Onaylı Tweetleri gizle";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "Yazar aynı dizide yanıt vermediği veya hesabı takip etmediğiniz sürece zaman akışınızda ve yanıtlarınızda onaylı hesapların Tweetlerini gizler.";
+"HIDE_VIDEO_HISTORY_TITLE" = "Geçmiş Videolar sekmesini gizle";
+"HIDE_VIDEO_HISTORY_DETAIL" = "Uygulamayı yeniden başlattıktan sonra Geçmiş bölümündeki Videolar sekmesini kaldırır.";
+"HIDE_ARTICLE_HISTORY_TITLE" = "Geçmiş Makaleler sekmesini gizle";
+"HIDE_ARTICLE_HISTORY_DETAIL" = "Uygulamayı yeniden başlattıktan sonra Geçmiş bölümündeki Makaleler sekmesini kaldırır.";
 "RESTORE_REFRESH_SOUNDS_TITLE" = "Yenileme sesleri";
 
 /* grok */
