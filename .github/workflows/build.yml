@@ -5,7 +5,7 @@ on:
     inputs:
       sdk_version:
         description: "iOS SDK Version"
-        default: "16.5"
+        default: "26.5"
         required: true
         type: string
       target_version:
@@ -91,24 +91,33 @@ jobs:
         if: inputs.deploy_format == 'sideloaded' || inputs.deploy_format == 'trollstore'
         run: pip install https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip
 
-      - name: iOS SDK Caching
-        id: SDK
+      - name: Cache iOS 26.5 SDK
+        id: sdk-26
         uses: actions/cache@v6
-        env:
-          cache-name: iOS-${{ inputs.sdk_version }}-SDK
         with:
-          path: theos/sdks/
-          key: ${{ env.cache-name }}
-          restore-keys: ${{ env.cache-name }}
+          path: theos/sdks/iPhoneOS26.5.sdk
+          key: iOS-26.5-SDK-v2
 
-      - name: Download iOS SDK
-        if: steps.SDK.outputs.cache-hit != 'true'
+      - name: Cache iOS 16.5 SDK
+        id: sdk-16
+        uses: actions/cache@v6
+        with:
+          path: theos/sdks/iPhoneOS16.5.sdk
+          key: iOS-16.5-SDK-v2
+
+      - name: Download missing iOS SDKs
+        if: steps.sdk-26.outputs.cache-hit != 'true' || steps.sdk-16.outputs.cache-hit != 'true'
         run: |
-          git clone -n --depth=1 --filter=tree:0 https://github.com/theos/sdks/
-          cd sdks
-          git sparse-checkout set --no-cone iPhoneOS${{ inputs.sdk_version }}.sdk
+          git clone -n --depth=1 --filter=tree:0 https://github.com/xybp888/iOS-SDKs ios-sdks
+          cd ios-sdks
+          git sparse-checkout set --no-cone iPhoneOS26.5.sdk iPhoneOS16.5.sdk
           git checkout
-          mv ./*.sdk "${THEOS}/sdks"
+          mkdir -p "${THEOS}/sdks"
+          for version in 26.5 16.5; do
+            if [[ ! -d "${THEOS}/sdks/iPhoneOS${version}.sdk" ]]; then
+              mv "iPhoneOS${version}.sdk" "${THEOS}/sdks/"
+            fi
+          done
         env:
           THEOS: ${{ github.workspace }}/theos
 
