@@ -1187,3 +1187,18 @@ void BHTFinishLegacyTabLayout(T1TabView* tabView, UIView* glyph) {
                                  OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
+
+BOOL BHTIsGlassIcon(UIImageView* icon) {
+    Class glassClass = NSClassFromString(@"XDSGlass");
+    Class containerClass = NSClassFromString(@"XDSGlassContainer");
+    Class buttonClass = NSClassFromString(@"XDSButton");
+    for (UIView* parent = icon.superview; parent; parent = parent.superview) {
+        if ([parent isKindOfClass:glassClass] || [parent isKindOfClass:containerClass]) return YES;
+        if ([parent isKindOfClass:buttonClass] &&
+            [objectIvar(parent, "glassView") isKindOfClass:glassClass]) {
+            UIView* slots = objectIvar(parent, "slotsContainer");
+            if ([slots isKindOfClass:UIView.class] && [icon isDescendantOfView:slots]) return YES;
+        }
+    }
+    return NO;
+}
