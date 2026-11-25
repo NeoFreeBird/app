@@ -73,6 +73,10 @@
 "HIDE_QUOTE_TWEETS_DETAIL" = "隐藏时间线中的引用推文。";
 "HIDE_VERIFIED_TWEETS_TITLE" = "隐藏已认证账号的推文";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "在时间线和回复中隐藏已认证账号的推文，除非作者在同一帖子中回复了他们或你关注了该账号。";
+"HIDE_VIDEO_HISTORY_TITLE" = "隐藏历史中的视频标签页";
+"HIDE_VIDEO_HISTORY_DETAIL" = "重启应用后，从历史中移除视频标签页";
+"HIDE_ARTICLE_HISTORY_TITLE" = "隐藏历史中的文章标签页";
+"HIDE_ARTICLE_HISTORY_DETAIL" = "重启应用后，从历史中移除文章标签页";
 "RESTORE_REFRESH_SOUNDS_TITLE" = "下拉刷新音效";
 
 /* grok */
