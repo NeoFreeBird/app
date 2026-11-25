@@ -8,37 +8,82 @@
 static NSString* const kWebLoginUserAgent =
     @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36";
 
-// Pulls the numeric account id out of the twid cookie ("u=<id>", percent-encoded) and
-// the screen name out of the loaded page. Posts one of:
-//   "username:<handle>"        -> success, both id and handle resolved
-//   "userid:<id>"              -> id resolved, handle not found yet (keep polling)
-//   ""                         -> no session yet
+// uid comes from the same site's native cookie snapshot.
 static NSString* const kWebLoginScannerJS =
-    @"(function(){"
-     "var uid='';"
-     "var m=document.cookie.match(/twid=u(?:%3D|=)(\\d+)/);"
-     "if(m&&m[1]){uid=m[1];}"
-     "if(!uid){return '';}"
-     "function findHandle(text){"
-     "if(!text)return null;"
-     "var idx=text.indexOf(uid);"
-     "if(idx===-1)return null;"
-     "var sub=text.substring(Math.max(0,idx-1200),Math.min(text.length,idx+1200));"
-     "var pats=[/\"screen_name\"\\s*:\\s*\"([a-zA-Z0-9_]{1,15})\"/g,"
-     "/\"screenName\"\\s*:\\s*\"([a-zA-Z0-9_]{1,15})\"/g];"
-     "for(var p=0;p<pats.length;p++){var mm;pats[p].lastIndex=0;"
-     "while((mm=pats[p].exec(sub))!==null){var u=mm[1];"
-     "if(!/^(home|explore|notifications|messages|settings|search|i|compose|login|signup|intent)$/i."
-     "test(u))return u;}}"
-     "return null;"
+    @"const validHandle = value => typeof value === 'string' && /^[a-zA-Z0-9_]{1,15}$/.test(value);"
+     "const state = window.__INITIAL_STATE__;"
+     "const user = state?.entities?.users?.entities?.[uid];"
+     "if (validHandle(user?.screen_name)) return user.screen_name;"
+     "const visited = new Set();"
+     "for (const element of [document.querySelector('main'), document.querySelector('article'), document]) {"
+     "  if (!element) continue;"
+     "  for (const key of Object.keys(element)) {"
+     "    if (!/^__react(?:Fiber|Container)\\$/.test(key)) continue;"
+     "    let fiber = element[key];"
+     "    while (fiber?.return) fiber = fiber.return;"
+     "    const root = fiber?.stateNode?.current;"
+     "    if (!root) continue;"
+     "    const pending = [root];"
+     "    while (pending.length) {"
+     "      const node = pending.pop();"
+     "      if (visited.has(node)) continue;"
+     "      visited.add(node);"
+     "      for (const router of [node.memoizedProps?.router, node.memoizedProps?.value]) {"
+     "        const context = router?.options?.context;"
+     "        if (typeof router?.navigate !== 'function' || String(context?.viewerId) !== uid) continue;"
+     "        if (validHandle(context.viewerScreenName)) return context.viewerScreenName;"
+     "      }"
+     "      if (node.sibling) pending.push(node.sibling);"
+     "      if (node.child) pending.push(node.child);"
+     "    }"
+     "  }"
      "}"
-     "try{if(window.__INITIAL_STATE__){var u=findHandle(JSON.stringify(window.__INITIAL_STATE__));"
-     "if(u)return 'username:'+u;}}catch(e){}"
-     "try{var s=document.getElementsByTagName('script');"
-     "for(var i=0;i<s.length;i++){var u=findHandle(s[i].textContent||'');"
-     "if(u)return 'username:'+u;}}catch(e){}"
-     "return 'userid:'+uid;"
-     "})();";
+     "if (!allowLegacyProfile) return null;"
+     "const profile = document.querySelector('a[data-testid=\"AppTabBar_Profile_Link\"]');"
+     "const handle = /^\\/([a-zA-Z0-9_]{1,15})\\/?$/.exec(profile?.getAttribute('href') ?? '')?.[1];"
+     "return handle ?? null;";
+
+static NSString* loginSiteForHost(NSString* host) {
+    NSString* domain = host.lowercaseString;
+    if ([domain isEqualToString:@"x.com"] || [domain hasSuffix:@".x.com"]) {
+        return @"x.com";
+    }
+    if ([domain isEqualToString:@"twitter.com"] || [domain hasSuffix:@".twitter.com"]) {
+        return @"twitter.com";
+    }
+    return nil;
+}
+
+static NSDictionary<NSString*, NSString*>* loginCookiesForSite(
+    NSArray<NSHTTPCookie*>* cookies, NSString* site) {
+    NSMutableDictionary<NSString*, NSString*>* values = [NSMutableDictionary dictionary];
+    NSString* domainCookieHost = [@"." stringByAppendingString:site];
+    for (NSHTTPCookie* cookie in cookies) {
+        NSString* domain = cookie.domain.lowercaseString;
+        if ((![domain isEqualToString:site] && ![domain isEqualToString:domainCookieHost]) ||
+            ![cookie.path isEqualToString:@"/"] || !cookie.value.length) {
+            continue;
+        }
+        // Prefer the site-wide cookie when both it and a host-only cookie are present.
+        if (!values[cookie.name] || [domain isEqualToString:domainCookieHost]) {
+            values[cookie.name] = cookie.value;
+        }
+    }
+    return values;
+}
+
+static NSString* userIDFromTwid(NSString* twid) {
+    NSString* decoded = [twid stringByRemovingPercentEncoding] ?: twid;
+    if (decoded.length >= 2 && [decoded hasPrefix:@"\""] && [decoded hasSuffix:@"\""]) {
+        decoded = [decoded substringWithRange:NSMakeRange(1, decoded.length - 2)];
+    }
+    if (![decoded hasPrefix:@"u="] || decoded.length <= 2) {
+        return nil;
+    }
+    NSString* userID = [decoded substringFromIndex:2];
+    NSCharacterSet* digits = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+    return [userID rangeOfCharacterFromSet:digits.invertedSet].location == NSNotFound ? userID : nil;
+}
 
 static id performShared(id target, SEL selector) {
     if (!target || ![target respondsToSelector:selector]) {
@@ -111,12 +156,14 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
     return account;
 }
 
-@interface WebLoginViewController () <WKNavigationDelegate>
+@interface WebLoginViewController () <WKNavigationDelegate, WKHTTPCookieStoreObserver>
 @property (nonatomic, strong) WKWebView* webView;
 @property (nonatomic, strong) NSTimer* pollTimer;
+@property (nonatomic, strong) WKHTTPCookieStore* observedCookieStore;
 @property (nonatomic, assign) BOOL asRootScreen;
 @property (nonatomic, assign) BOOL finished;
 @property (nonatomic, assign) BOOL sessionCheckInFlight;
+@property (nonatomic, assign) BOOL reportedHandoffFailure;
 @end
 
 @implementation WebLoginViewController
@@ -194,29 +241,38 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
     [super viewDidAppear:animated];
     if (self.finished || self.pollTimer) return;
     __weak typeof(self) weakSelf = self;
-    self.pollTimer = [NSTimer scheduledTimerWithTimeInterval:1.5
-                                                     repeats:YES
-                                                       block:^(__unused NSTimer* timer) {
-                                                           [weakSelf checkForSession];
-                                                       }];
+    self.observedCookieStore = self.webView.configuration.websiteDataStore.httpCookieStore;
+    [self.observedCookieStore addObserver:self];
+    self.pollTimer = [NSTimer timerWithTimeInterval:1.5
+                                            repeats:YES
+                                              block:^(__unused NSTimer* timer) {
+                                                  [weakSelf checkForSession];
+                                              }];
+    [[NSRunLoop mainRunLoop] addTimer:self.pollTimer forMode:NSRunLoopCommonModes];
     [self checkForSession];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.pollTimer invalidate];
-    self.pollTimer = nil;
+    [self stopSessionMonitoring];
 }
 
 - (void)dealloc {
+    [_observedCookieStore removeObserver:self];
     [_pollTimer invalidate];
+}
+
+- (void)stopSessionMonitoring {
+    [self.pollTimer invalidate];
+    self.pollTimer = nil;
+    [self.observedCookieStore removeObserver:self];
+    self.observedCookieStore = nil;
 }
 
 - (void)cancelTapped {
     self.finished = YES;
+    [self stopSessionMonitoring];
     [self.webView stopLoading];
-    [self.pollTimer invalidate];
-    self.pollTimer = nil;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -228,94 +284,85 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
 
 #pragma mark - Session capture
 
+- (void)cookiesDidChangeInCookieStore:(WKHTTPCookieStore*)cookieStore {
+    if (cookieStore == self.observedCookieStore) {
+        [self checkForSession];
+    }
+}
+
 - (void)checkForSession {
-    if (self.finished || self.sessionCheckInFlight || !self.view.window) {
+    if (self.finished || self.sessionCheckInFlight || !self.observedCookieStore || !self.view.window) {
         return;
     }
     self.sessionCheckInFlight = YES;
 
-    WKWebView* webView = self.webView;
-    [webView.configuration.websiteDataStore.httpCookieStore
-        getAllCookies:^(NSArray<NSHTTPCookie*>* cookies) {
-            if (self.finished || !self.view.window) {
-                self.sessionCheckInFlight = NO;
-                return;
-            }
-            NSString *authToken = nil, *ct0 = nil, *twid = nil, *authMulti = nil;
-            for (NSHTTPCookie* cookie in cookies) {
-                NSString* domain = cookie.domain ?: @"";
-                if (![domain containsString:@"x.com"] && ![domain containsString:@"twitter.com"]) {
-                    continue;
-                }
-                if (cookie.value.length == 0) {
-                    continue;
-                }
-                if ([cookie.name isEqualToString:@"auth_token"]) {
-                    authToken = cookie.value;
-                } else if ([cookie.name isEqualToString:@"ct0"]) {
-                    ct0 = cookie.value;
-                } else if ([cookie.name isEqualToString:@"twid"]) {
-                    twid = cookie.value;
-                } else if ([cookie.name isEqualToString:@"auth_multi"]) {
-                    authMulti = cookie.value;
-                }
+    [self.observedCookieStore getAllCookies:^(NSArray<NSHTTPCookie*>* cookies) {
+        if (self.finished || !self.observedCookieStore || !self.view.window) {
+            self.sessionCheckInFlight = NO;
+            return;
+        }
+
+        WKWebView* webView = self.webView;
+        NSString* pageSite = loginSiteForHost(webView.URL.host);
+        if (!pageSite) {
+            self.sessionCheckInFlight = NO;
+            return;
+        }
+        NSString* otherSite = [pageSite isEqualToString:@"x.com"] ? @"twitter.com" : @"x.com";
+        for (NSString* site in @[pageSite, otherSite]) {
+            NSDictionary<NSString*, NSString*>* values = loginCookiesForSite(cookies, site);
+            NSString* authToken = values[@"auth_token"];
+            NSString* ct0 = values[@"ct0"];
+            NSString* twid = values[@"twid"];
+            NSString* userID = userIDFromTwid(twid);
+            // Cookies can arrive separately. Read the complete session from the same site's snapshot.
+            if (!authToken.length || !ct0.length || !userID.length) {
+                continue;
             }
 
-            // A complete session needs all three. ct0 sometimes lands a beat after
-            // auth_token; the poll timer retries until it does.
-            if (authToken.length == 0 || ct0.length == 0 || twid.length == 0) {
-                self.sessionCheckInFlight = NO;
-                return;
-            }
+            [webView callAsyncJavaScript:kWebLoginScannerJS
+                arguments:@{
+                    @"uid": userID,
+                    @"allowLegacyProfile": @([site isEqualToString:pageSite]),
+                }
+                inFrame:nil
+                inContentWorld:WKContentWorld.pageWorld
+                completionHandler:^(id result, __unused NSError* error) {
+                    self.sessionCheckInFlight = NO;
+                    if (self.finished || !self.observedCookieStore || !self.view.window ||
+                        ![loginSiteForHost(webView.URL.host) isEqualToString:pageSite]) {
+                        return;
+                    }
+                    NSString* username = [result isKindOfClass:[NSString class]] ? result : nil;
+                    id existing = [self existingAccountForUserID:userID.longLongValue];
+                    if (!username.length && (!existing || ![site isEqualToString:pageSite])) {
+                        // A new native account needs the real handle. Recheck after hydration.
+                        return;
+                    }
 
-            [webView evaluateJavaScript:kWebLoginScannerJS
-                      completionHandler:^(id result, __unused NSError* error) {
-                          self.sessionCheckInFlight = NO;
-                          if (self.finished || !self.view.window) return;
-                          NSString* userID = [self userIDFromTwid:twid];
-                          if (userID.length == 0) {
-                              return;
-                          }
-
-                          NSString* username = nil;
-                          if ([result isKindOfClass:[NSString class]] &&
-                              [(NSString*)result hasPrefix:@"username:"]) {
-                              username = [(NSString*)result substringFromIndex:9];
-                          }
-
-                          [self syncCookies:cookies];
-                          [self finishWithUserID:userID
-                                        username:username
-                                       authToken:authToken
-                                             ct0:ct0
-                                            twid:twid
-                                       authMulti:authMulti];
-                      }];
-        }];
+                    [self syncCookies:cookies forSite:site];
+                    [self finishWithUserID:userID
+                                  username:username
+                                 authToken:authToken
+                                       ct0:ct0
+                                      twid:twid
+                                 authMulti:values[@"auth_multi"]
+                           existingAccount:existing];
+                }];
+            return;
+        }
+        self.sessionCheckInFlight = NO;
+    }];
 }
 
-// Copy the webview's cookies into the shared NSHTTPCookieStorage so the app's own
-// NSURLSession stack (and WebCreateTweet.x's harvestSharedCookies) can read them.
-- (void)syncCookies:(NSArray<NSHTTPCookie*>*)cookies {
+// Share the selected site's cookies with the app's NSURLSession stack.
+- (void)syncCookies:(NSArray<NSHTTPCookie*>*)cookies forSite:(NSString*)site {
     NSHTTPCookieStorage* storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie* cookie in cookies) {
-        NSString* domain = cookie.domain ?: @"";
-        if (![domain containsString:@"x.com"] && ![domain containsString:@"twitter.com"]) {
-            continue;
+        if ([loginSiteForHost(cookie.domain) isEqualToString:site]) {
+            [storage setCookie:cookie];
         }
-        [storage setCookie:cookie];
     }
-}
-
-- (NSString*)userIDFromTwid:(NSString*)twid {
-    if (twid.length == 0) {
-        return nil;
-    }
-    NSString* decoded = [twid stringByRemovingPercentEncoding] ?: twid;
-    NSCharacterSet* nonDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-    NSString* digits =
-        [[decoded componentsSeparatedByCharactersInSet:nonDigits] componentsJoinedByString:@""];
-    return digits.length ? digits : nil;
 }
 
 - (void)finishWithUserID:(NSString*)userID
@@ -323,14 +370,11 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
                authToken:(NSString*)authToken
                      ct0:(NSString*)ct0
                     twid:(NSString*)twid
-               authMulti:(NSString*)authMulti {
+               authMulti:(NSString*)authMulti
+         existingAccount:(id)existingAccount {
     if (self.finished) {
         return;
     }
-    self.finished = YES;
-    [self.pollTimer invalidate];
-    self.pollTimer = nil;
-
     NSMutableDictionary<NSString*, NSString*>* pairs = [NSMutableDictionary dictionary];
     pairs[@"auth_token"] = authToken;
     pairs[@"ct0"] = ct0;
@@ -342,16 +386,28 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
     // Hand the session to WebCreateTweet.x
     webLoginDidCaptureCookies(userID, username, pairs);
 
-    id account = [self registerNativeAccountForUserID:userID username:username authToken:authToken];
-
-    void (^switchAndDismiss)(void) = ^{
-        [self switchToAccount:account];
-        UIViewController* presenting = self.presentingViewController;
-        if (presenting) {
-            [presenting dismissViewControllerAnimated:YES completion:nil];
+    id account = existingAccount ?: [self registerNativeAccountForUserID:userID
+                                                                username:username
+                                                               authToken:authToken];
+    if (!account) {
+        if (!self.reportedHandoffFailure) {
+            self.reportedHandoffFailure = YES;
         }
-    };
-    dispatch_async(dispatch_get_main_queue(), switchAndDismiss);
+        return;
+    }
+
+    self.finished = YES;
+    [self stopSessionMonitoring];
+    if (self.presentingViewController) {
+        [self dismissViewControllerAnimated:YES
+                                 completion:^{
+                                     [self switchToAccount:account];
+                                 }];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self switchToAccount:account];
+        });
+    }
 }
 
 #pragma mark - Native account registration
@@ -367,14 +423,7 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
 
     long long uid = userID.longLongValue;
 
-    // If this account is already in the store, reuse it instead of adding a second copy.
-    // (webLoginDidCaptureCookies already refreshed its cached cookies just above.)
-    id existing = [self existingAccountForUserID:uid];
-    if (existing) {
-        return existing;
-    }
-
-    id account = accountWithUsernameAndUserID(accountCls, username ?: @"", uid);
+    id account = accountWithUsernameAndUserID(accountCls, username, uid);
     if (!account) {
         return nil;
     }
@@ -391,8 +440,7 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
         }
     }
 
-    [self addAccountToStore:account];
-    return account;
+    return [self addAccountToStore:account userID:uid];
 }
 
 - (id)existingAccountForUserID:(long long)uid {
@@ -415,30 +463,32 @@ static id accountWithUsernameAndUserID(Class accountClass, NSString* username,
     return nil;
 }
 
-- (void)addAccountToStore:(id)account {
-    if (!account) {
-        return;
-    }
+- (id)addAccountToStore:(id)account userID:(long long)userID {
     @try {
         Class twitterCls = objc_getClass("TFNTwitter");
         id shared = performShared(twitterCls, @selector(sharedTwitter));
         id service = performShared(shared, @selector(accountService));
-
-        if (service && [service respondsToSelector:@selector(addAccount:)]) {
-            ((void (*)(id, SEL, id))objc_msgSend)(service, @selector(addAccount:), account);
+        if (![service respondsToSelector:@selector(addAccount:)]) {
+            return nil;
         }
+        ((void (*)(id, SEL, id))objc_msgSend)(service, @selector(addAccount:), account);
         if ([twitterCls respondsToSelector:@selector(saveSharedTwitter)]) {
             ((void (*)(id, SEL))objc_msgSend)(twitterCls, @selector(saveSharedTwitter));
         }
 
-        Class notifCls = objc_getClass("TFSAccountNotification");
-        id name = performShared(notifCls, @selector(TFSAccountsDidChange));
-        if ([name isKindOfClass:[NSString class]]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:name
-                                                                object:shared
-                                                              userInfo:nil];
+        id storedAccount = [self existingAccountForUserID:userID];
+        if (storedAccount) {
+            Class notifCls = objc_getClass("TFSAccountNotification");
+            id name = performShared(notifCls, @selector(TFSAccountsDidChange));
+            if ([name isKindOfClass:[NSString class]]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:name
+                                                                    object:shared
+                                                                  userInfo:nil];
+            }
         }
+        return storedAccount;
     } @catch (__unused NSException* exception) {
+        return nil;
     }
 }
 
