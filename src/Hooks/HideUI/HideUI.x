@@ -1,5 +1,16 @@
 #import "HideUI.h"
 
+// The container builds its pages during initialization. Filter before it
+// resolves the initial tab and hands the pages to the segmented controller.
+%hook _TtC16XActivityHistory38ActivityHistoryContainerViewController
+
+- (void)viewDidLoad {
+    HideActivityHistoryTabs((UIViewController*)self);
+    %orig;
+}
+
+%end
+
 // MARK: - Hide Blue verified checkmark
 
 // The author-row badge (SimpleBadgeable.init(statusViewModel:)) builds from the
