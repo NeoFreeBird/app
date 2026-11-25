@@ -1,8 +1,11 @@
 #import <UIKit/UIKit.h>
+#import "../HookHelpers.h"
 #import "BHTDimPalette.h"
 
 @class T1TabView, XDSBlur, _TtC10TFNUISwift25LegacySegmentedTabBarView;
 @protocol TAEColorPalette;
+
+static BOOL updatingTabIconColor = NO;
 
 void applySelectedThemeColor(void);
 
@@ -40,3 +43,4 @@ UIView* BHTPrepareLegacyTabLayout(T1TabView* tabView);
 void BHTFinishLegacyTabLayout(T1TabView* tabView, UIView* glyph);
 void BHTUpdateLegacyTabLabelColor(T1TabView* tabView, BOOL selected);
 UIColor* BHTTabItemColor(BOOL selected);
+BOOL BHTIsGlassIcon(UIImageView* icon);

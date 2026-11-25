@@ -1,9 +1,31 @@
 #import "Theme.h"
-#import "../HookHelpers.h"
 
-static BOOL updatingTabIconColor = NO;
+%group GlassIconForeground
 
-%hook TAEColorSettings
+%hook UIImageView
+
+- (UIColor*)_baseMultiplyColorWithImage:(UIImage*)image
+                    symbolConfiguration:(UIImageSymbolConfiguration*)configuration
+             shouldResolveDynamicColors:(BOOL)resolve {
+    UIColor* color = %orig;
+    UITraitCollection* traits = self.window.traitCollection;
+    if (!color || image.renderingMode != UIImageRenderingModeAlwaysTemplate ||
+        traits.userInterfaceStyle != UIUserInterfaceStyleDark ||
+        self.tintAdjustmentMode == UIViewTintAdjustmentModeDimmed ||
+        !NFBLiquidGlassEnabled() || !BHTDimThemeEnabled() || !BHTIsGlassIcon(self)) {
+        return color;
+    }
+
+    return BHTColorIsCloseToWhite([color resolvedColorWithTraitCollection:traits])
+               ? UIColor.whiteColor
+               : color;
+}
+
+%end
+
+%end
+
+    %hook TAEColorSettings
 
 - (void)setPrimaryColorOption:(NSInteger)colorOption {
     NSNumber* selectedColor = BHTSelectedThemeColor();
@@ -471,3 +493,13 @@ static BOOL updatingTabIconColor = NO;
 }
 
 %end
+
+%ctor {
+    %init;
+    if (@available(iOS 26.0, *)) {
+        SEL selector = @selector(_baseMultiplyColorWithImage:symbolConfiguration:shouldResolveDynamicColors:);
+        if (class_getInstanceMethod(UIImageView.class, selector)) {
+            %init(GlassIconForeground);
+        }
+    }
+}
