@@ -116,6 +116,10 @@ static NSDictionary<NSString*, NSDictionary*>* BHTSettingsPages(void) {
                       @"default": @NO},
                     @{@"key": @"hide_verified_tweets",
                       @"default": @NO},
+                    @{@"key": @"hide_video_history",
+                      @"default": @NO},
+                    @{@"key": @"hide_article_history",
+                      @"default": @NO},
                     @{@"key": @"restore_refresh_sounds",
                       @"default": @YES}
                 ]
