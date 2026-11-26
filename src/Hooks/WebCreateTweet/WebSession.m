@@ -467,8 +467,7 @@ NSDictionary* currentWebCredentials(void) {
 
 // A cookie-login account's cached web session. Never blocks: a missing ct0 is fine,
 // since x.com mints one on the first authenticated page load.
-NSDictionary* BHTCachedWebSessionForAccount(id account) {
-    NSString* userID = userIDStringForAccount(account);
+NSDictionary* BHTCachedWebSessionForUserID(NSString* userID) {
     if (!isCookieLoginUserID(userID)) {
         return nil;
     }
@@ -490,6 +489,10 @@ NSDictionary* BHTCachedWebSessionForAccount(id account) {
         @"ct0": ct0 ?: @"",
         @"twid": twid.length ? twid : [NSString stringWithFormat:@"u=%@", userID],
     };
+}
+
+NSDictionary* BHTCachedWebSessionForAccount(id account) {
+    return BHTCachedWebSessionForUserID(userIDStringForAccount(account));
 }
 
 // Query IDs and credential snapshots share the account-cache lock.

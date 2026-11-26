@@ -8,6 +8,7 @@ BOOL BHTNativeCreateTweetInterceptEnabled(void);
 void BHTStoreWebCookies(NSArray<NSHTTPCookie*>* cookies);
 void BHTHarvestSharedCookies(void);
 NSDictionary* BHTCurrentWebSessionCookies(void);
+NSDictionary* BHTCachedWebSessionForUserID(NSString* userID);
 NSString* BHTCurrentWebUserID(void);
 BOOL BHTResolveWebCredentials(NSString* userID, NSString** authToken, NSString** ct0);
 void BHTInvalidateWebCredentials(NSString* userID, NSURLRequest* request);

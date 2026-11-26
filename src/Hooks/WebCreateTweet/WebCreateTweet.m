@@ -27,6 +27,12 @@ static BOOL isTonMediaURL(NSURL* url) {
            [url.path hasPrefix:@"/i/ton/data/xchat_media/"];
 }
 
+static BOOL isTonMediaDownload(NSURLRequest* request) {
+    NSString* method = request.HTTPMethod.uppercaseString;
+    return isTonMediaURL(request.URL) &&
+           ([method isEqualToString:@"GET"] || [method isEqualToString:@"HEAD"]);
+}
+
 // These paths need to go through the web path, otherwise AppAttest kicks in
 static BOOL isWriteRequest(NSURL* url) {
     return isCreateTweetURL(url) || isAccountURL(url) || isPeriscopeAuthURL(url) ||
@@ -95,11 +101,25 @@ static NSString* postingUserIDFromRequest(NSURLRequest* request) {
     return dash.location != NSNotFound ? [token substringToIndex:dash.location] : nil;
 }
 
+static void setWebSessionCookies(NSMutableURLRequest* request, NSString* authToken,
+                                 NSString* ct0, NSString* userID) {
+    request.HTTPShouldHandleCookies = NO;
+    NSMutableArray<NSString*>* cookiePairs = [NSMutableArray array];
+    if (authToken.length) {
+        [cookiePairs addObject:[NSString stringWithFormat:@"auth_token=%@", authToken]];
+    }
+    if (ct0.length) {
+        [cookiePairs addObject:[NSString stringWithFormat:@"ct0=%@", ct0]];
+    }
+    if (userID.length) {
+        [cookiePairs addObject:[NSString stringWithFormat:@"twid=u%%3D%@", userID]];
+    }
+    [request setValue:[cookiePairs componentsJoinedByString:@"; "] forHTTPHeaderField:@"Cookie"];
+}
+
 // Replace the (invalid, placeholder) native OAuth with the web session's cookie auth.
 static void applyWebAuth(NSMutableURLRequest* request, NSString* authToken, NSString* ct0,
                          NSString* userID) {
-    request.HTTPShouldHandleCookies = NO;
-
     BOOL isWrite = isWriteRequest(request.URL);
     NSArray<NSString*>* headersToStrip = isWrite
                                              ? @[
@@ -128,17 +148,7 @@ static void applyWebAuth(NSMutableURLRequest* request, NSString* authToken, NSSt
         [request setValue:ct0 forHTTPHeaderField:@"x-csrf-token"];
     }
 
-    NSMutableArray<NSString*>* cookiePairs = [NSMutableArray array];
-    if (authToken.length) {
-        [cookiePairs addObject:[NSString stringWithFormat:@"auth_token=%@", authToken]];
-    }
-    if (ct0.length) {
-        [cookiePairs addObject:[NSString stringWithFormat:@"ct0=%@", ct0]];
-    }
-    if (userID.length) {
-        [cookiePairs addObject:[NSString stringWithFormat:@"twid=u%%3D%@", userID]];
-    }
-    [request setValue:[cookiePairs componentsJoinedByString:@"; "] forHTTPHeaderField:@"Cookie"];
+    setWebSessionCookies(request, authToken, ct0, userID);
 }
 
 // Check if the request is using native OAuth, so that it can be replaced
@@ -148,10 +158,37 @@ static BOOL requestUsesNativeOAuth(NSURLRequest* request) {
     return [auth isKindOfClass:[NSString class]] && [auth containsString:@"oauth_token="];
 }
 
+// TON's web upload sends a binary body with session cookies
+static NSMutableURLRequest* tonUploadRequestWithWebSession(NSURLRequest* request) {
+    NSURL* url = request.URL;
+    if (![url.scheme.lowercaseString isEqualToString:@"https"] ||
+        (url.port && url.port.integerValue != 443) ||
+        ![request.HTTPMethod.uppercaseString isEqualToString:@"POST"] ||
+        !requestUsesNativeOAuth(request)) {
+        return nil;
+    }
+
+    NSString* userID = postingUserIDFromRequest(request);
+    NSDictionary* session = BHTCachedWebSessionForUserID(userID);
+    if (!session) {
+        return nil;
+    }
+
+    NSMutableURLRequest* outgoing = [request mutableCopy];
+    [outgoing setValue:nil forHTTPHeaderField:@"Authorization"];
+    [outgoing setValue:nil forHTTPHeaderField:@"x-twitter-auth-type"];
+    [outgoing setValue:nil forHTTPHeaderField:@"x-csrf-token"];
+    setWebSessionCookies(outgoing, session[@"auth_token"], session[@"ct0"], userID);
+    return outgoing;
+}
+
 NSMutableURLRequest* BHTWebRequestFromNativeSend(NSURLRequest* request) {
     NSURL* url = request.URL;
     if (!url) {
         return nil;
+    }
+    if (isTonMediaURL(url) && !isTonMediaDownload(request)) {
+        return tonUploadRequestWithWebSession(request);
     }
 
     BOOL isCreateTweet = isCreateTweetURL(url);
@@ -272,9 +309,9 @@ static BOOL replaceTaskRequest(NSURLSessionTask* task, NSURLRequest* request) {
 
 void BHTPrepareWebTaskForResume(NSURLSessionTask* task) {
     NSURLRequest* request = task.currentRequest ?: task.originalRequest;
-    BOOL tonMediaRequest = isTonMediaURL(request.URL);
+    BOOL tonMediaDownload = isTonMediaDownload(request);
     BOOL grokOAuthRequest = isGrokURL(request.URL) && requestUsesNativeOAuth(request);
-    if (task.state == NSURLSessionTaskStateSuspended && (tonMediaRequest || grokOAuthRequest)) {
+    if (task.state == NSURLSessionTaskStateSuspended && (tonMediaDownload || grokOAuthRequest)) {
         NSMutableURLRequest* outgoing = BHTWebRequestFromNativeSend(request);
         if (outgoing) {
             replaceTaskRequest(task, outgoing);
