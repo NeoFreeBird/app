@@ -1,0 +1,29 @@
+/*
+Generic terminology replacements for the "Restore Twitter names" feature.
+This file is applied to localized strings and server-composed text.
+
+Keep this file limited to standalone terms and common standalone word forms.
+Use complete, context-sensitive UI text in RenamePhrases.strings, and use
+RenameOverrides.strings when a specific app localization key needs an override.
+
+Arabic uses exact written forms here. Attached prefixes and suffixes are separate
+forms for matching purposes, so add them only when supported by product usage.
+Do not add speculative dual forms or vocalized spellings without evidence.
+
+Avoid generic verbs such as "نشر" as word-level replacements because they can
+refer to content other than posts. Keep replacements stable if processed twice.
+*/
+
+/* Brand terminology */
+"premium" = "Blue";
+"X" = "تويتر";
+
+/* Post terminology: common standalone forms */
+"منشور" = "تغريدة";
+"المنشور" = "التغريدة";
+"منشورات" = "تغريدات";
+"المنشورات" = "التغريدات";
+"منشورك" = "تغريدتك";
+"منشوراتك" = "تغريداتك";
+"بالمنشور" = "بالتغريدة";
+"للمنشور" = "للتغريدة";
