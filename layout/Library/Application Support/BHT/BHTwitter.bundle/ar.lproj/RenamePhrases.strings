@@ -1,0 +1,10 @@
+/* Exact, case-sensitive UI phrases. Keep grammatical changes here or in
+RenameOverrides.strings, not in generic word substitutions. */
+
+"لا يوجد شيء هنا — بعد." = "حُذفت هذه التغريدة.";
+"نشر" = "تغريد";
+"نشر الكل" = "تغريد الكل";
+"جارٍ النشر…" = "جارٍ التغريد…";
+"جارٍ النشر..." = "جارٍ التغريد...";
+"جاري النشر…" = "جاري التغريد…";
+"جاري النشر..." = "جاري التغريد...";
