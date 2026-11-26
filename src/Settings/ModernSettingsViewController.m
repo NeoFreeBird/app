@@ -363,10 +363,10 @@
             @"userID": @"250262770"
         },
         @{
-            @"title": @"Ediz",
-            @"username": @"undefinediz",
-            @"avatarURL": @"https://unavatar.io/x/undefinediz",
-            @"userID": @"1494917828155162627"
+            @"title": @"Ediz Baha",
+            @"username": @"edizbaha",
+            @"avatarURL": @"https://unavatar.io/x/edizbaha",
+            @"userID": @"1548578046327902209"
         },
         @{
             @"title": @"Mudkip",
