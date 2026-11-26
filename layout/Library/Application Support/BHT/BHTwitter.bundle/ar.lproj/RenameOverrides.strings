@@ -1,0 +1,16 @@
+/*
+Exact overrides for the "Restore Twitter names" feature, keyed by Twitter's own
+localization keys (see Localization_Localization.bundle/en.lproj/Localizable.strings
+in the app). When a key listed here is looked up, its value is returned as-is and
+the generic word replacements from RenameWords.strings are skipped — use this when
+the generic rules get a specific string wrong.
+
+Strictly per-language: keys not listed here, and languages without their own copy of
+this file, fall through to the generic replacement.
+*/
+
+/*
+e.g. The payments provider is genuinely named X, so don't rename it to Twitter.
+
+"PAYMENTS_PROVIDER_X" = "X";
+*/

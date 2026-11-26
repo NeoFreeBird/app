@@ -1,25 +1,29 @@
 /*
-Generic terminology replacements for the "Restore Twitter names" feature, applied
-to every localized string and to server-composed text (notification rows etc.).
+Generic terminology replacements for the "Restore Twitter names" feature.
+This file is applied to localized strings and server-composed text.
 
-Lowercase keys match the original, initial-capital, and all-capital spellings
-using the app language for casing ("Reposts" -> "Retweets", "REPOST" -> "RETWEET").
-A replacement carrying its own capital keeps it even for lowercase matches
-("posted" -> "Tweeted"). Keys that contain an uppercase letter match exactly and
-are replaced verbatim ("X" -> "Twitter").
-List each word in only one of the two forms, and never use a replacement value that
-matches another key — replacements must be stable if the text is processed twice.
+Keep this file limited to standalone terms and common standalone word forms.
+Use complete, context-sensitive UI text in RenamePhrases.strings, and use
+RenameOverrides.strings when a specific app localization key needs an override.
 
-Latin words require word boundaries; Japanese/Chinese terms can touch adjacent
-characters. For changes that depend on grammar or meaning, 
-use a complete RenamePhrases.strings entry (exact source text) 
-or RenameOverrides.strings entry (app localization key). Avoid generic
-verbs such as "publish" that also apply to other kinds of content.
+Arabic uses exact written forms here. Attached prefixes and suffixes are separate
+forms for matching purposes, so add them only when supported by product usage.
+Do not add speculative dual forms or vocalized spellings without evidence.
 
-Strictly per-language: a language without its own copy of this file gets no generic
-renaming at all.
+Avoid generic verbs such as "نشر" as word-level replacements because they can
+refer to content other than posts. Keep replacements stable if processed twice.
 */
 
-"premium" = "blue";
-"Premium" = "Blue";
+/* Brand terminology */
+"premium" = "Blue";
 "X" = "تويتر";
+
+/* Post terminology: common standalone forms */
+"منشور" = "تغريدة";
+"المنشور" = "التغريدة";
+"منشورات" = "تغريدات";
+"المنشورات" = "التغريدات";
+"منشورك" = "تغريدتك";
+"منشوراتك" = "تغريداتك";
+"بالمنشور" = "بالتغريدة";
+"للمنشور" = "للتغريدة";
