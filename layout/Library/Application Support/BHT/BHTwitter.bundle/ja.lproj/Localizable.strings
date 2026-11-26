@@ -74,6 +74,10 @@
 "HIDE_VERIFIED_TWEETS_TITLE" = "認証アカウントのポスト非表示";
 "HIDE_VERIFIED_TWEETS_DETAIL" = "タイムラインと返信から認証済みアカウントのポストを非表示にします。ただし、そのアカウントをフォローしている場合や、投稿者が同じスレッド内で返信している場合は除きます。";
 "RESTORE_REFRESH_SOUNDS_TITLE" = "引っ張って更新のサウンド";
+"HIDE_VIDEO_HISTORY_TITLE" = "「動画」履歴タブを非表示にする";
+"HIDE_VIDEO_HISTORY_DETAIL" = "アプリを再起動すると、履歴から「動画」タブが削除されます。";
+"HIDE_ARTICLE_HISTORY_TITLE" = "「記事」履歴タブを非表示にする";
+"HIDE_ARTICLE_HISTORY_DETAIL" = "アプリを再起動すると、履歴から「記事」タブが削除されます。";
 
 /* grok */
 
@@ -276,7 +280,9 @@
 "POST_INTERACTIONS_UNROUNDED_COUNTS_TITLE" = "引用: %lld リポスト: %lld";
 "RESTORE_TWEET_LABELS_TITLE" = "ツイートのソースラベルを表示";
 "RESTORE_TWEET_LABELS_DETAIL" = "ツイートがどのクライアントから送信されたかを表示します。";
+"LIQUID_GLASS_RESTART_ALERT_TITLE" = "再起動が必要です";
 "LIQUID_GLASS_RESTART_ALERT_MESSAGE" = "リキッドグラスのデザイン変更を適用するには、再起動が必要です。";
+"LIQUID_GLASS_RESTART_ALERT_RESTART_BUTTON" = "再起動";
 "DEVELOPER_SECTION_HEADER_TITLE" = "開発者";
 "CUSTOM_FONTS_NAVIGATION_BUTTON_TITLE" = "カスタムフォント";
 "CUSTOM_FONTS_MENU_TITLE" = "\nフォントを選択";
@@ -299,12 +305,10 @@
 "THEME_SETTINGS_NAVIGATION_TITLE" = "テーマ";
 "THEME_SETTINGS_NAVIGATION_DETAIL" = "Xのテーマカラーを変更できます。この設定はあなたの画面にのみ反映されます。";
 "CUSTOM_TAB_BAR_SETTINGS_NAVIGATION_TITLE" = "カスタムナビゲーション";
+"CUSTOM_TAB_BAR_UNAVAILABLE_MESSAGE" = "このバージョンのアプリでは、カスタムタブバーのカスタマイズは利用できません。";
 "CUSTOM_TAB_BAR_GRID_DETAIL" = "タップして、追加・削除する項目を選択します。下のバーをドラッグして順番を変更できます。";
 "CUSTOM_TAB_BAR_RESET_MESSAGE" = "ナビゲーションバーをデフォルトの状態に戻しますか？";
 "REFRESH_PILL_TEXT" = "ポストしました";
-"DIM_THEME_RESTART_ALERT_TITLE" = "再起動が必要です";
-"DIM_THEME_RESTART_ALERT_MESSAGE" = "ダークブルーテーマを適用するには、アプリを再起動する必要があります。";
-"DIM_THEME_RESTART_ALERT_RESTART_BUTTON" = "再起動";
 "HIDE_QUICK_COMPOSE_TITLE" = "「クイック作成」を非表示";
 "HIDE_QUICK_COMPOSE_DETAIL" = "ナビゲーションバーから「クイック作成」ボタンを削除します（Liquid Glassでのみ有効）。";
 "MODERN_SETTINGS_PLACEHOLDER_TEXT" = "ここには何もありません — 今はまだ。";
