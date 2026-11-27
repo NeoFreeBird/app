@@ -1,142 +1,29 @@
 /*
-Generic terminology replacements for the "Restore Twitter names" feature, applied
-to every localized string and to server-composed text (notification rows etc.).
+Generic terminology replacements for the "Restore Twitter names" feature.
+This file is applied to localized strings and server-composed text.
 
-Lowercase keys match the original, initial-capital, and all-capital spellings
-using the app language for casing ("Reposts" -> "Retweets", "REPOST" -> "RETWEET").
-A replacement carrying its own capital keeps it even for lowercase matches
-("posted" -> "Tweeted"). Keys that contain an uppercase letter match exactly and
-are replaced verbatim ("X" -> "Twitter").
-List each word in only one of the two forms, and never use a replacement value that
-matches another key — replacements must be stable if the text is processed twice.
+Keep this file limited to standalone terms and common standalone word forms.
+Use complete, context-sensitive UI text in RenamePhrases.strings, and use
+RenameOverrides.strings when a specific app localization key needs an override.
 
-Latin words require word boundaries; Japanese/Chinese terms can touch adjacent
-characters. For changes that depend on grammar or meaning, 
-use a complete RenamePhrases.strings entry (exact source text) 
-or RenameOverrides.strings entry (app localization key). Avoid generic
-verbs such as "publish" that also apply to other kinds of content.
+Arabic uses exact written forms here. Attached prefixes and suffixes are separate
+forms for matching purposes, so add them only when supported by product usage.
+Do not add speculative dual forms or vocalized spellings without evidence.
 
-Strictly per-language: a language without its own copy of this file gets no generic
-renaming at all.
+Avoid generic verbs such as "نشر" as word-level replacements because they can
+refer to content other than posts. Keep replacements stable if processed twice.
 */
 
-/* العلامة التجارية */
+/* Brand terminology */
 "premium" = "Blue";
-"بريميوم" = "Blue";
 "X" = "تويتر";
 
-/* إعادة التغريد (repost / reposts / reposted / reposting) */
-"إعادة نشر المنشور" = "إعادة التغريد";
-"إعادة نشر منشورك" = "إعادة تغريد تغريدتك";
-"إعادة نشر منشور" = "إعادة تغريد";
-"أعاد نشر منشورك" = "أعاد تغريد تغريدتك";
-"أعادت نشر منشورك" = "أعادت تغريد تغريدتك";
-"أعادوا نشر منشورك" = "أعادوا تغريد تغريدتك";
-"أعاد نشر منشور" = "أعاد تغريد";
-"أعادت نشر منشور" = "أعادت تغريد";
-"أعادوا نشر منشور" = "أعادوا تغريد";
-"أعاد نشر ردك" = "أعاد تغريد ردك";
-"أعادت نشر ردك" = "أعادت تغريد ردك";
-"إعادات النشر" = "إعادات التغريد";
-"إعادات نشر" = "إعادات تغريد";
-"إعادة النشر" = "إعادة التغريد";
-"لإعادة النشر" = "لإعادة التغريد";
-"بإعادة النشر" = "بإعادة التغريد";
-"وإعادة النشر" = "وإعادة التغريد";
-"إعادة نشره" = "إعادة تغريده";
-"إعادة نشرها" = "إعادة تغريدها";
-"إعادة نشر" = "إعادة تغريد";
-"لإعادة نشر" = "لإعادة تغريد";
-"بإعادة نشر" = "بإعادة تغريد";
-"وإعادة نشر" = "وإعادة تغريد";
-"أعاد النشر" = "أعاد التغريد";
-"أعادت النشر" = "أعادت التغريد";
-"أعادوا النشر" = "أعادوا التغريد";
-"أعدت النشر" = "أعدت التغريد";
-"أعد النشر" = "أعد التغريد";
-"أعِد النشر" = "أعِد التغريد";
-"أعاد نشر" = "أعاد تغريد";
-"أعادت نشر" = "أعادت تغريد";
-"أعادوا نشر" = "أعادوا تغريد";
-"أعدت نشر" = "أعدت تغريد";
-"أعد نشر" = "أعد تغريد";
-"أعِد نشر" = "أعِد تغريد";
-"تعيد نشر" = "تعيد تغريد";
-"يعيد نشر" = "يعيد تغريد";
-"أُعيد نشره" = "أُعيد تغريده";
-"أُعيد نشرها" = "أُعيد تغريدها";
-"أعيد نشره" = "أعيد تغريده";
-"أعيد نشرها" = "أعيد تغريدها";
-
-/* التغريدات: جمل وعبارات تراعي التذكير والتأنيث (post / posted / posting) */
-"هذا المنشور غير متاح" = "هذه التغريدة غير متاحة";
-"هذا المنشور غير متوفر" = "هذه التغريدة غير متوفرة";
-"هذا المنشور محذوف" = "هذه التغريدة محذوفة";
-"هذا المنشور مقتبس" = "هذه التغريدة مقتبسة";
-"هذا المنشور مثبت" = "هذه التغريدة مثبتة";
-"هذا المنشور" = "هذه التغريدة";
-"بهذا المنشور" = "بهذه التغريدة";
-"لهذا المنشور" = "لهذه التغريدة";
-"منشور جديد" = "تغريدة جديدة";
-"منشورك الجديد" = "تغريدتك الجديدة";
-"منشور مثبت" = "تغريدة مثبتة";
-"المنشور المثبت" = "التغريدة المثبتة";
-"منشور مقتبس" = "تغريدة مقتبسة";
-"المنشور المقتبس" = "التغريدة المقتبسة";
-"منشور محذوف" = "تغريدة محذوفة";
-"المنشور المحذوف" = "التغريدة المحذوفة";
-"منشور غير متاح" = "تغريدة غير متاحة";
-"المنشور غير متاح" = "التغريدة غير متاحة";
-"منشور غير متوفر" = "تغريدة غير متوفرة";
-"المنشور غير متوفر" = "التغريدة غير متوفرة";
-"منشور مروّج" = "تغريدة مروّجة";
-"منشور مروج" = "تغريدة مروّجة";
-"منشور مقيّد" = "تغريدة مقيّدة";
-"منشور مقيد" = "تغريدة مقيّدة";
-"منشور واحد" = "تغريدة واحدة";
-"أول منشور" = "أول تغريدة";
-"آخر منشور" = "آخر تغريدة";
-"كل منشور" = "كل تغريدة";
-"أي منشور" = "أي تغريدة";
-"نشر منشورًا" = "نشر تغريدةً";
-"نشر منشوراً" = "نشر تغريدةً";
-"نشر منشورك" = "نشر تغريدتك";
-"نشر منشور" = "نشر تغريدة";
-"ينشر منشورًا" = "ينشر تغريدةً";
-"تنشر منشورًا" = "تنشر تغريدةً";
-"جارٍ نشر المنشور" = "جارٍ نشر التغريدة";
-"جاري نشر المنشور" = "جاري نشر التغريدة";
-"نُشر منشورك" = "نُشرت تغريدتك";
-
-/* التغريدات: المفرد والمثنى والجمع وتصريفاتها بالسوابق واللواحق (post / posts) */
+/* Post terminology: common standalone forms */
 "منشور" = "تغريدة";
-"منشورًا" = "تغريدةً";
-"منشوراً" = "تغريدةً";
 "المنشور" = "التغريدة";
-"منشورك" = "تغريدتك";
-"منشوره" = "تغريدته";
-"منشورها" = "تغريدتها";
-"منشورهم" = "تغريدتهم";
-"منشوران" = "تغريدتان";
-"منشورين" = "تغريدتين";
-"المنشوران" = "التغريدتان";
-"المنشورين" = "التغريدتين";
-"للمنشور" = "للتغريدة";
-"بالمنشور" = "بالتغريدة";
-"كمنشور" = "كتغريدة";
-"ومنشور" = "وتغريدة";
-"والمنشور" = "والتغريدة";
-"بمنشور" = "بتغريدة";
-"لمنشور" = "لتغريدة";
 "منشورات" = "تغريدات";
 "المنشورات" = "التغريدات";
+"منشورك" = "تغريدتك";
 "منشوراتك" = "تغريداتك";
-"منشوراته" = "تغريداته";
-"منشوراتها" = "تغريداتها";
-"منشوراتهم" = "تغريداتهم";
-"للمنشورات" = "للتغريدات";
-"بالمنشورات" = "بالتغريدات";
-"ومنشورات" = "وتغريدات";
-"والمنشورات" = "والتغريدات";
-"بمنشورات" = "بتغريدات";
-"لمنشورات" = "لتغريدات";
+"بالمنشور" = "بالتغريدة";
+"للمنشور" = "للتغريدة";
